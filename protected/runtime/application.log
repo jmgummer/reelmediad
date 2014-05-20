@@ -1,0 +1,2148 @@
+2014/05/13 10:51:32 [error] [php] include(CmsInput.php): failed to open stream: No such file or directory (/var/www/yii_back/framework/YiiBase.php:421)
+Stack trace:
+#0 /var/www/yii_back/framework/YiiBase.php(196): import()
+#1 /var/www/yii_back/framework/base/CModule.php(386): createComponent()
+#2 /var/www/yii_back/framework/base/CModule.php(523): CWebApplication->getComponent()
+#3 /var/www/yii_back/framework/base/CApplication.php(152): CWebApplication->preloadComponents()
+#4 /var/www/yii_back/framework/YiiBase.php(125): CWebApplication->__construct()
+#5 /var/www/yii_back/framework/YiiBase.php(98): createApplication()
+#6 /var/www/reelmedia/index.php(13): createWebApplication()
+REQUEST_URI=/reelmedia/
+in /var/www/reelmedia/index.php (13)
+2014/05/13 11:14:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/99a3845a/css/font-awesome.min.css".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/99a3845a...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/99a3845a/css/font-awesome.min.css
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:14:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/99a3845a/css/smartadmin-production.css".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/99a3845a...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/99a3845a/css/smartadmin-production.css
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:14:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/99a3845a/css/demo.css".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/99a3845a...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/99a3845a/css/demo.css
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:14:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/99a3845a/js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/99a3845a...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/99a3845a/js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:14:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/99a3845a/css/smartadmin-skins.css".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/99a3845a...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/99a3845a/css/smartadmin-skins.css
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:14:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/99a3845a/js/smartwidgets/jarvis.widget.min.js".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/99a3845a...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/99a3845a/js/smartwidgets/jarvis.widget.min.js
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:14:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/99a3845a/js/notification/SmartNotification.min.js".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/99a3845a...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/99a3845a/js/notification/SmartNotification.min.js
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:14:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/99a3845a/js/plugin/sparkline/jquery.sparkline.min.js".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/99a3845a...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/99a3845a/js/plugin/sparkline/jquery.sparkline.min.js
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:14:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/99a3845a/js/plugin/jquery-validate/jquery.validate.min.js".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/99a3845a...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/99a3845a/js/plugin/jquery-validate/jquery.validate.min.js
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:14:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/99a3845a/js/plugin/bootstrap-slider/bootstrap-slider.min.js".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/99a3845a...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/99a3845a/js/plugin/bootstrap-slider/bootstrap-slider.min.js
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:14:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/99a3845a/js/plugin/msie-fix/jquery.mb.browser.min.js".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/99a3845a...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/99a3845a/js/plugin/msie-fix/jquery.mb.browser.min.js
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:14:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/99a3845a/js/plugin/select2/select2.min.js".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/99a3845a...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/99a3845a/js/plugin/select2/select2.min.js
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:14:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/99a3845a/js/plugin/masked-input/jquery.maskedinput.min.js".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/99a3845a...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/99a3845a/js/plugin/masked-input/jquery.maskedinput.min.js
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:14:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/99a3845a/js/app.js".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/99a3845a...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/99a3845a/js/app.js
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:14:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/99a3845a/js/demo.js".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/99a3845a...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/99a3845a/js/demo.js
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:14:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/99a3845a/js/plugin/fastclick/fastclick.js".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/99a3845a...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/99a3845a/js/plugin/fastclick/fastclick.js
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:17:52 [error] [php] opendir(/var/www/reelmedia/protected/extensions/bootstrap/assets/css): failed to open dir: Permission denied (/var/www/yii_back/framework/utils/CFileHelper.php:120)
+Stack trace:
+#0 /var/www/yii_back/framework/utils/CFileHelper.php(63): copyDirectoryRecursive()
+#1 /var/www/yii_back/framework/web/CAssetManager.php(251): copyDirectory()
+#2 /var/www/reelmedia/protected/extensions/bootstrap/components/Bootstrap.php(344): CAssetManager->publish()
+#3 /var/www/reelmedia/protected/extensions/bootstrap/components/Bootstrap.php(103): Bootstrap->getAssetsUrl()
+#4 /var/www/reelmedia/protected/extensions/bootstrap/components/Bootstrap.php(84): Bootstrap->registerCoreCss()
+#5 /var/www/yii_back/framework/base/CModule.php(387): Bootstrap->init()
+#6 /var/www/yii_back/framework/base/CModule.php(523): CWebApplication->getComponent()
+#7 /var/www/yii_back/framework/base/CApplication.php(152): CWebApplication->preloadComponents()
+#8 /var/www/yii_back/framework/YiiBase.php(125): CWebApplication->__construct()
+#9 /var/www/yii_back/framework/YiiBase.php(98): createApplication()
+#10 /var/www/reelmedia/index.php(13): createWebApplication()
+REQUEST_URI=/reelmedia/site/index
+in /var/www/reelmedia/protected/extensions/bootstrap/components/Bootstrap.php (344)
+in /var/www/reelmedia/protected/extensions/bootstrap/components/Bootstrap.php (103)
+in /var/www/reelmedia/protected/extensions/bootstrap/components/Bootstrap.php (84)
+2014/05/13 11:18:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/css/bootstrap.min.css".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/css/bootstrap.min.css
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:18:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/css/font-awesome.min.css".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/css/font-awesome.min.css
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:18:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/css/smartadmin-production.css".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/css/smartadmin-production.css
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:18:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/css/smartadmin-skins.css".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/css/smartadmin-skins.css
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:18:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/js/bootstrap/bootstrap.min.js".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/js/bootstrap/bootstrap.min.js
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:18:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/css/demo.css".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/css/demo.css
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:18:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/css/bootstrap-yii.css".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/css/bootstrap-yii.css
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:18:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/js/smartwidgets/jarvis.widget.min.js".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/js/smartwidgets/jarvis.widget.min.js
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:18:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/js/notification/SmartNotification.min.js".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/js/notification/SmartNotification.min.js
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:18:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/js/plugin/sparkline/jquery.sparkline.min.js".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/js/plugin/sparkline/jquery.sparkline.min.js
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:18:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:18:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/js/plugin/jquery-validate/jquery.validate.min.js".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/js/plugin/jquery-validate/jquery.validate.min.js
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:18:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/js/plugin/select2/select2.min.js".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/js/plugin/select2/select2.min.js
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:18:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/js/plugin/masked-input/jquery.maskedinput.min.js".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/js/plugin/masked-input/jquery.maskedinput.min.js
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:18:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/js/plugin/msie-fix/jquery.mb.browser.min.js".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/js/plugin/msie-fix/jquery.mb.browser.min.js
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:18:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/js/plugin/bootstrap-slider/bootstrap-slider.min.js".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/js/plugin/bootstrap-slider/bootstrap-slider.min.js
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:18:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/js/demo.js".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/js/demo.js
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:18:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/js/plugin/fastclick/fastclick.js".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/js/plugin/fastclick/fastclick.js
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:18:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/js/app.js".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/js/app.js
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:18:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/css/bootstrap-yii.css".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/css/bootstrap-yii.css
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:40:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/flags/...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/flags/es.png
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:40:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/logo.p...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/logo.png
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:40:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/flags/...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/flags/de.png
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:40:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/flags/...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/flags/us.png
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:40:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/flags/...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/flags/es.png
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:40:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/flags/...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/flags/de.png
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:40:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/logo.p...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/logo.png
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:40:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/flags/...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/flags/us.png
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:41:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sound".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('sound')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('sound')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/sound/mess...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/sound/messagebox.mp3
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:42:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/logo.p...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/logo.png
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:42:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/logo.p...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/logo.png
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:43:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/log...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/images/logo.png
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 11:43:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('images')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('images')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/images/log...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/images/logo.png
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 12:49:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings-white.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings-white.png
+HTTP_REFERER=http://localhost/reelmedia/site/index
+---
+2014/05/13 12:57:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/site/page?view=about
+---
+2014/05/13 13:02:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested view "index" was not found.' in /var/www/yii_back/framework/web/actions/CViewAction.php:112
+Stack trace:
+#0 /var/www/yii_back/framework/web/actions/CViewAction.php(123): CViewAction->resolveView('index')
+#1 /var/www/yii_back/framework/web/actions/CAction.php(76): CViewAction->run()
+#2 /var/www/yii_back/framework/web/CController.php(308): CAction->runWithParams(Array)
+#3 /var/www/yii_back/framework/web/CController.php(286): CController->runAction(Object(CViewAction))
+#4 /var/www/yii_back/framework/web/CController.php(265): CController->runActionWithFilters(Object(CViewAction), Array)
+#5 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('page')
+#6 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/page')
+#7 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#8 /var/www/reelmedia/index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/reelmedia/site/page
+HTTP_REFERER=http://localhost/reelmedia/site
+---
+2014/05/13 13:05:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested view "index" was not found.' in /var/www/yii_back/framework/web/actions/CViewAction.php:112
+Stack trace:
+#0 /var/www/yii_back/framework/web/actions/CViewAction.php(123): CViewAction->resolveView('index')
+#1 /var/www/yii_back/framework/web/actions/CAction.php(76): CViewAction->run()
+#2 /var/www/yii_back/framework/web/CController.php(308): CAction->runWithParams(Array)
+#3 /var/www/yii_back/framework/web/CController.php(286): CController->runAction(Object(CViewAction))
+#4 /var/www/yii_back/framework/web/CController.php(265): CController->runActionWithFilters(Object(CViewAction), Array)
+#5 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('page')
+#6 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/page')
+#7 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#8 /var/www/reelmedia/index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/reelmedia/site/page
+HTTP_REFERER=http://localhost/reelmedia/site
+---
+2014/05/13 13:05:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested view "index" was not found.' in /var/www/yii_back/framework/web/actions/CViewAction.php:112
+Stack trace:
+#0 /var/www/yii_back/framework/web/actions/CViewAction.php(123): CViewAction->resolveView('index')
+#1 /var/www/yii_back/framework/web/actions/CAction.php(76): CViewAction->run()
+#2 /var/www/yii_back/framework/web/CController.php(308): CAction->runWithParams(Array)
+#3 /var/www/yii_back/framework/web/CController.php(286): CController->runAction(Object(CViewAction))
+#4 /var/www/yii_back/framework/web/CController.php(265): CController->runActionWithFilters(Object(CViewAction), Array)
+#5 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('page')
+#6 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/page')
+#7 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#8 /var/www/reelmedia/index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/reelmedia/site/page
+HTTP_REFERER=http://localhost/reelmedia/site
+---
+2014/05/13 13:06:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested view "index" was not found.' in /var/www/yii_back/framework/web/actions/CViewAction.php:112
+Stack trace:
+#0 /var/www/yii_back/framework/web/actions/CViewAction.php(123): CViewAction->resolveView('index')
+#1 /var/www/yii_back/framework/web/actions/CAction.php(76): CViewAction->run()
+#2 /var/www/yii_back/framework/web/CController.php(308): CAction->runWithParams(Array)
+#3 /var/www/yii_back/framework/web/CController.php(286): CController->runAction(Object(CViewAction))
+#4 /var/www/yii_back/framework/web/CController.php(265): CController->runActionWithFilters(Object(CViewAction), Array)
+#5 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('page')
+#6 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/page')
+#7 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#8 /var/www/reelmedia/index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/reelmedia/site/page
+HTTP_REFERER=http://localhost/reelmedia/site
+---
+2014/05/13 13:23:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sound".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('sound')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('sound')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/sound/mess...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/sound/messagebox.mp3
+HTTP_REFERER=http://localhost/reelmedia/site/page?view=about
+---
+2014/05/13 14:07:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sound".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('sound')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('sound')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/sound/mess...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/sound/messagebox.mp3
+HTTP_REFERER=http://localhost/reelmedia/site/page?view=about
+---
+2014/05/13 14:09:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "login.html".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('login.html')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('login.html')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login.html')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/login.html
+HTTP_REFERER=http://localhost/reelmedia/site/page?view=about
+---
+2014/05/13 14:12:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sound".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('sound')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('sound')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/sound/mess...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/sound/messagebox.mp3
+HTTP_REFERER=http://localhost/reelmedia/site/page?view=about
+---
+2014/05/13 14:12:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "login.html".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('login.html')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('login.html')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login.html')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/login.html
+HTTP_REFERER=http://localhost/reelmedia/site/page?view=about
+---
+2014/05/13 14:13:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "sound/messagebox.mp3".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('sound/messagebo...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/sound/messagebox.mp3
+HTTP_REFERER=http://localhost/reelmedia/site
+---
+2014/05/13 14:16:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "sound/messagebox.mp3".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('sound/messagebo...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/sound/messagebox.mp3
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/13 14:17:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "sound/messagebox.mp3".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('sound/messagebo...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/sound/messagebox.mp3
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/13 14:17:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sound".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('sound')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('sound')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/sound/mess...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/sound/messagebox.mp3
+HTTP_REFERER=http://localhost/reelmedia/site/page?view=about
+---
+2014/05/13 14:19:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "img/pattern/graphy-xs.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('img/pattern/gra...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/img/pattern/graphy-xs.png
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/13 14:19:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "img/pattern/paper-xs.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('img/pattern/pap...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/img/pattern/paper-xs.png
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/13 14:19:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "img/pattern/sneaker_mesh_fabric-xs.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('img/pattern/sne...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/img/pattern/sneaker_mesh_fabric-xs.png
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/13 14:19:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "img/pattern/tileable_wood_texture-xs.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('img/pattern/til...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/img/pattern/tileable_wood_texture-xs.png
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/13 14:19:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "img/pattern/nistri-xs.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('img/pattern/nis...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/img/pattern/nistri-xs.png
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/13 14:25:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "img/pattern/graphy-xs.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('img/pattern/gra...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/img/pattern/graphy-xs.png
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/13 14:25:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "img/pattern/sneaker_mesh_fabric-xs.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('img/pattern/sne...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/img/pattern/sneaker_mesh_fabric-xs.png
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/13 14:25:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "img/pattern/tileable_wood_texture-xs.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('img/pattern/til...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/img/pattern/tileable_wood_texture-xs.png
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/13 14:25:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "img/pattern/paper-xs.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('img/pattern/pap...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/img/pattern/paper-xs.png
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/13 14:25:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "img/pattern/nistri-xs.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('img/pattern/nis...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/img/pattern/nistri-xs.png
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/13 15:44:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sound".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('sound')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('sound')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/sound/mess...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/sound/messagebox.mp3
+HTTP_REFERER=http://localhost/reelmedia/site/page?view=about
+---
+2014/05/13 16:14:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/demo/i...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/demo/iphoneview.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/13 16:14:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/demo/i...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/demo/iphoneview.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/13 16:14:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/13 16:19:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/demo/i...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/demo/iphoneview.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/13 16:19:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/demo/i...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/demo/iphoneview.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/13 16:19:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/demo/i...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/demo/iphoneview.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/13 16:20:46 [error] [exception.CException] exception 'CException' with message 'TbActiveForm and its behaviors do not have a method or closure named "emailFieldRow".' in /var/www/yii_back/framework/base/CComponent.php:265
+Stack trace:
+#0 /var/www/reelmedia/protected/views/site/login.php(52): CComponent->__call('emailFieldRow', Array)
+#1 /var/www/reelmedia/protected/views/site/login.php(52): TbActiveForm->emailFieldRow(Object(LoginForm), 'username', Array)
+#2 /var/www/yii_back/framework/web/CBaseController.php(126): require('/var/www/reelme...')
+#3 /var/www/yii_back/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/reelme...', Array, true)
+#4 /var/www/yii_back/framework/web/CController.php(869): CBaseController->renderFile('/var/www/reelme...', Array, true)
+#5 /var/www/yii_back/framework/web/CController.php(782): CController->renderPartial('login', Array, true)
+#6 /var/www/reelmedia/protected/controllers/SiteController.php(99): CController->render('login', Array)
+#7 /var/www/yii_back/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
+#8 /var/www/yii_back/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#9 /var/www/yii_back/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#10 /var/www/yii_back/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('login')
+#12 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login')
+#13 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#14 /var/www/reelmedia/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/reelmedia/site/login
+---
+2014/05/13 16:21:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/demo/i...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/demo/iphoneview.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/13 16:21:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/demo/i...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/demo/iphoneview.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/13 16:21:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/demo/i...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/demo/iphoneview.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/13 16:23:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/demo/i...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/demo/iphoneview.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/13 16:25:06 [error] [exception.CException] exception 'CException' with message 'Property "TbActiveForm.class" is not defined.' in /var/www/yii_back/framework/base/CComponent.php:173
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWidgetFactory.php(161): CComponent->__set('class', 'smart-form clie...')
+#1 /var/www/yii_back/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(SiteController), 'bootstrap.widge...', Array)
+#2 /var/www/yii_back/framework/web/CBaseController.php(189): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /var/www/reelmedia/protected/views/site/login.php(25): CBaseController->beginWidget('bootstrap.widge...', Array)
+#4 /var/www/yii_back/framework/web/CBaseController.php(126): require('/var/www/reelme...')
+#5 /var/www/yii_back/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/reelme...', Array, true)
+#6 /var/www/yii_back/framework/web/CController.php(869): CBaseController->renderFile('/var/www/reelme...', Array, true)
+#7 /var/www/yii_back/framework/web/CController.php(782): CController->renderPartial('login', Array, true)
+#8 /var/www/reelmedia/protected/controllers/SiteController.php(99): CController->render('login', Array)
+#9 /var/www/yii_back/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
+#10 /var/www/yii_back/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /var/www/yii_back/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /var/www/yii_back/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('login')
+#14 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login')
+#15 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#16 /var/www/reelmedia/index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/reelmedia/site/login
+---
+2014/05/13 16:25:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/demo/i...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/demo/iphoneview.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/13 16:25:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/demo/i...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/demo/iphoneview.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/13 16:26:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/demo/i...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/demo/iphoneview.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/13 16:26:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/demo/i...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/demo/iphoneview.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/13 16:31:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/demo/i...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/demo/iphoneview.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/13 16:31:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/demo/i...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/demo/iphoneview.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/13 16:31:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/demo/i...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/demo/iphoneview.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/13 16:33:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/demo/i...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/demo/iphoneview.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/13 16:33:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/demo/i...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/demo/iphoneview.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/13 16:34:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/demo/i...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/demo/iphoneview.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/13 16:34:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/demo/i...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/demo/iphoneview.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/13 16:34:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/13 16:36:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/demo/i...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/demo/iphoneview.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/13 16:36:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "img".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('img')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('img')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/img/demo/i...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/site/img/demo/iphoneview.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/13 16:42:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/13 16:43:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/13 16:44:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/13 16:53:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "sound/messagebox.mp3".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('sound/messagebo...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/sound/messagebox.mp3
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/13 16:55:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/14 10:28:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "gii/default".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('gii/default')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/gii/default/login
+---
+2014/05/14 10:29:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/14 10:31:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "sound/messagebox.mp3".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('sound/messagebo...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/sound/messagebox.mp3
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/14 11:14:30 [error] [php] Undefined variable: sysrole (/var/www/reelmedia/protected/components/UserIdentity.php:33)
+Stack trace:
+#0 /var/www/yii_back/framework/validators/CValidator.php(213): CInlineValidator->validateAttribute()
+#1 /var/www/yii_back/framework/base/CModel.php(159): CInlineValidator->validate()
+#2 /var/www/reelmedia/protected/controllers/SiteController.php(45): LoginForm->validate()
+#3 /var/www/yii_back/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#4 /var/www/yii_back/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /var/www/yii_back/framework/web/CController.php(286): SiteController->runAction()
+#6 /var/www/yii_back/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#7 /var/www/yii_back/framework/web/CWebApplication.php(282): SiteController->run()
+#8 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#10 /var/www/reelmedia/index.php(13): CWebApplication->run()
+REQUEST_URI=/reelmedia/
+in /var/www/reelmedia/protected/components/UserIdentity.php (33)
+in /var/www/reelmedia/protected/models/LoginForm.php (53)
+in /var/www/reelmedia/protected/controllers/SiteController.php (45)
+2014/05/14 11:15:53 [error] [exception.CException] exception 'CException' with message 'HomeController cannot find the requested view "index".' in /var/www/yii_back/framework/web/CController.php:878
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#1 /var/www/reelmedia/protected/controllers/HomeController.php(44): CController->render('index')
+#2 /var/www/yii_back/framework/web/actions/CInlineAction.php(49): HomeController->actionIndex()
+#3 /var/www/yii_back/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /var/www/yii_back/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /var/www/yii_back/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /var/www/yii_back/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /var/www/yii_back/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /var/www/yii_back/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /var/www/yii_back/framework/web/CController.php(291): CFilterChain->run()
+#10 /var/www/yii_back/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('index')
+#12 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('home/index')
+#13 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#14 /var/www/reelmedia/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/reelmedia/home/index
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/14 11:16:17 [error] [exception.CException] exception 'CException' with message 'HomeController cannot find the requested view "index".' in /var/www/yii_back/framework/web/CController.php:878
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#1 /var/www/reelmedia/protected/controllers/HomeController.php(44): CController->render('index')
+#2 /var/www/yii_back/framework/web/actions/CInlineAction.php(49): HomeController->actionIndex()
+#3 /var/www/yii_back/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /var/www/yii_back/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /var/www/yii_back/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /var/www/yii_back/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /var/www/yii_back/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /var/www/yii_back/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /var/www/yii_back/framework/web/CController.php(291): CFilterChain->run()
+#10 /var/www/yii_back/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('index')
+#12 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('home/index')
+#13 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#14 /var/www/reelmedia/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/reelmedia/home/index
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/14 11:16:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sound".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('sound')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('sound')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('home/sound/mess...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/home/sound/messagebox.mp3
+HTTP_REFERER=http://localhost/reelmedia/home/index
+---
+2014/05/14 11:17:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sound".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('sound')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('sound')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('home/sound/mess...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/home/sound/messagebox.mp3
+HTTP_REFERER=http://localhost/reelmedia/home/index
+---
+2014/05/14 11:17:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/14 11:17:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/assets/9e1d571c/css/demo.css
+---
+2014/05/14 11:17:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/assets/9e1d571c/css/demo.css
+---
+2014/05/14 11:18:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sound".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('sound')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('sound')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('home/sound/mess...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/home/sound/messagebox.mp3
+HTTP_REFERER=http://localhost/reelmedia/home/index
+---
+2014/05/14 11:18:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/assets/9e1d571c/css/demo.css
+---
+2014/05/14 11:21:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/14 11:21:32 [error] [exception.CException] exception 'CException' with message 'Object configuration must be an array containing a "class" element.' in /var/www/yii_back/framework/YiiBase.php:193
+Stack trace:
+#0 /var/www/yii_back/framework/base/CModule.php(386): YiiBase::createComponent(Array)
+#1 /var/www/yii_back/framework/gii/generators/model/ModelGenerator.php(17): CModule->getComponent('db2')
+#2 [internal function]: ModelGenerator->actionGetTableNames('db2')
+#3 /var/www/yii_back/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(ModelGenerator), Array)
+#4 /var/www/yii_back/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(ModelGenerator), Object(ReflectionMethod), Array)
+#5 /var/www/yii_back/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#6 /var/www/yii_back/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#7 /var/www/yii_back/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('getTableNames')
+#9 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('gii/model/getTa...')
+#10 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#11 /var/www/reelmedia/index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/reelmedia/gii/model/getTableNames?db=db2
+HTTP_REFERER=http://localhost/reelmedia/gii/model
+---
+2014/05/14 11:22:17 [error] [exception.CException] exception 'CException' with message 'Object configuration must be an array containing a "class" element.' in /var/www/yii_back/framework/YiiBase.php:193
+Stack trace:
+#0 /var/www/yii_back/framework/base/CModule.php(386): YiiBase::createComponent(Array)
+#1 /var/www/yii_back/framework/gii/generators/model/ModelCode.php(412): CModule->getComponent('db2')
+#2 /var/www/yii_back/framework/validators/CInlineValidator.php(42): ModelCode->validateConnectionId('connectionId', Array)
+#3 /var/www/yii_back/framework/validators/CValidator.php(213): CInlineValidator->validateAttribute(Object(ModelCode), 'connectionId')
+#4 /var/www/yii_back/framework/base/CModel.php(159): CValidator->validate(Object(ModelCode), NULL)
+#5 /var/www/yii_back/framework/gii/CCodeGenerator.php(159): CModel->validate()
+#6 /var/www/yii_back/framework/gii/CCodeGenerator.php(63): CCodeGenerator->prepare()
+#7 /var/www/yii_back/framework/web/actions/CInlineAction.php(49): CCodeGenerator->actionIndex()
+#8 /var/www/yii_back/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#9 /var/www/yii_back/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#10 /var/www/yii_back/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('')
+#12 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('gii/model')
+#13 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#14 /var/www/reelmedia/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/reelmedia/gii/model
+HTTP_REFERER=http://localhost/reelmedia/gii/model
+---
+2014/05/14 11:44:08 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'192.168.40.226' (using password: YES)' in /var/www/yii_back/framework/db/CDbConnection.php:381
+Stack trace:
+#0 /var/www/yii_back/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /var/www/yii_back/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /var/www/yii_back/framework/base/CModule.php(387): CDbConnection->init()
+#3 /var/www/yii_back/framework/gii/generators/model/ModelGenerator.php(17): CModule->getComponent('db2')
+#4 [internal function]: ModelGenerator->actionGetTableNames('db2')
+#5 /var/www/yii_back/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(ModelGenerator), Array)
+#6 /var/www/yii_back/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(ModelGenerator), Object(ReflectionMethod), Array)
+#7 /var/www/yii_back/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /var/www/yii_back/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#9 /var/www/yii_back/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('getTableNames')
+#11 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('gii/model/getTa...')
+#12 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#13 /var/www/reelmedia/index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/reelmedia/gii/model/getTableNames?db=db2
+HTTP_REFERER=http://localhost/reelmedia/gii/model
+---
+2014/05/14 11:44:30 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'192.168.40.226' (using password: YES)' in /var/www/yii_back/framework/db/CDbConnection.php:381
+Stack trace:
+#0 /var/www/yii_back/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /var/www/yii_back/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /var/www/yii_back/framework/base/CModule.php(387): CDbConnection->init()
+#3 /var/www/yii_back/framework/gii/generators/model/ModelCode.php(412): CModule->getComponent('db2')
+#4 /var/www/yii_back/framework/validators/CInlineValidator.php(42): ModelCode->validateConnectionId('connectionId', Array)
+#5 /var/www/yii_back/framework/validators/CValidator.php(213): CInlineValidator->validateAttribute(Object(ModelCode), 'connectionId')
+#6 /var/www/yii_back/framework/base/CModel.php(159): CValidator->validate(Object(ModelCode), NULL)
+#7 /var/www/yii_back/framework/gii/CCodeGenerator.php(159): CModel->validate()
+#8 /var/www/yii_back/framework/gii/CCodeGenerator.php(63): CCodeGenerator->prepare()
+#9 /var/www/yii_back/framework/web/actions/CInlineAction.php(49): CCodeGenerator->actionIndex()
+#10 /var/www/yii_back/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /var/www/yii_back/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /var/www/yii_back/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('')
+#14 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('gii/model')
+#15 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#16 /var/www/reelmedia/index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/reelmedia/gii/model
+HTTP_REFERER=http://localhost/reelmedia/gii/model
+---
+2014/05/14 11:55:23 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'192.168.40.226' (using password: YES)' in /var/www/yii_back/framework/db/CDbConnection.php:381
+Stack trace:
+#0 /var/www/yii_back/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /var/www/yii_back/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /var/www/yii_back/framework/base/CModule.php(387): CDbConnection->init()
+#3 /var/www/yii_back/framework/gii/generators/model/ModelGenerator.php(17): CModule->getComponent('db2')
+#4 [internal function]: ModelGenerator->actionGetTableNames('db2')
+#5 /var/www/yii_back/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(ModelGenerator), Array)
+#6 /var/www/yii_back/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(ModelGenerator), Object(ReflectionMethod), Array)
+#7 /var/www/yii_back/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /var/www/yii_back/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#9 /var/www/yii_back/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('getTableNames')
+#11 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('gii/model/getTa...')
+#12 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#13 /var/www/reelmedia/index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/reelmedia/gii/model/getTableNames?db=db2
+HTTP_REFERER=http://localhost/reelmedia/gii/model
+---
+2014/05/14 11:55:29 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'root'@'192.168.40.226' (using password: YES)' in /var/www/yii_back/framework/db/CDbConnection.php:381
+Stack trace:
+#0 /var/www/yii_back/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /var/www/yii_back/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /var/www/yii_back/framework/base/CModule.php(387): CDbConnection->init()
+#3 /var/www/yii_back/framework/gii/generators/model/ModelCode.php(412): CModule->getComponent('db2')
+#4 /var/www/yii_back/framework/validators/CInlineValidator.php(42): ModelCode->validateConnectionId('connectionId', Array)
+#5 /var/www/yii_back/framework/validators/CValidator.php(213): CInlineValidator->validateAttribute(Object(ModelCode), 'connectionId')
+#6 /var/www/yii_back/framework/base/CModel.php(159): CValidator->validate(Object(ModelCode), NULL)
+#7 /var/www/yii_back/framework/gii/CCodeGenerator.php(159): CModel->validate()
+#8 /var/www/yii_back/framework/gii/CCodeGenerator.php(63): CCodeGenerator->prepare()
+#9 /var/www/yii_back/framework/web/actions/CInlineAction.php(49): CCodeGenerator->actionIndex()
+#10 /var/www/yii_back/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /var/www/yii_back/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /var/www/yii_back/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('')
+#14 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('gii/model')
+#15 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#16 /var/www/reelmedia/index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/reelmedia/gii/model
+HTTP_REFERER=http://localhost/reelmedia/gii/model
+---
+2014/05/14 12:29:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/14 12:54:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sound".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('sound')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('sound')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('home/sound/mess...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/home/sound/messagebox.mp3
+HTTP_REFERER=http://localhost/reelmedia/home/index
+---
+2014/05/14 13:01:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/assets/9e1d571c/css/demo.css
+---
+2014/05/14 13:01:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+---
+2014/05/14 13:01:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+---
+2014/05/14 13:01:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/assets/9e1d571c/css/demo.css
+---
+2014/05/14 13:02:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/assets/9e1d571c/css/demo.css
+---
+2014/05/14 13:02:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+---
+2014/05/14 13:02:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+---
+2014/05/14 13:02:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+---
+2014/05/14 13:02:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+---
+2014/05/14 13:02:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+---
+2014/05/14 13:02:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+---
+2014/05/14 13:02:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+---
+2014/05/14 13:03:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+---
+2014/05/14 13:03:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/assets/9e1d571c/css/demo.css
+---
+2014/05/14 13:03:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+---
+2014/05/14 14:30:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/14 14:30:18 [error] [php] Undefined variable: model (/var/www/reelmedia/protected/views/home/index.php:8)
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(869): HomeController->renderFile()
+#1 /var/www/yii_back/framework/web/CController.php(782): HomeController->renderPartial()
+#2 /var/www/reelmedia/protected/controllers/HomeController.php(41): HomeController->render()
+#3 /var/www/yii_back/framework/web/actions/CInlineAction.php(49): HomeController->actionIndex()
+#4 /var/www/yii_back/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /var/www/yii_back/framework/web/filters/CFilterChain.php(133): HomeController->runAction()
+#6 /var/www/yii_back/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /var/www/yii_back/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /var/www/yii_back/framework/web/filters/CInlineFilter.php(58): HomeController->filterAccessControl()
+#9 /var/www/yii_back/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /var/www/yii_back/framework/web/CController.php(291): CFilterChain->run()
+#11 /var/www/yii_back/framework/web/CController.php(265): HomeController->runActionWithFilters()
+#12 /var/www/yii_back/framework/web/CWebApplication.php(282): HomeController->run()
+#13 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#15 /var/www/reelmedia/index.php(13): CWebApplication->run()
+REQUEST_URI=/reelmedia/home/index
+in /var/www/reelmedia/protected/views/home/index.php (8)
+in /var/www/reelmedia/protected/controllers/HomeController.php (41)
+in /var/www/reelmedia/index.php (13)
+2014/05/14 14:48:58 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '192.168.0.5' (101)' in /var/www/yii_back/framework/db/CDbConnection.php:381
+Stack trace:
+#0 /var/www/yii_back/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /var/www/yii_back/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /var/www/yii_back/framework/base/CModule.php(387): CDbConnection->init()
+#3 /var/www/yii_back/framework/base/CModule.php(103): CModule->getComponent('db2')
+#4 /var/www/reelmedia/protected/models/Company.php(45): CModule->__get('db2')
+#5 /var/www/yii_back/framework/db/ar/CActiveRecord.php(2309): Company->getDbConnection()
+#6 /var/www/yii_back/framework/db/ar/CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(Company))
+#7 /var/www/reelmedia/protected/models/Company.php(37): CActiveRecord::model('Company')
+#8 /var/www/reelmedia/protected/views/home/index.php(11): Company::model()
+#9 /var/www/yii_back/framework/web/CBaseController.php(126): require('/var/www/reelme...')
+#10 /var/www/yii_back/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/reelme...', NULL, true)
+#11 /var/www/yii_back/framework/web/CController.php(869): CBaseController->renderFile('/var/www/reelme...', NULL, true)
+#12 /var/www/yii_back/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#13 /var/www/reelmedia/protected/controllers/HomeController.php(41): CController->render('index')
+#14 /var/www/yii_back/framework/web/actions/CInlineAction.php(49): HomeController->actionIndex()
+#15 /var/www/yii_back/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#16 /var/www/yii_back/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#17 /var/www/yii_back/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#18 /var/www/yii_back/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#19 /var/www/yii_back/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#20 /var/www/yii_back/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#21 /var/www/yii_back/framework/web/CController.php(291): CFilterChain->run()
+#22 /var/www/yii_back/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#23 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('index')
+#24 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('home/index')
+#25 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#26 /var/www/reelmedia/index.php(13): CApplication->run()
+#27 {main}
+REQUEST_URI=/reelmedia/home/index
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/14 15:44:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/home/index
+---
+2014/05/14 16:59:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sound".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('sound')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('sound')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('home/sound/mess...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/home/sound/messagebox.mp3
+HTTP_REFERER=http://localhost/reelmedia/home/index
+---
+2014/05/14 16:59:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/15 09:21:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/15 10:52:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/15 10:53:08 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [2003] Can't connect to MySQL server on '192.168.0.5' (113)' in /var/www/yii_back/framework/db/CDbConnection.php:381
+Stack trace:
+#0 /var/www/yii_back/framework/db/CDbConnection.php(330): CDbConnection->open()
+#1 /var/www/yii_back/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
+#2 /var/www/yii_back/framework/base/CModule.php(387): CDbConnection->init()
+#3 /var/www/yii_back/framework/base/CModule.php(103): CModule->getComponent('db2')
+#4 /var/www/reelmedia/protected/models/ClientUsers.php(41): CModule->__get('db2')
+#5 /var/www/yii_back/framework/db/ar/CActiveRecord.php(2309): ClientUsers->getDbConnection()
+#6 /var/www/yii_back/framework/db/ar/CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(ClientUsers))
+#7 /var/www/reelmedia/protected/models/ClientUsers.php(33): CActiveRecord::model('ClientUsers')
+#8 /var/www/reelmedia/protected/components/UserIdentity.php(20): ClientUsers::model()
+#9 /var/www/reelmedia/protected/models/LoginForm.php(53): UserIdentity->authenticate()
+#10 /var/www/yii_back/framework/validators/CInlineValidator.php(42): LoginForm->authenticate('password', Array)
+#11 /var/www/yii_back/framework/validators/CValidator.php(213): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
+#12 /var/www/yii_back/framework/base/CModel.php(159): CValidator->validate(Object(LoginForm), NULL)
+#13 /var/www/reelmedia/protected/controllers/SiteController.php(117): CModel->validate()
+#14 /var/www/yii_back/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
+#15 /var/www/yii_back/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#16 /var/www/yii_back/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#17 /var/www/yii_back/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('login')
+#19 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login')
+#20 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#21 /var/www/reelmedia/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/reelmedia/site/login
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/15 11:18:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/15 11:54:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/15 14:45:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/15 14:45:52 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column '$client' in 'where clause'. The SQL statement executed was: SELECT story_id FROM story_client WHERE client_id = $client LIMIT 10.
+in /var/www/reelmedia/protected/components/RecentStories.php (9)
+in /var/www/reelmedia/protected/views/home/index.php (55)
+in /var/www/reelmedia/protected/controllers/HomeController.php (41)
+2014/05/15 14:45:52 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column '$client' in 'where clause'. The SQL statement executed was: SELECT story_id FROM story_client WHERE client_id = $client LIMIT 10' in /var/www/yii_back/framework/db/CDbCommand.php:541
+Stack trace:
+#0 /var/www/yii_back/framework/db/CDbCommand.php(395): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /var/www/yii_back/framework/db/ar/CActiveRecord.php(1527): CDbCommand->queryAll()
+#2 /var/www/reelmedia/protected/components/RecentStories.php(9): CActiveRecord->findAllBySql('SELECT story_id...')
+#3 /var/www/reelmedia/protected/views/home/index.php(55): RecentStories::PrintStories('1')
+#4 /var/www/yii_back/framework/web/CBaseController.php(126): require('/var/www/reelme...')
+#5 /var/www/yii_back/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/reelme...', NULL, true)
+#6 /var/www/yii_back/framework/web/CController.php(869): CBaseController->renderFile('/var/www/reelme...', NULL, true)
+#7 /var/www/yii_back/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#8 /var/www/reelmedia/protected/controllers/HomeController.php(41): CController->render('index')
+#9 /var/www/yii_back/framework/web/actions/CInlineAction.php(49): HomeController->actionIndex()
+#10 /var/www/yii_back/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /var/www/yii_back/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /var/www/yii_back/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /var/www/yii_back/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /var/www/yii_back/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /var/www/yii_back/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /var/www/yii_back/framework/web/CController.php(291): CFilterChain->run()
+#17 /var/www/yii_back/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('index')
+#19 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('home/index')
+#20 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#21 /var/www/reelmedia/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/reelmedia/home/index
+HTTP_REFERER=http://localhost/reelmedia/site/login
+---
+2014/05/15 17:04:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sound".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('sound')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('sound')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('home/sound/mess...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/home/sound/messagebox.mp3
+HTTP_REFERER=http://localhost/reelmedia/home/index
+---
+2014/05/15 17:21:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sound".' in /var/www/yii_back/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii_back/framework/web/CController.php(270): CController->missingAction('sound')
+#1 /var/www/yii_back/framework/web/CWebApplication.php(282): CController->run('sound')
+#2 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('home/sound/mess...')
+#3 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /var/www/reelmedia/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/home/sound/messagebox.mp3
+HTTP_REFERER=http://localhost/reelmedia/home/index
+---
+2014/05/15 17:21:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/16 05:00:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/9e1d571c/img/glyphicons-halflings.png".' in /var/www/yii_back/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /var/www/yii_back/framework/web/CWebApplication.php(141): CWebApplication->runController('assets/9e1d571c...')
+#1 /var/www/yii_back/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#2 /var/www/reelmedia/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/9e1d571c/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/16 15:07:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/72dbd4b3/img/glyphicons-halflings.png".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/72dbd4b3...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmedia\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/72dbd4b3/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/16 15:07:58 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [1045] Access denied for user 'root'@'192.168.40.234' (using password: YES)' in C:\xampp\htdocs\yii_back\framework\db\CDbConnection.php:381
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 C:\xampp\htdocs\yii_back\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\yii_back\framework\base\CModule.php(387): CDbConnection->init()
+#3 C:\xampp\htdocs\yii_back\framework\base\CModule.php(103): CModule->getComponent('db2')
+#4 C:\xampp\htdocs\reelmedia\protected\models\ClientUsers.php(41): CModule->__get('db2')
+#5 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(2309): ClientUsers->getDbConnection()
+#6 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(ClientUsers))
+#7 C:\xampp\htdocs\reelmedia\protected\models\ClientUsers.php(33): CActiveRecord::model('ClientUsers')
+#8 C:\xampp\htdocs\reelmedia\protected\components\UserIdentity.php(20): ClientUsers::model()
+#9 C:\xampp\htdocs\reelmedia\protected\models\LoginForm.php(53): UserIdentity->authenticate()
+#10 C:\xampp\htdocs\yii_back\framework\validators\CInlineValidator.php(42): LoginForm->authenticate('password', Array)
+#11 C:\xampp\htdocs\yii_back\framework\validators\CValidator.php(213): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
+#12 C:\xampp\htdocs\yii_back\framework\base\CModel.php(159): CValidator->validate(Object(LoginForm), NULL)
+#13 C:\xampp\htdocs\reelmedia\protected\controllers\SiteController.php(45): CModel->validate()
+#14 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#15 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#16 C:\xampp\htdocs\yii_back\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#17 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('')
+#19 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#20 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\reelmedia\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/reelmedia/
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/16 15:46:44 [error] [php] date() expects at least 1 parameter, 0 given (C:\xampp\htdocs\reelmedia\protected\views\home\index.php:11)
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): HomeController->renderInternal()
+#1 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): HomeController->renderFile()
+#2 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): HomeController->renderPartial()
+#3 C:\xampp\htdocs\reelmedia\protected\controllers\HomeController.php(41): HomeController->render()
+#4 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionIndex()
+#5 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams()
+#6 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): HomeController->runAction()
+#7 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#9 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): HomeController->filterAccessControl()
+#10 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#11 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#12 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): HomeController->runActionWithFilters()
+#13 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): HomeController->run()
+#14 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#15 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#16 C:\xampp\htdocs\reelmedia\index.php(13): CWebApplication->run()
+REQUEST_URI=/reelmedia/home/index
+in C:\xampp\htdocs\reelmedia\protected\views\home\index.php (11)
+in C:\xampp\htdocs\reelmedia\protected\controllers\HomeController.php (41)
+in C:\xampp\htdocs\reelmedia\index.php (13)
+2014/05/16 16:08:54 [error] [exception.CException] exception 'CException' with message 'Property "Story.story_id" is not defined.' in C:\xampp\htdocs\yii_back\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(143): CComponent->__get('story_id')
+#1 C:\xampp\htdocs\reelmedia\protected\components\RecentStories.php(36): CActiveRecord->__get('story_id')
+#2 C:\xampp\htdocs\reelmedia\protected\views\home\index.php(32): RecentStories::GetClientStory('1')
+#3 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#4 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', NULL, true)
+#5 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', NULL, true)
+#6 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#7 C:\xampp\htdocs\reelmedia\protected\controllers\HomeController.php(41): CController->render('index')
+#8 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionIndex()
+#9 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#11 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#12 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#13 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#14 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#15 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#16 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#17 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('index')
+#18 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/index')
+#19 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#20 C:\xampp\htdocs\reelmedia\index.php(13): CApplication->run()
+#21 {main}
+REQUEST_URI=/reelmedia/home/index
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/16 16:10:37 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'story_client.client_id' in 'where clause'. The SQL statement executed was: SELECT story_id FROM story_client as main_story_id WHERE story_client.client_id = 1 and story_client.story_id in(Select story_id from story where storydate between '2014-05-16' and '2014-05-16').
+in C:\xampp\htdocs\reelmedia\protected\components\RecentStories.php (32)
+in C:\xampp\htdocs\reelmedia\protected\views\home\index.php (32)
+in C:\xampp\htdocs\reelmedia\protected\controllers\HomeController.php (41)
+2014/05/16 16:10:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'story_client.client_id' in 'where clause'. The SQL statement executed was: SELECT story_id FROM story_client as main_story_id WHERE story_client.client_id = 1 and story_client.story_id in(Select story_id from story where storydate between '2014-05-16' and '2014-05-16')' in C:\xampp\htdocs\yii_back\framework\db\CDbCommand.php:541
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\db\CDbCommand.php(395): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(1527): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\reelmedia\protected\components\RecentStories.php(32): CActiveRecord->findAllBySql('SELECT story_id...')
+#3 C:\xampp\htdocs\reelmedia\protected\views\home\index.php(32): RecentStories::GetClientStory('1')
+#4 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', NULL, true)
+#6 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', NULL, true)
+#7 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#8 C:\xampp\htdocs\reelmedia\protected\controllers\HomeController.php(41): CController->render('index')
+#9 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionIndex()
+#10 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('index')
+#19 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/index')
+#20 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\reelmedia\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/reelmedia/home/index
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/16 16:12:41 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'story_client.client_id' in 'where clause'. The SQL statement executed was: SELECT story_id FROM story_client as main_story_id WHERE story_client.client_id = 1 and story_client.story_id in(Select story_id from story where storydate between '2014-05-16' and '2014-05-16').
+in C:\xampp\htdocs\reelmedia\protected\components\RecentStories.php (32)
+in C:\xampp\htdocs\reelmedia\protected\views\home\index.php (32)
+in C:\xampp\htdocs\reelmedia\protected\controllers\HomeController.php (41)
+2014/05/16 16:12:41 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'story_client.client_id' in 'where clause'. The SQL statement executed was: SELECT story_id FROM story_client as main_story_id WHERE story_client.client_id = 1 and story_client.story_id in(Select story_id from story where storydate between '2014-05-16' and '2014-05-16')' in C:\xampp\htdocs\yii_back\framework\db\CDbCommand.php:541
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\db\CDbCommand.php(395): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(1527): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\reelmedia\protected\components\RecentStories.php(32): CActiveRecord->findAllBySql('SELECT story_id...')
+#3 C:\xampp\htdocs\reelmedia\protected\views\home\index.php(32): RecentStories::GetClientStory('1')
+#4 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', NULL, true)
+#6 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', NULL, true)
+#7 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#8 C:\xampp\htdocs\reelmedia\protected\controllers\HomeController.php(41): CController->render('index')
+#9 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionIndex()
+#10 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('index')
+#19 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/index')
+#20 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\reelmedia\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/reelmedia/home/index
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/16 16:17:19 [error] [exception.CException] exception 'CException' with message 'Property "Story.story_id" is not defined.' in C:\xampp\htdocs\yii_back\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(143): CComponent->__get('story_id')
+#1 C:\xampp\htdocs\reelmedia\protected\components\RecentStories.php(37): CActiveRecord->__get('story_id')
+#2 C:\xampp\htdocs\reelmedia\protected\views\home\index.php(32): RecentStories::GetClientStory('1')
+#3 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#4 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', NULL, true)
+#5 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', NULL, true)
+#6 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#7 C:\xampp\htdocs\reelmedia\protected\controllers\HomeController.php(41): CController->render('index')
+#8 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionIndex()
+#9 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#11 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#12 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#13 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#14 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#15 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#16 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#17 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('index')
+#18 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/index')
+#19 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#20 C:\xampp\htdocs\reelmedia\index.php(13): CApplication->run()
+#21 {main}
+REQUEST_URI=/reelmedia/home/index
+---
+2014/05/16 16:19:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sound".' in C:\xampp\htdocs\yii_back\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CController.php(270): CController->missingAction('sound')
+#1 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('sound')
+#2 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/sound/mess...')
+#3 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\reelmedia\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmedia/home/sound/messagebox.mp3
+HTTP_REFERER=http://localhost/reelmedia/home/index
+---
+2014/05/19 08:06:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/72dbd4b3/img/glyphicons-halflings.png".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/72dbd4b3...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmedia\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/72dbd4b3/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/
+---
+2014/05/19 09:03:39 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column '$client' in 'on clause'. The SQL statement executed was: select * from story inner join story_client on story.Story_ID = story_client.story_id and story_client.client_id=$client limit 10.
+in C:\xampp\htdocs\reelmedia\protected\components\RecentStories.php (33)
+in C:\xampp\htdocs\reelmedia\protected\views\home\index.php (32)
+in C:\xampp\htdocs\reelmedia\protected\controllers\HomeController.php (41)
+2014/05/19 09:03:39 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column '$client' in 'on clause'. The SQL statement executed was: select * from story inner join story_client on story.Story_ID = story_client.story_id and story_client.client_id=$client limit 10' in C:\xampp\htdocs\yii_back\framework\db\CDbCommand.php:541
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\db\CDbCommand.php(395): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(1527): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\reelmedia\protected\components\RecentStories.php(33): CActiveRecord->findAllBySql('select * from s...')
+#3 C:\xampp\htdocs\reelmedia\protected\views\home\index.php(32): RecentStories::GetClientStory('1')
+#4 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', NULL, true)
+#6 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', NULL, true)
+#7 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#8 C:\xampp\htdocs\reelmedia\protected\controllers\HomeController.php(41): CController->render('index')
+#9 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionIndex()
+#10 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('index')
+#19 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/index')
+#20 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\reelmedia\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/reelmedia/home/index
+---
+2014/05/19 09:06:11 [error] [exception.CException] exception 'CException' with message 'Property "Story.story_id" is not defined.' in C:\xampp\htdocs\yii_back\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(143): CComponent->__get('story_id')
+#1 C:\xampp\htdocs\reelmedia\protected\components\RecentStories.php(36): CActiveRecord->__get('story_id')
+#2 C:\xampp\htdocs\reelmedia\protected\views\home\index.php(32): RecentStories::GetClientStory('1')
+#3 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#4 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', NULL, true)
+#5 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', NULL, true)
+#6 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#7 C:\xampp\htdocs\reelmedia\protected\controllers\HomeController.php(41): CController->render('index')
+#8 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionIndex()
+#9 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#11 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#12 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#13 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#14 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#15 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#16 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#17 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('index')
+#18 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/index')
+#19 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#20 C:\xampp\htdocs\reelmedia\index.php(13): CApplication->run()
+#21 {main}
+REQUEST_URI=/reelmedia/home/index
+---
+2014/05/19 09:50:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/72dbd4b3/img/glyphicons-halflings.png".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/72dbd4b3...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmedia\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/72dbd4b3/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/assets/72dbd4b3/css/demo.css
+---
+2014/05/19 09:50:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/72dbd4b3/img/glyphicons-halflings.png".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/72dbd4b3...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmedia\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/72dbd4b3/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/assets/72dbd4b3/css/demo.css
+---
+2014/05/19 11:01:13 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column '$startdate' in 'where clause'. The SQL statement executed was: SELECT * FROM story_client inner join story on story_client.story_id = story.Story_ID where story_client.client_id=1 and story.StoryDate=$startdate order by story.story_id desc limit 50.
+in C:\xampp\htdocs\reelmedia\protected\components\RecentStories.php (36)
+in C:\xampp\htdocs\reelmedia\protected\views\home\index.php (32)
+in C:\xampp\htdocs\reelmedia\protected\controllers\HomeController.php (41)
+2014/05/19 11:01:13 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column '$startdate' in 'where clause'. The SQL statement executed was: SELECT * FROM story_client inner join story on story_client.story_id = story.Story_ID where story_client.client_id=1 and story.StoryDate=$startdate order by story.story_id desc limit 50' in C:\xampp\htdocs\yii_back\framework\db\CDbCommand.php:541
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\db\CDbCommand.php(395): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(1527): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\reelmedia\protected\components\RecentStories.php(36): CActiveRecord->findAllBySql('SELECT * FROM s...')
+#3 C:\xampp\htdocs\reelmedia\protected\views\home\index.php(32): RecentStories::GetClientStory('1')
+#4 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', NULL, true)
+#6 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', NULL, true)
+#7 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#8 C:\xampp\htdocs\reelmedia\protected\controllers\HomeController.php(41): CController->render('index')
+#9 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionIndex()
+#10 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('index')
+#19 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/index')
+#20 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\reelmedia\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/reelmedia/home/index
+---
+2014/05/19 12:09:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/72dbd4b3/img/glyphicons-halflings.png".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/72dbd4b3...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmedia\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/72dbd4b3/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/assets/72dbd4b3/css/demo.css
+---
+2014/05/19 14:05:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/72dbd4b3/img/glyphicons-halflings.png".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/72dbd4b3...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmedia\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/72dbd4b3/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/assets/72dbd4b3/css/demo.css
+---
+2014/05/19 14:05:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/72dbd4b3/img/glyphicons-halflings.png".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/72dbd4b3...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmedia\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmedia/assets/72dbd4b3/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmedia/assets/72dbd4b3/css/demo.css
+---
+2014/05/19 19:51:56 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [2002] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+' in C:\xampp\htdocs\yii_back\framework\db\CDbConnection.php:381
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 C:\xampp\htdocs\yii_back\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\yii_back\framework\base\CModule.php(387): CDbConnection->init()
+#3 C:\xampp\htdocs\yii_back\framework\base\CModule.php(103): CModule->getComponent('db2')
+#4 C:\xampp\htdocs\reelmedia\protected\models\Story.php(78): CModule->__get('db2')
+#5 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(2309): Story->getDbConnection()
+#6 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(Story))
+#7 C:\xampp\htdocs\reelmedia\protected\models\Story.php(70): CActiveRecord::model('Story')
+#8 C:\xampp\htdocs\reelmedia\protected\components\RecentStories.php(35): Story::model()
+#9 C:\xampp\htdocs\reelmedia\protected\views\home\index.php(32): RecentStories::GetClientStory('1')
+#10 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#11 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', NULL, true)
+#12 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', NULL, true)
+#13 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#14 C:\xampp\htdocs\reelmedia\protected\controllers\HomeController.php(41): CController->render('index')
+#15 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionIndex()
+#16 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#17 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#18 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#19 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#20 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#21 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#22 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#23 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#24 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('index')
+#25 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/index')
+#26 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#27 C:\xampp\htdocs\reelmedia\index.php(13): CApplication->run()
+#28 {main}
+REQUEST_URI=/reelmedia/home/index
+---
