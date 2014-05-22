@@ -28,6 +28,9 @@ class StorySearch extends CFormModel
 	{
 		return array(
 			array('search_text', 'required'),
+			array('country', 'numerical', 'integerOnly'=>true),
+			array('create_sheet', 'numerical', 'integerOnly'=>true),
+			array('create_pdf', 'numerical', 'integerOnly'=>true),
 		);
 	}
 

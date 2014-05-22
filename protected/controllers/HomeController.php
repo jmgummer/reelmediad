@@ -43,7 +43,13 @@ class HomeController extends Controller
 	}
 	public function actionPrint()
 	{
-		$this->render('stories');
+		$model = new StorySearch('search');
+		$model->unsetAttributes();
+		if(isset($_POST['StorySearch']))
+		{
+			$model->attributes=Yii::app()->input->stripClean($_POST['StorySearch']);
+		}
+		$this->render('stories',array('model'=>$model));
 	}
 
 	public function loadModel($id)

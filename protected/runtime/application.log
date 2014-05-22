@@ -2884,3 +2884,139 @@ Stack trace:
 REQUEST_URI=/reelmediad/home/print
 HTTP_REFERER=http://localhost/reelmediad/home/print
 ---
+2014/05/22 12:04:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sound".' in C:\xampp\htdocs\yii_back\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CController.php(270): CController->missingAction('sound')
+#1 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('sound')
+#2 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/sound/mess...')
+#3 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmediad/home/sound/messagebox.mp3
+HTTP_REFERER=http://localhost/reelmediad/home/print
+---
+2014/05/22 12:04:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/f304dac7/img/glyphicons-halflings.png".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f304dac7...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/assets/f304dac7/img/glyphicons-halflings.png
+HTTP_REFERER=http://localhost/reelmediad/
+---
+2014/05/22 13:39:55 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'reelmedia.story' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `story`.
+in C:\xampp\htdocs\reelmediad\protected\models\Story.php (70)
+in C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php (38)
+in C:\xampp\htdocs\reelmediad\protected\views\home\stories.php (37)
+2014/05/22 13:39:55 [error] [exception.CDbException] exception 'CDbException' with message 'The table "story" for active record class "Story" cannot be found in the database.' in C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php:2310
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(Story))
+#1 C:\xampp\htdocs\reelmediad\protected\models\Story.php(70): CActiveRecord::model('Story')
+#2 C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php(38): Story::model()
+#3 C:\xampp\htdocs\reelmediad\protected\views\home\stories.php(37): RecentStories::GetClientStory('1')
+#4 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', NULL, true)
+#6 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', NULL, true)
+#7 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): CController->renderPartial('stories', NULL, true)
+#8 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(46): CController->render('stories')
+#9 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionPrint()
+#10 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('print')
+#19 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/print')
+#20 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/reelmediad/home/print
+---
+2014/05/22 14:49:44 [error] [php] Undefined variable: model (C:\xampp\htdocs\reelmediad\protected\views\home\search_filter.php:9)
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): HomeController->renderFile()
+#1 C:\xampp\htdocs\reelmediad\protected\views\home\stories.php(6): HomeController->renderPartial()
+#2 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require()
+#3 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): HomeController->renderInternal()
+#4 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): HomeController->renderFile()
+#5 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): HomeController->renderPartial()
+#6 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(47): HomeController->render()
+#7 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionPrint()
+#8 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): HomeController->runAction()
+#10 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#12 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): HomeController->filterAccessControl()
+#13 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#14 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): HomeController->runActionWithFilters()
+#16 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): HomeController->run()
+#17 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#18 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#19 C:\xampp\htdocs\reelmediad\index.php(13): CWebApplication->run()
+REQUEST_URI=/reelmediad/home/print
+in C:\xampp\htdocs\reelmediad\protected\views\home\search_filter.php (9)
+in C:\xampp\htdocs\reelmediad\protected\views\home\stories.php (6)
+in C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php (47)
+2014/05/22 14:53:12 [error] [php] include(C:\xampp\htdocs\reelmediad\protected\vendors\Codeigniter\CI_Security.php): failed to open stream: No such file or directory (C:\xampp\htdocs\yii_back\framework\YiiBase.php:395)
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\protected\extensions\input\components\CmsInput.php(426): spl_autoload_call()
+#1 C:\xampp\htdocs\reelmediad\protected\extensions\input\components\CmsInput.php(106): CmsInput->getCISecurity()
+#2 C:\xampp\htdocs\reelmediad\protected\extensions\input\components\CmsInput.php(167): CmsInput->xssClean()
+#3 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(50): CmsInput->stripClean()
+#4 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionPrint()
+#5 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams()
+#6 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): HomeController->runAction()
+#7 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#9 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): HomeController->filterAccessControl()
+#10 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#11 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#12 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): HomeController->runActionWithFilters()
+#13 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): HomeController->run()
+#14 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#15 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#16 C:\xampp\htdocs\reelmediad\index.php(13): CWebApplication->run()
+REQUEST_URI=/reelmediad/home/print
+in C:\xampp\htdocs\reelmediad\protected\extensions\input\components\CmsInput.php (426)
+in C:\xampp\htdocs\reelmediad\protected\extensions\input\components\CmsInput.php (106)
+in C:\xampp\htdocs\reelmediad\protected\extensions\input\components\CmsInput.php (167)
+2014/05/22 14:54:44 [warning] [application] Failed to set unsafe attribute "startdate" of "StorySearch".
+in C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php (50)
+in C:\xampp\htdocs\reelmediad\index.php (13)
+2014/05/22 14:54:44 [warning] [application] Failed to set unsafe attribute "enddate" of "StorySearch".
+in C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php (50)
+in C:\xampp\htdocs\reelmediad\index.php (13)
+2014/05/22 14:54:44 [warning] [application] Failed to set unsafe attribute "storytype" of "StorySearch".
+in C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php (50)
+in C:\xampp\htdocs\reelmediad\index.php (13)
+2014/05/22 14:54:44 [warning] [application] Failed to set unsafe attribute "storycategory" of "StorySearch".
+in C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php (50)
+in C:\xampp\htdocs\reelmediad\index.php (13)
+2014/05/22 14:54:44 [warning] [application] Failed to set unsafe attribute "news_section" of "StorySearch".
+in C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php (50)
+in C:\xampp\htdocs\reelmediad\index.php (13)
+2014/05/22 14:54:44 [warning] [application] Failed to set unsafe attribute "industry" of "StorySearch".
+in C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php (50)
+in C:\xampp\htdocs\reelmediad\index.php (13)
+2014/05/22 14:55:23 [warning] [application] Failed to set unsafe attribute "startdate" of "StorySearch".
+in C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php (50)
+in C:\xampp\htdocs\reelmediad\index.php (13)
+2014/05/22 14:55:23 [warning] [application] Failed to set unsafe attribute "enddate" of "StorySearch".
+in C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php (50)
+in C:\xampp\htdocs\reelmediad\index.php (13)
+2014/05/22 14:55:23 [warning] [application] Failed to set unsafe attribute "storytype" of "StorySearch".
+in C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php (50)
+in C:\xampp\htdocs\reelmediad\index.php (13)
+2014/05/22 14:55:23 [warning] [application] Failed to set unsafe attribute "storycategory" of "StorySearch".
+in C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php (50)
+in C:\xampp\htdocs\reelmediad\index.php (13)
+2014/05/22 14:55:23 [warning] [application] Failed to set unsafe attribute "news_section" of "StorySearch".
+in C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php (50)
+in C:\xampp\htdocs\reelmediad\index.php (13)
+2014/05/22 14:55:23 [warning] [application] Failed to set unsafe attribute "industry" of "StorySearch".
+in C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php (50)
+in C:\xampp\htdocs\reelmediad\index.php (13)

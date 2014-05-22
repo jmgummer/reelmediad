@@ -1,5 +1,5 @@
 <?php 
-$model = new StorySearch;
+
 ?>
 <div id="wid-id-0" class="jarviswidget jarviswidget-sortable"style="" role="widget">
 	<header role="heading"><h2>Search Form</h2></header>
@@ -25,28 +25,28 @@ $model = new StorySearch;
 			</div>
 			<div class="col-md-3">
 				<label class="checkbox">
-					<?php echo $form->checkBoxRow($model,'country'); ?>
+					<?php echo $form->checkBoxRow($model,'country', array('checked'=>'checked')); ?>
 				</label>
 			</div>
 			<div class="col-md-3">
 				<label class="radio">
 					<?php echo $form->radioButtonListRow($model, 'storytype', array(
-				        'Option 1',
-				        'Option 2',
+				        1=>'Option 1',
+				        2=>'Option 2',
 				    )); ?>
 			    </label>
 		    </div>
 		    <div class="col-md-3">
 				<label class="radio">
 					<?php echo $form->radioButtonListRow($model, 'storycategory', array(
-				        'Option 1',
-				        'Option 2',
+				        1=>'Option 1',
+				        2=>'Option 2',
 				    )); ?>
 			    </label>
 		    </div>
 		    <div class="col-md-3">
 		    	<div class="form-group">
-						<?php echo $form->dropDownListRow($model, 'news_section', array('Section 1', 'Section 2', 'Section 3', 'Section 4', 'Section 5'), array('class'=>'form-control')); ?>
+						<?php echo $form->dropDownListRow($model, 'news_section', array('Section 1'=>'Section 1', 'Section 2'=>'Section 2', 'Section 3'=>'Section 3', 'Section 4'=>'Section 4', 'Section 5'=>'Section 5'), array('class'=>'form-control')); ?>
 				</div>
 			</div>
 			<div class="col-md-3">
@@ -58,12 +58,12 @@ $model = new StorySearch;
 			</div>
 			<div class="col-md-3">
 				<label class="checkbox">
-					<?php echo $form->checkBoxRow($model,'create_sheet'); ?>
+					<?php echo $form->checkBoxRow($model,'create_sheet', array('value'=>1, 'uncheckValue'=>0)); ?>
 				</label>
 			</div>
 			<div class="col-md-3">
 				<label class="checkbox">
-					<?php echo $form->checkBoxRow($model,'create_pdf'); ?>
+					<?php echo $form->checkBoxRow($model,'create_pdf',array('value'=>1, 'uncheckValue'=>0)); ?>
 				</label>
 			</div>
 		</fieldset>

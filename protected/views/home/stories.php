@@ -3,7 +3,7 @@ $this->pageTitle=Yii::app()->name.' | Home';
 $this->breadcrumbs=array('Index');
 ?>
 
-<?php $this->renderPartial('search_filter'); ?>
+<?php $this->renderPartial('search_filter',array('model'=>$model)); ?>
 
 <div id="wid-id-0" class="jarviswidget jarviswidget-sortable"style="" role="widget">
 	<header role="heading"><h2>Company : <?php echo Yii::app()->user->company_name; ?></h2></header>
@@ -15,7 +15,6 @@ $this->breadcrumbs=array('Index');
 			</div>
 			<?php 
 			if($company_words = Company::model()->find('company_id=:a order by keywords', array(':a'=>Yii::app()->user->company_id))){
-				// echo $company_words->keywords;
 				if($pieces = explode(",", $company_words->keywords)){
 					foreach ($pieces as $key) {
 						echo '<div class="col-md-3">'.$key.'</div>';
