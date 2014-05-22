@@ -26,14 +26,18 @@ public static function PrintStories($client)
 
 public static function GetClientStory($client)
 {
+	$month = date('m');
+	$year = date('Y');
+	$story_month = 'story_'.$year.'_'.$month;
 	$todays = date('Y-m-d');
 	$startdate = '2014-05-19';
 	$enddate = $todays;
 	//echo $query = 'select * from story_client inner join story on story_client.story_id = story.Story_ID where story_client.client_id='.$client.' and story.storydate between "'.$startdate.'" and "'.$enddate.'" order by story.Story_ID desc limit 70';
-	echo $q2 = 'SELECT * FROM story_client inner join story on story_client.story_id = story.Story_ID where story_client.client_id=1  order by story.storydate desc limit 50';
+	echo $q2 = 'SELECT * FROM story_client inner join '.$story_month.' on story_client.story_id = '.$story_month.'.Story_ID where story_client.client_id=1 and '.$story_month.'.storydate between "'.$startdate.'" and "'.$startdate.'"  order by '.$story_month.'.storydate desc limit 70';
 	// $story = Story::model()->find('Story_ID=:a AND StoryDate=:b', array(':a'=>$story_id, ':b'=>$todays))
 	echo count($story = Story::model()->findAllBySql($q2));
 	if($story = Story::model()->findAllBySql($q2)){
+		echo $story_month;
 		echo RecentStories::PrintTableHead();
 		foreach ($story as $key) {
 			if($story = RecentStories::GetStories($key->Story_ID)){

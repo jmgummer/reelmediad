@@ -145,23 +145,29 @@
 				</span>
 			</div>
 			<nav>
-			<ul>
-				<li class="active">
-					<a href="<?=Yii::app()->createUrl("site");?>" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
-				</li>
-				<li>
-					<a href="<?=Yii::app()->createUrl("site");?>" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Home</span></a>
-				</li>
-			</ul>
-		<?php 
-		// $this->widget('bootstrap.widgets.TbMenu',array(
-		// 	'type'=>'list', // '', 'tabs', 'pills' (or 'list')
-		// 	'items'=>array(
-		// 		array('label'=>'Home', 'icon'=>'home', 'url'=>array('/home/index')),
-		// 	),
-		// )); 
-		?>
-		</nav>
+				<ul>
+					<li class="active">
+						<a href="<?=Yii::app()->createUrl("home");?>" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Stories</span></a>
+						<ul>
+							<li><a href="<?=Yii::app()->createUrl("home/print");?>">My Print Stories</a></li>
+							<li><a href="<?=Yii::app()->createUrl("home/industry");?>">Industry Print Stories</a></li>
+							<li><a href="<?=Yii::app()->createUrl("home/electronic");?>">Industry Electronic Stories</a></li>
+						</ul>
+					</li>
+				</ul>
+				<?php 
+				// $this->widget('bootstrap.widgets.TbMenu',array(
+				// 	'type'=>'list', // '', 'tabs', 'pills' (or 'list')
+				// 	'items'=>array(
+				// 		array('label'=>'Home', 'icon'=>'home', 'url'=>array('/home/index')),
+				// 	),
+				// )); 
+				?>
+			</nav>
+			<span class="minifyme" style><i class="fa fa-arrow-circle-left hit" style="margin-top:4px;"></i></span>
 		
 	</aside>
 	<div id="main" role="main">

@@ -18,7 +18,7 @@ class HomeController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index'),
+				'actions'=>array('index','print'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -38,7 +38,12 @@ class HomeController extends Controller
 
 	public function actionIndex()
 	{
-		$this->render('index');
+		$model=new StorySearch;
+		$this->render('index',array('model'=>$model));
+	}
+	public function actionPrint()
+	{
+		$this->render('stories');
 	}
 
 	public function loadModel($id)

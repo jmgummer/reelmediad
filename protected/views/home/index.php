@@ -2,34 +2,20 @@
 $this->pageTitle=Yii::app()->name.' | Home';
 $this->breadcrumbs=array('Index');
 ?>
-
-
-<?php echo Yii::app()->user->company_name; ?>
-<?php $this->renderPartial('client_options'); ?>
-<?php echo '<br>Date : between'; ?><?php echo $todays = date('Y-m-d'); ?>
-<?php echo '<br>Key Words Searched : '; ?>
-<?php echo Yii::app()->user->company_id; ?>
-<div class="row-fluid clearfix">
-<?php 
-// if($company_words = Company::model()->find('company_id=:a', array(':a'=>Yii::app()->user->company_id))){
-// 	//echo $company_words->keywords.'<br>';
-// 	if($pieces = explode(",", $company_words->keywords)){
-// 		foreach ($pieces as $key) {
-// 			echo '<div class="col-md-3">'.$key.'</div>';
-// 		}
-// 	}
-// }
-?>
-</div>
 <br>
-<div class="row-fluid clearfix">
-<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
+<p><strong>Good morning Joe Marwa,</strong></p>
+<p>You are now logged into your Reelmedia account.</p>
 
+<p>By using your left hand menu, you can do the following: </p>
+<p><strong>My Stories</strong> – You can view all your stories here. By default, when you click 'My Stories' you will see all print(newspaper) stories for today and all electronic (TV and radio) stories for yesterday. However, you can use the date range feature to view stories from other dates. </p>
 
-<?php
+<p><strong>Newspaper/Print Archives</strong> – You may search our print archives here. Search results are limited to your subscription terms. Please call your client service representative for more information. </p>
 
-// $stories = RecentStories::PrintStories(Yii::app()->user->company_id);
-$stories = RecentStories::GetClientStory(Yii::app()->user->company_id);
-?>
-</div>
-</div>
+<p><strong>Electronic Archives</strong> – You may search our electronic archives here. Search results are limited to your subscription terms. Please call your client service representative for more information. </p>
+<p><strong>Issue Reports</strong> – Based on your subscription, this tool allows you to generate reports based on 'Issues'.</p>
+
+<p><strong>Industry Reports</strong> – This is a set of tools that provide you with a snapshot of industry trends and reports.</p>
+
+<p><strong>My Account</strong> – You may change your account details (email address, password) here. </p>
+
+<p><strong>My Reports</strong> – You may generate your own reports on demand. Reelmedia gives you the power to generate up to 7 useful reports over any date range as the need arises. You will be presented with useful charts and graphs to help you. </p>

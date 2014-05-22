@@ -147,8 +147,7 @@ class Bootstrap extends CApplicationComponent
 	{
 		/** @var CClientScript $cs */
 		$cs = Yii::app()->getClientScript();
-		// Vendors
-		$cs->registerCoreScript('jquery', CClientScript::POS_END);
+		$cs->registerScriptFile($this->getAssetsUrl().'/js/libs/jquery-ui-1.10.3.min.js', CClientScript::POS_END);
         $cs->registerScriptFile($this->getAssetsUrl().'/js/bootstrap/bootstrap.min.js', CClientScript::POS_END);
         $cs->registerScriptFile($this->getAssetsUrl().'/js/notification/SmartNotification.min.js', CClientScript::POS_END);
         $cs->registerScriptFile($this->getAssetsUrl().'/js/smartwidgets/jarvis.widget.min.js', CClientScript::POS_END);
