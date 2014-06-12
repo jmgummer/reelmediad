@@ -18,7 +18,7 @@ class HomeController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','print'),
+				'actions'=>array('index','print','view','video','tests'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -48,6 +48,8 @@ class HomeController extends Controller
 		if(isset($_POST['StorySearch']))
 		{
 			$model->attributes=Yii::app()->input->stripClean($_POST['StorySearch']);
+			$model->startdate = date('Y-m-d',strtotime(str_replace('-', '/', $model->startdate)));
+			$model->enddate = date('Y-m-d',strtotime(str_replace('-', '/', $model->enddate)));
 		}
 		$this->render('stories',array('model'=>$model));
 	}
@@ -61,6 +63,31 @@ class HomeController extends Controller
 			throw new CHttpException(404,'The requested page does not exist.');
 		else
 			return $model;
+	}
+
+	public function actionView($id)
+	{
+		// if($id!=null){
+		// 	header($_GET['ext_link']);
+		// }
+		if($id !=NULL && isset($_GET['ext_link'])){
+			$link = $_GET['ext_link'];
+			// header("'Location: ".$link."'");
+			header("Location: ".$link);
+			// header($_GET['ext_link']);
+		}else{
+			throw new Exception("Error Processing Request", 1);
+		}
+	}
+
+	public function actionTests()
+	{
+		$this->render('tests');
+	}
+
+	public function actionVideo()
+	{
+		$this->render('video');
 	}
 
 	protected function performAjaxValidation($model)

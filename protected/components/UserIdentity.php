@@ -24,6 +24,7 @@ class UserIdentity extends CUserIdentity
 		}else{
 			$this->username = 'admin';
 			$company_id = $client->co_id;
+			$this->setState('client_name',$client->UserName);
 			$this->setState('company_id',$company_id);
 			$this->setState('company_name', $client->company);
 			$this->errorCode=self::ERROR_NONE;

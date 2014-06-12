@@ -137,4 +137,9 @@ class ClientUsers extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function getUserName()
+	{
+		return ucfirst($this->firstname).' '.ucfirst($this->surname);
+	}
 }

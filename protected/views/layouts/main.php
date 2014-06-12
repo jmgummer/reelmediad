@@ -136,7 +136,7 @@
 				<span> <!-- User image size is adjusted inside CSS, it should stay as it --> 
 					
 					<a href="javascript:void(0);" id="show-shortcut">
-						<img src="<?php echo Yii::app()->request->baseUrl . '/images/avatars/sunny.png'; ?>" alt="me" class="online" /> 
+						<img src="<?php echo Yii::app()->request->baseUrl . '/images/avatars/male.png'; ?>" alt="me" class="online" /> 
 						<span>
 							<?php echo Yii::app()->user->company_name; ?>
 						</span>
@@ -155,6 +155,14 @@
 							<li><a href="<?=Yii::app()->createUrl("home/print");?>">My Print Stories</a></li>
 							<li><a href="<?=Yii::app()->createUrl("home/industry");?>">Industry Print Stories</a></li>
 							<li><a href="<?=Yii::app()->createUrl("home/electronic");?>">Industry Electronic Stories</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Industry Reports</span></a>
+						<ul>
+							<li><a href="<?=Yii::app()->createUrl("industryreports/mentions");?>">Number of Mentions</a></li>
+							<li><a href="<?=Yii::app()->createUrl("industryreports/ave");?>">AVE</a></li>
+							<li><a href="<?=Yii::app()->createUrl("industryreports/categories");?>">Categories Mentioned</a></li>
 						</ul>
 					</li>
 				</ul>

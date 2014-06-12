@@ -278,4 +278,41 @@ class Story extends CActiveRecord
 			return 'neutral';
 		}
 	}
+
+	public function getLink()
+	{
+		if($this->link_id!=' '){
+			$linkid = $this->link_id;
+			if($link = SphLinks::model()->find('link_id=:a', array(':a'=>$linkid))){
+				return $link->link_id.'?ext_link='.$this->GetSwf($link->url);
+				// return $this->GetSwf($link->url);
+			}else{
+				return '#';
+			}
+		}else{
+			return '#';
+		}
+	}
+
+	public static function GetSwf($link)
+	{
+		// return $name = strtolower(pathinfo($link, PATHINFO_FILENAME)).'.swf';
+
+		$output  = str_replace('.pdf', '.swf', $link);
+		return strtolower($output);
+	}
+
+	public function getContinues()
+	{
+		if($this->cont_on!=0){
+			if($cont = Story::model()->find('story_id=:a', array(':a'=>$this->cont_on))){
+				return 'Continues on Page '.$cont->page_no;
+			}
+		}
+		if($this->cont_from!=0){
+			if($cont = Story::model()->find('story_id=:a', array(':a'=>$this->cont_from))){
+				return 'From Page '.$cont->page_no;
+			}
+		}
+	}
 }

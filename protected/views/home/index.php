@@ -3,7 +3,7 @@ $this->pageTitle=Yii::app()->name.' | Home';
 $this->breadcrumbs=array('Index');
 ?>
 <br>
-<p><strong>Good morning Joe Marwa,</strong></p>
+<p><strong>Good morning <?php echo Yii::app()->user->client_name; ?>,</strong></p>
 <p>You are now logged into your Reelmedia account.</p>
 
 <p>By using your left hand menu, you can do the following: </p>

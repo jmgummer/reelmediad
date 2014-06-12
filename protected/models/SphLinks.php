@@ -58,7 +58,7 @@ class SphLinks extends CActiveRecord
 			array('url, description', 'length', 'max'=>255),
 			array('title', 'length', 'max'=>200),
 			array('md5sum', 'length', 'max'=>32),
-			array('fulltxt, indexdate', 'safe'),
+			array('link_id,fulltxt, indexdate', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('link_id, media_house_id, url, title, description, fulltxt, indexdate, size, md5sum, visible, level', 'safe', 'on'=>'search'),

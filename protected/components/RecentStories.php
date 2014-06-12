@@ -24,43 +24,92 @@ public static function PrintStories($client)
 	
 }
 
-public static function GetClientStory($client)
+public static function GetClientStory($client,$startdate,$enddate,$search)
 {
 	$month = date('m');
 	$year = date('Y');
 	$story_month = 'story_'.$year.'_'.$month;
-	$todays = date('Y-m-d');
-	$startdate = '2014-05-19';
-	$enddate = $todays;
-	//echo $query = 'select * from story_client inner join story on story_client.story_id = story.Story_ID where story_client.client_id='.$client.' and story.storydate between "'.$startdate.'" and "'.$enddate.'" order by story.Story_ID desc limit 70';
-	echo $q2 = 'SELECT * FROM story_client inner join '.$story_month.' on story_client.story_id = '.$story_month.'.Story_ID where story_client.client_id=1 and '.$story_month.'.storydate between "'.$startdate.'" and "'.$startdate.'"  order by '.$story_month.'.storydate desc limit 70';
-	// $story = Story::model()->find('Story_ID=:a AND StoryDate=:b', array(':a'=>$story_id, ':b'=>$todays))
-	echo count($story = Story::model()->findAllBySql($q2));
+	$q2 = 'SELECT * FROM story inner join story_mention on story.Story_ID=story_mention.story_id inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID  where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%" order by Media_House_List asc, StoryDate desc, page_no asc';
 	if($story = Story::model()->findAllBySql($q2)){
-		echo $story_month;
 		echo RecentStories::PrintTableHead();
 		foreach ($story as $key) {
 			if($story = RecentStories::GetStories($key->Story_ID)){
-				echo RecentStories::PrintTableBody($story->StoryDate,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,$story->Tonality,$story->Tonality);
+				echo RecentStories::PrintTableBody($story->StoryDate,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,$story->Tonality,$story->Tonality,$story->Link,$story->Continues);
 			}
 		}
 		echo RecentStories::PrintTableEnd();
 	}else{
-		echo 'niet';
+		echo 'No Records Found';
 	}
-	// if($story = Story::model()->findAllBySql("SELECT story_id FROM story_client WHERE story_client.client_id = $client and story_client.story_id in(Select story_id from story where storydate between '$startdate' and '$enddate')")){
-	// 	echo 'buss';
-	// 	print_r($story);
-	// 	echo RecentStories::PrintTableHead();
-	// 	foreach ($story as $key) {
-	// 		if($story = RecentStories::GetStories($key->story_id)){
-	// 			echo RecentStories::PrintTableBody($story->StoryDate,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,$story->Tonality,$story->Tonality);
-	// 		}
-	// 	}
-	// 	echo RecentStories::PrintTableEnd();
-	// }else{
-	// 	return 'No Stories Exist';
-	// }
+}
+
+public static function GetElectronicStory($client,$startdate,$enddate,$search)
+{
+	$month = date('m');
+	$year = date('Y');
+	$story_month = 'story_'.$year.'_'.$month;
+	$q2 = 'SELECT * from story,story_mention,mediahouse where story_mention.client_id='.$client.' and story.Story_ID=story_mention.story_id and story.Media_ID!="mp01" and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story.Media_House_ID=mediahouse.Media_House_ID order by Media_House_List asc, StoryDate desc';
+	if($story = Story::model()->findAllBySql($q2)){
+		echo RecentStories::PrintTableHead();
+		foreach ($story as $key) {
+			if($story = RecentStories::GetStories($key->Story_ID)){
+				echo RecentStories::PrintTableBody($story->StoryDate,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,$story->Tonality,$story->Tonality,$story->Link,$story->Continues);
+			}
+		}
+		echo RecentStories::PrintTableEnd();
+	}else{
+		echo 'No Records Found';
+	}
+}
+
+public static function GetClientIndustryStory($client,$startdate,$enddate,$search)
+{
+	$month = date('m');
+	$year = date('Y');
+	$story_month = 'story_'.$year.'_'.$month;
+	$q2 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story from story, story_industry, industry_subs, mediahouse where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.') and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.' and story_industry.industry_id=industry_subs.industry_id and story.Media_ID="mp01" and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID order by Media_House_List asc, StoryDate desc';
+	if($story = Story::model()->findAllBySql($q2)){
+		echo RecentStories::PrintTableHead();
+		foreach ($story as $key) {
+			if($story = RecentStories::GetStories($key->Story_ID)){
+				echo RecentStories::PrintTableBody($story->StoryDate,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,$story->Tonality,$story->Tonality,$story->Link,$story->Continues);
+			}
+		}
+		echo RecentStories::PrintTableEnd();
+	}else{
+		echo 'No Records Found';
+	}
+}
+
+public static function GetClientElectronicIndustryStory($client,$startdate,$enddate,$search)
+{
+	$month = date('m');
+	$year = date('Y');
+	$story_month = 'story_'.$year.'_'.$month;
+	$q2 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story from story, story_industry, industry_subs, mediahouse where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.') and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.' and story_industry.industry_id=industry_subs.industry_id and story.Media_ID!="mp01" and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID order by Media_House_List asc, StoryDate desc';
+	if($story = Story::model()->findAllBySql($q2)){
+		echo RecentStories::PrintTableHead();
+		foreach ($story as $key) {
+			if($story = RecentStories::GetStories($key->Story_ID)){
+				echo RecentStories::PrintTableBody($story->StoryDate,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,$story->Tonality,$story->Tonality,$story->Link,$story->Continues);
+			}
+		}
+		echo RecentStories::PrintTableEnd();
+	}else{
+		echo 'No Records Found';
+	}
+}
+
+public static function getClientPrint($client_id)
+{
+	/* Using Sammy's Query - Simple and Clean, but adding Joins */
+	// $mainsql = "select * from story,story_mention, mediahouse where story_mention.client_id=".$client_id." and story.Story_ID=story_mention.story_id and story.Media_ID='mp01' and story.step3=1 and StoryDate ='2014-05-29' and story.Media_House_ID=mediahouse.Media_House_ID order by Media_House_List asc, StoryDate desc, page_no asc"
+	$mainsql = "select * from story inner join story_mention on story.Story_ID=story_mention.story_id inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID  where story_mention.client_id=".$client_id." and story.Media_ID='mp01' and story.step3=1 and StoryDate ='2014-05-29' order by Media_House_List asc, StoryDate desc, page_no asc";
+}
+
+public static function getClientIndustry()
+{
+	$inda = "select distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story from story, story_industry, industry_subs, mediahouse where story.story_id NOT IN (select story_id from story_mention where client_id='1') and story.story_id=story_industry.story_id and industry_subs.company_id='' and story_industry.industry_id=industry_subs.industry_id and story.Media_ID='mp01' and story.step3=1 and StoryDate ='2014-06-03' and story.Media_House_ID=mediahouse.Media_House_ID order by Media_House_List asc, StoryDate desc";
 }
 /*
 * This Function obtains a particular story only
@@ -80,19 +129,19 @@ public static function PrintTableHead(){
 	<div>
 	<table id="dt_basic" class="table table-striped table-bordered table-hover">
 	<thead>
-	<th style="width:10%;">DATE</th><th>PUBLICATION</th><th>JOURNALIST</th><th>HEADLINE/SUBJECT</th><th>PAGE</th><th>PUBLICATION TYPE</th><th>PICTURE</th><th>EFFECT</th><th>AVE(Kshs.)</th>
+	<th style="width:11%;">DATE</th><th>PUBLICATION</th><th>JOURNALIST</th><th>HEADLINE/SUBJECT</th><th>PAGE</th><th>PUBLICATION TYPE</th><th>PICTURE</th><th>EFFECT</th><th>AVE(Kshs.)</th>
 	</thead>';
 }
 /*
 * Print The Body of the Table This function may be called recursively
 * NB - Just for the Print Section
 */
-public static function PrintTableBody($date,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave){
+public static function PrintTableBody($date,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont){
 	return '<tr>
-	<td><a href="#">'.$date.'</a></td>
+	<td><a href="view/'.$link.'" target="_blank">'.$date.'</a></td>
 	<td>'.$pub.'</td>
 	<td>'.$journo.'</td>
-	<td><a href="#">'.$head.'</a><br><font size="1">Descriptions</font></td>
+	<td><a href="view/'.$link.'" target="_blank">'.$head.'</a><br><font size="1">'.$cont.'</font></td>
 	<td>'.$page.'</td>
 	<td>'.$pubtype.'</td>
 	<td>'.$pic.'</td>

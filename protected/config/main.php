@@ -80,6 +80,15 @@ return array(
 			'password' => 'Pambazuka08',
 			'charset' => 'utf8',
 		),
+
+		'db3'=>array(
+			'class'=>'CDbConnection',
+			'connectionString' => 'mysql:host=192.168.0.5;dbname=forgedb',
+			'emulatePrepare' => true,
+			'username' => 'root',
+			'password' => 'Pambazuka08',
+			'charset' => 'utf8',
+		),
 		
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
