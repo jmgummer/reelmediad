@@ -1,6 +1,6 @@
 <?php
 
-class IndustryReportsController extends Controller
+class IndustryreportsController extends Controller
 {
 	/**
 	 * @var This is the admin controller
