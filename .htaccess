@@ -36,6 +36,7 @@
 # Header append Vary User-Agent env=!dont-vary
 </IfModule>
 RewriteEngine on
+Options +FollowSymLinks
 # if a directory or a file exists, use it directly
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

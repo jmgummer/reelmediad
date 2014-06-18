@@ -19,66 +19,19 @@
 				<span id="logo"> <a href="<?=Yii::app()->createUrl("site");?>"><img src="<?php echo Yii::app()->request->baseUrl . '/images/reelforge_logo.png'; ?>" alt="<?php echo CHtml::encode(Yii::app()->name); ?>" ></a> </span>
 				<!-- END LOGO PLACEHOLDER -->
 
-				<!-- Note: The activity badge color changes when clicked and resets the number to 0
-				Suggestion: You may want to set a flag when this happens to tick off all checked messages / notifications -->
-				<span id="activity" class="activity-dropdown"> <i class="fa fa-user"></i> <b class="badge"> 21 </b> </span>
-
-				<!-- AJAX-DROPDOWN : control this dropdown height, look and feel from the LESS variable file -->
-				<div class="ajax-dropdown">
-
-					<!-- the ID links are fetched via AJAX to the ajax container "ajax-notifications" -->
-					<div class="btn-group btn-group-justified" data-toggle="buttons">
-						<label class="btn btn-default">
-							<input type="radio" name="activity" id="ajax/notify/mail.html">
-							Msgs (14) </label>
-						<label class="btn btn-default">
-							<input type="radio" name="activity" id="ajax/notify/notifications.html">
-							notify (3) </label>
-						<label class="btn btn-default">
-							<input type="radio" name="activity" id="ajax/notify/tasks.html">
-							Tasks (4) </label>
-					</div>
-
-					<!-- notification content -->
-					<div class="ajax-notifications custom-scroll">
-
-						<div class="alert alert-transparent">
-							<h4>Click a button to show messages here</h4>
-							This blank page message helps protect your privacy, or you can show the first message here automatically.
-						</div>
-
-						<i class="fa fa-lock fa-4x fa-border"></i>
-
-					</div>
-					<!-- end notification content -->
-
-					<!-- footer: refresh area -->
-					<span> Last updated on: 12/12/2013 9:43AM
-						<button type="button" data-loading-text="<i class='fa fa-refresh fa-spin'></i> Loading..." class="btn btn-xs btn-default pull-right">
-							<i class="fa fa-refresh"></i>
-						</button> </span>
-					<!-- end footer -->
-
-				</div>
-				<!-- END AJAX-DROPDOWN -->
+				
 			</div>
 
 			<!-- projects dropdown -->
 			<div id="project-context">
 
-				<span class="label">Projects:</span>
-				<span id="project-selector" class="popover-trigger-element dropdown-toggle" data-toggle="dropdown">Recent projects <i class="fa fa-angle-down"></i></span>
+				<span class="label">Apps:</span>
+				<span id="project-selector" class="popover-trigger-element dropdown-toggle" data-toggle="dropdown">Other Applications <i class="fa fa-angle-down"></i></span>
 
 				<!-- Suggestion: populate this list with fetch and push technique -->
 				<ul class="dropdown-menu">
 					<li>
-						<a href="javascript:void(0);">Online e-merchant management system - attaching integration with the iOS</a>
-					</li>
-					<li>
-						<a href="javascript:void(0);">Notes on pipeline upgradee</a>
-					</li>
-					<li>
-						<a href="javascript:void(0);">Assesment Report for merchant account</a>
+						<a href="javascript:void(0);">Feature Coming Soon</a>
 					</li>
 					<li class="divider"></li>
 					<li>
@@ -147,23 +100,19 @@
 			<nav>
 				<ul>
 					<li class="active">
-						<a href="<?=Yii::app()->createUrl("home");?>" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
+						<a href="<?=Yii::app()->createUrl("home/index");?>" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
 					</li>
 					<li>
-						<a href="#"><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Stories</span></a>
-						<ul>
-							<li><a href="<?=Yii::app()->createUrl("home/print");?>">My Print Stories</a></li>
-							<li><a href="<?=Yii::app()->createUrl("home/industry");?>">Industry Print Stories</a></li>
-							<li><a href="<?=Yii::app()->createUrl("home/electronic");?>">Industry Electronic Stories</a></li>
-						</ul>
+						<a href="<?=Yii::app()->createUrl("home/print");?>" title="Stories"><i class="fa fa-lg fa-fw fa-pencil"></i> <span class="menu-item-parent">Stories</span></a>
 					</li>
 					<li>
-						<a href="#"><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Industry Reports</span></a>
+						<a href="<?=Yii::app()->createUrl("industryreports/mentions");?>" title="Industry Reports"><i class="fa fa-lg fa-fw fa-file-text"></i> <span class="menu-item-parent">Industry Reports</span></a>
+						<!-- <a href="#"><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Industry Reports</span></a>
 						<ul>
 							<li><a href="<?=Yii::app()->createUrl("industryreports/mentions");?>">Number of Mentions</a></li>
 							<li><a href="<?=Yii::app()->createUrl("industryreports/ave");?>">AVE</a></li>
 							<li><a href="<?=Yii::app()->createUrl("industryreports/categories");?>">Categories Mentioned</a></li>
-						</ul>
+						</ul> -->
 					</li>
 				</ul>
 				<?php 

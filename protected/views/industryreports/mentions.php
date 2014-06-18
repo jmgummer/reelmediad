@@ -78,26 +78,29 @@ $this->breadcrumbs=array('Industry Reports'=>array('industryreports/index'), 'Nu
         break;
       /* Load the Share of Voice/Ink - By Media Type Report */
       case 3:
-        $total = IndustryQueries::GetAllCompanyMentions($startdate,$enddate,$industry);
-        $ctotal = IndustryQueries::GetCompanyMentions(Yii::app()->user->company_id,$startdate,$enddate,$industry);
-        $ttotal = $total - $ctotal;
+        $tv = IndustryQueries::GetShareVoiceMediaTV(Yii::app()->user->company_id,$startdate,$enddate,$industry);
+        $radio = IndustryQueries::GetShareVoiceMediaRadio(Yii::app()->user->company_id,$startdate,$enddate,$industry);
+        $print = IndustryQueries::GetShareVoiceMediaPrint(Yii::app()->user->company_id,$startdate,$enddate,$industry);
+        $total = $tv+$radio+$print;
         $chart_name = 'Share_By_Media_Type';
         echo '<h3>Share of Voice/Ink - By Media Type</h3>';
+        $svmnarrative = $company.' Share of Voice - By Media Type in '.$inda_text.' Between '.$drange;
         echo '<div style="padding:0px; background-color:#fff; border:0px solid #745C92; width: 100%;">';
-        $strXML = FusionCharts::packageXML($narrative, $company, $ctotal, $ttotal);
+        $xAxisName = 'Media';
+        $yAxisName = 'Number of Mentions';
+        $strXML = FusionCharts::packageColumnXML($svmnarrative,$tv,$radio,$print,$total,$xAxisName,$yAxisName);
         $charty = new FusionCharts;
-        echo FusionCharts::renderChart(Yii::app()->request->baseUrl . '/FusionCharts/FusionCharts/FusionCharts/Pie2D.swf', "", $strXML, $chart_name, 600, 300, false, true, true);
+        echo FusionCharts::renderChart(Yii::app()->request->baseUrl . '/FusionCharts/FusionCharts/FusionCharts/Column2D.swf', "", $strXML, $chart_name, 600, 300, false, true, true);
         echo '</div>';
         break;
       /* Load the Share of Voice/Ink - By Mentions */
       case 4:
-        $total = IndustryQueries::GetAllCompanyMentions($startdate,$enddate,$industry);
-        $ctotal = IndustryQueries::GetCompanyMentions(Yii::app()->user->company_id,$startdate,$enddate,$industry);
-        $ttotal = $total - $ctotal;
         $chart_name = 'Share_By_Mentions';
         echo '<h3>Share of Voice/Ink - By Mentions</h3>';
+        $svm2narrative = $company.' Share of Voice - By Mentions Top Performers in '.$inda_text.' Between '.$drange;
+        $wol = IndustryQueries::GetShareVoiceIndustry(Yii::app()->user->company_id,$startdate,$enddate,$industry);
         echo '<div style="padding:0px; background-color:#fff; border:0px solid #745C92; width: 100%;">';
-        $strXML = FusionCharts::packageXML($narrative, $company, $ctotal, $ttotal);
+        $strXML = FusionCharts::packageMentionsXML($narrative, $wol,$company, $startdate,$enddate,$industry);
         $charty = new FusionCharts;
         echo FusionCharts::renderChart(Yii::app()->request->baseUrl . '/FusionCharts/FusionCharts/FusionCharts/Pie2D.swf', "", $strXML, $chart_name, 600, 300, false, true, true);
         echo '</div>';

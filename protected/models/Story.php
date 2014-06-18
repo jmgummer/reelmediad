@@ -315,4 +315,11 @@ class Story extends CActiveRecord
 			}
 		}
 	}
+
+	public function getClient()
+	{
+		if($this->Client_ID!=0){
+			return $client = Company::model()->find('company_id=:a', array(':a'=>$this->Client_ID))->company_name;
+		}
+	}
 }

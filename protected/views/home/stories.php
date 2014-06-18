@@ -12,11 +12,6 @@ $todays = date('Y-m-d');
 $startdate = $enddate = $todays;
 $search = ' ';
 if(isset($_POST['StorySearch'])){
-
-	?>
-
-	<?php
-	// echo 'owned';
 	$startdate = $model->startdate;
 	$enddate = $model->enddate;
 	$search = $model->search_text;
@@ -43,15 +38,11 @@ if(isset($_POST['StorySearch'])){
 			</div>
 		</div>
 		</div>
-		
 		<footer class="reveal-footer"><button class="btn btn-primary">View Keywords</button></footer>
-		
 	</div>
 	<?php
 }
-?>
 
-<?php
 $cat_identifier = 1;
 $type_identifier = 1;
 if(isset($_POST['StorySearch'])){
@@ -61,123 +52,118 @@ if(isset($_POST['StorySearch'])){
     if(isset($model->storytype) && !empty($model->storytype)){
       $type_identifier= $model->storytype;
     }
-
-
 }else{
 	$cat_identifier= 1;
 	$type_identifier= 1;
 }
-	?>
-	<!-- PRINT STORIES -->
-	<?php
-	if($type_identifier==1){
-		if($cat_identifier==1){
-			echo '<div class="row-fluid clearfix"><div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-			<header role="heading"><h2>My Print Stories</h2></header>';
-			$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-			echo '</div></div>';
+if($type_identifier==1){
+	if($cat_identifier==1){
+		echo '<div class="row-fluid clearfix"><div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
+		<header role="heading"><h2>My Print Stories</h2></header>';
+		$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		echo '</div></div>';
 
-			echo '<div class="row-fluid clearfix">
-			<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-			<header role="heading"><h2>My Electronic Stories</h2></header>';
-			$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-			echo '</div></div>';
+		echo '<div class="row-fluid clearfix">
+		<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
+		<header role="heading"><h2>My Electronic Stories</h2></header>';
+		$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		echo '</div></div>';
 
-			echo '<div class="row-fluid clearfix">
-			<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-			<header role="heading"><h2>Industry Print Stories</h2></header>';
-			$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-			echo '</div></div>';
+		echo '<div class="row-fluid clearfix">
+		<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
+		<header role="heading"><h2>Industry Print Stories</h2></header>';
+		$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		echo '</div></div>';
 
-			echo '<div class="row-fluid clearfix">
-			<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-			<header role="heading"><h2>Industry Electronic Stories</h2></header>';
+		echo '<div class="row-fluid clearfix">
+		<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
+		<header role="heading"><h2>Industry Electronic Stories</h2></header>';
 
-			$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-			echo '</div></div>';
-		}
-		if($cat_identifier==2){
-			echo '<div class="row-fluid clearfix"><div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-			<header role="heading"><h2>My Print Stories</h2></header>';
-			$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-			echo '</div></div>';
-
-			echo '<div class="row-fluid clearfix">
-			<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-			<header role="heading"><h2>My Electronic Stories</h2></header>';
-			$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-			echo '</div></div>';
-		}
-		if($cat_identifier==3){
-			echo '<div class="row-fluid clearfix">
-			<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-			<header role="heading"><h2>Industry Print Stories</h2></header>';
-			$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-			echo '</div></div>';
-
-			echo '<div class="row-fluid clearfix">
-			<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-			<header role="heading"><h2>Industry Electronic Stories</h2></header>';
-			$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-			echo '</div></div>';
-		}
+		$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		echo '</div></div>';
 	}
-	if($type_identifier==2){
-		if($cat_identifier==1){
-			echo '<div class="row-fluid clearfix"><div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-					<header role="heading"><h2>My Print Stories</h2></header>';
-					$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-					echo '</div></div>';
+	if($cat_identifier==2){
+		echo '<div class="row-fluid clearfix"><div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
+		<header role="heading"><h2>My Print Stories</h2></header>';
+		$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		echo '</div></div>';
 
-					echo '<div class="row-fluid clearfix">
-					<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-					<header role="heading"><h2>Industry Print Stories</h2></header>';
-					$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-					echo '</div></div>';
-		}
-		if($cat_identifier==2){
-			echo '<div class="row-fluid clearfix"><div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-					<header role="heading"><h2>My Print Stories</h2></header>';
-					$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-					echo '</div></div>';
-		}
-		if($cat_identifier==3){
-			echo '<div class="row-fluid clearfix">
-					<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-					<header role="heading"><h2>Industry Print Stories</h2></header>';
-					$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-					echo '</div></div>';
-		}
+		echo '<div class="row-fluid clearfix">
+		<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
+		<header role="heading"><h2>My Electronic Stories</h2></header>';
+		$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		echo '</div></div>';
 	}
-	if($type_identifier==3){
-		if($cat_identifier==1){
-			echo '<div class="row-fluid clearfix">
-			<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-			<header role="heading"><h2>My Electronic Stories</h2></header>';
-			$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-			echo '</div></div>';
+	if($cat_identifier==3){
+		echo '<div class="row-fluid clearfix">
+		<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
+		<header role="heading"><h2>Industry Print Stories</h2></header>';
+		$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		echo '</div></div>';
 
-			echo '<div class="row-fluid clearfix">
-			<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-			<header role="heading"><h2>Industry Electronic Stories</h2></header>';
-			$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-			echo '</div></div>';
-		}
-		if($cat_identifier==2){
-			echo '<div class="row-fluid clearfix">
-			<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-			<header role="heading"><h2>My Electronic Stories</h2></header>';
-			$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-			echo '</div></div>';
-		}
-		if($cat_identifier==3){
-			echo '<div class="row-fluid clearfix">
-			<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-			<header role="heading"><h2>Industry Electronic Stories</h2></header>';
-			$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-			echo '</div></div>';
-		}
+		echo '<div class="row-fluid clearfix">
+		<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
+		<header role="heading"><h2>Industry Electronic Stories</h2></header>';
+		$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		echo '</div></div>';
 	}
+}
+if($type_identifier==2){
+	if($cat_identifier==1){
+		echo '<div class="row-fluid clearfix"><div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
+				<header role="heading"><h2>My Print Stories</h2></header>';
+				$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+				echo '</div></div>';
+
+				echo '<div class="row-fluid clearfix">
+				<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
+				<header role="heading"><h2>Industry Print Stories</h2></header>';
+				$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+				echo '</div></div>';
+	}
+	if($cat_identifier==2){
+		echo '<div class="row-fluid clearfix"><div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
+				<header role="heading"><h2>My Print Stories</h2></header>';
+				$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+				echo '</div></div>';
+	}
+	if($cat_identifier==3){
+		echo '<div class="row-fluid clearfix">
+				<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
+				<header role="heading"><h2>Industry Print Stories</h2></header>';
+				$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+				echo '</div></div>';
+	}
+}
+if($type_identifier==3){
+	if($cat_identifier==1){
+		echo '<div class="row-fluid clearfix">
+		<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
+		<header role="heading"><h2>My Electronic Stories</h2></header>';
+		$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		echo '</div></div>';
+
+		echo '<div class="row-fluid clearfix">
+		<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
+		<header role="heading"><h2>Industry Electronic Stories</h2></header>';
+		$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		echo '</div></div>';
+	}
+	if($cat_identifier==2){
+		echo '<div class="row-fluid clearfix">
+		<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
+		<header role="heading"><h2>My Electronic Stories</h2></header>';
+		$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		echo '</div></div>';
+	}
+	if($cat_identifier==3){
+		echo '<div class="row-fluid clearfix">
+		<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
+		<header role="heading"><h2>Industry Electronic Stories</h2></header>';
+		$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		echo '</div></div>';
+	}
+}
     
 ?>
 </div>
@@ -221,13 +207,13 @@ table a{
 }
 .reveal-footer{
 	display: block;
-padding: 7px 14px 15px;
-border-top: 1px solid rgba(0, 0, 0, 0.1);
-background: none repeat scroll 0% 0% rgba(248, 248, 248, 0.9);
-margin: 0px;
-box-sizing: content-box;
-color: #666;
-border: 1px solid #C2C2C2;
+	padding: 7px 14px 15px;
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+	background: none repeat scroll 0% 0% rgba(248, 248, 248, 0.9);
+	margin: 0px;
+	box-sizing: content-box;
+	color: #666;
+	border: 1px solid #C2C2C2;
 }
 </style>
 <script>

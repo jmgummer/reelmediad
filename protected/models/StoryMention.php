@@ -94,4 +94,11 @@ class StoryMention extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function getClient()
+	{
+		if($this->client_id!=0){
+			return $client = Company::model()->find('company_id=:a', array(':a'=>$this->client_id))->company_name;
+		}
+	}
 }

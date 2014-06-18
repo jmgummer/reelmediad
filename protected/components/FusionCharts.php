@@ -47,12 +47,50 @@ public static function datePart($mask, $dateTimeStr) {
     return $dataStr;
 }
 
+public static function StripExtra($text)
+    {
+        $limit = 25;
+        $content = $text;
+        if (strlen($content) > $limit){
+            return $content = substr($text, 0, strrpos(substr($text, 0, $limit), ' '));
+        }else{
+            return $content;
+        }
+        
+    }
+
 // Simple Function To Package Data to XML
 public static function packageXML($narrative, $co_name,$others, $co_value, $other_value)
 {
     $strXML = "<chart bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
     $strXML .= "<set label='".$co_name."' value='".$co_value."' />"; 
     $strXML .= "<set label='".$others."' value='".$other_value."' />"; 
+    $strXML .= "</chart>";
+    return $strXML;
+}
+
+// Simple Function to Package Column Data
+public static function packageColumnXML($narrative,$tv,$radio,$print,$total,$xAxisName,$yAxisName)
+{
+    $strXML = "<chart bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='".$xAxisName."' yAxisName='".$yAxisName."'>";
+    $strXML .= "<set label='TV' value='".$tv."' />"; 
+    $strXML .= "<set label='Radio' value='".$radio."' />"; 
+    $strXML .= "<set label='Print' value='".$print."' />"; 
+    $strXML .= "<set label='Total' value='".$total."' />"; 
+    $strXML .= "</chart>";
+    return $strXML;
+}
+
+public static function packageMentionsXML($narrative, $array,$company_name, $startdate,$enddate,$industry)
+{
+    $strXML = "<chart bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
+    foreach ($array as $key) {
+        $co_name2 = $key->Client;
+        $co_value2 = IndustryQueries::GetShareVoiceCount($key->client_id,$startdate,$enddate,$industry);
+        $strXML .= "<set label='".FusionCharts::StripExtra($co_name2)."' value='".$co_value2."' />"; 
+    }
+    $companyvalue=IndustryQueries::GetShareVoiceCount(Yii::app()->user->company_id,$startdate,$enddate,$industry);
+    $strXML .= "<set label='".$company_name."' value='".$companyvalue."' />"; 
     $strXML .= "</chart>";
     return $strXML;
 }

@@ -66,7 +66,7 @@ class IndustryQueries{
 
 	public static function GetAllCompanyAve($client,$startdate,$enddate,$industry)
 	{
-		$q1 = 'SELECT * from story_industry, story_mention, story, mediahouse where story_industry.industry_id IN ('.$industry.') and story_mention.client_id!='.$client.' and story_industry.story_id= story_mention.story_id and story.StoryDate between "'.$startdate.'" and "'.$enddate.'" and story.story_id= story_mention.story_id and mediahouse.Media_House_ID=story.Media_House_ID order by StoryDate asc';
+		$q1 = 'SELECT * from story_industry, story_mention, story, mediahouse where story_industry.industry_id = "" and story_mention.client_id!='.$client.' and story_industry.story_id= story_mention.story_id and story.StoryDate between "'.$startdate.'" and "'.$enddate.'" and story.story_id= story_mention.story_id and mediahouse.Media_House_ID=story.Media_House_ID order by StoryDate asc';
 		if($ave = Story::model()->findAllBySql($q1)){
 			$myTotalRate=0;
 			foreach ($ave as $key) {
@@ -104,5 +104,35 @@ class IndustryQueries{
 		}else{
 			return FALSE;
 		}
+	}
+
+	public static function GetShareVoiceMediaTV($client,$startdate,$enddate,$industry)
+	{
+		$q1 = 'SELECT story.story_id as mentions from story_industry, story , story_mention where story_mention.client_id='.$client.' and story_industry.story_id= story_mention.story_id and story_industry.story_id=story.story_id and story_industry.industry_id IN ('.$industry.') and story.StoryDate between "'.$startdate.'" and "'.$enddate.'" and story.story_id= story_industry.story_id and story.Media_ID= "mt01"';
+		return $sq = count(Story::model()->findAllBySql($q1));
+	}
+
+	public static function GetShareVoiceMediaRadio($client,$startdate,$enddate,$industry)
+	{
+		$q1 = 'SELECT story.story_id as mentions from story_industry, story , story_mention where story_mention.client_id='.$client.' and story_industry.story_id= story_mention.story_id and story_industry.story_id=story.story_id and story_industry.industry_id IN ('.$industry.') and story.StoryDate between "'.$startdate.'" and "'.$enddate.'" and story.story_id= story_industry.story_id and story.Media_ID= "mr01"';
+		return $sq = count(Story::model()->findAllBySql($q1));
+	}
+
+	public static function GetShareVoiceMediaPrint($client,$startdate,$enddate,$industry)
+	{
+		$q1 = 'SELECT story.story_id as mentions from story_industry, story , story_mention where story_mention.client_id='.$client.' and story_industry.story_id= story_mention.story_id and story_industry.story_id=story.story_id and story_industry.industry_id IN ('.$industry.') and story.StoryDate between "'.$startdate.'" and "'.$enddate.'" and story.story_id= story_industry.story_id and story.Media_ID= "mp01"';
+		return $sq = count(Story::model()->findAllBySql($q1));
+	}
+
+	public static function GetShareVoiceIndustry($client,$startdate,$enddate,$industry)
+	{
+		$q1 = 'SELECT count(story.story_id) as mentions, company_name, company.company_id, story_mention.client_id from story_industry, story , story_mention, industry_company,company where story_industry.story_id= story_mention.story_id and story_industry.industry_id=industry_company.industry_id and story.StoryDate between "'.$startdate.'" and "'.$enddate.'" and company.company_id!='.$client.' and industry_company.company_id=company.company_id and story_mention.client_id=company.company_id and story_industry.story_id=story.story_id and story_industry.industry_id IN ('.$industry.') group by company_name order by mentions desc limit 9';
+		return $sq = StoryMention::model()->findAllBySql($q1);
+	}
+
+	public static function GetShareVoiceCount($client,$startdate,$enddate,$industry)
+	{
+		$q1 = 'SELECT story.story_id as mentions from story_industry, story , story_mention where story_mention.client_id='.$client.' and story_industry.story_id= story_mention.story_id and story.StoryDate between "'.$startdate.'" and "'.$enddate.'" and story.story_id= story_industry.story_id and story_industry.story_id=story.story_id and story_industry.industry_id IN ('.$industry.') ';
+		return $sq = count(StoryMention::model()->findAllBySql($q1));
 	}
 }
