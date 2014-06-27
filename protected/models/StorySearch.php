@@ -18,6 +18,7 @@ class StorySearch extends CFormModel
 	public $create_pdf;
 	public $industry;
 	public $industryreports;
+	public $publications;
 
 
 	/**
@@ -30,7 +31,7 @@ class StorySearch extends CFormModel
 		return array(
 			array('enddate,startdate', 'required'),
 			array('country,create_sheet,create_pdf', 'numerical', 'integerOnly'=>true),
-			array('search_text,country,storytype,storycategory,news_section,enddate, startdate,industry,create_pdf,create_sheet,industryreports', 'safe'),
+			array('search_text,country,storytype,storycategory,news_section,enddate, startdate,industry,create_pdf,create_sheet,industryreports, publications', 'safe'),
 		);
 	}
 
@@ -48,7 +49,8 @@ class StorySearch extends CFormModel
 			'storycategory'=>'Category of Story',
 			'create_pdf'=>'Create PDF Report',
 			'create_sheet'=>'Create Spreadsheet',
-			'industryreports'=>'Report Type'
+			'industryreports'=>'Report Type',
+			'publications'=>'Publications'
 		);
 	}
 }

@@ -8,6 +8,7 @@ $this->breadcrumbs=array('Index');
 
 <p>By using your left hand menu, you can do the following: </p>
 <p><strong>My Stories</strong> – You can view all your stories here. By default, when you click 'My Stories' you will see all print(newspaper) stories for today and all electronic (TV and radio) stories for yesterday. However, you can use the date range feature to view stories from other dates. </p>
+<p><strong>Corporate Social Responsibility - CSR</strong> – Search through stories with corporate social responsibility tags here.</p>
 
 <p><strong>Newspaper/Print Archives</strong> – You may search our print archives here. Search results are limited to your subscription terms. Please call your client service representative for more information. </p>
 

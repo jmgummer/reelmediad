@@ -103,7 +103,7 @@
 						<a href="<?=Yii::app()->createUrl("home/index");?>" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
 					</li>
 					<li>
-						<a href="<?=Yii::app()->createUrl("home/print");?>" title="Stories"><i class="fa fa-lg fa-fw fa-pencil"></i> <span class="menu-item-parent">Stories</span></a>
+						<a href="<?=Yii::app()->createUrl("home/print");?>" title="Stories"><i class="fa fa-lg fa-fw fa-pencil"></i> <span class="menu-item-parent">My Stories</span></a>
 					</li>
 					<li>
 						<a href="<?=Yii::app()->createUrl("industryreports/mentions");?>" title="Industry Reports"><i class="fa fa-lg fa-fw fa-file-text"></i> <span class="menu-item-parent">Industry Reports</span></a>
@@ -113,6 +113,9 @@
 							<li><a href="<?=Yii::app()->createUrl("industryreports/ave");?>">AVE</a></li>
 							<li><a href="<?=Yii::app()->createUrl("industryreports/categories");?>">Categories Mentioned</a></li>
 						</ul> -->
+					</li>
+					<li>
+						<a href="<?=Yii::app()->createUrl("csr/index");?>" title="Stories"><i class="fa fa-lg fa-fw fa-heart"></i> <span class="menu-item-parent">CSR</span></a>
 					</li>
 				</ul>
 				<?php 

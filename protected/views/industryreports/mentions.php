@@ -98,64 +98,64 @@ $this->breadcrumbs=array('Industry Reports'=>array('industryreports/index'), 'Nu
         $chart_name = 'Share_By_Mentions';
         echo '<h3>Share of Voice/Ink - By Mentions</h3>';
         $svm2narrative = $company.' Share of Voice - By Mentions Top Performers in '.$inda_text.' Between '.$drange;
+        // Get Array of Companies
         $wol = IndustryQueries::GetShareVoiceIndustry(Yii::app()->user->company_id,$startdate,$enddate,$industry);
         echo '<div style="padding:0px; background-color:#fff; border:0px solid #745C92; width: 100%;">';
-        $strXML = FusionCharts::packageMentionsXML($narrative, $wol,$company, $startdate,$enddate,$industry);
+        $strXML = FusionCharts::packageMentionsXML($svm2narrative, $wol,$company, $startdate,$enddate,$industry);
         $charty = new FusionCharts;
         echo FusionCharts::renderChart(Yii::app()->request->baseUrl . '/FusionCharts/FusionCharts/FusionCharts/Pie2D.swf', "", $strXML, $chart_name, 600, 300, false, true, true);
         echo '</div>';
         break;
       /* Load the Share of Voice/Ink - By AVE */
       case 5:
-        $total = IndustryQueries::GetAllCompanyMentions($startdate,$enddate,$industry);
-        $ctotal = IndustryQueries::GetCompanyMentions(Yii::app()->user->company_id,$startdate,$enddate,$industry);
-        $ttotal = $total - $ctotal;
         $chart_name = 'Share_By_AVE';
         echo '<h3>Share of Voice/Ink - By AVE</h3>';
+        $svm3narrative = $company.' Share of Voice - By AVE Top Performers in '.$inda_text.' Between '.$drange;
+        // Get Array of Companies
+        $aol = IndustryQueries::GetShareVoiceIndustry(Yii::app()->user->company_id,$startdate,$enddate,$industry);
         echo '<div style="padding:0px; background-color:#fff; border:0px solid #745C92; width: 100%;">';
-        $strXML = FusionCharts::packageXML($narrative, $company, $ctotal, $ttotal);
+        $strXML = FusionCharts::packageAVEMentionsXML($svm3narrative, $aol,$company, $startdate,$enddate,$industry);
         $charty = new FusionCharts;
         echo FusionCharts::renderChart(Yii::app()->request->baseUrl . '/FusionCharts/FusionCharts/FusionCharts/Pie2D.swf', "", $strXML, $chart_name, 600, 300, false, true, true);
         echo '</div>';
         break;
       /* Load the Categories Mentioned Report */
       case 6:
-        $total = IndustryQueries::GetAllCompanyMentions($startdate,$enddate,$industry);
-        $ctotal = IndustryQueries::GetCompanyMentions(Yii::app()->user->company_id,$startdate,$enddate,$industry);
-        $ttotal = $total - $ctotal;
         $chart_name = 'Categories_Mentioned';
         echo '<h3>Categories Mentioned</h3>';
+        $svm4narrative = $company.' Share of Voice - By AVE Top Performers in '.$inda_text.' Between '.$drange;
+        // Get the Array of Categories
+        $cats = IndustryQueries::GetCategories();
         echo '<div style="padding:0px; background-color:#fff; border:0px solid #745C92; width: 100%;">';
-        $strXML = FusionCharts::packageXML($narrative, $company, $ctotal, $ttotal);
+        $strXML = FusionCharts::packageCATMentionsXML($svm4narrative, $cats, $startdate,$enddate,$industry);
         $charty = new FusionCharts;
         echo FusionCharts::renderChart(Yii::app()->request->baseUrl . '/FusionCharts/FusionCharts/FusionCharts/Pie2D.swf', "", $strXML, $chart_name, 600, 300, false, true, true);
         echo '</div>';
         break;
       /* Load the Pictures & File Footage Report */
       case 7:
-        $total = IndustryQueries::GetAllCompanyMentions($startdate,$enddate,$industry);
-        $ctotal = IndustryQueries::GetCompanyMentions(Yii::app()->user->company_id,$startdate,$enddate,$industry);
-        $ttotal = $total - $ctotal;
         $chart_name = 'Pictures_File_Footage';
         echo '<h3>Pictures & File Footage</h3>';
+        $pnarrative = $company.' Stories with Pictures in '.$inda_text.' Between '.$drange;
+        $cats = IndustryQueries::GetPictures();
         echo '<div style="padding:0px; background-color:#fff; border:0px solid #745C92; width: 100%;">';
-        $strXML = FusionCharts::packageXML($narrative, $company, $ctotal, $ttotal);
+        $strXML = FusionCharts::packagePICMentionsXML($pnarrative, $cats, $startdate,$enddate,$industry);
         $charty = new FusionCharts;
         echo FusionCharts::renderChart(Yii::app()->request->baseUrl . '/FusionCharts/FusionCharts/FusionCharts/Pie2D.swf', "", $strXML, $chart_name, 600, 300, false, true, true);
         echo '</div>';
         break;
       /* Load the Tonality Report */
       case 8:
-        $total = IndustryQueries::GetAllCompanyMentions($startdate,$enddate,$industry);
-        $ctotal = IndustryQueries::GetCompanyMentions(Yii::app()->user->company_id,$startdate,$enddate,$industry);
-        $ttotal = $total - $ctotal;
         $chart_name = 'Tonality';
         echo '<h3>Tonality</h3>';
+        $tnarrative = 'Tonality of '.$company.' in '.$inda_text.' Between '.$drange;
+        $tons = IndustryQueries::GetTonality(Yii::app()->user->company_id,$startdate,$enddate,$industry);
         echo '<div style="padding:0px; background-color:#fff; border:0px solid #745C92; width: 100%;">';
-        $strXML = FusionCharts::packageXML($narrative, $company, $ctotal, $ttotal);
+        $strXML = FusionCharts::packageTonMentionsXML($tnarrative, $tons, $startdate,$enddate,$industry);
         $charty = new FusionCharts;
         echo FusionCharts::renderChart(Yii::app()->request->baseUrl . '/FusionCharts/FusionCharts/FusionCharts/Pie2D.swf', "", $strXML, $chart_name, 600, 300, false, true, true);
         echo '</div>';
+        
         break;
       /* Load the Default Report - Mentions */
       default:

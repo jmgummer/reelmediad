@@ -54,13 +54,13 @@ class IndustryQueries{
 					$this_rate_det = RatecardBase::model()->findBySql($sql_electronic_rate);
 					$this_rate = $this_rate_det->rate;
 					$this_duration = $this_rate_det->duration;
-					$rate_cost=number_format($this_rate=round(($this_rate*(60/$this_duration)) *($incantation_length/60),-1));
+					$rate_cost=$this_rate=round(($this_rate*(60/$this_duration)) *($incantation_length/60),-1);
 				}
 				$myTotalRate=$myTotalRate+$this_rate;
 			}
 			return $myTotalRate;
 		}else{
-			return FALSE;
+			return 0;
 		}
 	}
 
@@ -102,7 +102,7 @@ class IndustryQueries{
 			}
 			return $myTotalRate;
 		}else{
-			return FALSE;
+			return 0;
 		}
 	}
 
@@ -134,5 +134,42 @@ class IndustryQueries{
 	{
 		$q1 = 'SELECT story.story_id as mentions from story_industry, story , story_mention where story_mention.client_id='.$client.' and story_industry.story_id= story_mention.story_id and story.StoryDate between "'.$startdate.'" and "'.$enddate.'" and story.story_id= story_industry.story_id and story_industry.story_id=story.story_id and story_industry.industry_id IN ('.$industry.') ';
 		return $sq = count(StoryMention::model()->findAllBySql($q1));
+	}
+
+	public static function GetCategories()
+	{
+		$categories = Category::model()->findAll();
+		return $categories;
+	}
+
+	public static function GetCatCount($client,$startdate,$enddate,$industry,$cat)
+	{
+		$q1 = 'SELECT story.story_id as number_mentions from story_industry, story , story_mention where story_mention.client_id='.$client.' and story_industry.story_id= story_mention.story_id and story.StoryDate between "'.$startdate.'" and "'.$enddate.'" and story.story_id= story_industry.story_id and Category_ID="'.$cat.'" and story_industry.story_id=story.story_id and story_industry.industry_id IN ('.$industry.') ';
+		return $sq = count(StoryMention::model()->findAllBySql($q1));
+	}
+
+	public static function GetPictures()
+	{
+		$sql = 'SELECT distinct(picture) from story where picture!=""';
+		$pics = Story::model()->findAllBySql($sql);
+		return $pics;
+	}
+
+	public static function GetPicCount($client,$startdate,$enddate,$industry,$pic)
+	{
+		$q1 = 'SELECT story.picture as number_pictures from story_industry, story, story_mention where story_mention.client_id='.$client.' and story_industry.story_id= story_mention.story_id and story_industry.story_id=story.story_id and story_industry.industry_id IN ('.$industry.') and story.StoryDate between "'.$startdate.'" and "'.$enddate.'" and story.story_id= story_industry.story_id and picture="'.$pic.'"';
+		return $sq = count(Story::model()->findAllBySql($q1));
+	}
+
+	public static function GetTonality($client,$startdate,$enddate,$industry)
+	{
+		$q1 = 'SELECT count(story.story_id) as number_tonality, mediamap_analysis.tonality from story_industry, story,mediamap_analysis, story_mention where story_mention.client_id='.$client.' and story_industry.story_id= story_mention.story_id and story_industry.story_id=story.story_id and story_industry.industry_id IN ('.$industry.') and story.StoryDate between "'.$startdate.'" and "'.$enddate.'" and story.story_id= story_industry.story_id and mediamap_analysis.story_id=story_industry.story_id and mediamap_analysis.company_id='.$client.' group by mediamap_analysis.tonality';
+		return $sq = MediamapAnalysis::model()->findAllBySql($q1);
+	}
+
+	public static function GetSpTonality($client,$startdate,$enddate,$industry,$tonality)
+	{
+		$q1 = 'SELECT story.story_id as number_tonality, mediamap_analysis.tonality from story_industry, story,mediamap_analysis, story_mention where story_mention.client_id='.$client.'  and story_industry.story_id= story_mention.story_id and story_industry.story_id=story.story_id and story_industry.industry_id IN ('.$industry.') and story.StoryDate between "'.$startdate.'" and "'.$enddate.'" and story.story_id= story_industry.story_id and mediamap_analysis.story_id=story_industry.story_id and mediamap_analysis.company_id='.$client.' and mediamap_analysis.tonality="'.$tonality.'"';
+		return $sq = count(MediamapAnalysis::model()->findAllBySql($q1));
 	}
 }
