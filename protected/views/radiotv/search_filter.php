@@ -12,7 +12,7 @@
 				<?php echo $form->textFieldRow($model,'search_text',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
 			</label>
 		    <div class="form-group">
-				<?php echo $form->dropDownListRow($model, 'publications', StorySearch::getPrintList('mp01'), array('prompt'=>'All','class'=>'form-control')); ?>
+				<?php echo $form->dropDownListRow($model, 'publications', StorySearch::getElecList(), array('prompt'=>'All','class'=>'form-control')); ?>
 			</div>
 			<label class="input">
 				<?php echo $form->textFieldRow($model,'startdate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>

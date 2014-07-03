@@ -322,4 +322,13 @@ class Story extends CActiveRecord
 			return $client = Company::model()->find('company_id=:a', array(':a'=>$this->Client_ID))->company_name;
 		}
 	}
+
+	public function getPage()
+	{
+		if(!empty($this->StoryPage)){
+			return ': Page '.$page ->StoryPage;
+		}else{
+			return '';
+		}
+	}
 }

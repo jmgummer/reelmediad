@@ -53,4 +53,14 @@ class StorySearch extends CFormModel
 			'publications'=>'Publications'
 		);
 	}
+
+	public static function getPrintList($media_id)
+	{
+		return CHtml::listData(Mediahouse::model()->findAll('Media_ID=:a order by Media_House_List', array(':a'=>$media_id)),'Media_House_ID','Media_House_List');
+	}
+
+	public static function getElecList()
+	{
+		return CHtml::listData(Mediahouse::model()->findAll('Media_ID<>"mp01" order by Media_House_List'),'Media_House_ID','Media_House_List');
+	}
 }

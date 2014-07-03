@@ -123,4 +123,31 @@ class SphLinks extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function getPublication()
+	{
+		if(!empty($this->media_house_id)){
+			return Mediahouse::model()->find('Media_House_ID=:a', array(':a'=>$this->media_house_id))->Media_House_List;
+		}else{
+			return 'Unknown';
+		}
+	}
+
+	public function getTruncatedFText()
+	{
+		$limit = 200;
+	   	$content = $this->fulltxt;
+	   	if (strlen($content) > $limit){
+			$content = substr($content, 0, strrpos(substr($content, 0, $limit), ' '));
+		}
+	}
+
+	public function getPage()
+	{
+		if($page = Story::model()->find('link_id=:a', array(':a'=>$this->link_id))){
+			return ': Page '.$page ->StoryPage;
+		}else{
+			return '';
+		}
+	}
 }

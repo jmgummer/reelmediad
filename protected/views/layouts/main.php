@@ -6,6 +6,7 @@
 	<meta name="language" content="en" />
 
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
@@ -106,16 +107,19 @@
 						<a href="<?=Yii::app()->createUrl("home/print");?>" title="Stories"><i class="fa fa-lg fa-fw fa-pencil"></i> <span class="menu-item-parent">My Stories</span></a>
 					</li>
 					<li>
+						<a href="<?=Yii::app()->createUrl("archive/index");?>" title="Print Archive"><i class="fa fa-lg fa-fw fa-file-archive-o"></i> <span class="menu-item-parent">Print Archive</span></a>
+					</li>
+					<li>
+						<a href="<?=Yii::app()->createUrl("radiotv/index");?>" title="Radio/TV"><i class="fa fa-lg fa-fw fa-file-image-o"></i> <span class="menu-item-parent">Radio/TV</span></a>
+					</li>
+					<li>
 						<a href="<?=Yii::app()->createUrl("industryreports/mentions");?>" title="Industry Reports"><i class="fa fa-lg fa-fw fa-file-text"></i> <span class="menu-item-parent">Industry Reports</span></a>
-						<!-- <a href="#"><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Industry Reports</span></a>
-						<ul>
-							<li><a href="<?=Yii::app()->createUrl("industryreports/mentions");?>">Number of Mentions</a></li>
-							<li><a href="<?=Yii::app()->createUrl("industryreports/ave");?>">AVE</a></li>
-							<li><a href="<?=Yii::app()->createUrl("industryreports/categories");?>">Categories Mentioned</a></li>
-						</ul> -->
 					</li>
 					<li>
 						<a href="<?=Yii::app()->createUrl("csr/index");?>" title="Stories"><i class="fa fa-lg fa-fw fa-heart"></i> <span class="menu-item-parent">CSR</span></a>
+					</li>
+					<li>
+						<a href="<?=Yii::app()->createUrl("account/index");?>" title="My Account"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">My Account</span></a>
 					</li>
 				</ul>
 				<?php 
