@@ -8659,3 +8659,221 @@ Stack trace:
 REQUEST_URI=/reelmediad/account/index
 HTTP_REFERER=http://192.168.0.234/reelmediad/csr/index
 ---
+2014/07/07 10:45:05 [error] [php] include(CientUsers.php): failed to open stream: No such file or directory (C:\xampp\htdocs\yii_back\framework\YiiBase.php:421)
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\protected\views\account\index.php(8): spl_autoload_call()
+#1 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require()
+#2 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): AccountController->renderInternal()
+#3 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): AccountController->renderFile()
+#4 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): AccountController->renderPartial()
+#5 C:\xampp\htdocs\reelmediad\protected\controllers\AccountController.php(43): AccountController->render()
+#6 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): AccountController->actionIndex()
+#7 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams()
+#8 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): AccountController->runAction()
+#9 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#10 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#11 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): AccountController->filterAccessControl()
+#12 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#13 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#14 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): AccountController->runActionWithFilters()
+#15 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): AccountController->run()
+#16 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#17 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#18 C:\xampp\htdocs\reelmediad\index.php(13): CWebApplication->run()
+REQUEST_URI=/reelmediad/account/index
+in C:\xampp\htdocs\reelmediad\protected\views\account\index.php (8)
+in C:\xampp\htdocs\reelmediad\protected\controllers\AccountController.php (43)
+in C:\xampp\htdocs\reelmediad\index.php (13)
+2014/07/07 10:48:12 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.user_id" is not defined.' in C:\xampp\htdocs\yii_back\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\auth\CWebUser.php(140): CComponent->__get('user_id')
+#1 C:\xampp\htdocs\reelmediad\protected\views\account\index.php(8): CWebUser->__get('user_id')
+#2 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#3 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', NULL, true)
+#4 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', NULL, true)
+#5 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#6 C:\xampp\htdocs\reelmediad\protected\controllers\AccountController.php(43): CController->render('index')
+#7 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): AccountController->actionIndex()
+#8 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('index')
+#17 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('account/index')
+#18 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#19 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/reelmediad/account/index
+HTTP_REFERER=http://192.168.0.234/reelmediad/home/index
+---
+2014/07/07 10:48:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sound".' in C:\xampp\htdocs\yii_back\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CController.php(270): CController->missingAction('sound')
+#1 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('sound')
+#2 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/sound/mess...')
+#3 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmediad/home/sound/messagebox.mp3
+HTTP_REFERER=http://192.168.0.234/reelmediad/home/index
+---
+2014/07/07 10:57:55 [error] [exception.CException] exception 'CException' with message 'Property "ClientUsers.user_id" is not defined.' in C:\xampp\htdocs\yii_back\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(143): CComponent->__get('user_id')
+#1 C:\xampp\htdocs\reelmediad\protected\controllers\AccountController.php(61): CActiveRecord->__get('user_id')
+#2 C:\xampp\htdocs\reelmediad\protected\controllers\AccountController.php(32): AccountController->loadModel('2948')
+#3 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): AccountController->actionIndex()
+#4 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('index')
+#13 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('account/index')
+#14 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/reelmediad/account/index
+HTTP_REFERER=http://192.168.0.234/reelmediad/home/index
+---
+2014/07/07 11:31:46 [error] [php] Undefined variable: id (C:\xampp\htdocs\reelmediad\protected\controllers\AccountController.php:32)
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): AccountController->runAction()
+#1 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): AccountController->filterAccessControl()
+#4 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): AccountController->runActionWithFilters()
+#7 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): AccountController->run()
+#8 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\reelmediad\index.php(13): CWebApplication->run()
+REQUEST_URI=/reelmediad/account/index
+in C:\xampp\htdocs\reelmediad\protected\controllers\AccountController.php (32)
+in C:\xampp\htdocs\reelmediad\index.php (13)
+2014/07/07 11:32:09 [error] [exception.CException] exception 'CException' with message 'Property "ClientUsers.id" is not defined.' in C:\xampp\htdocs\yii_back\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(143): CComponent->__get('id')
+#1 C:\xampp\htdocs\reelmediad\protected\controllers\AccountController.php(39): CActiveRecord->__get('id')
+#2 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): AccountController->actionIndex()
+#3 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('index')
+#12 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('account/index')
+#13 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#14 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/reelmediad/account/index
+HTTP_REFERER=http://192.168.0.234/reelmediad/account/index
+---
+2014/07/07 11:36:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/f304dac7/img/glyphicons-halflings.png".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f304dac7...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/assets/f304dac7/img/glyphicons-halflings.png
+HTTP_REFERER=http://192.168.0.234/reelmediad/assets/f304dac7/css/demo.css
+---
+2014/07/07 11:39:38 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\xampp\htdocs\yii_back\framework\web\auth\CAccessControlFilter.php:179
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\auth\CAccessControlFilter.php(142): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('password')
+#8 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('account/passwor...')
+#9 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/reelmediad/account/password
+HTTP_REFERER=http://192.168.0.234/reelmediad/account/index
+---
+2014/07/07 11:53:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sound".' in C:\xampp\htdocs\yii_back\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CController.php(270): CController->missingAction('sound')
+#1 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('sound')
+#2 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('account/sound/m...')
+#3 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmediad/account/sound/messagebox.mp3
+HTTP_REFERER=http://192.168.0.234/reelmediad/account/password
+---
+2014/07/07 11:53:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/f304dac7/img/glyphicons-halflings.png".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f304dac7...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/assets/f304dac7/img/glyphicons-halflings.png
+HTTP_REFERER=http://192.168.0.234/reelmediad/assets/f304dac7/css/demo.css
+---
+2014/07/07 11:54:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sound".' in C:\xampp\htdocs\yii_back\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CController.php(270): CController->missingAction('sound')
+#1 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('sound')
+#2 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('account/sound/m...')
+#3 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmediad/account/sound/messagebox.mp3
+HTTP_REFERER=http://192.168.0.234/reelmediad/account/password
+---
+2014/07/07 11:54:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/f304dac7/img/glyphicons-halflings.png".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f304dac7...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/assets/f304dac7/img/glyphicons-halflings.png
+HTTP_REFERER=http://192.168.0.234/reelmediad/assets/f304dac7/css/demo.css
+---
+2014/07/07 13:47:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sound".' in C:\xampp\htdocs\yii_back\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CController.php(270): CController->missingAction('sound')
+#1 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('sound')
+#2 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('account/sound/m...')
+#3 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmediad/account/sound/messagebox.mp3
+HTTP_REFERER=http://192.168.0.234/reelmediad/account/index
+---
+2014/07/07 13:48:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sound".' in C:\xampp\htdocs\yii_back\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CController.php(270): CController->missingAction('sound')
+#1 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('sound')
+#2 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/sound/mess...')
+#3 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmediad/home/sound/messagebox.mp3
+HTTP_REFERER=http://192.168.0.234/reelmediad/home/print
+---
+2014/07/07 13:48:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/f304dac7/img/glyphicons-halflings.png".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f304dac7...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/assets/f304dac7/img/glyphicons-halflings.png
+HTTP_REFERER=http://192.168.0.234/reelmediad/assets/f304dac7/css/demo.css
+---

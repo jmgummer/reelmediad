@@ -23,6 +23,10 @@
  */
 class ClientUsers extends CActiveRecord
 {
+	/* Included A Few Extra For Changing Passwords */
+	public $dummypass;
+	public $dummypass2;
+	public $dummypass3;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -57,7 +61,7 @@ class ClientUsers extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('co_hash, session_id, crm', 'required'),
+			// array('co_hash, session_id, crm', 'required'),
 			array('co_id, user_status, crm', 'numerical', 'integerOnly'=>true),
 			array('username, surname, firstname, company, email', 'length', 'max'=>100),
 			array('password', 'length', 'max'=>50),
@@ -102,6 +106,9 @@ class ClientUsers extends CActiveRecord
 			'reelonline' => 'Reelonline',
 			'spreadsheet_attach' => 'Spreadsheet Attach',
 			'template' => 'Template',
+			'dummypass'=>'Current Password',
+			'dummypass2'=>'New Password',
+			'dummypass3'=>'Confirm Password'
 		);
 	}
 

@@ -142,7 +142,19 @@
 				)); ?><!-- breadcrumbs -->
 			<?php endif?>
 		</div>
-
+		<?php
+		$this->widget('bootstrap.widgets.TbAlert', array(
+		    'fade'=>true,
+		    'closeText'=>'&times;',
+		    'alerts'=>array(
+		        'success'=>array('block'=>false, 'fade'=>true, 'closeText'=>'&times;'),
+		        'info'=>array('block'=>false, 'fade'=>true, 'closeText'=>'&times;'), 
+		        'warning'=>array('block'=>false, 'fade'=>true, 'closeText'=>'&times;'),
+		        'error'=>array('block'=>false, 'fade'=>true, 'closeText'=>'&times;'),
+		        'danger'=>array('block'=>false, 'fade'=>true, 'closeText'=>'&times;')
+		    )
+		)); 
+		?>
 	<?php echo $content; ?>
 	</div>
 

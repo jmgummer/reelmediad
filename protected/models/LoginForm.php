@@ -11,6 +11,7 @@ class LoginForm extends CFormModel
 	public $password;
 	public $rememberMe;
 
+
 	private $_identity;
 
 	/**
