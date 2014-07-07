@@ -13,8 +13,8 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 		<div class="pull-left login-desc-box-l">
 			<h4 class="paragraph-header">Experience the simplicity of Reelforge, everywhere you go!</h4>
 			<div class="login-app-icons">
-				<a href="javascript:void(0);" class="btn btn-danger btn-sm">Go to Site</a>
-				<a href="javascript:void(0);" class="btn btn-danger btn-sm">Latest News</a>
+				<a href="http://reelforge.com/reelforge/index.php" class="btn btn-danger btn-sm" target="_blank">Go to Site</a>
+				<a href="http://reelforge.com/reelforge/index.php/insights" class="btn btn-danger btn-sm" target="_blank">Latest News</a>
 			</div>
 		</div>
 		<img src="<?php echo Yii::app()->request->baseUrl . '/images/reelapp.jpg'; ?>" class="pull-right display-image" alt="" style="width:210px">
@@ -23,13 +23,17 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 			<h5 class="about-heading">About Reelforge</h5>
 			<p>
-				We are a Media Monitoring Company, other text ....
+				Reelforge Media Monitoring is the region's leading and fastest growing media monitoring and intelligence company.
 			</p>
 		</div>
 		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 			<h5 class="about-heading">Contact Us!</h5>
 			<p>
-				Contact us if you have any questions .....
+				Head Office<br>
+				4th Floor, Vanguard House/Fuji Plaza<br>
+				Waiyaki Way, Westlands<br>
+				Nairobi, Kenya <br>
+				+254-20-2372965/6
 			</p>
 		</div>
 	</div>
