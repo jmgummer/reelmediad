@@ -8650,3 +8650,12 @@ Stack trace:
 REQUEST_URI=/reelmediad/home/sound/messagebox.mp3
 HTTP_REFERER=http://192.168.0.234/reelmediad/home/print
 ---
+2014/07/07 08:59:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "account/index".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('account/index')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/account/index
+HTTP_REFERER=http://192.168.0.234/reelmediad/csr/index
+---
