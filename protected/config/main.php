@@ -26,13 +26,13 @@ return array(
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
 		
-		'gii'=>array(
-			'class'=>'system.gii.GiiModule',
-			'password'=>'huhuhaha',
-			// If removed, Gii defaults to localhost only. Edit carefully to taste.
-			'ipFilters'=>array('127.0.0.1','::1'),
-			'generatorPaths'=>array('bootstrap.gii'),
-		),
+		// 'gii'=>array(
+		// 	'class'=>'system.gii.GiiModule',
+		// 	'password'=>'huhuhaha',
+		// 	// If removed, Gii defaults to localhost only. Edit carefully to taste.
+		// 	'ipFilters'=>array('127.0.0.1','::1'),
+		// 	'generatorPaths'=>array('bootstrap.gii'),
+		// ),
 		
 	),
 
@@ -65,10 +65,10 @@ return array(
 		
 		'db'=>array(
 			'class'=>'CDbConnection',
-			'connectionString' => 'mysql:host=localhost;dbname=reelmedia',
+			'connectionString' => 'mysql:host=192.168.0.60;dbname=app_settings',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => 'gridlock@2014',
+			'password' => 'Pambazuka08',
 			'charset' => 'utf8',
 		),
 
@@ -110,10 +110,10 @@ return array(
 			),
 		),
 		//Input filter
-        'input'=>array(   
-            'class'         => 'CmsInput',  
-            'cleanPost'     => false,  
-            'cleanGet'      => false,   
+        'input'=>array(
+            'class'         => 'CmsInput',
+            'cleanPost'     => false,
+            'cleanGet'      => false,
         ),
 	),
 
