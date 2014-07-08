@@ -145,9 +145,9 @@ $this->breadcrumbs=array('Archive Reports'=>array('csr/index'), 'Print Archive')
 		        if($y<10) { $my_month='0'.$y;   } else {  $my_month=$y; }
 		        $temp_table_month="sph_links_"  .$x."_".$my_month;
 		        if(!empty($media_house_id)){
-		        	$sql= "select  media_house_id, link_id, fulltxt, url,indexdate from $temp_table_month  where url IS NOT NULL " . $full_query  . " and media_house_id ='".$media_house_id."' order by url desc";
+		        	echo $sql= "select  media_house_id, link_id, fulltxt, url,indexdate from $temp_table_month  where url IS NOT NULL " . $full_query  . " and media_house_id ='".$media_house_id."' order by url desc limit 10";
 		        }else{
-		        	$sql= "select  media_house_id, link_id, fulltxt, url,indexdate from $temp_table_month  where url IS NOT NULL " . $full_query  . " order by url desc";
+		        	echo $sql= "select  media_house_id, link_id, fulltxt, url,indexdate from $temp_table_month  where url IS NOT NULL " . $full_query  . " order by url desc limit 10";
 		        }
 		    }
 		}
