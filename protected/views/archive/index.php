@@ -163,10 +163,10 @@ $this->breadcrumbs=array('Archive Reports'=>array('csr/index'), 'Print Archive')
 					$content = substr($content, 0, strrpos(substr($content, 0, $limit), ' '));
 				}
 				$format_date = date('D, F, Y', strtotime($key->indexdate));
-				echo '<h3><a href="http://www.reelforge.com/reelmedia/print_story_console/print_stream.php?itemid='.$key->link_id.'">'.$key->Publication.'</a></h3>';
+				echo '<h3><a href="http://www.reelforge.com/reelmedia/print_story_console/print_stream.php?itemid='.$key->link_id.'" target="_blank">'.$key->Publication.'</a></h3>';
 				echo '<p>'.$format_date.''.$key->Page.'</p>';
 				echo '<p>'.$content.'</p>';
-				echo '<p><a href="http://www.reelforge.com/reelmedia/print_story_console/print_stream.php?itemid='.$key->link_id.'">Read More</a> | <a href="'.$key->url.'">Download PDF</a></p>';
+				echo '<p><a href="http://www.reelforge.com/reelmedia/print_story_console/print_stream.php?itemid='.$key->link_id.'" target="_blank">Read More</a> | <a href="'.$key->url.'" target="_blank">Download PDF</a></p>';
 			}
 			// $this->widget('zii.widgets.CDetailView', array('data'=>$stories,'attributes'=>array('Publication','fulltxt','url'))); 
 		}else{

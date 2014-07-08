@@ -173,9 +173,9 @@ if(isset($_POST['StorySearch'])){
 		echo $record_count.' Records Found';
 		foreach ($stories as $key) {
 			$format_date = date('D, F, Y', strtotime($key->StoryDate));
-			echo '<h3><a href="http://www.reelforge.com/reelmedia/stream/video_stream.php?itemid='.$key->Story_ID.'&client_id='.Yii::app()->user->company_id.'&encryptid='.$key->uniqueID.'">'.$key->Title.'</a></h3>';
+			echo '<h3><a href="http://www.reelforge.com/reelmedia/stream/video_stream.php?itemid='.$key->Story_ID.'&client_id='.Yii::app()->user->company_id.'&encryptid='.$key->uniqueID.'" target="_blank">'.$key->Title.'</a></h3>';
 			echo '<p>'.$key->Publication.' : '.$format_date.''.$key->Page.'</p>';
-			echo '<p><a href="http://www.reelforge.com/reelmedia/stream/video_stream.php?itemid='.$key->Story_ID.'&client_id='.Yii::app()->user->company_id.'&encryptid='.$key->uniqueID.'">View/Listen</a> </p>';
+			echo '<p><a href="http://www.reelforge.com/reelmedia/stream/video_stream.php?itemid='.$key->Story_ID.'&client_id='.Yii::app()->user->company_id.'&encryptid='.$key->uniqueID.'" target="_blank">View/Listen</a> </p>';
 		}
 	}else{
 		echo 'No Records Found';
