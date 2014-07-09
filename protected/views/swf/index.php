@@ -19,7 +19,7 @@
                 var attributes = {
                         id: 'website'
                 };
-                swfobject.embedSWF('<?php echo Yii::app()->request->baseUrl; ?>/swfobject/zviewer.swf?r=11', 'website', '700', '600', '10.0.45',
+                swfobject.embedSWF('<?php echo Yii::app()->request->baseUrl; ?>/swfobject/zviewer.swf?r=11', 'website', '700', '1200', '10.0.45',
                 '<?php echo Yii::app()->request->baseUrl; ?>/swfobject/expressinstall.swf', flashvars, params, attributes);
 
 </script>
