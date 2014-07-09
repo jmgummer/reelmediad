@@ -4,12 +4,12 @@
 </div>
 <br>
 
-
+<?php echo $swffile; ?>
 
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl . '/swfobject/swfobject.js'; ?>"></script>
 <script type="text/javascript">
                 var flashvars = {
-                  doc_url: "<?php $swffile; ?>",
+                  doc_url: "<?php echo $swffile; ?>",
                 };
                 var params = {
                   menu: "false",
