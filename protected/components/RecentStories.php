@@ -138,10 +138,10 @@ public static function PrintTableHead(){
 */
 public static function PrintTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont){
 	return '<tr>
-	<td><a href="view/'.$storyid.'" target="_blank">'.$date.'</a></td>
+	<td><a href="'.Yii::app()->createUrl("swf/view").'/'.$storyid.'" target="_blank">'.$date.'</a></td>
 	<td>'.$pub.'</td>
 	<td>'.$journo.'</td>
-	<td><a href="view/'.$link.'" target="_blank">'.$head.'</a><br><font size="1">'.$cont.'</font></td>
+	<td><a href="'.Yii::app()->createUrl("swf/view").'/'.$storyid.'" target="_blank">'.$head.'</a><br><font size="1">'.$cont.'</font></td>
 	<td>'.$page.'</td>
 	<td>'.$pubtype.'</td>
 	<td>'.$pic.'</td>
