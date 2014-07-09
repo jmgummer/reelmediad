@@ -4,12 +4,16 @@
 </div>
 <br>
 
-<?php echo $swffile; ?>
+<?php echo $swffile;  ?>
+<br>
+<?php echo '../'.Yii::app()->request->baseUrl.'/swfobject/bda_20140529_24adksuvy789.swf';?>
+<br>
+<?php echo dirname(__FILE__).'/../reelmedia/files/pdf/'.$model->Link; ?>
 
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl . '/swfobject/swfobject.js'; ?>"></script>
 <script type="text/javascript">
                 var flashvars = {
-                  doc_url: "<?php echo $swffile; ?>",
+                  doc_url: "<?php echo dirname(__FILE__).'/../reelmedia/files/pdf/'.$model->Link; ?>",
                 };
                 var params = {
                   menu: "false",
