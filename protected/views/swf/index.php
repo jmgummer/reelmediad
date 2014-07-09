@@ -3,7 +3,7 @@
   <?php $swffile = Swfviewer::GetSwfFile($model->Link); ?>
 </div>
 
-<?php //echo $swffile;  ?>
+<?php echo $swffile;  ?>
 
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl . '/swfobject/swfobject.js'; ?>"></script>
 <script type="text/javascript">
