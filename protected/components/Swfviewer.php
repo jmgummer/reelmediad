@@ -31,6 +31,11 @@ class Swfviewer{
     </tr>
   </table>';
 	}
+
+  public static function GetSwfFile($link)
+  {
+    return $_SERVER['DOCUMENT_ROOT'].'/reelmedia/files/pdf/'.$link;
+  }
 }
 
 ?>

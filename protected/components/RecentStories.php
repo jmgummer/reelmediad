@@ -14,7 +14,7 @@ public static function PrintStories($client)
 		echo RecentStories::PrintTableHead();
 		foreach ($clientstories as $key) {
 			if($story = RecentStories::GetStories($key->story_id)){
-				echo RecentStories::PrintTableBody($story->StoryDate,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,$story->Tonality,$story->Tonality);
+				echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,$story->Tonality,$story->Tonality);
 			}
 		}
 		echo RecentStories::PrintTableEnd();
@@ -34,7 +34,7 @@ public static function GetClientStory($client,$startdate,$enddate,$search)
 		echo RecentStories::PrintTableHead();
 		foreach ($story as $key) {
 			if($story = RecentStories::GetStories($key->Story_ID)){
-				echo RecentStories::PrintTableBody($story->StoryDate,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,$story->Tonality,$story->Tonality,$story->Link,$story->Continues);
+				echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,$story->Tonality,$story->Tonality,$story->Link,$story->Continues);
 			}
 		}
 		echo RecentStories::PrintTableEnd();
@@ -53,7 +53,7 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search)
 		echo RecentStories::PrintTableHead();
 		foreach ($story as $key) {
 			if($story = RecentStories::GetStories($key->Story_ID)){
-				echo RecentStories::PrintTableBody($story->StoryDate,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,$story->Tonality,$story->Tonality,$story->Link,$story->Continues);
+				echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,$story->Tonality,$story->Tonality,$story->Link,$story->Continues);
 			}
 		}
 		echo RecentStories::PrintTableEnd();
@@ -72,7 +72,7 @@ public static function GetClientIndustryStory($client,$startdate,$enddate,$searc
 		echo RecentStories::PrintTableHead();
 		foreach ($story as $key) {
 			if($story = RecentStories::GetStories($key->Story_ID)){
-				echo RecentStories::PrintTableBody($story->StoryDate,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,$story->Tonality,$story->Tonality,$story->Link,$story->Continues);
+				echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,$story->Tonality,$story->Tonality,$story->Link,$story->Continues);
 			}
 		}
 		echo RecentStories::PrintTableEnd();
@@ -91,7 +91,7 @@ public static function GetClientElectronicIndustryStory($client,$startdate,$endd
 		echo RecentStories::PrintTableHead();
 		foreach ($story as $key) {
 			if($story = RecentStories::GetStories($key->Story_ID)){
-				echo RecentStories::PrintTableBody($story->StoryDate,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,$story->Tonality,$story->Tonality,$story->Link,$story->Continues);
+				echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,$story->Tonality,$story->Tonality,$story->Link,$story->Continues);
 			}
 		}
 		echo RecentStories::PrintTableEnd();
@@ -136,9 +136,9 @@ public static function PrintTableHead(){
 * Print The Body of the Table This function may be called recursively
 * NB - Just for the Print Section
 */
-public static function PrintTableBody($date,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont){
+public static function PrintTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont){
 	return '<tr>
-	<td><a href="view/'.$link.'" target="_blank">'.$date.'</a></td>
+	<td><a href="view/'.$storyid.'" target="_blank">'.$date.'</a></td>
 	<td>'.$pub.'</td>
 	<td>'.$journo.'</td>
 	<td><a href="view/'.$link.'" target="_blank">'.$head.'</a><br><font size="1">'.$cont.'</font></td>

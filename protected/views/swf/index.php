@@ -1,5 +1,6 @@
 <div class="swf-table">
   <?php echo Swfviewer::GetSwfHeader($model); ?>
+  <?php echo Swfviewer::GetSwfFile($model->Link); ?>
 </div>
 <br>
 
@@ -8,7 +9,7 @@
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl . '/swfobject/swfobject.js'; ?>"></script>
 <script type="text/javascript">
                 var flashvars = {
-                  doc_url: "<?php echo Yii::app()->request->baseUrl; ?>/swfobject/bda_20140529_24adksuvy789.swf",
+                  doc_url: "<?php echo Swfviewer::GetSwfFile($model->Link); ?>",
                 };
                 var params = {
                   menu: "false",

@@ -284,8 +284,7 @@ class Story extends CActiveRecord
 		if($this->link_id!=' '){
 			$linkid = $this->link_id;
 			if($link = SphLinks::model()->find('link_id=:a', array(':a'=>$linkid))){
-				return $link->link_id.'?ext_link='.$this->GetSwf($link->url);
-				// return $this->GetSwf($link->url);
+				return $this->GetSwf($this->file);
 			}else{
 				return '#';
 			}
