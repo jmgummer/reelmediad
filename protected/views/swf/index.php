@@ -3,12 +3,12 @@
   <?php $swffile = Swfviewer::GetSwfFile($model->Link); ?>
 </div>
 
-<?php echo $swffile;  ?>
+<?php //echo $swffile;  ?>
 
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl . '/swfobject/swfobject.js'; ?>"></script>
 <script type="text/javascript">
                 var flashvars = {
-                  doc_url: "<?php echo $swffile;  ?>",
+                  doc_url: "<?php echo '192.168.0.60/reelmedia/files/pdf/'.$model->Link;  ?>",
                 };
                 var params = {
                   menu: "false",
