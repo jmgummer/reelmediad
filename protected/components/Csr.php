@@ -105,7 +105,7 @@ class Csr{
 	*/
 	public static function PrintTableBody($Story_ID,$date,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont){
 		return '<tr>
-		<td><a href="view/'.$link.'" target="_blank">'.$date.'</a></td>
+		<td>'.$date.'</td>
 		<td>'.$pub.'</td>
 		<td>'.$journo.'</td>
 		<td><a href="'.Yii::app()->request->baseUrl.'/swf/view/'.$Story_ID.'" target="_blank">'.$head.'</a><br><font size="1">'.$cont.'</font></td>

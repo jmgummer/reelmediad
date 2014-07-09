@@ -1,5 +1,5 @@
 <div class="swf-table">
-  <?php echo Swfviewer::GetSwfHeader(); ?>
+  <?php echo Swfviewer::GetSwfHeader($model); ?>
 </div>
 <br>
 

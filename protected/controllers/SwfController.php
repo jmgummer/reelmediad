@@ -35,8 +35,17 @@ class SwfController extends Controller
 
 	public function actionView($id)
 	{
-		
-		$this->render('index');
+		$model = $this->loadModel($id);
+		$this->render('index', array('model'=>$model));
+	}
+
+	public function loadModel($id)
+	{
+		$model = Story::model()->find('Story_ID=:a', array(':a'=>$id));
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		else
+			return $model;
 	}
 
 	

@@ -326,9 +326,46 @@ class Story extends CActiveRecord
 	public function getPage()
 	{
 		if(!empty($this->StoryPage)){
-			return ': Page '.$page ->StoryPage;
+			return ': Page '.$this ->StoryPage;
 		}else{
 			return '';
+		}
+	}
+
+	public function getFStoryDate()
+	{
+		if(!empty($this->StoryDate)){
+			return date('d-M-Y', strtotime($this->StoryDate));
+		}else{
+			return 'Not Set';
+		}
+	}
+
+	public function getMediaType()
+	{
+		if(!empty($this->Media_ID)){
+			if($this->Media_ID=='mt01'){
+				return 'TV';
+			}elseif($this->Media_ID=='mr01'){
+				return 'Radio';
+			}else{
+				return 'Print';
+			}
+		}else{
+			return 'Not Set';
+		}
+	}
+
+	public function getCompanyMentions()
+	{
+		if($mentions = StoryMention::model()->findAll('story_id=:a', array(':a'=>$this->Story_ID))){
+			$companies = '';
+			foreach ($mentions as $key) {
+				$companies.=$key->Client.' , ';
+			}
+			return $companies;
+		}else{
+			return ' ';
 		}
 	}
 }
