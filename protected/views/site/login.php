@@ -17,7 +17,7 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 				<a href="http://reelforge.com/reelforge/index.php/insights" class="btn btn-danger btn-sm" target="_blank">Latest News</a>
 			</div>
 		</div>
-		<img src="<?php echo Yii::app()->request->baseUrl . '/images/reelapp.jpg'; ?>" class="pull-right display-image" alt="" style="width:210px">
+		<img src="<?php echo Yii::app()->request->baseUrl . '/images/reelapp.png'; ?>" class="pull-right display-image" alt="" style="width:210px">
 	</div>
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">

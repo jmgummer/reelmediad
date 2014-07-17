@@ -11,12 +11,15 @@
 			<label class="input">
 				<?php echo $form->textFieldRow($model,'search_text',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
 			</label>
+			<hr class="simple"></hr>
 		    <div class="form-group">
 				<?php echo $form->dropDownListRow($model, 'publications', StorySearch::getElecList(), array('prompt'=>'All','class'=>'form-control')); ?>
 			</div>
+			<hr class="simple"></hr>
 			<label class="input">
 				<?php echo $form->textFieldRow($model,'startdate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
 			</label>
+			<hr class="simple"></hr>
 			<label class="input">
 				<?php echo $form->textFieldRow($model,'enddate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
 			</label>

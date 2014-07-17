@@ -9,35 +9,44 @@
 		<?php echo $form->errorSummary($model); ?>
 		<fieldset>
 			<label class="input">
-					<?php echo $form->textFieldRow($model,'search_text',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
-				</label>
+				<?php echo $form->textFieldRow($model,'search_text',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
+			</label>
+			<hr class="simple"></hr>
 			<label class="input">
-					<?php echo $form->textFieldRow($model,'startdate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
-				</label>
+				<?php echo $form->textFieldRow($model,'startdate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
+			</label>
+			<hr class="simple"></hr>
 			<label class="input">
-					<?php echo $form->textFieldRow($model,'enddate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
-				</label>
+				<?php echo $form->textFieldRow($model,'enddate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
+			</label>
+			<hr class="simple"></hr>
 			<label class="checkbox">
-					<?php echo $form->checkBoxRow($model,'country', array('checked'=>'checked')); ?>
-				</label>
+				<?php echo $form->checkBoxRow($model,'country', array('checked'=>'checked')); ?>
+			</label>
+			<hr class="simple"></hr>
 			<label class="radio">
-					<?php echo $form->radioButtonListRow($model,'storytype', StoryType::model()->getStoryTypes(), array('class'=>'radio-beat')); ?>
-			    </label>
+				<?php echo $form->radioButtonListRow($model,'storytype', StoryType::model()->getStoryTypes(), array('class'=>'radio-beat')); ?>
+		    </label>
+		    <hr class="simple"></hr>
 		    <label class="radio">
 		    	<?php echo $form->radioButtonListRow($model,'storycategory', StoryCategory::model()->getStoryCategories()); ?>
-			    </label>
+			</label>
+			<hr class="simple"></hr>
 		    <div class="form-group">
-						<?php echo $form->dropDownListRow($model, 'news_section', Category::model()->getCategories(), array('prompt'=>'All','class'=>'form-control')); ?>
-				</div>
+				<?php echo $form->dropDownListRow($model, 'news_section', Category::model()->getCategories(), array('prompt'=>'All','class'=>'form-control')); ?>
+			</div>
+			<hr class="simple"></hr>
 			<div class="form-group">
-					<?php echo $form->dropDownListRow($model, 'industry', Industry::model()->getIndustryList(), array('multiple'=>true, 'class'=>'form-control')); ?>
-				</div>
+				<?php echo $form->dropDownListRow($model, 'industry', Industry::model()->getIndustryList(), array('multiple'=>true, 'class'=>'form-control')); ?>
+			</div>
+			<hr class="simple"></hr>
 			<label class="checkbox">
-					<?php echo $form->checkBoxRow($model,'create_sheet', array('value'=>1, 'uncheckValue'=>0)); ?>
-				</label>
+				<?php echo $form->checkBoxRow($model,'create_sheet', array('value'=>1, 'uncheckValue'=>0)); ?>
+			</label>
+			<hr class="simple"></hr>
 			<label class="checkbox">
-					<?php echo $form->checkBoxRow($model,'create_pdf',array('value'=>1, 'uncheckValue'=>0)); ?>
-				</label>
+				<?php echo $form->checkBoxRow($model,'create_pdf',array('value'=>1, 'uncheckValue'=>0)); ?>
+			</label>
 		</fieldset>
 		<footer>
 		<?php echo CHtml::submitButton('Generate', array('class'=>'btn btn-primary')); ?>

@@ -9,17 +9,20 @@
 		<?php echo $form->errorSummary($model); ?>
 		<fieldset>
 			<label class="input">
-					<?php echo $form->textFieldRow($model,'startdate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
-				</label>
+				<?php echo $form->textFieldRow($model,'startdate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
+			</label>
+			<hr class="simple"></hr>
 			<label class="input">
-					<?php echo $form->textFieldRow($model,'enddate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
-				</label>
+				<?php echo $form->textFieldRow($model,'enddate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
+			</label>
+			<hr class="simple"></hr>
 			<div class="form-group">
-					<?php echo $form->dropDownListRow($model, 'industry', Industry::model()->getIndustryList(), array('multiple'=>true, 'class'=>'form-control','required'=>'required')); ?>
-				</div>
-				<label class="checkbox">
-		    	<?php echo $form->checkBoxListRow($model,'industryreports', IndustryReportTypes::model()->getReportTypes()); ?>
-			    </label>
+				<?php echo $form->dropDownListRow($model, 'industry', Industry::model()->getIndustryList(), array('multiple'=>true, 'class'=>'form-control','required'=>'required')); ?>
+			</div>
+			<hr class="simple"></hr>
+			<label class="checkbox">
+	    		<?php echo $form->checkBoxListRow($model,'industryreports', IndustryReportTypes::model()->getReportTypes()); ?>
+		    </label>
 		</fieldset>
 		<footer>
 		<?php echo CHtml::submitButton('Generate', array('class'=>'btn btn-primary')); ?>

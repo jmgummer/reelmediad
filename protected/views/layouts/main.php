@@ -32,11 +32,11 @@
 				<!-- Suggestion: populate this list with fetch and push technique -->
 				<ul class="dropdown-menu">
 					<li>
-						<a href="javascript:void(0);">Feature Coming Soon</a>
+						<a href="<?=Yii::app()->createUrl("clientservice");?>">Report Generator</a>
 					</li>
 					<li class="divider"></li>
 					<li>
-						<a href="javascript:void(0);"><i class="fa fa-power-off"></i> Clear</a>
+						<a href="<?=Yii::app()->createUrl("emailalerts");?>">Email Alerts</a>
 					</li>
 				</ul>
 				<!-- end dropdown-menu-->

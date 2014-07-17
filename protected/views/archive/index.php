@@ -174,6 +174,9 @@ $this->breadcrumbs=array('Archive Reports'=>array('csr/index'), 'Print Archive')
 		}
 
 		
+	}else{
+		echo '<h3>Print Archive</h3>';
+		echo '<p>Newspaper/Print Archives – You may search our print archives here. Search results are limited to your subscription terms. Please call your client service representative for more information.</p>';
 	}
 
 	?>

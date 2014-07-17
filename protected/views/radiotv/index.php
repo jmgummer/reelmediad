@@ -155,11 +155,27 @@ if(isset($_POST['StorySearch'])){
 		$publication = Mediahouse::model()->find('media_house_id=:a', array(':a'=>$media_code))->Media_House_List;
 	}
 
-	echo $narrative="Searched <strong>$publication</strong> for <strong>";
+	$narrative="<p style='font-size:11px;'>Searched <strong>$publication</strong> for <strong>";
 	if($display_search) {$narrative.=$display_search.",";}
 	$narrative.=" " .$display_keywords;
-	$narrative.="</strong> between " .$display_date;
-
+	$narrative.="</strong> between " .$display_date.'</p>';
+	?>
+	<div id="wid-id-0" class="jarviswidget jarviswidget-sortable"style="" role="widget">
+		<header role="heading"><h2>Search Results</h2></header>
+				
+		<div class="reveal">
+		<div id="chat-body" role="content">
+			<div class="widget-body no-padding">
+				<div class="force-padding">
+					<?php echo $narrative; ?>
+				</div>
+			</div>
+		</div>
+		</div>
+		<footer class="reveal-footer"><button class="btn btn-primary">View Keywords</button></footer>
+	</div>
+	
+	<?php
 	// Create Tables to Search From
 	// echo $year_start;
 	// echo $year_end;
@@ -178,10 +194,13 @@ if(isset($_POST['StorySearch'])){
 			echo '<p><a href="http://www.reelforge.com/reelmedia/stream/video_stream.php?itemid='.$key->Story_ID.'&client_id='.Yii::app()->user->company_id.'&encryptid='.$key->uniqueID.'" target="_blank">View/Listen</a> </p>';
 		}
 	}else{
-		echo 'No Records Found';
+		echo '<p>No Records Found</p>';
 	}
 
 
+}else{
+	echo '<h3>Electronic Media Search</h3>';
+	echo '<p>Electronic Archives – You may search our electronic archives here. Search results are limited to your subscription terms. Please call your client service representative for more information.</p>';
 }
 
 ?>
@@ -192,4 +211,59 @@ if(isset($_POST['StorySearch'])){
 #content{
 	min-height: 900px;
 }
+.radio label{
+	/*font-weight: bold;*/
+	/*margin-left: -10px;*/
+}
+.search-params{
+	padding: 10px 13px;
+	clear: both;
+}
+#chat-body {
+    background: linear-gradient(to bottom, #F5FCFF 0px, #FFF 100%) repeat scroll 0% 0% transparent;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.04) inset;
+    display: block;
+    height: 270px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 10px;
+    box-sizing: border-box;
+    border-right: 1px solid #FFF;
+    border-width: 0px 1px 1px;
+    border-style: none solid solid;
+    border-color: -moz-use-text-color #FFF #FFF;
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    border: none;
+    border-image: none;
+}
+table{
+	font-size: 12px;
+}
+table a{
+	color: #2F5961;
+}
+.force-padding{
+	padding: 5px;
+}
+.reveal-footer{
+	display: block;
+	padding: 7px 14px 15px;
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+	background: none repeat scroll 0% 0% rgba(248, 248, 248, 0.9);
+	margin: 0px;
+	box-sizing: content-box;
+	color: #666;
+	border: 1px solid #C2C2C2;
+}
 </style>
+<script>
+$(document).ready(function(){
+$(".reveal").hide();
+  $("button").click(function(){
+    $(".reveal").slideToggle();
+  });
+});
+</script>

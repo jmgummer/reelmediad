@@ -58,110 +58,205 @@ if(isset($_POST['StorySearch'])){
 }
 if($type_identifier==1){
 	if($cat_identifier==1){
-		echo '<div class="row-fluid clearfix"><div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-		<header role="heading"><h2>My Print Stories</h2></header>';
+		echo '<div class="widget-body">
+		<ul id="myTab1" class="nav nav-tabs bordered">
+			<li class="active"><a href="#s1" data-toggle="tab">My Print Stories</a></li>
+			<li class=""><a href="#s2" data-toggle="tab">My Electronic Stories</a></li>
+			<li class=""><a href="#s3" data-toggle="tab">Industry Print Stories</a></li>
+			<li class=""><a href="#s4" data-toggle="tab">Industry Electronic Stories</a></li>
+			<li class="pull-right">
+				<a href="javascript:void(0);">
+				<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
+			</li>
+		</ul>';
+		echo '<div id="myTabContent1" class="tab-content padding-10">';
+
+		echo '<div class="tab-pane fade active in" id="s1">';
 		$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-		echo '</div></div>';
+		echo '</div>';
 
-		echo '<div class="row-fluid clearfix">
-		<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-		<header role="heading"><h2>My Electronic Stories</h2></header>';
+		echo '<div class="tab-pane fade" id="s2">';
 		$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-		echo '</div></div>';
+		echo '</div>';
 
-		echo '<div class="row-fluid clearfix">
-		<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-		<header role="heading"><h2>Industry Print Stories</h2></header>';
+		echo '<div class="tab-pane fade" id="s3">';
 		$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-		echo '</div></div>';
+		echo '</div>';
 
-		echo '<div class="row-fluid clearfix">
-		<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-		<header role="heading"><h2>Industry Electronic Stories</h2></header>';
-
+		echo '<div class="tab-pane fade" id="s4">';
 		$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-		echo '</div></div>';
+		echo '</div>';
+
+		echo '</div>';
+		echo '</div>';
 	}
 	if($cat_identifier==2){
-		echo '<div class="row-fluid clearfix"><div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-		<header role="heading"><h2>My Print Stories</h2></header>';
-		$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-		echo '</div></div>';
+		echo '<div class="widget-body">
+		<ul id="myTab1" class="nav nav-tabs bordered">
+			<li class="active"><a href="#s1" data-toggle="tab">My Print Stories</a></li>
+			<li class=""><a href="#s2" data-toggle="tab">My Electronic Stories</a></li>
+			<li class="pull-right">
+				<a href="javascript:void(0);">
+				<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
+			</li>
+		</ul>';
+		echo '<div id="myTabContent1" class="tab-content padding-10">';
 
-		echo '<div class="row-fluid clearfix">
-		<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-		<header role="heading"><h2>My Electronic Stories</h2></header>';
+		echo '<div class="tab-pane fade active in" id="s1">';
+		$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		echo '</div>';
+
+		echo '<div class="tab-pane fade" id="s2">';
 		$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-		echo '</div></div>';
+		echo '</div>';
+
+		echo '</div>';
+		echo '</div>';
 	}
 	if($cat_identifier==3){
-		echo '<div class="row-fluid clearfix">
-		<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-		<header role="heading"><h2>Industry Print Stories</h2></header>';
-		$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-		echo '</div></div>';
+		echo '<div class="widget-body">
+		<ul id="myTab1" class="nav nav-tabs bordered">
+			<li class="active"><a href="#s3" data-toggle="tab">Industry Print Stories</a></li>
+			<li class=""><a href="#s4" data-toggle="tab">Industry Electronic Stories</a></li>
+			<li class="pull-right">
+				<a href="javascript:void(0);">
+				<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
+			</li>
+		</ul>';
+		echo '<div id="myTabContent1" class="tab-content padding-10">';
 
-		echo '<div class="row-fluid clearfix">
-		<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-		<header role="heading"><h2>Industry Electronic Stories</h2></header>';
+		echo '<div class="tab-pane fade active in" id="s3">';
+		$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		echo '</div>';
+
+		echo '<div class="tab-pane fade" id="s4">';
 		$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-		echo '</div></div>';
+		echo '</div>';
+
+		echo '</div>';
+		echo '</div>';
 	}
 }
 if($type_identifier==2){
 	if($cat_identifier==1){
-		echo '<div class="row-fluid clearfix"><div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-				<header role="heading"><h2>My Print Stories</h2></header>';
-				$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-				echo '</div></div>';
+		echo '<div class="widget-body">
+		<ul id="myTab1" class="nav nav-tabs bordered">
+			<li class="active"><a href="#s1" data-toggle="tab">My Print Stories</a></li>
+			<li class=""><a href="#s3" data-toggle="tab">Industry Print Stories</a></li>
+			<li class="pull-right">
+				<a href="javascript:void(0);">
+				<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
+			</li>
+		</ul>';
+		echo '<div id="myTabContent1" class="tab-content padding-10">';
 
-				echo '<div class="row-fluid clearfix">
-				<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-				<header role="heading"><h2>Industry Print Stories</h2></header>';
-				$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-				echo '</div></div>';
+		echo '<div class="tab-pane fade active in" id="s1">';
+		$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		echo '</div>';
+
+		echo '<div class="tab-pane fade" id="s3">';
+		$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		echo '</div>';
+
+		echo '</div>';
+		echo '</div>';
 	}
 	if($cat_identifier==2){
-		echo '<div class="row-fluid clearfix"><div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-				<header role="heading"><h2>My Print Stories</h2></header>';
-				$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-				echo '</div></div>';
+		echo '<div class="widget-body">
+		<ul id="myTab1" class="nav nav-tabs bordered">
+			<li class="active"><a href="#s1" data-toggle="tab">My Print Stories</a></li>
+			<li class="pull-right">
+				<a href="javascript:void(0);">
+				<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
+			</li>
+		</ul>';
+		echo '<div id="myTabContent1" class="tab-content padding-10">';
+
+		echo '<div class="tab-pane fade active in" id="s1">';
+		$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		echo '</div>';
+
+		echo '</div>';
+		echo '</div>';
 	}
 	if($cat_identifier==3){
-		echo '<div class="row-fluid clearfix">
-				<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-				<header role="heading"><h2>Industry Print Stories</h2></header>';
-				$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-				echo '</div></div>';
+		echo '<div class="widget-body">
+		<ul id="myTab1" class="nav nav-tabs bordered">
+			<li class="active"><a href="#s3" data-toggle="tab">Industry Print Stories</a></li>
+			<li class="pull-right">
+				<a href="javascript:void(0);">
+				<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
+			</li>
+		</ul>';
+		echo '<div id="myTabContent1" class="tab-content padding-10">';
+
+		echo '<div class="tab-pane fade active in" id="s3">';
+		$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		echo '</div>';
+
+		echo '</div>';
+		echo '</div>';
 	}
 }
 if($type_identifier==3){
 	if($cat_identifier==1){
-		echo '<div class="row-fluid clearfix">
-		<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-		<header role="heading"><h2>My Electronic Stories</h2></header>';
-		$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-		echo '</div></div>';
+		echo '<div class="widget-body">
+		<ul id="myTab1" class="nav nav-tabs bordered">
+			<li class="active"><a href="#s2" data-toggle="tab">My Electronic Stories</a></li>
+			<li class=""><a href="#s4" data-toggle="tab">Industry Electronic Stories</a></li>
+			<li class="pull-right">
+				<a href="javascript:void(0);">
+				<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
+			</li>
+		</ul>';
+		echo '<div id="myTabContent1" class="tab-content padding-10">';
 
-		echo '<div class="row-fluid clearfix">
-		<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-		<header role="heading"><h2>Industry Electronic Stories</h2></header>';
+		echo '<div class="tab-pane fade active in" id="s2">';
+		$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		echo '</div>';
+
+		echo '<div class="tab-pane fade" id="s4">';
 		$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-		echo '</div></div>';
+		echo '</div>';
+
+		echo '</div>';
+		echo '</div>';
 	}
 	if($cat_identifier==2){
-		echo '<div class="row-fluid clearfix">
-		<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-		<header role="heading"><h2>My Electronic Stories</h2></header>';
+		echo '<div class="widget-body">
+		<ul id="myTab1" class="nav nav-tabs bordered">
+			<li class="active"><a href="#s2" data-toggle="tab">My Electronic Stories</a></li>
+			<li class="pull-right">
+				<a href="javascript:void(0);">
+				<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
+			</li>
+		</ul>';
+		echo '<div id="myTabContent1" class="tab-content padding-10">';
+
+		echo '<div class="tab-pane fade active in" id="s2">';
 		$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-		echo '</div></div>';
+		echo '</div>';
+
+		echo '</div>';
+		echo '</div>';
 	}
 	if($cat_identifier==3){
-		echo '<div class="row-fluid clearfix">
-		<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-		<header role="heading"><h2>Industry Electronic Stories</h2></header>';
+		echo '<div class="widget-body">
+		<ul id="myTab1" class="nav nav-tabs bordered">
+			<li class="active"><a href="#s4" data-toggle="tab">Industry Electronic Stories</a></li>
+			<li class="pull-right">
+				<a href="javascript:void(0);">
+				<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
+			</li>
+		</ul>';
+		echo '<div id="myTabContent1" class="tab-content padding-10">';
+
+		echo '<div class="tab-pane fade active in" id="s4">';
 		$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
-		echo '</div></div>';
+		echo '</div>';
+
+		echo '</div>';
+		echo '</div>';
 	}
 }
     

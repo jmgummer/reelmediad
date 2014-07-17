@@ -11,12 +11,15 @@
 			<label class="input">
 				<?php echo $form->textFieldRow($model,'search_text',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
 			</label>
+			<hr class="simple"></hr>
 			<label class="input">
 				<?php echo $form->textFieldRow($model,'startdate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
 			</label>
+			<hr class="simple"></hr>
 			<label class="input">
 				<?php echo $form->textFieldRow($model,'enddate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
 			</label>
+			<hr class="simple"></hr>
 			<label class="radio">
 				<?php echo $form->radioButtonListRow($model,'storytype', StoryType::model()->getStoryTypes(), array('class'=>'radio-beat')); ?>
 		    </label>
