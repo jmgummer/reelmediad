@@ -47,6 +47,7 @@ $this->breadcrumbs=array('Archive Reports'=>array('csr/index'), 'Print Archive')
 
 		//first we get the Company keywords
 		$sql_mykeywords = Company::model()->find('company_id=:a', array(':a'=>Yii::app()->user->company_id));
+		$backdate = $sql_mykeywords->backdate;
 		$my_keywords=$sql_mykeywords->keywords;
 		$my_subs=trim($sql_mykeywords->subs);
 
@@ -86,6 +87,7 @@ $this->breadcrumbs=array('Archive Reports'=>array('csr/index'), 'Print Archive')
 		}
 
 		$url_query=" indexdate between '" . $beginning . "' and '" . $ending ."' ";
+		$full_query=$full_query . " and indexdate>'$backdate'";
 
 		if($url_query){
 		    $url_query=" and (" . $url_query. " ) ";

@@ -58,6 +58,7 @@ if(isset($_POST['StorySearch'])){
 
 	//first we get the Company keywords
 	$sql_mykeywords = Company::model()->find('company_id=:a', array(':a'=>Yii::app()->user->company_id));
+	$backdate = $sql_mykeywords->backdate;
 	$my_keywords=$sql_mykeywords->keywords;
 	$my_subs=trim($sql_mykeywords->subs);
 
@@ -108,7 +109,7 @@ if(isset($_POST['StorySearch'])){
 
 	$url_query=" StoryDate between '" . $year_start."-".$month_start."-".$day_start . "' and '" . $year_end."-".$month_end."-0".$day_end ."' ";
 
-	// $full_query=$full_query . " and StoryDate>'$backdate'";
+	$full_query=$full_query . " and StoryDate>'$backdate'";
 	// $full_query2=$full_query2 . " and StoryDate>'$backdate'";
 
 	//$url_query=substr($url_query,0,-3);
