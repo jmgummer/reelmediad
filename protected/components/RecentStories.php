@@ -150,7 +150,7 @@ public static function PrintTableBody($date,$storyid,$pub,$journo,$head,$page,$p
 	<td>'.$pubtype.'</td>
 	<td>'.$pic.'</td>
 	<td>'.$effect.'</td>
-	<td>'.$ave.'</td>
+	<td style="text-align:right;">'.number_format($ave).'</td>
 	</tr>';
 }
 /*
