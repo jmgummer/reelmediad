@@ -9423,3 +9423,294 @@ Stack trace:
 REQUEST_URI=/reelmediad/emailalerts
 HTTP_REFERER=http://192.168.0.234/reelmediad/clientservice
 ---
+2014/07/17 16:18:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sound".' in C:\xampp\htdocs\yii_back\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CController.php(270): CController->missingAction('sound')
+#1 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('sound')
+#2 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/sound/mess...')
+#3 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmediad/home/sound/messagebox.mp3
+HTTP_REFERER=http://192.168.0.234/reelmediad/home/print
+---
+2014/07/17 16:18:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/f304dac7/img/glyphicons-halflings.png".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f304dac7...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/assets/f304dac7/img/glyphicons-halflings.png
+HTTP_REFERER=http://192.168.0.234/reelmediad/assets/f304dac7/css/demo.css
+---
+2014/07/18 07:05:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/f304dac7/img/glyphicons-halflings.png".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f304dac7...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/assets/f304dac7/img/glyphicons-halflings.png
+HTTP_REFERER=http://192.168.0.234/reelmediad/assets/f304dac7/css/demo.css
+---
+2014/07/18 09:49:15 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':00:00 order by forgedb.ratecard_base.duration,  ratecard_base.date_start desc,r' at line 1. The SQL statement executed was: SELECT rate,duration from forgedb.ratecard_base, anvil_match where ratecard_base.station_id=anvil_match.station_id and anvil_match.Media_House_ID=113 and forgedb.ratecard_base.weekday=fri and forgedb.ratecard_base.time_start<=07:00:00 order by forgedb.ratecard_base.duration,  ratecard_base.date_start desc,ratecard_base.time_start desc, forgedb.ratecard_base.time_end asc limit 1.
+in C:\xampp\htdocs\reelmediad\protected\models\Story.php (383)
+in C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php (55)
+in C:\xampp\htdocs\reelmediad\protected\views\home\stories.php (79)
+2014/07/18 09:49:15 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':00:00 order by forgedb.ratecard_base.duration,  ratecard_base.date_start desc,r' at line 1. The SQL statement executed was: SELECT rate,duration from forgedb.ratecard_base, anvil_match where ratecard_base.station_id=anvil_match.station_id and anvil_match.Media_House_ID=113 and forgedb.ratecard_base.weekday=fri and forgedb.ratecard_base.time_start<=07:00:00 order by forgedb.ratecard_base.duration,  ratecard_base.date_start desc,ratecard_base.time_start desc, forgedb.ratecard_base.time_end asc limit 1' in C:\xampp\htdocs\yii_back\framework\db\CDbCommand.php:541
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\db\CDbCommand.php(414): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(1504): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\reelmediad\protected\models\Story.php(383): CActiveRecord->findBySql('SELECT rate,dur...')
+#3 C:\xampp\htdocs\yii_back\framework\base\CComponent.php(111): Story->getAVE()
+#4 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(143): CComponent->__get('AVE')
+#5 C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php(55): CActiveRecord->__get('AVE')
+#6 C:\xampp\htdocs\reelmediad\protected\views\home\stories.php(79): RecentStories::GetElectronicStory('1', '2014-07-11', '2014-07-11', '')
+#7 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#8 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#9 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#10 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): CController->renderPartial('stories', Array, true)
+#11 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(54): CController->render('stories', Array)
+#12 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionPrint()
+#13 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#14 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#15 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#16 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#17 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#19 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#20 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('print')
+#22 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/print')
+#23 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#24 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#25 {main}
+REQUEST_URI=/reelmediad/home/print
+HTTP_REFERER=http://192.168.0.234/reelmediad/home/print
+---
+2014/07/18 09:51:57 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':00:00 order by forgedb.ratecard_base.duration,  ratecard_base.date_start desc,r' at line 1. The SQL statement executed was: SELECT rate,duration from forgedb.ratecard_base, anvil_match where ratecard_base.station_id=anvil_match.station_id and anvil_match.Media_House_ID=113 and forgedb.ratecard_base.weekday=fri and forgedb.ratecard_base.time_start<=07:00:00 order by forgedb.ratecard_base.duration,  ratecard_base.date_start desc,ratecard_base.time_start desc, forgedb.ratecard_base.time_end asc limit 1.
+in C:\xampp\htdocs\reelmediad\protected\models\Story.php (383)
+in C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php (55)
+in C:\xampp\htdocs\reelmediad\protected\views\home\stories.php (79)
+2014/07/18 09:51:57 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':00:00 order by forgedb.ratecard_base.duration,  ratecard_base.date_start desc,r' at line 1. The SQL statement executed was: SELECT rate,duration from forgedb.ratecard_base, anvil_match where ratecard_base.station_id=anvil_match.station_id and anvil_match.Media_House_ID=113 and forgedb.ratecard_base.weekday=fri and forgedb.ratecard_base.time_start<=07:00:00 order by forgedb.ratecard_base.duration,  ratecard_base.date_start desc,ratecard_base.time_start desc, forgedb.ratecard_base.time_end asc limit 1' in C:\xampp\htdocs\yii_back\framework\db\CDbCommand.php:541
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\db\CDbCommand.php(414): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(1504): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\reelmediad\protected\models\Story.php(383): CActiveRecord->findBySql('SELECT rate,dur...')
+#3 C:\xampp\htdocs\yii_back\framework\base\CComponent.php(111): Story->getAVE()
+#4 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(143): CComponent->__get('AVE')
+#5 C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php(55): CActiveRecord->__get('AVE')
+#6 C:\xampp\htdocs\reelmediad\protected\views\home\stories.php(79): RecentStories::GetElectronicStory('1', '2014-07-11', '2014-07-11', '')
+#7 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#8 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#9 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#10 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): CController->renderPartial('stories', Array, true)
+#11 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(54): CController->render('stories', Array)
+#12 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionPrint()
+#13 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#14 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#15 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#16 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#17 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#19 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#20 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('print')
+#22 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/print')
+#23 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#24 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#25 {main}
+REQUEST_URI=/reelmediad/home/print
+HTTP_REFERER=http://192.168.0.234/reelmediad/home/print
+---
+2014/07/18 09:55:55 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'forgedb.anvil_match' doesn't exist. The SQL statement executed was: SELECT rate,duration from forgedb.ratecard_base, anvil_match where ratecard_base.station_id=anvil_match.station_id and anvil_match.Media_House_ID=113 and forgedb.ratecard_base.weekday=fri and forgedb.ratecard_base.time_start<="07:00:00" order by forgedb.ratecard_base.duration,  ratecard_base.date_start desc,ratecard_base.time_start desc, forgedb.ratecard_base.time_end asc limit 1.
+in C:\xampp\htdocs\reelmediad\protected\models\Story.php (383)
+in C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php (55)
+in C:\xampp\htdocs\reelmediad\protected\views\home\stories.php (79)
+2014/07/18 09:55:55 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'forgedb.anvil_match' doesn't exist. The SQL statement executed was: SELECT rate,duration from forgedb.ratecard_base, anvil_match where ratecard_base.station_id=anvil_match.station_id and anvil_match.Media_House_ID=113 and forgedb.ratecard_base.weekday=fri and forgedb.ratecard_base.time_start<="07:00:00" order by forgedb.ratecard_base.duration,  ratecard_base.date_start desc,ratecard_base.time_start desc, forgedb.ratecard_base.time_end asc limit 1' in C:\xampp\htdocs\yii_back\framework\db\CDbCommand.php:541
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\db\CDbCommand.php(414): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(1504): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\reelmediad\protected\models\Story.php(383): CActiveRecord->findBySql('SELECT rate,dur...')
+#3 C:\xampp\htdocs\yii_back\framework\base\CComponent.php(111): Story->getAVE()
+#4 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(143): CComponent->__get('AVE')
+#5 C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php(55): CActiveRecord->__get('AVE')
+#6 C:\xampp\htdocs\reelmediad\protected\views\home\stories.php(79): RecentStories::GetElectronicStory('1', '2014-07-11', '2014-07-11', '')
+#7 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#8 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#9 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#10 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): CController->renderPartial('stories', Array, true)
+#11 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(54): CController->render('stories', Array)
+#12 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionPrint()
+#13 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#14 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#15 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#16 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#17 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#19 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#20 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('print')
+#22 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/print')
+#23 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#24 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#25 {main}
+REQUEST_URI=/reelmediad/home/print
+HTTP_REFERER=http://192.168.0.234/reelmediad/home/print
+---
+2014/07/18 10:03:45 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'forgedb.anvil_match' doesn't exist. The SQL statement executed was: SELECT rate,duration from forgedb.ratecard_base, anvil_match where ratecard_base.station_id=anvil_match.station_id and anvil_match.Media_House_ID=113 and forgedb.ratecard_base.weekday=fri and forgedb.ratecard_base.time_start<="07:00:00" order by forgedb.ratecard_base.duration,  ratecard_base.date_start desc,ratecard_base.time_start desc, forgedb.ratecard_base.time_end asc limit 1.
+in C:\xampp\htdocs\reelmediad\protected\models\Story.php (383)
+in C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php (55)
+in C:\xampp\htdocs\reelmediad\protected\views\home\stories.php (79)
+2014/07/18 10:03:45 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'forgedb.anvil_match' doesn't exist. The SQL statement executed was: SELECT rate,duration from forgedb.ratecard_base, anvil_match where ratecard_base.station_id=anvil_match.station_id and anvil_match.Media_House_ID=113 and forgedb.ratecard_base.weekday=fri and forgedb.ratecard_base.time_start<="07:00:00" order by forgedb.ratecard_base.duration,  ratecard_base.date_start desc,ratecard_base.time_start desc, forgedb.ratecard_base.time_end asc limit 1' in C:\xampp\htdocs\yii_back\framework\db\CDbCommand.php:541
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\db\CDbCommand.php(414): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(1504): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\reelmediad\protected\models\Story.php(383): CActiveRecord->findBySql('SELECT rate,dur...')
+#3 C:\xampp\htdocs\yii_back\framework\base\CComponent.php(111): Story->getAVE()
+#4 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(143): CComponent->__get('AVE')
+#5 C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php(55): CActiveRecord->__get('AVE')
+#6 C:\xampp\htdocs\reelmediad\protected\views\home\stories.php(79): RecentStories::GetElectronicStory('1', '2014-07-11', '2014-07-11', '')
+#7 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#8 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#9 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#10 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): CController->renderPartial('stories', Array, true)
+#11 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(54): CController->render('stories', Array)
+#12 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionPrint()
+#13 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#14 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#15 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#16 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#17 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#19 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#20 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('print')
+#22 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/print')
+#23 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#24 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#25 {main}
+REQUEST_URI=/reelmediad/home/print
+HTTP_REFERER=http://192.168.0.234/reelmediad/home/print
+---
+2014/07/18 10:34:18 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42000]: Syntax error or access violation: 1142 SELECT command denied to user 'root'@'192.168.0.234' for table 'anvil_match'. The SQL statement executed was: SELECT rate,duration from forgedb.ratecard_base, reelmedia.anvil_match where ratecard_base.station_id=anvil_match.station_id and anvil_match.Media_House_ID=113 and forgedb.ratecard_base.weekday=fri and forgedb.ratecard_base.time_start<="07:00:00" order by forgedb.ratecard_base.duration,  ratecard_base.date_start desc,ratecard_base.time_start desc, forgedb.ratecard_base.time_end asc limit 1.
+in C:\xampp\htdocs\reelmediad\protected\models\Story.php (383)
+in C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php (60)
+in C:\xampp\htdocs\reelmediad\protected\views\home\stories.php (79)
+2014/07/18 10:34:18 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1142 SELECT command denied to user 'root'@'192.168.0.234' for table 'anvil_match'. The SQL statement executed was: SELECT rate,duration from forgedb.ratecard_base, reelmedia.anvil_match where ratecard_base.station_id=anvil_match.station_id and anvil_match.Media_House_ID=113 and forgedb.ratecard_base.weekday=fri and forgedb.ratecard_base.time_start<="07:00:00" order by forgedb.ratecard_base.duration,  ratecard_base.date_start desc,ratecard_base.time_start desc, forgedb.ratecard_base.time_end asc limit 1' in C:\xampp\htdocs\yii_back\framework\db\CDbCommand.php:541
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\db\CDbCommand.php(414): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(1504): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\reelmediad\protected\models\Story.php(383): CActiveRecord->findBySql('SELECT rate,dur...')
+#3 C:\xampp\htdocs\yii_back\framework\base\CComponent.php(111): Story->getAVE()
+#4 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(143): CComponent->__get('AVE')
+#5 C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php(60): CActiveRecord->__get('AVE')
+#6 C:\xampp\htdocs\reelmediad\protected\views\home\stories.php(79): RecentStories::GetElectronicStory('1', '2014-07-11', '2014-07-11', '')
+#7 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#8 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#9 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#10 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): CController->renderPartial('stories', Array, true)
+#11 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(54): CController->render('stories', Array)
+#12 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionPrint()
+#13 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#14 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#15 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#16 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#17 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#19 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#20 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('print')
+#22 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/print')
+#23 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#24 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#25 {main}
+REQUEST_URI=/reelmediad/home/print
+HTTP_REFERER=http://192.168.0.234/reelmediad/home/print
+---
+2014/07/18 10:37:08 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'fri' in 'where clause'. The SQL statement executed was: SELECT rate,duration from forgedb.ratecard_base, reelmedia.anvil_match where ratecard_base.station_id=anvil_match.station_id and anvil_match.Media_House_ID=113 and forgedb.ratecard_base.weekday=fri and forgedb.ratecard_base.time_start<="07:00:00" order by forgedb.ratecard_base.duration,  ratecard_base.date_start desc,ratecard_base.time_start desc, forgedb.ratecard_base.time_end asc limit 1.
+in C:\xampp\htdocs\reelmediad\protected\models\Story.php (383)
+in C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php (60)
+in C:\xampp\htdocs\reelmediad\protected\views\home\stories.php (79)
+2014/07/18 10:37:08 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'fri' in 'where clause'. The SQL statement executed was: SELECT rate,duration from forgedb.ratecard_base, reelmedia.anvil_match where ratecard_base.station_id=anvil_match.station_id and anvil_match.Media_House_ID=113 and forgedb.ratecard_base.weekday=fri and forgedb.ratecard_base.time_start<="07:00:00" order by forgedb.ratecard_base.duration,  ratecard_base.date_start desc,ratecard_base.time_start desc, forgedb.ratecard_base.time_end asc limit 1' in C:\xampp\htdocs\yii_back\framework\db\CDbCommand.php:541
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\db\CDbCommand.php(414): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(1504): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\reelmediad\protected\models\Story.php(383): CActiveRecord->findBySql('SELECT rate,dur...')
+#3 C:\xampp\htdocs\yii_back\framework\base\CComponent.php(111): Story->getAVE()
+#4 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(143): CComponent->__get('AVE')
+#5 C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php(60): CActiveRecord->__get('AVE')
+#6 C:\xampp\htdocs\reelmediad\protected\views\home\stories.php(79): RecentStories::GetElectronicStory('1', '2014-07-11', '2014-07-11', '')
+#7 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#8 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#9 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#10 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): CController->renderPartial('stories', Array, true)
+#11 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(54): CController->render('stories', Array)
+#12 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionPrint()
+#13 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#14 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#15 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#16 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#17 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#19 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#20 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('print')
+#22 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/print')
+#23 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#24 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#25 {main}
+REQUEST_URI=/reelmediad/home/print
+HTTP_REFERER=http://192.168.0.234/reelmediad/home/print
+---
+2014/07/18 10:38:18 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\reelmediad\protected\models\Story.php:384)
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php(60): Story->__get()
+#1 C:\xampp\htdocs\reelmediad\protected\views\home\stories.php(79): GetElectronicStory()
+#2 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require()
+#3 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): HomeController->renderInternal()
+#4 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): HomeController->renderFile()
+#5 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): HomeController->renderPartial()
+#6 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(54): HomeController->render()
+#7 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionPrint()
+#8 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): HomeController->runAction()
+#10 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#12 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): HomeController->filterAccessControl()
+#13 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#14 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): HomeController->runActionWithFilters()
+#16 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): HomeController->run()
+#17 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#18 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#19 C:\xampp\htdocs\reelmediad\index.php(13): CWebApplication->run()
+REQUEST_URI=/reelmediad/home/print
+in C:\xampp\htdocs\reelmediad\protected\models\Story.php (384)
+in C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php (60)
+in C:\xampp\htdocs\reelmediad\protected\views\home\stories.php (79)
+2014/07/18 10:54:06 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\reelmediad\protected\models\Story.php:384)
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php(60): Story->__get()
+#1 C:\xampp\htdocs\reelmediad\protected\views\home\stories.php(79): GetElectronicStory()
+#2 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require()
+#3 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): HomeController->renderInternal()
+#4 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): HomeController->renderFile()
+#5 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): HomeController->renderPartial()
+#6 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(54): HomeController->render()
+#7 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionPrint()
+#8 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): HomeController->runAction()
+#10 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#11 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#12 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): HomeController->filterAccessControl()
+#13 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#14 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#15 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): HomeController->runActionWithFilters()
+#16 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): HomeController->run()
+#17 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#18 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#19 C:\xampp\htdocs\reelmediad\index.php(13): CWebApplication->run()
+REQUEST_URI=/reelmediad/home/print
+in C:\xampp\htdocs\reelmediad\protected\models\Story.php (384)
+in C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php (60)
+in C:\xampp\htdocs\reelmediad\protected\views\home\stories.php (79)

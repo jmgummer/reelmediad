@@ -355,6 +355,39 @@ class Story extends CActiveRecord
 		}
 	}
 
+	public function getAVE()
+	{
+		$Media_House_ID = $this->Media_House_ID;
+		$weekday = strtolower(date('D', strtotime($this->StoryDate)));
+		$col = $this->col;
+		$centimeter = $this->centimeter;
+		$StoryDuration=$incantation_length=$this->StoryDuration;
+		$StoryTime=$this->StoryTime;
+		$this_rate=0;
+		if($this->Media_ID=='mp01'){
+			$picture = $this->picture;
+			if($picture=='color'){
+				$color_code = $weekday.'_c';
+			}else{
+				$color_code = $weekday.'_b';
+			}
+			$rate = Ratecard::model()->find('Media_House_ID=:a AND color_code=:b', array(':a'=>$Media_House_ID,':b'=>$color_code))->rate;
+			$rate_cost = $this_rate = $rate*$col*$centimeter;
+		}else{
+			$words = $StoryDuration;
+			$StoryPlacement=$StoryTime;
+            $Journalist="n/a";
+
+            $incantation_length=str_replace("sec","",$incantation_length);
+			echo $sql_electronic_rate='SELECT rate,duration from forgedb.ratecard_base, reelmedia.anvil_match where ratecard_base.station_id=anvil_match.station_id and anvil_match.Media_House_ID='.$Media_House_ID.' and forgedb.ratecard_base.weekday="'.$weekday.'" and forgedb.ratecard_base.time_start<="'.$StoryTime.'" order by forgedb.ratecard_base.duration,  ratecard_base.date_start desc,ratecard_base.time_start desc, forgedb.ratecard_base.time_end asc limit 1';
+			$this_rate_det = RatecardBase::model()->findBySql($sql_electronic_rate);
+			$this_rate = $this_rate_det->rate;
+			$this_duration = $this_rate_det->duration;
+			$rate_cost=round(($this_rate*$this_duration) /$incantation_length,-1);
+		}
+		return $rate_cost;
+	}
+
 	public function getCompanyMentions()
 	{
 		if($mentions = StoryMention::model()->findAll('story_id=:a', array(':a'=>$this->Story_ID))){
