@@ -23,7 +23,7 @@ public static function PrintStories($client)
 	}
 }
 
-public static function GetClientStory($client,$startdate,$enddate,$search)
+public static function GetClientStory($client,$startdate,$enddate,$search,$backdate,$country_list)
 {
 	$month = date('m');
 	$year = date('Y');
@@ -31,8 +31,9 @@ public static function GetClientStory($client,$startdate,$enddate,$search)
 	$q2 = 'SELECT * FROM story 
 	inner join story_mention on story.Story_ID=story_mention.story_id 
 	inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID  
-	where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1 and StoryDate 
-	between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%" 
+	where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1 
+	and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'") 
+	and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%" 
 	order by Media_House_List asc, StoryDate desc, page_no asc';
 	if($story = Story::model()->findAllBySql($q2)){
 		echo RecentStories::PrintTableHead();
@@ -47,12 +48,17 @@ public static function GetClientStory($client,$startdate,$enddate,$search)
 	}
 }
 
-public static function GetElectronicStory($client,$startdate,$enddate,$search)
+public static function GetElectronicStory($client,$startdate,$enddate,$search,$backdate,$country_list)
 {
 	$month = date('m');
 	$year = date('Y');
 	$story_month = 'story_'.$year.'_'.$month;
-	$q2 = 'SELECT * from story,story_mention,mediahouse where story_mention.client_id='.$client.' and story.Story_ID=story_mention.story_id and story.Media_ID!="mp01" and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story.Media_House_ID=mediahouse.Media_House_ID order by Media_House_List asc, StoryDate desc';
+	$q2 = 'SELECT * from story,story_mention,mediahouse 
+	where story_mention.client_id='.$client.' and story.Story_ID=story_mention.story_id 
+	and story.Media_ID!="mp01" and story.step3=1 
+	and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'") 
+	and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story.Media_House_ID=mediahouse.Media_House_ID 
+	order by Media_House_List asc, StoryDate desc';
 	if($story = Story::model()->findAllBySql($q2)){
 		echo RecentStories::PrintTableHead();
 		foreach ($story as $key) {
@@ -66,12 +72,20 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search)
 	}
 }
 
-public static function GetClientIndustryStory($client,$startdate,$enddate,$search)
+public static function GetClientIndustryStory($client,$startdate,$enddate,$search,$backdate,$country_list)
 {
 	$month = date('m');
 	$year = date('Y');
 	$story_month = 'story_'.$year.'_'.$month;
-	$q2 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story from story, story_industry, industry_subs, mediahouse where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.') and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.' and story_industry.industry_id=industry_subs.industry_id and story.Media_ID="mp01" and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID order by Media_House_List asc, StoryDate desc';
+	$q2 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story 
+	from story, story_industry, industry_subs, mediahouse 
+	where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.') 
+	and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.' 
+	and story_industry.industry_id=industry_subs.industry_id and story.Media_ID="mp01" 
+	and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'") 
+	and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'" 
+	and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID 
+	order by Media_House_List asc, StoryDate desc';
 	if($story = Story::model()->findAllBySql($q2)){
 		echo RecentStories::PrintTableHead();
 		foreach ($story as $key) {
@@ -85,12 +99,20 @@ public static function GetClientIndustryStory($client,$startdate,$enddate,$searc
 	}
 }
 
-public static function GetClientElectronicIndustryStory($client,$startdate,$enddate,$search)
+public static function GetClientElectronicIndustryStory($client,$startdate,$enddate,$search,$backdate,$country_list)
 {
 	$month = date('m');
 	$year = date('Y');
 	$story_month = 'story_'.$year.'_'.$month;
-	$q2 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story from story, story_industry, industry_subs, mediahouse where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.') and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.' and story_industry.industry_id=industry_subs.industry_id and story.Media_ID!="mp01" and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID order by Media_House_List asc, StoryDate desc';
+	$q2 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story 
+	from story, story_industry, industry_subs, mediahouse 
+	where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.') 
+	and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.' 
+	and story_industry.industry_id=industry_subs.industry_id and story.Media_ID!="mp01" 
+	and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'") 
+	and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'" 
+	and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID 
+	order by Media_House_List asc, StoryDate desc';
 	if($story = Story::model()->findAllBySql($q2)){
 		echo RecentStories::PrintTableHead();
 		foreach ($story as $key) {
@@ -133,7 +155,7 @@ public static function PrintTableHead(){
 	<div>
 	<table id="dt_basic" class="table table-striped table-bordered table-hover">
 	<thead>
-	<th style="width:11%;">DATE</th><th>PUBLICATION</th><th>JOURNALIST</th><th>HEADLINE/SUBJECT</th><th>PAGE</th><th>PUBLICATION TYPE</th><th>PICTURE</th><th>EFFECT</th><th>AVE(Kshs.)</th>
+	<th style="width:11%;">DATE</th><th>PUBLICATION</th><th>JOURNALIST</th><th>HEADLINE/SUBJECT</th><th>PAGE</th><th>PUBLICATION TYPE</th><th>PICTURE</th><th>EFFECT</th><th style="text-align:right;">AVE(Kshs.)</th>
 	</thead>';
 }
 /*

@@ -11,6 +11,13 @@ $this->breadcrumbs=array('Index');
 $todays = date('Y-m-d');
 $startdate = $enddate = $todays;
 $search = ' ';
+// Adding Country Code
+$country = 1;
+
+// Adding backdate
+$company_words = Company::model()->find('company_id=:a order by keywords', array(':a'=>Yii::app()->user->company_id));
+$backdate = $company_words->backdate;
+
 if(isset($_POST['StorySearch'])){
 	$startdate = $model->startdate;
 	$enddate = $model->enddate;
@@ -27,7 +34,7 @@ if(isset($_POST['StorySearch'])){
 				<?php echo '<br><strong>Key Words Searched : </strong> '.$search; ?>
 				</div>
 				<?php 
-				if($company_words = Company::model()->find('company_id=:a order by keywords', array(':a'=>Yii::app()->user->company_id))){
+				if($company_words){
 					if($pieces = explode(",", $company_words->keywords)){
 						foreach ($pieces as $key) {
 							echo '<div class="col-md-3">'.$key.'</div>';
@@ -72,19 +79,19 @@ if($type_identifier==1){
 		echo '<div id="myTabContent1" class="tab-content padding-10">';
 
 		echo '<div class="tab-pane fade active in" id="s1">';
-		$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country);
 		echo '</div>';
 
 		echo '<div class="tab-pane fade" id="s2">';
-		$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country);
 		echo '</div>';
 
 		echo '<div class="tab-pane fade" id="s3">';
-		$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country);
 		echo '</div>';
 
 		echo '<div class="tab-pane fade" id="s4">';
-		$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country);
 		echo '</div>';
 
 		echo '</div>';
@@ -103,11 +110,11 @@ if($type_identifier==1){
 		echo '<div id="myTabContent1" class="tab-content padding-10">';
 
 		echo '<div class="tab-pane fade active in" id="s1">';
-		$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country);
 		echo '</div>';
 
 		echo '<div class="tab-pane fade" id="s2">';
-		$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country);
 		echo '</div>';
 
 		echo '</div>';
@@ -126,11 +133,11 @@ if($type_identifier==1){
 		echo '<div id="myTabContent1" class="tab-content padding-10">';
 
 		echo '<div class="tab-pane fade active in" id="s3">';
-		$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country);
 		echo '</div>';
 
 		echo '<div class="tab-pane fade" id="s4">';
-		$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country);
 		echo '</div>';
 
 		echo '</div>';
@@ -151,11 +158,11 @@ if($type_identifier==2){
 		echo '<div id="myTabContent1" class="tab-content padding-10">';
 
 		echo '<div class="tab-pane fade active in" id="s1">';
-		$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country);
 		echo '</div>';
 
 		echo '<div class="tab-pane fade" id="s3">';
-		$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country);
 		echo '</div>';
 
 		echo '</div>';
@@ -173,7 +180,7 @@ if($type_identifier==2){
 		echo '<div id="myTabContent1" class="tab-content padding-10">';
 
 		echo '<div class="tab-pane fade active in" id="s1">';
-		$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country);
 		echo '</div>';
 
 		echo '</div>';
@@ -191,7 +198,7 @@ if($type_identifier==2){
 		echo '<div id="myTabContent1" class="tab-content padding-10">';
 
 		echo '<div class="tab-pane fade active in" id="s3">';
-		$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country);
 		echo '</div>';
 
 		echo '</div>';
@@ -212,11 +219,11 @@ if($type_identifier==3){
 		echo '<div id="myTabContent1" class="tab-content padding-10">';
 
 		echo '<div class="tab-pane fade active in" id="s2">';
-		$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country);
 		echo '</div>';
 
 		echo '<div class="tab-pane fade" id="s4">';
-		$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country);
 		echo '</div>';
 
 		echo '</div>';
@@ -234,7 +241,7 @@ if($type_identifier==3){
 		echo '<div id="myTabContent1" class="tab-content padding-10">';
 
 		echo '<div class="tab-pane fade active in" id="s2">';
-		$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country);
 		echo '</div>';
 
 		echo '</div>';
@@ -252,7 +259,7 @@ if($type_identifier==3){
 		echo '<div id="myTabContent1" class="tab-content padding-10">';
 
 		echo '<div class="tab-pane fade active in" id="s4">';
-		$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search);
+		$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country);
 		echo '</div>';
 
 		echo '</div>';
