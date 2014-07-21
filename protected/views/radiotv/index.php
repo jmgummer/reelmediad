@@ -37,11 +37,11 @@ if(isset($_POST['StorySearch'])){
 
 	// Formating Dates for Search
 
-	$year_start 	= date('Y',strtotime($beginning)); 	
-	$month_start 	= date('m',strtotime($beginning)); 	
+	$year_start 	= date('Y',strtotime($beginning));
+	$month_start 	= date('m',strtotime($beginning));
 	$day_start 		= date('d',strtotime($beginning));
-	$year_end 		= date('Y',strtotime($ending));	
-	$month_end 		= date('m',strtotime($ending));	
+	$year_end 		= date('Y',strtotime($ending));
+	$month_end 		= date('m',strtotime($ending));
 	$day_end 		= date('d',strtotime($ending));
 
 	$mysearch=$search;
@@ -70,7 +70,7 @@ if(isset($_POST['StorySearch'])){
 	$all_my_keywords=array_unique($all_my_keywords);
 	$my_keyword_count=count($all_keywords);
 
-	for($x=0; $x<=$my_keyword_count; $x++) 
+	for($x=0; $x<=$my_keyword_count; $x++)
 	{
 		if(isset($all_my_keywords[$x])){
 			if(trim($all_my_keywords[$x])){
@@ -156,9 +156,9 @@ if(isset($_POST['StorySearch'])){
 		$publication = Mediahouse::model()->find('media_house_id=:a', array(':a'=>$media_code))->Media_House_List;
 	}
 
-	$narrative="<p style='font-size:11px;'>Searched <strong>$publication</strong> for <strong>";
-	if($display_search) {$narrative.=$display_search.",";}
-	$narrative.=" " .$display_keywords;
+	$narrative="<p style='font-size:11px;'>Searched <strong>$publication</strong> for the following keywords <strong>";
+	if($display_search) {$narrative.='including '.$display_search;}
+// 	$narrative.=" " .$display_keywords;
 	$narrative.="</strong> between " .$display_date.'</p>';
 	?>
 	<div id="wid-id-0" class="jarviswidget jarviswidget-sortable"style="" role="widget">
@@ -168,7 +168,15 @@ if(isset($_POST['StorySearch'])){
 		<div id="chat-body" role="content">
 			<div class="widget-body no-padding">
 				<div class="force-padding">
-					<?php echo $narrative; ?>
+				
+					<?php
+					echo $narrative;
+					if($pieces = explode(",", $my_keywords)){
+						foreach ($pieces as $mkey) {
+							echo '<div class="col-md-3">'.$mkey.'</div>';
+						}
+					}
+					?>
 				</div>
 			</div>
 		</div>
