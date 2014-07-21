@@ -267,15 +267,40 @@ class Story extends CActiveRecord
 
 	public function getPublicationType()
 	{
-		return 'Default';
+	  if($newspapertype=NewspaperTypeAssignment::model()->find('Media_House_ID=:a', array(':a'=>$this->Media_House_ID))){
+	    return NewspaperType::model()->find('auto_id=:a', array(':a'=>$newspapertype->newspaper_type_id))->newspaper_type;
+	  }else{
+	    return 'Unknown';
+	  }
+	}
+	
+	public function getPicture()
+	{
+	  if($this->picture=='color'){
+	    return 'Color';
+	  }elseif($this->picture=='black_white'){
+	    return 'B/W';
+	  }elseif($this->picture=='none'){
+	    return 'None';
+	  }else{
+	    return 'None';
+	  }
 	}
 
 	public function getTonality()
 	{
-		if($tonality = MediamapAnalysis::model()->find('story_id=:a AND company_id=:b', array(':a'=>$this->Media_House_ID, ':b'=>Yii::app()->user->company_id))){
-			return $tonality ->tonality;
+		if($tonality = MediamapAnalysis::model()->find('story_id=:a AND company_id=:b', array(':a'=>$this->Story_ID, ':b'=>Yii::app()->user->company_id))){
+			if($tonality->tonality=='positive'){
+			  return 'Positive';
+			}elseif($tonality->tonality=='negative'){
+			  return 'Negative';
+			}elseif($tonality->tonality=='neutral'){
+			  return 'Neutral';
+			}else{
+			  return 'N/A';
+			}
 		}else{
-			return 'neutral';
+			return 'not found';
 		}
 	}
 
@@ -373,6 +398,24 @@ class Story extends CActiveRecord
 			}
 			$rate = Ratecard::model()->find('Media_House_ID=:a AND color_code=:b', array(':a'=>$Media_House_ID,':b'=>$color_code))->rate;
 			$rate_cost = $this_rate = $rate*$col*$centimeter;
+		}elseif($this->Media_ID=='mr01'){
+		  $sql_electronic_rate='SELECT rate,duration from forgedb.ratecard_base, reelmedia.anvil_match where ratecard_base.station_id=anvil_match.station_id and anvil_match.Media_House_ID='.$Media_House_ID.' and forgedb.ratecard_base.weekday="'.$weekday.'" and forgedb.ratecard_base.time_start<="'.$StoryTime.'" order by forgedb.ratecard_base.duration,  ratecard_base.date_start desc,ratecard_base.time_start desc, forgedb.ratecard_base.time_end asc limit 1';
+		  $incantation_length=str_replace("sec","",$incantation_length);
+		  $this_rate_det = RatecardBase::model()->findBySql($sql_electronic_rate);
+		  if(isset($this_rate_det->rate) && isset($this_rate_det->duration)){
+		    $this_rate = $this_rate_det->rate;
+		    $this_duration = $this_rate_det->duration;
+		  }else{
+		    $this_rate = 1;
+		    $this_duration = 1;
+		  }
+		  // $rate_cost = ($this_rate*$this_duration)/$incantation_length;
+		  if($rate_cost = round(($incantation_length * $this_rate)/$this_duration,-1)==60){
+		    $rate_cost = 0;
+		  }else{
+		    $rate_cost = round(($incantation_length * $this_rate)/$this_duration,-1);
+		  }
+		  
 		}else{
 			$words = $StoryDuration;
 			$StoryPlacement=$StoryTime;
@@ -386,7 +429,7 @@ class Story extends CActiveRecord
 				$rate_cost=round(($this_rate*$this_duration) /$incantation_length,-1);
 			}else{
 				$rate_cost = 0;
-				echo $sql_electronic_rate;
+				// echo $sql_electronic_rate;
 			}
 			
 		}

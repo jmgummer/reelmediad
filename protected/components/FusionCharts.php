@@ -63,8 +63,8 @@ public static function StripExtra($text)
 public static function packageXML($narrative, $co_name,$others, $co_value, $other_value)
 {
     $strXML = "<chart bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
-    $strXML .= "<set label='".$co_name."' value='".$co_value."' />"; 
-    $strXML .= "<set label='".$others."' value='".$other_value."' />"; 
+    $strXML .= "<set label='".$co_name."' value='".$co_value."' />";
+    $strXML .= "<set label='".$others."' value='".$other_value."' />";
     $strXML .= "</chart>";
     return $strXML;
 }
@@ -73,50 +73,50 @@ public static function packageXML($narrative, $co_name,$others, $co_value, $othe
 public static function packageColumnXML($narrative,$tv,$radio,$print,$total,$xAxisName,$yAxisName)
 {
     $strXML = "<chart bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='".$xAxisName."' yAxisName='".$yAxisName."'>";
-    $strXML .= "<set label='TV' value='".$tv."' />"; 
-    $strXML .= "<set label='Radio' value='".$radio."' />"; 
-    $strXML .= "<set label='Print' value='".$print."' />"; 
-    $strXML .= "<set label='Total' value='".$total."' />"; 
+    $strXML .= "<set label='TV' value='".$tv."' />";
+    $strXML .= "<set label='Radio' value='".$radio."' />";
+    $strXML .= "<set label='Print' value='".$print."' />";
+    $strXML .= "<set label='Total' value='".$total."' />";
     $strXML .= "</chart>";
     return $strXML;
 }
 
-public static function packageMentionsXML($narrative, $array,$company_name, $startdate,$enddate,$industry)
+public static function packageMentionsXML($narrative, $array,$company_name, $startdate,$enddate,$industry,$backdate)
 {
     $strXML = "<chart bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
     foreach ($array as $key) {
         $co_name2 = $key->Client;
-        $co_value2 = IndustryQueries::GetShareVoiceCount($key->client_id,$startdate,$enddate,$industry);
-        $strXML .= "<set label='".FusionCharts::StripExtra($co_name2)."' value='".$co_value2."' />"; 
+        $co_value2 = IndustryQueries::GetShareVoiceCount($key->client_id,$startdate,$enddate,$industry,$backdate);
+        $strXML .= "<set label='".FusionCharts::StripExtra($co_name2)."' value='".$co_value2."' />";
     }
-    $companyvalue=IndustryQueries::GetShareVoiceCount(Yii::app()->user->company_id,$startdate,$enddate,$industry);
-    $strXML .= "<set label='".$company_name."' value='".$companyvalue."' />"; 
+    $companyvalue=IndustryQueries::GetShareVoiceCount(Yii::app()->user->company_id,$startdate,$enddate,$industry,$backdate);
+    $strXML .= "<set label='".$company_name."' value='".$companyvalue."' />";
     $strXML .= "</chart>";
     return $strXML;
 }
 
-public static function packageAVEMentionsXML($narrative, $array,$company_name, $startdate,$enddate,$industry)
+public static function packageAVEMentionsXML($narrative, $array,$company_name, $startdate,$enddate,$industry,$backdate)
 {
     $strXML = "<chart bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
     foreach ($array as $key) {
         $co_name2 = $key->Client;
-        $co_value2 = IndustryQueries::GetCompanyAve($key->client_id,$startdate,$enddate,$industry);
-        $strXML .= "<set label='".FusionCharts::StripExtra($co_name2)."' value='".$co_value2."' />"; 
+        $co_value2 = IndustryQueries::GetCompanyAve($key->client_id,$startdate,$enddate,$industry,$backdate);
+        $strXML .= "<set label='".FusionCharts::StripExtra($co_name2)."' value='".$co_value2."' />";
     }
-    $companyvalue=IndustryQueries::GetCompanyAve($key->client_id,$startdate,$enddate,$industry);
-    $strXML .= "<set label='".$company_name."' value='".$companyvalue."' />"; 
+    $companyvalue=IndustryQueries::GetCompanyAve(Yii::app()->user->company_id,$startdate,$enddate,$industry,$backdate);
+    $strXML .= "<set label='".$company_name."' value='".$companyvalue."' />";
     $strXML .= "</chart>";
     return $strXML;
 }
 
-public static function packageCATMentionsXML($narrative, $array, $startdate,$enddate,$industry)
+public static function packageCATMentionsXML($narrative, $array, $startdate,$enddate,$industry,$backdate)
 {
     $strXML = "<chart bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
     foreach ($array as $key) {
-        if($number = IndustryQueries::GetCatCount(Yii::app()->user->company_id,$startdate,$enddate,$industry,$key->Category_ID) > 0){
+        if($number = IndustryQueries::GetCatCount(Yii::app()->user->company_id,$startdate,$enddate,$industry,$key->Category_ID,$backdate) > 0){
             $cat_name = $key->Category_List;
-            $cat_value = IndustryQueries::GetCatCount(Yii::app()->user->company_id,$startdate,$enddate,$industry,$key->Category_ID);
-            $strXML .= "<set label='".$cat_name."' value='".$cat_value."' />"; 
+            $cat_value = IndustryQueries::GetCatCount(Yii::app()->user->company_id,$startdate,$enddate,$industry,$key->Category_ID,$backdate);
+            $strXML .= "<set label='".$cat_name."' value='".$cat_value."' />";
         }
     }
 
@@ -124,40 +124,31 @@ public static function packageCATMentionsXML($narrative, $array, $startdate,$end
     return $strXML;
 }
 
-public static function packagePICMentionsXML($narrative, $array, $startdate,$enddate,$industry)
+public static function packagePICMentionsXML($narrative, $array, $startdate,$enddate,$industry,$backdate)
 {
     $strXML = "<chart bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
     foreach ($array as $key) {
         $pic_name = $key->picture;
-        $pic_value = IndustryQueries::GetPicCount(Yii::app()->user->company_id,$startdate,$enddate,$industry,$key->picture);
-        $strXML .= "<set label='".$pic_name."' value='".$pic_value."' />"; 
+        $pic_value = IndustryQueries::GetPicCount(Yii::app()->user->company_id,$startdate,$enddate,$industry,$key->picture,$backdate);
+        $strXML .= "<set label='".$pic_name."' value='".$pic_value."' />";
     }
 
     $strXML .= "</chart>";
     return $strXML;
 }
 
-public static function packageTonMentionsXML($narrative, $array, $startdate,$enddate,$industry)
+public static function packageTonMentionsXML($narrative, $array, $startdate,$enddate,$industry,$backdate)
 {
     $strXML = "<chart bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
     foreach ($array as $key) {
         $ton_name = $key->tonality;
-        $ton_value = IndustryQueries::GetSpTonality(Yii::app()->user->company_id,$startdate,$enddate,$industry,$key->tonality);
-        $strXML .= "<set label='".$ton_name."' value='".$ton_value."' />"; 
+        $ton_value = IndustryQueries::GetSpTonality(Yii::app()->user->company_id,$startdate,$enddate,$industry,$key->tonality,$backdate);
+        $strXML .= "<set label='".$ton_name."' value='".$ton_value."' />";
     }
 
     $strXML .= "</chart>";
     return $strXML;
 }
-
-// public static function AVEXML($narrative, $co_name, $co_value, $other_value)
-// {
-//     $strXML = "<chart bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
-//     $strXML .= "<set label='".$co_name."' value='".$co_value."' />"; 
-//     $strXML .= "<set label='Others' value='".$other_value."' />"; 
-//     $strXML .= "</chart>";
-//     return $strXML;
-// }
 
 // renderChart renders the JavaScript + HTML code required to embed a chart.
 // This function assumes that you've already included the FusionCharts JavaScript class
@@ -172,7 +163,7 @@ public static function packageTonMentionsXML($narrative, $array, $startdate,$end
 // $debugMode - Whether to start the chart in debug mode
 // $registerWithJS - Whether to ask chart to register itself with JavaScript
 public static function renderChart($chartSWF, $strURL, $strXML, $chartId, $chartWidth, $chartHeight, $debugMode=false, $registerWithJS=false, $setTransparent="") {
-    //First we create a new DIV for each chart. We specify the name of DIV as "chartId"Div.         
+    //First we create a new DIV for each chart. We specify the name of DIV as "chartId"Div.
     //DIV names are case-sensitive.
 
     // The Steps in the script block below are:
@@ -181,11 +172,11 @@ public static function renderChart($chartSWF, $strURL, $strXML, $chartId, $chart
     //    (if there is a lag in relaying SWF from server). This text is also shown to users
     //    who do not have Flash Player installed. You can configure it as per your needs.
     //
-    //  2) The chart is rendered using FusionCharts Class. Each chart's instance (JavaScript) Id 
-    //     is named as chart_"chartId".     
+    //  2) The chart is rendered using FusionCharts Class. Each chart's instance (JavaScript) Id
+    //     is named as chart_"chartId".
     //
     //  3) Check whether we've to provide data using dataXML method or dataURL method
-    //     save the data for usage below 
+    //     save the data for usage below
     if ($strXML=="")
         $tempData = "//Set the dataURL of the chart\n\t\tchart_$chartId.setDataURL(\"$strURL\")";
     else
@@ -205,15 +196,15 @@ $render_chart = <<<RENDERCHART
     <div id="$chartIdDiv" align="center">
         Chart.
     </div>
-    <script type="text/javascript"> 
-        //Instantiate the Chart 
+    <script type="text/javascript">
+        //Instantiate the Chart
         var chart_$chartId = new FusionCharts("$chartSWF", "$chartId", "$chartWidth", "$chartHeight", "$ndebugMode", "$nregisterWithJS");
       chart_$chartId.setTransparent("$nsetTransparent");
     
         $tempData
         //Finally, render the chart.
         chart_$chartId.render("$chartIdDiv");
-    </script>   
+    </script>
     <!-- END Script Block for Chart $chartId -->
 RENDERCHART;
 
@@ -253,7 +244,7 @@ $HTML_chart = <<<HTMLCHART
     <!-- START Code Block for Chart $chartId -->
     <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="$chartWidth" height="$chartHeight" id="$chartId">
         <param name="allowScriptAccess" value="always" />
-        <param name="movie" value="$chartSWF"/>     
+        <param name="movie" value="$chartSWF"/>
         <param name="FlashVars" value="$strFlashVars&registerWithJS=$nregisterWithJS" />
         <param name="quality" value="high" />
         <param name="wmode" value="$nsetTransparent" />

@@ -10,6 +10,9 @@ $this->breadcrumbs=array('Industry Reports'=>array('industryreports/index'), 'Nu
 </div>
 <div class="col-md-9">
 <?php
+$csql = 'SELECT backdate from company WHERE company_id ='.Yii::app()->user->company_id;
+$company_words = Company::model()->findBySql($csql);
+$backdate = $company_words->backdate;
   $report_identifier = array();
   $company = Yii::app()->user->company_name;
   $narrative = 'Number of '.$company.' stories in ';
@@ -50,22 +53,22 @@ $this->breadcrumbs=array('Industry Reports'=>array('industryreports/index'), 'Nu
     switch ($repkey) {
       /* Load the Mentions Report */
       case 1:
-        $total = IndustryQueries::GetAllCompanyMentions($startdate,$enddate,$industry);
-        $ctotal = IndustryQueries::GetCompanyMentions(Yii::app()->user->company_id,$startdate,$enddate,$industry);
+        $total = IndustryQueries::GetAllCompanyMentions($startdate,$enddate,$industry,$backdate);
+        $ctotal = IndustryQueries::GetCompanyMentions(Yii::app()->user->company_id,$startdate,$enddate,$industry,$backdate);
         $ttotal = $total - $ctotal;
         echo '<h3>Number of Mentions</h3>';
         echo '<p>This simply gives an aggregate of the total number of stories that appeared in the media about your organisation or topic of interest being monitored. If the subscriber is interested in industry mentions, the report will aggregate the total number of stories for the industry and indicate which stories were about ´myself´ and how many were for the ´others´. The number of mentions is also reported by distribution by media-house.</p>';
         $chart_name = 'Number_of_Mentions';
         echo '<div style="padding:0px; background-color:#fff; border:0px solid #745C92; width: 100%;">';
-        $strXML = FusionCharts::packageXML($narrative, $company, 'Others', $ctotal, $ttotal);
+        $strXML = FusionCharts::packageXML($narrative, $company, 'Others', $ctotal, $ttotal,$backdate);
         $charty = new FusionCharts;
         echo FusionCharts::renderChart(Yii::app()->request->baseUrl . '/FusionCharts/FusionCharts/FusionCharts/Pie2D.swf', "", $strXML, $chart_name, 600, 300, false, true, true);
         echo '</div>';
         break;
       /* Load the AVE Report */
       case 2:
-        $avtotal = IndustryQueries::GetCompanyAve(Yii::app()->user->company_id,$startdate,$enddate,$industry);
-        $avttotal = IndustryQueries::GetAllCompanyAve(Yii::app()->user->company_id,$startdate,$enddate,$industry);
+        $avtotal = IndustryQueries::GetCompanyAve(Yii::app()->user->company_id,$startdate,$enddate,$industry,$backdate);
+        $avttotal = IndustryQueries::GetAllCompanyAve(Yii::app()->user->company_id,$startdate,$enddate,$industry,$backdate);
         $chart_name = 'AVE';
         echo '<h3>AVE</h3>';
         echo '<p>Ad Value Equivalent (AVE) is a measuring tool that calculates the value of the ´space´ or ´air-time´ used for a story on the basis of the rate-card of the particular media house. The value derived thus is calculated on the same basis an Ad of similar page coverage or air play placed on the same page or time segment would. AVE compares the subscriber´s values to those of other players in the industry if the subscription includes competitors or the entire industry.</p>';
@@ -73,16 +76,16 @@ $this->breadcrumbs=array('Industry Reports'=>array('industryreports/index'), 'Nu
         $ctext ='My Ave(Kshs.'.number_format($avtotal).')';
         $otext = 'Others (Kshs.'.number_format($avttotal).')';
         echo '<div style="padding:0px; background-color:#fff; border:0px solid #745C92; width: 100%;">';
-        $strXML = FusionCharts::packageXML($avnarrative, $ctext,$otext, $avtotal, $avttotal);
+        $strXML = FusionCharts::packageXML($avnarrative, $ctext,$otext, $avtotal, $avttotal,$backdate);
         $charty = new FusionCharts;
         echo FusionCharts::renderChart(Yii::app()->request->baseUrl . '/FusionCharts/FusionCharts/FusionCharts/Pie2D.swf', "", $strXML, $chart_name, 600, 300, false, true, true);
         echo '</div>';
         break;
       /* Load the Share of Voice/Ink - By Media Type Report */
       case 3:
-        $tv = IndustryQueries::GetShareVoiceMediaTV(Yii::app()->user->company_id,$startdate,$enddate,$industry);
-        $radio = IndustryQueries::GetShareVoiceMediaRadio(Yii::app()->user->company_id,$startdate,$enddate,$industry);
-        $print = IndustryQueries::GetShareVoiceMediaPrint(Yii::app()->user->company_id,$startdate,$enddate,$industry);
+        $tv = IndustryQueries::GetShareVoiceMediaTV(Yii::app()->user->company_id,$startdate,$enddate,$industry,$backdate);
+        $radio = IndustryQueries::GetShareVoiceMediaRadio(Yii::app()->user->company_id,$startdate,$enddate,$industry,$backdate);
+        $print = IndustryQueries::GetShareVoiceMediaPrint(Yii::app()->user->company_id,$startdate,$enddate,$industry,$backdate);
         $total = $tv+$radio+$print;
         $chart_name = 'Share_By_Media_Type';
         echo '<h3>Share of Voice/Ink - By Media Type</h3>';
@@ -91,7 +94,7 @@ $this->breadcrumbs=array('Industry Reports'=>array('industryreports/index'), 'Nu
         echo '<div style="padding:0px; background-color:#fff; border:0px solid #745C92; width: 100%;">';
         $xAxisName = 'Media';
         $yAxisName = 'Number of Mentions';
-        $strXML = FusionCharts::packageColumnXML($svmnarrative,$tv,$radio,$print,$total,$xAxisName,$yAxisName);
+        $strXML = FusionCharts::packageColumnXML($svmnarrative,$tv,$radio,$print,$total,$xAxisName,$yAxisName,$backdate);
         $charty = new FusionCharts;
         echo FusionCharts::renderChart(Yii::app()->request->baseUrl . '/FusionCharts/FusionCharts/FusionCharts/Column2D.swf', "", $strXML, $chart_name, 600, 300, false, true, true);
         echo '</div>';
@@ -103,9 +106,9 @@ $this->breadcrumbs=array('Industry Reports'=>array('industryreports/index'), 'Nu
         echo '<p>This report compares your company´s mentions to those of the top 10 companies in your industry</p>';
         $svm2narrative = $company.' Share of Voice - By Mentions Top Performers in '.$inda_text.' Between '.$drange;
         // Get Array of Companies
-        $wol = IndustryQueries::GetShareVoiceIndustry(Yii::app()->user->company_id,$startdate,$enddate,$industry);
+        $wol = IndustryQueries::GetShareVoiceIndustry(Yii::app()->user->company_id,$startdate,$enddate,$industry,$backdate);
         echo '<div style="padding:0px; background-color:#fff; border:0px solid #745C92; width: 100%;">';
-        $strXML = FusionCharts::packageMentionsXML($svm2narrative, $wol,$company, $startdate,$enddate,$industry);
+        $strXML = FusionCharts::packageMentionsXML($svm2narrative, $wol,$company, $startdate,$enddate,$industry,$backdate);
         $charty = new FusionCharts;
         echo FusionCharts::renderChart(Yii::app()->request->baseUrl . '/FusionCharts/FusionCharts/FusionCharts/Pie2D.swf', "", $strXML, $chart_name, 600, 300, false, true, true);
         echo '</div>';
@@ -117,9 +120,9 @@ $this->breadcrumbs=array('Industry Reports'=>array('industryreports/index'), 'Nu
         echo '<p>This report compares your AVE to those of the top 10 companies in your industry</p>';
         $svm3narrative = $company.' Share of Voice - By AVE Top Performers in '.$inda_text.' Between '.$drange;
         // Get Array of Companies
-        $aol = IndustryQueries::GetShareVoiceIndustry(Yii::app()->user->company_id,$startdate,$enddate,$industry);
+        $aol = IndustryQueries::GetShareVoiceIndustry(Yii::app()->user->company_id,$startdate,$enddate,$industry,$backdate);
         echo '<div style="padding:0px; background-color:#fff; border:0px solid #745C92; width: 100%;">';
-        $strXML = FusionCharts::packageAVEMentionsXML($svm3narrative, $aol,$company, $startdate,$enddate,$industry);
+        $strXML = FusionCharts::packageAVEMentionsXML($svm3narrative, $aol,$company, $startdate,$enddate,$industry,$backdate);
         $charty = new FusionCharts;
         echo FusionCharts::renderChart(Yii::app()->request->baseUrl . '/FusionCharts/FusionCharts/FusionCharts/Pie2D.swf', "", $strXML, $chart_name, 600, 300, false, true, true);
         echo '</div>';
@@ -133,7 +136,7 @@ $this->breadcrumbs=array('Industry Reports'=>array('industryreports/index'), 'Nu
         // Get the Array of Categories
         $cats = IndustryQueries::GetCategories();
         echo '<div style="padding:0px; background-color:#fff; border:0px solid #745C92; width: 100%;">';
-        $strXML = FusionCharts::packageCATMentionsXML($svm4narrative, $cats, $startdate,$enddate,$industry);
+        $strXML = FusionCharts::packageCATMentionsXML($svm4narrative, $cats, $startdate,$enddate,$industry,$backdate);
         $charty = new FusionCharts;
         echo FusionCharts::renderChart(Yii::app()->request->baseUrl . '/FusionCharts/FusionCharts/FusionCharts/Pie2D.swf', "", $strXML, $chart_name, 600, 300, false, true, true);
         echo '</div>';
@@ -146,7 +149,7 @@ $this->breadcrumbs=array('Industry Reports'=>array('industryreports/index'), 'Nu
         $pnarrative = $company.' Stories with Pictures in '.$inda_text.' Between '.$drange;
         $cats = IndustryQueries::GetPictures();
         echo '<div style="padding:0px; background-color:#fff; border:0px solid #745C92; width: 100%;">';
-        $strXML = FusionCharts::packagePICMentionsXML($pnarrative, $cats, $startdate,$enddate,$industry);
+        $strXML = FusionCharts::packagePICMentionsXML($pnarrative, $cats, $startdate,$enddate,$industry,$backdate);
         $charty = new FusionCharts;
         echo FusionCharts::renderChart(Yii::app()->request->baseUrl . '/FusionCharts/FusionCharts/FusionCharts/Pie2D.swf', "", $strXML, $chart_name, 600, 300, false, true, true);
         echo '</div>';
@@ -157,9 +160,9 @@ $this->breadcrumbs=array('Industry Reports'=>array('industryreports/index'), 'Nu
         echo '<h3>Tonality</h3>';
         echo '<p>Of the total number of media mentions, how many stories were positive, negative and neutral. This report will give an analysis indicating Positive, Negative and Neutral tonality of the stories over a period. This report can further drill down and aggregate tonality by Media-Houses. </p>';
         $tnarrative = 'Tonality of '.$company.' in '.$inda_text.' Between '.$drange;
-        $tons = IndustryQueries::GetTonality(Yii::app()->user->company_id,$startdate,$enddate,$industry);
+        $tons = IndustryQueries::GetTonality(Yii::app()->user->company_id,$startdate,$enddate,$industry,$backdate);
         echo '<div style="padding:0px; background-color:#fff; border:0px solid #745C92; width: 100%;">';
-        $strXML = FusionCharts::packageTonMentionsXML($tnarrative, $tons, $startdate,$enddate,$industry);
+        $strXML = FusionCharts::packageTonMentionsXML($tnarrative, $tons, $startdate,$enddate,$industry,$backdate);
         $charty = new FusionCharts;
         echo FusionCharts::renderChart(Yii::app()->request->baseUrl . '/FusionCharts/FusionCharts/FusionCharts/Pie2D.swf', "", $strXML, $chart_name, 600, 300, false, true, true);
         echo '</div>';
@@ -167,13 +170,13 @@ $this->breadcrumbs=array('Industry Reports'=>array('industryreports/index'), 'Nu
         break;
       /* Load the Default Report - Mentions */
       default:
-        $total = IndustryQueries::GetAllCompanyMentions($startdate,$enddate,$industry);
-        $ctotal = IndustryQueries::GetCompanyMentions(Yii::app()->user->company_id,$startdate,$enddate,$industry);
+        $total = IndustryQueries::GetAllCompanyMentions($startdate,$enddate,$industry,$backdate);
+        $ctotal = IndustryQueries::GetCompanyMentions(Yii::app()->user->company_id,$startdate,$enddate,$industry,$backdate);
         $ttotal = $total - $ctotal;
         $chart_name = 'default';
         echo '<h3>Default</h3>';
         echo '<div style="padding:0px; background-color:#fff; border:0px solid #745C92; width: 100%;">';
-        $strXML = FusionCharts::packageXML($narrative, $company,'Others', $ctotal, $ttotal);
+        $strXML = FusionCharts::packageXML($narrative, $company,'Others', $ctotal, $ttotal,$backdate);
         $charty = new FusionCharts;
         echo FusionCharts::renderChart(Yii::app()->request->baseUrl . '/FusionCharts/FusionCharts/FusionCharts/Pie2D.swf', "", $strXML, $chart_name, 600, 300, false, true, true);
         echo '</div>';

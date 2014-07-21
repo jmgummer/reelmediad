@@ -7,7 +7,7 @@ $this->breadcrumbs=array('Index');
 <?php $this->renderPartial('search_filter',array('model'=>$model)); ?>
 </div>
 <div class="col-md-9">
-<?php 
+<?php
 $todays = date('Y-m-d');
 $startdate = $enddate = $todays;
 $search = ' ';
@@ -33,7 +33,7 @@ if(isset($_POST['StorySearch'])){
 				<div class="search-params">
 				<?php echo '<br><strong>Key Words Searched : </strong> '.$search; ?>
 				</div>
-				<?php 
+				<?php
 				if($company_words){
 					if($pieces = explode(",", $company_words->keywords)){
 						foreach ($pieces as $key) {
@@ -59,6 +59,7 @@ if(isset($_POST['StorySearch'])){
     if(isset($model->storytype) && !empty($model->storytype)){
       $type_identifier= $model->storytype;
     }
+    $search = $model->search_text;
 }else{
 	$cat_identifier= 1;
 	$type_identifier= 1;
