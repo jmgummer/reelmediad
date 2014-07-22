@@ -23,18 +23,32 @@ public static function PrintStories($client)
 	}
 }
 
-public static function GetClientStory($client,$startdate,$enddate,$search,$backdate,$country_list)
+public static function GetClientStory($client,$startdate,$enddate,$search,$backdate,$country_list,$industries)
 {
 	$month = date('m');
 	$year = date('Y');
 	$story_month = 'story_'.$year.'_'.$month;
-	$q2 = 'SELECT * FROM story
-	inner join story_mention on story.Story_ID=story_mention.story_id
-	inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
-	where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
-	and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
-	and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
-	order by Media_House_List asc, StoryDate desc, page_no asc';
+	if(!empty($industries)){
+	  $q2 = 'SELECT distinct story.Story_ID FROM story
+    inner join story_mention on story.Story_ID=story_mention.story_id
+    inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
+    INNER JOIN story_industry on story_industry.story_id=story.Story_ID
+    INNER JOIN industry_subs ON story_industry.industry_id = industry_subs.industry_id
+    where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
+    and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
+    and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
+    and industry_subs.company_id ='.$client.' and industry_subs.industry_id IN('.$industries.')
+    order by Media_House_List asc, StoryDate desc, page_no asc';
+	}else{
+	  $q2 = 'SELECT distinct story.Story_ID FROM story
+  	inner join story_mention on story.Story_ID=story_mention.story_id
+  	inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
+  	where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
+  	and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
+  	and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
+  	order by Media_House_List asc, StoryDate desc, page_no asc';
+	}
+	
 	if($story = Story::model()->findAllBySql($q2)){
 		echo RecentStories::PrintTableHead();
 		foreach ($story as $key) {
@@ -48,7 +62,7 @@ public static function GetClientStory($client,$startdate,$enddate,$search,$backd
 	}
 }
 
-public static function GetElectronicStory($client,$startdate,$enddate,$search,$backdate,$country_list)
+public static function GetElectronicStory($client,$startdate,$enddate,$search,$backdate,$country_list,$industries)
 {
 	$month = date('m');
 	$year = date('Y');
@@ -72,7 +86,7 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 	}
 }
 
-public static function GetClientIndustryStory($client,$startdate,$enddate,$search,$backdate,$country_list)
+public static function GetClientIndustryStory($client,$startdate,$enddate,$search,$backdate,$country_list,$industries)
 {
 	$month = date('m');
 	$year = date('Y');
@@ -81,7 +95,11 @@ public static function GetClientIndustryStory($client,$startdate,$enddate,$searc
 	from story, story_industry, industry_subs, mediahouse
 	where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.')
 	and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.'
-	and story_industry.industry_id=industry_subs.industry_id and story.Media_ID="mp01"
+	and story_industry.industry_id=industry_subs.industry_id';
+	if(!empty($industries)){
+	  $q2 .= ' and industry_subs.industry_id IN('.$industries.')';
+	}
+	$q2 .=' and story.Media_ID="mp01"
 	and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 	and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
 	and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
@@ -99,7 +117,7 @@ public static function GetClientIndustryStory($client,$startdate,$enddate,$searc
 	}
 }
 
-public static function GetClientElectronicIndustryStory($client,$startdate,$enddate,$search,$backdate,$country_list)
+public static function GetClientElectronicIndustryStory($client,$startdate,$enddate,$search,$backdate,$country_list,$industries)
 {
 	$month = date('m');
 	$year = date('Y');
@@ -108,7 +126,11 @@ public static function GetClientElectronicIndustryStory($client,$startdate,$endd
 	from story, story_industry, industry_subs, mediahouse
 	where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.')
 	and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.'
-	and story_industry.industry_id=industry_subs.industry_id and story.Media_ID!="mp01"
+	and story_industry.industry_id=industry_subs.industry_id ';
+	if(!empty($industries)){
+	  $q2 .= ' and industry_subs.industry_id IN('.$industries.')';
+	}
+	$q2 .='	and story.Media_ID!="mp01"
 	and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 	and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
 	and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID

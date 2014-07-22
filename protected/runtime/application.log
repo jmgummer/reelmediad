@@ -10214,3 +10214,120 @@ REQUEST_URI=/reelmediad/home/print
 in C:\xampp\htdocs\reelmediad\protected\views\home\stories.php (92)
 in C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php (54)
 in C:\xampp\htdocs\reelmediad\index.php (13)
+2014/07/22 10:55:13 [error] [php] Invalid argument supplied for foreach() (C:\xampp\htdocs\reelmediad\protected\views\home\stories.php:26)
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): HomeController->renderFile()
+#1 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): HomeController->renderPartial()
+#2 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(54): HomeController->render()
+#3 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionPrint()
+#4 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): HomeController->runAction()
+#6 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): HomeController->filterAccessControl()
+#9 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): HomeController->runActionWithFilters()
+#12 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): HomeController->run()
+#13 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\reelmediad\index.php(13): CWebApplication->run()
+REQUEST_URI=/reelmediad/home/print
+in C:\xampp\htdocs\reelmediad\protected\views\home\stories.php (26)
+in C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php (54)
+in C:\xampp\htdocs\reelmediad\index.php (13)
+2014/07/22 11:37:13 [error] [php] Missing argument 7 for RecentStories::GetClientIndustryStory(), called in C:\xampp\htdocs\reelmediad\protected\views\home\stories.php on line 99 and defined (C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php:89)
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): HomeController->renderInternal()
+#1 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): HomeController->renderFile()
+#2 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): HomeController->renderPartial()
+#3 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(54): HomeController->render()
+#4 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionPrint()
+#5 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams()
+#6 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): HomeController->runAction()
+#7 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#9 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): HomeController->filterAccessControl()
+#10 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#11 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#12 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): HomeController->runActionWithFilters()
+#13 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): HomeController->run()
+#14 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#15 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#16 C:\xampp\htdocs\reelmediad\index.php(13): CWebApplication->run()
+REQUEST_URI=/reelmediad/home/print
+in C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php (89)
+in C:\xampp\htdocs\reelmediad\protected\views\home\stories.php (99)
+in C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php (54)
+2014/07/22 11:37:45 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'story.Media_ID="mp01"
+	and story.StoryDate>"2008-01-01" and mediahouse.country_i' at line 5. The SQL statement executed was: SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story
+	from story, story_industry, industry_subs, mediahouse
+	where story.story_id NOT IN (select story_id from story_mention where client_id=1)
+	and story.story_id=story_industry.story_id and industry_subs.company_id=1
+	and story_industry.industry_id=industry_subs.industry_idand story.Media_ID="mp01"
+	and story.StoryDate>"2008-01-01" and mediahouse.country_id IN ("1")
+	and story.step3=1 and StoryDate between "2014-07-22" and "2014-07-22"
+	and story.story like "% %" and story.Media_House_ID=mediahouse.Media_House_ID
+	order by Media_House_List asc, StoryDate desc.
+in C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php (104)
+in C:\xampp\htdocs\reelmediad\protected\views\home\stories.php (99)
+in C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php (54)
+2014/07/22 11:37:45 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'story.Media_ID="mp01"
+	and story.StoryDate>"2008-01-01" and mediahouse.country_i' at line 5. The SQL statement executed was: SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story
+	from story, story_industry, industry_subs, mediahouse
+	where story.story_id NOT IN (select story_id from story_mention where client_id=1)
+	and story.story_id=story_industry.story_id and industry_subs.company_id=1
+	and story_industry.industry_id=industry_subs.industry_idand story.Media_ID="mp01"
+	and story.StoryDate>"2008-01-01" and mediahouse.country_id IN ("1")
+	and story.step3=1 and StoryDate between "2014-07-22" and "2014-07-22"
+	and story.story like "% %" and story.Media_House_ID=mediahouse.Media_House_ID
+	order by Media_House_List asc, StoryDate desc' in C:\xampp\htdocs\yii_back\framework\db\CDbCommand.php:541
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\db\CDbCommand.php(395): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(1527): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php(104): CActiveRecord->findAllBySql('SELECT distinct...')
+#3 C:\xampp\htdocs\reelmediad\protected\views\home\stories.php(99): RecentStories::GetClientIndustryStory('1', '2014-07-22', '2014-07-22', ' ', '2008-01-01', 1, '')
+#4 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#5 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#6 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#7 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): CController->renderPartial('stories', Array, true)
+#8 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(54): CController->render('stories', Array)
+#9 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionPrint()
+#10 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('print')
+#19 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/print')
+#20 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/reelmediad/home/print
+---
+2014/07/22 13:29:22 [error] [php] Missing argument 8 for RecentStories::GetClientElectronicIndustryStory(), called in C:\xampp\htdocs\reelmediad\protected\views\home\stories.php on line 103 and defined (C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php:120)
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): HomeController->renderInternal()
+#1 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): HomeController->renderFile()
+#2 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): HomeController->renderPartial()
+#3 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(54): HomeController->render()
+#4 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionPrint()
+#5 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams()
+#6 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): HomeController->runAction()
+#7 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#9 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): HomeController->filterAccessControl()
+#10 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#11 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#12 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): HomeController->runActionWithFilters()
+#13 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): HomeController->run()
+#14 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#15 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#16 C:\xampp\htdocs\reelmediad\index.php(13): CWebApplication->run()
+REQUEST_URI=/reelmediad/home/print
+in C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php (120)
+in C:\xampp\htdocs\reelmediad\protected\views\home\stories.php (103)
+in C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php (54)
