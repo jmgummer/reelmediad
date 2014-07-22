@@ -10109,3 +10109,108 @@ REQUEST_URI=/reelmediad/industryreports/mentions
 in C:\xampp\htdocs\reelmediad\protected\components\IndustryQueries.php (55)
 in C:\xampp\htdocs\reelmediad\protected\components\FusionCharts.php (103)
 in C:\xampp\htdocs\reelmediad\protected\views\industryreports\mentions.php (125)
+2014/07/21 15:37:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sound".' in C:\xampp\htdocs\yii_back\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CController.php(270): CController->missingAction('sound')
+#1 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('sound')
+#2 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('radiotv/sound/m...')
+#3 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmediad/radiotv/sound/messagebox.mp3
+HTTP_REFERER=http://192.168.0.234/reelmediad/radiotv/index
+---
+2014/07/21 15:38:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/f304dac7/img/glyphicons-halflings.png".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f304dac7...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/assets/f304dac7/img/glyphicons-halflings.png
+HTTP_REFERER=http://192.168.0.234/reelmediad/assets/f304dac7/css/demo.css
+---
+2014/07/21 15:58:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/f304dac7/img/glyphicons-halflings.png".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f304dac7...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/assets/f304dac7/img/glyphicons-halflings.png
+HTTP_REFERER=http://192.168.0.234/reelmediad/assets/f304dac7/css/demo.css
+---
+2014/07/22 07:14:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/f304dac7/img/glyphicons-halflings.png".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f304dac7...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/assets/f304dac7/img/glyphicons-halflings.png
+HTTP_REFERER=http://192.168.0.234/reelmediad/assets/f304dac7/css/demo.css
+---
+2014/07/22 09:34:58 [error] [php] Missing argument 7 for RecentStories::GetElectronicStory(), called in C:\xampp\htdocs\reelmediad\protected\views\home\stories.php on line 228 and defined (C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php:51)
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): HomeController->renderInternal()
+#1 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): HomeController->renderFile()
+#2 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): HomeController->renderPartial()
+#3 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(54): HomeController->render()
+#4 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionPrint()
+#5 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams()
+#6 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): HomeController->runAction()
+#7 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#9 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): HomeController->filterAccessControl()
+#10 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#11 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#12 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): HomeController->runActionWithFilters()
+#13 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): HomeController->run()
+#14 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#15 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#16 C:\xampp\htdocs\reelmediad\index.php(13): CWebApplication->run()
+REQUEST_URI=/reelmediad/home/print
+in C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php (51)
+in C:\xampp\htdocs\reelmediad\protected\views\home\stories.php (228)
+in C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php (54)
+2014/07/22 09:39:45 [error] [php] Undefined variable: inda_text (C:\xampp\htdocs\reelmediad\protected\views\home\stories.php:92)
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): HomeController->renderFile()
+#1 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): HomeController->renderPartial()
+#2 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(54): HomeController->render()
+#3 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionPrint()
+#4 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): HomeController->runAction()
+#6 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): HomeController->filterAccessControl()
+#9 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): HomeController->runActionWithFilters()
+#12 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): HomeController->run()
+#13 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\reelmediad\index.php(13): CWebApplication->run()
+REQUEST_URI=/reelmediad/home/print
+in C:\xampp\htdocs\reelmediad\protected\views\home\stories.php (92)
+in C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php (54)
+in C:\xampp\htdocs\reelmediad\index.php (13)
+2014/07/22 09:41:26 [error] [php] Undefined variable: inda_text (C:\xampp\htdocs\reelmediad\protected\views\home\stories.php:92)
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): HomeController->renderFile()
+#1 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): HomeController->renderPartial()
+#2 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(54): HomeController->render()
+#3 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionPrint()
+#4 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): HomeController->runAction()
+#6 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#8 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): HomeController->filterAccessControl()
+#9 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#10 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): HomeController->runActionWithFilters()
+#12 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): HomeController->run()
+#13 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#14 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#15 C:\xampp\htdocs\reelmediad\index.php(13): CWebApplication->run()
+REQUEST_URI=/reelmediad/home/print
+in C:\xampp\htdocs\reelmediad\protected\views\home\stories.php (92)
+in C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php (54)
+in C:\xampp\htdocs\reelmediad\index.php (13)

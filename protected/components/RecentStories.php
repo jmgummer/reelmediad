@@ -60,13 +60,13 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 	and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
 	order by Media_House_List asc, StoryDate desc';
 	if($story = Story::model()->findAllBySql($q2)){
-		echo RecentStories::PrintTableHead();
+		echo RecentStories::ElectronicTableHead();
 		foreach ($story as $key) {
 			if($story = RecentStories::GetStories($key->Story_ID)){
-				echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+				echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->IndustryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
 			}
 		}
-		echo RecentStories::PrintTableEnd();
+		echo RecentStories::ElectronicTableEnd();
 	}else{
 		echo 'No Records Found';
 	}
@@ -114,13 +114,13 @@ public static function GetClientElectronicIndustryStory($client,$startdate,$endd
 	and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
 	order by Media_House_List asc, StoryDate desc';
 	if($story = Story::model()->findAllBySql($q2)){
-		echo RecentStories::PrintTableHead();
+		echo RecentStories::ElectronicTableHead();
 		foreach ($story as $key) {
 			if($story = RecentStories::GetStories($key->Story_ID)){
-				echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+				echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->IndustryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
 			}
 		}
-		echo RecentStories::PrintTableEnd();
+		echo RecentStories::ElectronicTableEnd();
 	}else{
 		echo 'No Records Found';
 	}
@@ -158,6 +158,19 @@ public static function PrintTableHead(){
 	<th style="width:11%;">DATE</th><th>PUBLICATION</th><th>JOURNALIST</th><th>HEADLINE/SUBJECT</th><th>PAGE</th><th>PUBLICATION TYPE</th><th>PICTURE</th><th>EFFECT</th><th style="text-align:right;">AVE(Kshs.)</th>
 	</thead>';
 }
+
+/*
+* Print The Top Section of Every Table
+* NB - Just for the Electronic Section
+*/
+public static function ElectronicTableHead(){
+	return '<div class="widget-body">
+	<div>
+	<table id="dt_basic" class="table table-striped table-bordered table-hover">
+	<thead>
+	<th style="width:11%;">DATE</th><th>STATION</th><th>JOURNALIST</th><th>SUMMARY</th><th>TIME</th><th>DURATION</th><th>CATEGORY</th><th>EFFECT</th><th style="text-align:right;">AVE(Kshs.)</th>
+	</thead>';
+}
 /*
 * Print The Body of the Table This function may be called recursively
 * NB - Just for the Print Section
@@ -183,5 +196,15 @@ public static function PrintTableEnd(){
 	return '</table></div></div>';
 }
 
+/*
+* Close the Table and Its Bottom section
+* NB - Just for the Electronic Section
+*/
+public static function ElectronicTableEnd(){
+	return '</table></div></div>';
 }
+
+}
+
+
 ?>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 ?>
 <div id="wid-id-0" class="jarviswidget jarviswidget-sortable"style="" role="widget">
@@ -37,7 +37,7 @@
 			</div>
 			<hr class="simple"></hr>
 			<div class="form-group">
-				<?php echo $form->dropDownListRow($model, 'industry', Industry::model()->getIndustryList(), array('multiple'=>true, 'class'=>'form-control')); ?>
+				<?php echo $form->dropDownListRow($model, 'industry', Industry::model()->getIndustryList(), array('prompt'=>'All','multiple'=>true, 'class'=>'form-control')); ?>
 			</div>
 			<hr class="simple"></hr>
 			<label class="checkbox">
