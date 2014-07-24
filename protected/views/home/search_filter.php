@@ -40,10 +40,6 @@
 				<?php echo $form->dropDownListRow($model, 'industry', Industry::model()->getIndustryList(), array('prompt'=>'All','multiple'=>true, 'class'=>'form-control')); ?>
 			</div>
 			<hr class="simple"></hr>
-			<label class="checkbox">
-				<?php echo $form->checkBoxRow($model,'create_sheet', array('value'=>1, 'uncheckValue'=>0)); ?>
-			</label>
-			<hr class="simple"></hr>
 			
 		</fieldset>
 		<footer>

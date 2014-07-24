@@ -104,7 +104,7 @@
 						<a href="<?=Yii::app()->createUrl("home/index");?>" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
 					</li>
 					<li>
-						<a href="<?=Yii::app()->createUrl("home/print");?>" title="Stories"><i class="fa fa-lg fa-fw fa-pencil"></i> <span class="menu-item-parent">My Stories</span></a>
+						<a href="<?=Yii::app()->createUrl("home/print");?>" title="Stories"><i class="fa fa-lg fa-fw fa-pencil"></i> <span class="menu-item-parent">Stories</span></a>
 					</li>
 					<li>
 						<a href="<?=Yii::app()->createUrl("archive/index");?>" title="Print Archive"><i class="fa fa-lg fa-fw fa-file-archive-o"></i> <span class="menu-item-parent">Print Archive</span></a>

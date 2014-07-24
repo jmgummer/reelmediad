@@ -1,8 +1,8 @@
 <?php
 /**
-* This Class Is used to generate the PDF Reports
+* This Class Is used to Generate Excel Sheets
 */
-class PdfStories{
+class ExcelStories{
 
 /**
 * This function handles all the heavylifting for Print Stories, fetch story and print out
@@ -11,13 +11,13 @@ class PdfStories{
 public static function PrintStories($client)
 {
 	if($clientstories = StoryClient::model()->findAllBySql("SELECT story_id FROM story_client WHERE client_id = $client ORDER BY auto_id DESC LIMIT 20")){
-		echo PdfStories::PrintTableHead();
+		echo ExcelStories::PrintTableHead();
 		foreach ($clientstories as $key) {
-			if($story = PdfStories::GetStories($key->story_id)){
-				echo PdfStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE);
+			if($story = ExcelStories::GetStories($key->story_id)){
+				echo ExcelStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE);
 			}
 		}
-		echo PdfStories::PrintTableEnd();
+		echo ExcelStories::PrintTableEnd();
 	}else{
 		return 'No Stories exist';
 	}
@@ -50,13 +50,13 @@ public static function GetClientStory($client,$startdate,$enddate,$search,$backd
 	}
 	
 	if($story = Story::model()->findAllBySql($q2)){
-		echo PdfStories::PrintTableHead();
+		echo ExcelStories::PrintTableHead();
 		foreach ($story as $key) {
-			if($story = PdfStories::GetStories($key->Story_ID)){
-				echo PdfStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+			if($story = ExcelStories::GetStories($key->Story_ID)){
+				echo ExcelStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
 			}
 		}
-		echo PdfStories::PrintTableEnd();
+		echo ExcelStories::PrintTableEnd();
 	}else{
 		echo 'No Records Found';
 	}
@@ -74,13 +74,13 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 	and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
 	order by Media_House_List asc, StoryDate desc';
 	if($story = Story::model()->findAllBySql($q2)){
-		echo PdfStories::ElectronicTableHead();
+		echo ExcelStories::ElectronicTableHead();
 		foreach ($story as $key) {
-			if($story = PdfStories::GetStories($key->Story_ID)){
-				echo PdfStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->IndustryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+			if($story = ExcelStories::GetStories($key->Story_ID)){
+				echo ExcelStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->IndustryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
 			}
 		}
-		echo PdfStories::ElectronicTableEnd();
+		echo ExcelStories::ElectronicTableEnd();
 	}else{
 		echo 'No Records Found';
 	}
@@ -105,13 +105,13 @@ public static function GetClientIndustryStory($client,$startdate,$enddate,$searc
 	and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
 	order by Media_House_List asc, StoryDate desc';
 	if($story = Story::model()->findAllBySql($q2)){
-		echo PdfStories::PrintTableHead();
+		echo ExcelStories::PrintTableHead();
 		foreach ($story as $key) {
-			if($story = PdfStories::GetStories($key->Story_ID)){
-				echo PdfStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+			if($story = ExcelStories::GetStories($key->Story_ID)){
+				echo ExcelStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
 			}
 		}
-		echo PdfStories::PrintTableEnd();
+		echo ExcelStories::PrintTableEnd();
 	}else{
 		echo 'No Records Found';
 	}
@@ -136,13 +136,13 @@ public static function GetClientElectronicIndustryStory($client,$startdate,$endd
 	and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
 	order by Media_House_List asc, StoryDate desc';
 	if($story = Story::model()->findAllBySql($q2)){
-		echo PdfStories::ElectronicTableHead();
+		echo ExcelStories::ElectronicTableHead();
 		foreach ($story as $key) {
-			if($story = PdfStories::GetStories($key->Story_ID)){
-				echo PdfStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->IndustryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+			if($story = ExcelStories::GetStories($key->Story_ID)){
+				echo ExcelStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->IndustryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
 			}
 		}
-		echo PdfStories::ElectronicTableEnd();
+		echo ExcelStories::ElectronicTableEnd();
 	}else{
 		echo 'No Records Found';
 	}

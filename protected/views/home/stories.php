@@ -43,7 +43,12 @@ if(isset($_POST['StorySearch'])){
 	
 	?>
 	<div id="wid-id-0" class="jarviswidget jarviswidget-sortable"style="" role="widget">
-		<header role="heading"><h2>Print PDF and Create Spreadsheets ? <a href="<?=Yii::app()->createUrl("home/pdf?startdate=$startdate&enddate=$enddate&search=$search&industries=$industries&cat_identifier=$cat_identifier&type_identifier=$type_identifier");?>" class="btn btn-primary btn-xs pdf-excel">PDF</a></h2></header>
+		<header role="heading">
+			<h2>Print PDF and Create Spreadsheets ? 
+				<a href="<?=Yii::app()->createUrl("home/pdf?startdate=$startdate&enddate=$enddate&search=$search&industries=$industries&cat_identifier=$cat_identifier&type_identifier=$type_identifier");?>" class="btn btn-danger btn-xs pdf-excel">PDF</a>
+				<a href="<?=Yii::app()->createUrl("home/excel?startdate=$startdate&enddate=$enddate&search=$search&industries=$industries&cat_identifier=$cat_identifier&type_identifier=$type_identifier");?>" class="btn btn-success btn-xs pdf-excel">EXCEL</a>
+			</h2>
+		</header>
 	</div>
 	<div id="wid-id-0" class="jarviswidget jarviswidget-sortable"style="" role="widget">
 		<header role="heading"><h2>Company : <?php echo Yii::app()->user->company_name; ?> <strong>Search</strong> for Dates between <?php echo $startdate.' and '.$enddate; ?></h2></header>
@@ -71,7 +76,12 @@ if(isset($_POST['StorySearch'])){
 	<?php
 }else{ ?>
 	<div id="wid-id-0" class="jarviswidget jarviswidget-sortable"style="" role="widget">
-		<header role="heading"><h2>Print PDF and Create Spreadsheets ? <a href="<?=Yii::app()->createUrl("home/pdf");?>" class="btn btn-primary btn-xs pdf-excel">PDF</a></h2></header>
+		<header role="heading">
+			<h2>Print PDF and Create Spreadsheets ? 
+				<a href="<?=Yii::app()->createUrl("home/pdf");?>" class="btn btn-danger btn-xs pdf-excel">PDF</a> 
+				<a href="<?=Yii::app()->createUrl("home/excel");?>" class="btn btn-success btn-xs pdf-excel">EXCEL</a>
+			</h2>
+		</header>
 	</div>
 	<?php
 }
@@ -296,7 +306,7 @@ if($type_identifier==3){
 	clear: both;
 }
 .pdf-excel{
-	margin: 5px 10px;
+	margin: 5px 1px;
 }
 #chat-body {
     background: linear-gradient(to bottom, #F5FCFF 0px, #FFF 100%) repeat scroll 0% 0% transparent;
