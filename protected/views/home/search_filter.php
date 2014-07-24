@@ -44,9 +44,7 @@
 				<?php echo $form->checkBoxRow($model,'create_sheet', array('value'=>1, 'uncheckValue'=>0)); ?>
 			</label>
 			<hr class="simple"></hr>
-			<label class="checkbox">
-				<?php echo $form->checkBoxRow($model,'create_pdf',array('value'=>1, 'uncheckValue'=>0)); ?>
-			</label>
+			
 		</fieldset>
 		<footer>
 		<?php echo CHtml::submitButton('Generate', array('class'=>'btn btn-primary')); ?>

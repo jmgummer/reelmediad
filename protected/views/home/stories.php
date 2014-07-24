@@ -7,6 +7,7 @@ $this->breadcrumbs=array('Index');
 <?php $this->renderPartial('search_filter',array('model'=>$model)); ?>
 </div>
 <div class="col-md-9">
+
 <?php
 $todays = date('Y-m-d');
 $startdate = $enddate = $todays;
@@ -15,6 +16,10 @@ $search = ' ';
 $country = 1;
 $industries = '';
 // Adding backdate
+
+$cat_identifier = 1;
+$type_identifier = 1;
+
 $company_words = Company::model()->find('company_id=:a order by keywords', array(':a'=>Yii::app()->user->company_id));
 $backdate = $company_words->backdate;
 
@@ -24,13 +29,22 @@ if(isset($_POST['StorySearch'])){
 	$search = $model->search_text;
 	$inda=array();
 	if(isset($model->industry) && !empty($model->industry)){
-    foreach ($model->industry as $key) {
-      $inda[] = $key;
-    }
-    $industries = implode(', ', $inda);
+	    foreach ($model->industry as $key) {
+	      $inda[] = $key;
+	    }
+	    $industries = implode(', ', $inda);
 	}
+	if(isset($model->storycategory) && !empty($model->storycategory)){
+      $cat_identifier= $model->storycategory;
+    }
+    if(isset($model->storytype) && !empty($model->storytype)){
+      $type_identifier= $model->storytype;
+    }
 	
 	?>
+	<div id="wid-id-0" class="jarviswidget jarviswidget-sortable"style="" role="widget">
+		<header role="heading"><h2>Print PDF and Create Spreadsheets ? <a href="<?=Yii::app()->createUrl("home/pdf?startdate=$startdate&enddate=$enddate&search=$search&industries=$industries&cat_identifier=$cat_identifier&type_identifier=$type_identifier");?>" class="btn btn-primary btn-xs pdf-excel">PDF</a></h2></header>
+	</div>
 	<div id="wid-id-0" class="jarviswidget jarviswidget-sortable"style="" role="widget">
 		<header role="heading"><h2>Company : <?php echo Yii::app()->user->company_name; ?> <strong>Search</strong> for Dates between <?php echo $startdate.' and '.$enddate; ?></h2></header>
 				
@@ -55,23 +69,13 @@ if(isset($_POST['StorySearch'])){
 		<footer class="reveal-footer"><button class="btn btn-primary">View Keywords</button></footer>
 	</div>
 	<?php
+}else{ ?>
+	<div id="wid-id-0" class="jarviswidget jarviswidget-sortable"style="" role="widget">
+		<header role="heading"><h2>Print PDF and Create Spreadsheets ? <a href="<?=Yii::app()->createUrl("home/pdf");?>" class="btn btn-primary btn-xs pdf-excel">PDF</a></h2></header>
+	</div>
+	<?php
 }
 
-$cat_identifier = 1;
-$type_identifier = 1;
-if(isset($_POST['StorySearch'])){
-	if(isset($model->storycategory) && !empty($model->storycategory)){
-      $cat_identifier= $model->storycategory;
-    }
-    if(isset($model->storytype) && !empty($model->storytype)){
-      $type_identifier= $model->storytype;
-    }
-    $search = $model->search_text;
-    
-}else{
-	$cat_identifier= 1;
-	$type_identifier= 1;
-}
 if($type_identifier==1){
 	if($cat_identifier==1){
 		echo '<div class="widget-body">
@@ -290,6 +294,9 @@ if($type_identifier==3){
 .search-params{
 	padding: 10px 13px;
 	clear: both;
+}
+.pdf-excel{
+	margin: 5px 10px;
 }
 #chat-body {
     background: linear-gradient(to bottom, #F5FCFF 0px, #FFF 100%) repeat scroll 0% 0% transparent;

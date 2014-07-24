@@ -118,6 +118,32 @@ return array(
             'cleanPost'     => false,
             'cleanGet'      => false,
         ),
+
+        'ePdf2' => array(
+	        'class'         => 'ext.yii-pdf.EYiiPdf',
+	        'params'        => array(
+	            'mpdf'     => array(
+	                'librarySourcePath' => 'application.vendors.mpdf.*',
+	                'constants'         => array(
+	                    '_MPDF_TEMP_PATH' => Yii::getPathOfAlias('application.runtime'),
+	                ),
+	                'class'=>'mpdf', // the literal class filename to be loaded from the vendors folder
+	                'defaultParams'     => array( // More info: http://mpdf1.com/manual/index.php?tid=184
+	                    'mode'              => '', //  This parameter specifies the mode of the new document.
+	                    'format'            => 'A3', // format A4, A5, ...
+	                    'default_font_size' => 11, // Sets the default document font size in points (pt)
+	                    'default_font'      => 'Arial', // Sets the default font-family for the new document.
+	                    'mgl'               => 15, // margin_left. Sets the page margins for the new document.
+	                    'mgr'               => 15, // margin_right
+	                    'mgt'               => 16, // margin_top
+	                    'mgb'               => 16, // margin_bottom
+	                    'mgh'               => 9, // margin_header
+	                    'mgf'               => 9, // margin_footer
+	                    'orientation'       => 'L', // landscape or portrait orientation
+	                ),
+	            ),
+	        ),
+	    ),
 	),
 
 	// application-level parameters that can be accessed

@@ -7,6 +7,7 @@ $this->breadcrumbs=array('Radio/TV Reports'=>array('radiotv/index'), 'Radio/TV')
 	<?php $this->renderPartial('search_filter',array('model'=>$model)); ?>
 </div>
 <div class="col-md-9">
+
 <?php
 
 $todaysdate=date("Y-m-d");
