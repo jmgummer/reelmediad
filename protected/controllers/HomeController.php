@@ -70,55 +70,76 @@ class HomeController extends Controller
 
 	public function actionExcel()
 	{
-		// Create new PHPExcel object
-		$PHPExcel = new PHPExcel();
-			
-		// Set properties
-		$PHPExcel->getProperties()->setCreator("Reelforge")
-		->setTitle("Reelforge Reports")
-		->setSubject("Reelforge Reports")
-		->setDescription("Reelforge Reports");
+		$todays = date('Y-m-d');
+		$startdate = $enddate = $todays;
+		$search = ' ';
+		/*
+		*  Adding Country Code
+		*  Current Default value is Kenya
+		*/
+		$country = 1;
+		$industries = '';
+		// Adding backdate
+		$cat_identifier = 1;
+		$type_identifier = 1;
 
-		// Add some data
-		$PHPExcel->setActiveSheetIndex(0)
-		->setCellValue('A1', 'DATE')
-		->setCellValue('B1', 'PUBLICATION')
-		->setCellValue('C1', 'JOURNALIST')
-		->setCellValue('D1', 'HEADLINE/SUBJECT')
-		->setCellValue('E1', 'PAGE')
-		->setCellValue('F1', 'PUBLICATION TYPE')
-		->setCellValue('G1', 'PICTURE')
-		->setCellValue('H1', 'EFFECT')
-		->setCellValue('I1', 'AVE(Kshs.)');
+		$company_words = Company::model()->find('company_id=:a order by keywords', array(':a'=>Yii::app()->user->company_id));
+		$backdate = $company_words->backdate;
 
-		/* Add Values to the Spreadsheet */
+		if(isset($_GET['startdate'])){
+		  $startdate= $_GET['startdate'];
+		}
+		if(isset($_GET['enddate'])){
+		  $enddate= $_GET['enddate'];
+		}
+		if(isset($_GET['search'])){
+		  $search= $_GET['search'];
+		}
+		if(isset($_GET['industries'])){
+		  $industries= $_GET['industries'];
+		}
 
-		//Start from second row
-        $count = 2;
-        foreach($model as $rows)
-        {
-            $PHPExcel->getActiveSheet()
-            ->setCellValue("A$count", $rows->name)
-            ->setCellValue("B$count", $rows->description)
-            ->setCellValue("C$count", $rows->price)
-            ->setCellValue("G$count", $rows->error);
-            $count++;
-        }
+		if(isset($_GET['cat_identifier'])){
+		  $cat_identifier= $_GET['cat_identifier'];
+		}
+		if(isset($_GET['type_identifier'])){
+		  $type_identifier= $_GET['type_identifier'];
+		}
 
-        // Rename sheet
-		$PHPExcel->getActiveSheet()->setTitle('Stories');
-
-		// Set active sheet index to the first sheet,
-		// so Excel opens this as the first sheet
-		$PHPExcel->setActiveSheetIndex(0);
-			
-		// Redirect output to a clients web browser (Excel2003)
-		header('Content-Type: application/excel');
-		header('Content-Disposition: attachment;filename="Business_Items_Error.xls"');
-		header('Cache-Control: max-age=0');
-
-		$objWriter = PHPExcel_IOFactory::createWriter($PHPExcel, 'Excel5');
-		$objWriter->save('php://output');
+		if($type_identifier==1){
+			if($cat_identifier==1){
+				$option = 1;
+			}
+			if($cat_identifier==2){
+				$option = 2;
+			}
+			if($cat_identifier==3){
+				$option = 3;
+			}
+		}
+		if($type_identifier==2){
+			if($cat_identifier==1){
+				$option = 4;
+			}
+			if($cat_identifier==2){
+				$option = 5;
+			}
+			if($cat_identifier==3){
+				$option = 6;
+			}
+		}
+		if($type_identifier==3){
+			if($cat_identifier==1){
+				$option = 7;
+			}
+			if($cat_identifier==2){
+				$option = 8;
+			}
+			if($cat_identifier==3){
+				$option = 9;
+			}
+		}
+    	$stories = ExcelStories::GetMainOption(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries,$option);
 		Yii::app()->end();
 	}
 

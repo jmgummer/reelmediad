@@ -10625,3 +10625,378 @@ Stack trace:
 REQUEST_URI=/reelmediad/home/excel?startdate=2014-07-24&enddate=2014-07-24&search=&industries=&cat_identifier=1&type_identifier=3
 HTTP_REFERER=http://192.168.0.234/reelmediad/home/print
 ---
+2014/07/24 16:06:35 [error] [php] include(PHPExcel.php): failed to open stream: No such file or directory (C:\xampp\htdocs\yii_back\framework\YiiBase.php:421)
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(75): spl_autoload_call()
+#1 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionExcel()
+#2 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams()
+#3 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): HomeController->runAction()
+#4 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#5 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#6 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): HomeController->filterAccessControl()
+#7 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#8 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#9 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): HomeController->runActionWithFilters()
+#10 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): HomeController->run()
+#11 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#12 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#13 C:\xampp\htdocs\reelmediad\index.php(13): CWebApplication->run()
+REQUEST_URI=/reelmediad/home/excel
+in C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php (75)
+in C:\xampp\htdocs\reelmediad\index.php (13)
+2014/07/24 16:25:26 [error] [php] Undefined offset: 1 (C:\xampp\htdocs\reelmediad\protected\extensions\phpexcel\PHPExcel\Cell.php:759)
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionExcel()
+#1 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): HomeController->runAction()
+#3 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#4 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#5 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): HomeController->filterAccessControl()
+#6 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#7 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#8 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): HomeController->runActionWithFilters()
+#9 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): HomeController->run()
+#10 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#11 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#12 C:\xampp\htdocs\reelmediad\index.php(13): CWebApplication->run()
+REQUEST_URI=/reelmediad/home/excel
+in C:\xampp\htdocs\reelmediad\protected\extensions\phpexcel\PHPExcel\Cell.php (759)
+in C:\xampp\htdocs\reelmediad\protected\extensions\phpexcel\PHPExcel\Worksheet.php (1271)
+in C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php (95)
+2014/07/24 16:40:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sound".' in C:\xampp\htdocs\yii_back\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CController.php(270): CController->missingAction('sound')
+#1 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('sound')
+#2 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/sound/mess...')
+#3 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmediad/home/sound/messagebox.mp3
+HTTP_REFERER=http://192.168.0.234/reelmediad/home/index
+---
+2014/07/24 16:40:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/f304dac7/img/glyphicons-halflings.png".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f304dac7...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/assets/f304dac7/img/glyphicons-halflings.png
+HTTP_REFERER=http://192.168.0.234/reelmediad/assets/f304dac7/css/demo.css
+---
+2014/07/25 07:41:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/f304dac7/img/glyphicons-halflings.png".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f304dac7...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/assets/f304dac7/img/glyphicons-halflings.png
+HTTP_REFERER=http://192.168.0.234/reelmediad/assets/f304dac7/css/demo.css
+---
+2014/07/25 08:46:19 [error] [php] Undefined variable: model (C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php:73)
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): HomeController->runAction()
+#1 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): HomeController->filterAccessControl()
+#4 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#6 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): HomeController->runActionWithFilters()
+#7 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): HomeController->run()
+#8 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#10 C:\xampp\htdocs\reelmediad\index.php(13): CWebApplication->run()
+REQUEST_URI=/reelmediad/home/excel
+in C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php (73)
+in C:\xampp\htdocs\reelmediad\index.php (13)
+2014/07/25 09:28:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "view2082720".' in C:\xampp\htdocs\yii_back\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CController.php(270): CController->missingAction('view2082720')
+#1 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('view2082720')
+#2 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('swf/view2082720')
+#3 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmediad/swf/view2082720
+---
+2014/07/25 09:30:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/f304dac7/img/glyphicons-halflings.png".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f304dac7...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/assets/f304dac7/img/glyphicons-halflings.png
+HTTP_REFERER=http://192.168.0.234/reelmediad/assets/f304dac7/css/demo.css
+---
+2014/07/25 09:30:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/f304dac7/img/glyphicons-halflings.png".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f304dac7...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/assets/f304dac7/img/glyphicons-halflings.png
+HTTP_REFERER=http://192.168.0.234/reelmediad/assets/f304dac7/css/demo.css
+---
+2014/07/25 09:30:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/f304dac7/img/glyphicons-halflings.png".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f304dac7...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/assets/f304dac7/img/glyphicons-halflings.png
+HTTP_REFERER=http://192.168.0.234/reelmediad/assets/f304dac7/css/demo.css
+---
+2014/07/25 09:42:06 [error] [php] Undefined variable: styleArray (C:\xampp\htdocs\reelmediad\protected\components\ExcelStories.php:89)
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): HomeController->runAction()
+#2 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#4 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): HomeController->filterAccessControl()
+#5 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#6 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): HomeController->runActionWithFilters()
+#8 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): HomeController->run()
+#9 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#10 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\reelmediad\index.php(13): CWebApplication->run()
+REQUEST_URI=/reelmediad/home/excel
+in C:\xampp\htdocs\reelmediad\protected\components\ExcelStories.php (89)
+in C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php (111)
+in C:\xampp\htdocs\reelmediad\index.php (13)
+2014/07/25 09:49:56 [error] [exception.Exception] exception 'Exception' with message 'Invalid style array passed.' in C:\xampp\htdocs\reelmediad\protected\extensions\phpexcel\PHPExcel\Style\Color.php:229
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\protected\extensions\phpexcel\PHPExcel\Style\Font.php(288): PHPExcel_Style_Color->applyFromArray('FFFF0000')
+#1 C:\xampp\htdocs\reelmediad\protected\extensions\phpexcel\PHPExcel\Style.php(519): PHPExcel_Style_Font->applyFromArray(Array)
+#2 C:\xampp\htdocs\reelmediad\protected\extensions\phpexcel\PHPExcel\Style.php(471): PHPExcel_Style->applyFromArray(Array)
+#3 C:\xampp\htdocs\reelmediad\protected\components\ExcelStories.php(90): PHPExcel_Style->applyFromArray(Array)
+#4 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(111): ExcelStories::GetClientStory('1', '2014-07-25', '2014-07-25', ' ', '2008-01-01', 1, '')
+#5 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionExcel()
+#6 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#7 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#8 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#10 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#11 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#12 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#13 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#14 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('excel')
+#15 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/excel')
+#16 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#17 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#18 {main}
+REQUEST_URI=/reelmediad/home/excel
+HTTP_REFERER=http://192.168.0.234/reelmediad/home/print
+---
+2014/07/25 10:03:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/f304dac7/img/glyphicons-halflings.png".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f304dac7...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/assets/f304dac7/img/glyphicons-halflings.png
+HTTP_REFERER=http://192.168.0.234/reelmediad/assets/f304dac7/css/demo.css
+---
+2014/07/25 12:26:38 [error] [exception.Exception] exception 'Exception' with message 'Active sheet index is out of bounds.' in C:\xampp\htdocs\reelmediad\protected\extensions\phpexcel\PHPExcel.php:392
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\protected\components\ExcelStories.php(283): PHPExcel->setActiveSheetIndex(3)
+#1 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(142): ExcelStories::GetMainOption('1', '2014-07-25', '2014-07-25', '', '2008-01-01', 1, '', 4)
+#2 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionExcel()
+#3 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('excel')
+#12 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/excel')
+#13 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#14 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/reelmediad/home/excel?startdate=2014-07-25&enddate=2014-07-25&search=&industries=&cat_identifier=1&type_identifier=2
+HTTP_REFERER=http://192.168.0.234/reelmediad/home/print
+---
+2014/07/28 08:01:41 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [2002] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+' in C:\xampp\htdocs\yii_back\framework\db\CDbConnection.php:381
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 C:\xampp\htdocs\yii_back\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\yii_back\framework\base\CModule.php(387): CDbConnection->init()
+#3 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(438): CModule->getComponent('db')
+#4 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(623): CApplication->getDb()
+#5 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(2309): CActiveRecord->getDbConnection()
+#6 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(StoryType))
+#7 C:\xampp\htdocs\reelmediad\protected\models\StoryType.php(19): CActiveRecord::model('StoryType')
+#8 C:\xampp\htdocs\reelmediad\protected\views\home\search_filter.php(28): StoryType::model()
+#9 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#10 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#11 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#12 C:\xampp\htdocs\reelmediad\protected\views\home\stories.php(7): CController->renderPartial('search_filter', Array)
+#13 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#14 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#15 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#16 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): CController->renderPartial('stories', Array, true)
+#17 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(54): CController->render('stories', Array)
+#18 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionPrint()
+#19 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#20 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#21 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#22 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#24 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#25 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#26 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('print')
+#28 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/print')
+#29 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#30 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#31 {main}
+REQUEST_URI=/reelmediad/home/print
+---
+2014/07/28 08:03:05 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [2002] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+' in C:\xampp\htdocs\yii_back\framework\db\CDbConnection.php:381
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 C:\xampp\htdocs\yii_back\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\yii_back\framework\base\CModule.php(387): CDbConnection->init()
+#3 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(438): CModule->getComponent('db')
+#4 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(623): CApplication->getDb()
+#5 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(2309): CActiveRecord->getDbConnection()
+#6 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(StoryType))
+#7 C:\xampp\htdocs\reelmediad\protected\models\StoryType.php(19): CActiveRecord::model('StoryType')
+#8 C:\xampp\htdocs\reelmediad\protected\views\home\search_filter.php(28): StoryType::model()
+#9 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#10 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#11 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#12 C:\xampp\htdocs\reelmediad\protected\views\home\stories.php(7): CController->renderPartial('search_filter', Array)
+#13 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#14 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#15 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#16 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): CController->renderPartial('stories', Array, true)
+#17 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(54): CController->render('stories', Array)
+#18 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionPrint()
+#19 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#20 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#21 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#22 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#24 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#25 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#26 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('print')
+#28 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/print')
+#29 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#30 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#31 {main}
+REQUEST_URI=/reelmediad/home/print
+---
+2014/07/28 08:05:14 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [2002] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+' in C:\xampp\htdocs\yii_back\framework\db\CDbConnection.php:381
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 C:\xampp\htdocs\yii_back\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\yii_back\framework\base\CModule.php(387): CDbConnection->init()
+#3 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(438): CModule->getComponent('db')
+#4 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(623): CApplication->getDb()
+#5 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(2309): CActiveRecord->getDbConnection()
+#6 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(StoryType))
+#7 C:\xampp\htdocs\reelmediad\protected\models\StoryType.php(19): CActiveRecord::model('StoryType')
+#8 C:\xampp\htdocs\reelmediad\protected\views\home\search_filter.php(28): StoryType::model()
+#9 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#10 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#11 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#12 C:\xampp\htdocs\reelmediad\protected\views\home\stories.php(7): CController->renderPartial('search_filter', Array)
+#13 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#14 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#15 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#16 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): CController->renderPartial('stories', Array, true)
+#17 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(54): CController->render('stories', Array)
+#18 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionPrint()
+#19 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#20 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#21 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#22 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#24 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#25 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#26 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('print')
+#28 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/print')
+#29 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#30 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#31 {main}
+REQUEST_URI=/reelmediad/home/print
+---
+2014/07/28 08:10:08 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [1130] Host 'istevePC' is not allowed to connect to this MySQL server' in C:\xampp\htdocs\yii_back\framework\db\CDbConnection.php:381
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 C:\xampp\htdocs\yii_back\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\yii_back\framework\base\CModule.php(387): CDbConnection->init()
+#3 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(438): CModule->getComponent('db')
+#4 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(623): CApplication->getDb()
+#5 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(2309): CActiveRecord->getDbConnection()
+#6 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(StoryType))
+#7 C:\xampp\htdocs\reelmediad\protected\models\StoryType.php(19): CActiveRecord::model('StoryType')
+#8 C:\xampp\htdocs\reelmediad\protected\views\home\search_filter.php(28): StoryType::model()
+#9 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#10 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#11 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#12 C:\xampp\htdocs\reelmediad\protected\views\home\stories.php(7): CController->renderPartial('search_filter', Array)
+#13 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#14 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#15 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#16 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): CController->renderPartial('stories', Array, true)
+#17 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(54): CController->render('stories', Array)
+#18 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionPrint()
+#19 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#20 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#21 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#22 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#24 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#25 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#26 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('print')
+#28 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/print')
+#29 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#30 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#31 {main}
+REQUEST_URI=/reelmediad/home/print
+---
+2014/07/28 08:10:33 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES)' in C:\xampp\htdocs\yii_back\framework\db\CDbConnection.php:381
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 C:\xampp\htdocs\yii_back\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\yii_back\framework\base\CModule.php(387): CDbConnection->init()
+#3 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(438): CModule->getComponent('db')
+#4 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(623): CApplication->getDb()
+#5 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(2309): CActiveRecord->getDbConnection()
+#6 C:\xampp\htdocs\yii_back\framework\db\ar\CActiveRecord.php(387): CActiveRecordMetaData->__construct(Object(StoryType))
+#7 C:\xampp\htdocs\reelmediad\protected\models\StoryType.php(19): CActiveRecord::model('StoryType')
+#8 C:\xampp\htdocs\reelmediad\protected\views\home\search_filter.php(28): StoryType::model()
+#9 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#10 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#11 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#12 C:\xampp\htdocs\reelmediad\protected\views\home\stories.php(7): CController->renderPartial('search_filter', Array)
+#13 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(126): require('C:\xampp\htdocs...')
+#14 C:\xampp\htdocs\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\xampp\htdocs...', Array, true)
+#15 C:\xampp\htdocs\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\xampp\htdocs...', Array, true)
+#16 C:\xampp\htdocs\yii_back\framework\web\CController.php(782): CController->renderPartial('stories', Array, true)
+#17 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(54): CController->render('stories', Array)
+#18 C:\xampp\htdocs\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionPrint()
+#19 C:\xampp\htdocs\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#20 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#21 C:\xampp\htdocs\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#22 C:\xampp\htdocs\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#23 C:\xampp\htdocs\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#24 C:\xampp\htdocs\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#25 C:\xampp\htdocs\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#26 C:\xampp\htdocs\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('print')
+#28 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/print')
+#29 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#30 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#31 {main}
+REQUEST_URI=/reelmediad/home/print
+---

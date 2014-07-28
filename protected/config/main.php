@@ -23,6 +23,7 @@ return array(
 		'application.extensions.input.components.*',
 		'application.modules.cal.*',
 		'application.modules.cal.models.*',
+		'application.extensions.phpexcel.*',
 	),
 
 	'modules'=>array(
@@ -68,10 +69,10 @@ return array(
 		
 		'db'=>array(
 			'class'=>'CDbConnection',
-			'connectionString' => 'mysql:host=192.168.0.60;dbname=app_settings',
+			'connectionString' => 'mysql:host=localhost;dbname=reelmedia',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => 'Pambazuka08',
+			'password' => 'gridlock@2014',
 			'charset' => 'utf8',
 		),
 
