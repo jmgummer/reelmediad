@@ -48,5 +48,14 @@ class SwfController extends Controller
 			return $model;
 	}
 
+	public function actionImage()
+	{
+		if(isset($_GET['img'])){
+			return 
+		}else{
+			throw new CHttpException(404,'The requested page does not exist.');
+		}
+	}
+
 	
 }

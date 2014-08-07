@@ -42,7 +42,8 @@ class IndustryQueries{
 					}else{
 						$color_code = $weekday.'_b';
 					}
-					if($rate = Ratecard::model()->find('Media_House_ID=:a AND color_code=:b', array(':a'=>$Media_House_ID,':b'=>$color_code))->rate){
+					if($rate = Ratecard::model()->find('Media_House_ID=:a AND color_code=:b', array(':a'=>$Media_House_ID,':b'=>$color_code))){
+						$rate=$rate->rate;
 						$rate_cost = $rate*$col*$centimeter;
 					}else{
 						$rate_cost = 0;
