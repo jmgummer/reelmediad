@@ -423,7 +423,7 @@ class Story extends CActiveRecord
 				}else{
 					$color_code = $weekday.'_b';
 				}
-				$rate = Ratecard::model()->find('Media_House_ID=:a AND color_code=:b', array(':a'=>$Media_House_ID,':b'=>$color_code))->rate;
+				$rate = Ratecard::model()->find('Media_House_ID=:a AND color_code=:b ORDER BY auto_id DESC', array(':a'=>$Media_House_ID,':b'=>$color_code))->rate;
 				$rate_cost = $this_rate = $rate*$col*$centimeter;
 			}else{
 			  $sql_electronic_rate='SELECT rate,duration from forgedb.ratecard_base, reelmedia.anvil_match where ratecard_base.station_id=anvil_match.station_id and anvil_match.Media_House_ID='.$Media_House_ID.' and forgedb.ratecard_base.weekday="'.$weekday.'" and forgedb.ratecard_base.time_start<="'.$StoryTime.'" order by forgedb.ratecard_base.duration,  ratecard_base.date_start desc,ratecard_base.time_start desc, forgedb.ratecard_base.time_end asc limit 1';

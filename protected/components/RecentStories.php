@@ -29,7 +29,8 @@ public static function GetClientStory($client,$startdate,$enddate,$search,$backd
 	$year = date('Y');
 	$story_month = 'story_'.$year.'_'.$month;
 	if(!empty($industries)){
-	  $q2 = 'SELECT distinct story.Story_ID FROM story
+	  $q2 = 'SELECT distinct story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID 
+	  FROM story
     inner join story_mention on story.Story_ID=story_mention.story_id
     inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
     INNER JOIN story_industry on story_industry.story_id=story.Story_ID
@@ -40,7 +41,8 @@ public static function GetClientStory($client,$startdate,$enddate,$search,$backd
     and industry_subs.company_id ='.$client.' and industry_subs.industry_id IN('.$industries.')
     order by Media_House_List asc, StoryDate desc, page_no asc';
 	}else{
-	  $q2 = 'SELECT distinct story.Story_ID FROM story
+	  $q2 = 'SELECT distinct story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID 
+			FROM story
   	inner join story_mention on story.Story_ID=story_mention.story_id
   	inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
   	where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
@@ -52,9 +54,10 @@ public static function GetClientStory($client,$startdate,$enddate,$search,$backd
 	if($story = Story::model()->findAllBySql($q2)){
 		echo RecentStories::PrintTableHead();
 		foreach ($story as $key) {
-			if($story = RecentStories::GetStories($key->Story_ID)){
-				echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
-			}
+			echo RecentStories::PrintTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->StoryPage,$key->PublicationType,$key->Picture,$key->Tonality,$key->AVE,$key->Link,$key->Continues);
+			// if($story = RecentStories::GetStories($key->Story_ID)){
+			// 	echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+			// }
 		}
 		echo RecentStories::PrintTableEnd();
 	}else{
@@ -67,7 +70,7 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 	$month = date('m');
 	$year = date('Y');
 	$story_month = 'story_'.$year.'_'.$month;
-	$q2 = 'SELECT * from story,story_mention,mediahouse
+	$q2 = 'SELECT story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID from story,story_mention,mediahouse
 	where story_mention.client_id='.$client.' and story.Story_ID=story_mention.story_id
 	and story.Media_ID!="mp01" and story.step3=1
 	and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
@@ -76,9 +79,10 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 	if($story = Story::model()->findAllBySql($q2)){
 		echo RecentStories::ElectronicTableHead();
 		foreach ($story as $key) {
-			if($story = RecentStories::GetStories($key->Story_ID)){
-				echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->IndustryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
-			}
+			echo RecentStories::PrintTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,$key->IndustryCategory,$key->Tonality,$key->AVE,$key->Link,$key->Continues);
+			// if($story = RecentStories::GetStories($key->Story_ID)){
+			// 	echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->IndustryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+			// }
 		}
 		echo RecentStories::ElectronicTableEnd();
 	}else{
@@ -91,7 +95,7 @@ public static function GetClientIndustryStory($client,$startdate,$enddate,$searc
 	$month = date('m');
 	$year = date('Y');
 	$story_month = 'story_'.$year.'_'.$month;
-	$q2 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story
+	$q2 = 'SELECT distinct(story.story_id) as Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID
 	from story, story_industry, industry_subs, mediahouse
 	where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.')
 	and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.'
@@ -107,9 +111,10 @@ public static function GetClientIndustryStory($client,$startdate,$enddate,$searc
 	if($story = Story::model()->findAllBySql($q2)){
 		echo RecentStories::PrintTableHead();
 		foreach ($story as $key) {
-			if($story = RecentStories::GetStories($key->Story_ID)){
-				echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
-			}
+			echo RecentStories::PrintTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->StoryPage,$key->PublicationType,$key->Picture,$key->Tonality,$key->AVE,$key->Link,$key->Continues);
+			// if($story = RecentStories::GetStories($key->Story_ID)){
+			// 	echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+			// }
 		}
 		echo RecentStories::PrintTableEnd();
 	}else{
@@ -122,7 +127,7 @@ public static function GetClientElectronicIndustryStory($client,$startdate,$endd
 	$month = date('m');
 	$year = date('Y');
 	$story_month = 'story_'.$year.'_'.$month;
-	$q2 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story
+	$q2 = 'SELECT distinct(story.story_id) as Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID
 	from story, story_industry, industry_subs, mediahouse
 	where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.')
 	and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.'
@@ -138,9 +143,10 @@ public static function GetClientElectronicIndustryStory($client,$startdate,$endd
 	if($story = Story::model()->findAllBySql($q2)){
 		echo RecentStories::ElectronicTableHead();
 		foreach ($story as $key) {
-			if($story = RecentStories::GetStories($key->Story_ID)){
-				echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->IndustryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
-			}
+			echo RecentStories::PrintTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,$key->IndustryCategory,$key->Tonality,$key->AVE,$key->Link,$key->Continues);
+			// if($story = RecentStories::GetStories($key->Story_ID)){key
+			// 	echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->IndustryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+			// }
 		}
 		echo RecentStories::ElectronicTableEnd();
 	}else{
