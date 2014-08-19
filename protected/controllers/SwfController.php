@@ -53,7 +53,7 @@ class SwfController extends Controller
 		if(isset($_GET['file'])){
 			$file = $_GET['file'];
 			// echo $file = $_GET['file'];
-			// echo $pdf_file =  substr($file, 11);
+			$pdf_file =  substr($file, 11);
 			if(file_exists($pdf_path = '/home/srv/www/htdocs/reelmedia/files/pdf/'.$file)){
 				// echo $pdf_path;
 				$png_file = substr($pdf_file, 0,-3).'png';
