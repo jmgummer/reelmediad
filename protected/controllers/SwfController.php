@@ -62,9 +62,11 @@ class SwfController extends Controller
 				$cmd_resize = "convert $png_path  -resize 50% $png_path";
 
 				system($cmd_conv_pdf);
+				system($cmd_resize);
 				// //$final_file_path['url'] = str_replace('/home/srv/www/htdocs/', 'http://www.reelforge.com/', $png);
 				// $final_file_path['url'] = "http://reelapp.reelforge.com/rf_droid/view/view.php?id=".$story_id."&img=".$png_file;
-				echo '<img src="http://192.168.0.60/reelmediad/conversions/'.$png_file.'" />';
+				
+				$this->render('view', array('png_file'=>$png_file));
 			}else{
 				echo 'pdf_file_missing';
 			}
