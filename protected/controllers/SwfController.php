@@ -59,7 +59,7 @@ class SwfController extends Controller
 				$png_file = substr($pdf_file, 0,-3).'png';
 				$png_path = '/home/srv/www/htdocs/reelmediad/conversions/'.$png_file;
 				$cmd_conv_pdf = "/usr/bin/convert  -flatten -density 150 " .$pdf_path. " " .$png_path;
-				$cmd_resize = "convert $png_path  -resize 50% $png_path";
+				$cmd_resize = "convert $png_path  -resize 80% $png_path";
 
 				system($cmd_conv_pdf);
 				system($cmd_resize);

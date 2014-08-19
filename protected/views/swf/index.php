@@ -1,3 +1,4 @@
+<?php $this->breadcrumbs=array('SWF Viewer'=>array('view','id'=>$model->Story_ID)); ?>
 <div class="swf-table">
   <?php echo Swfviewer::GetSwfHeader($model); ?>
   <?php $swffile = Swfviewer::GetSwfFile($model->Link); ?>
