@@ -56,7 +56,7 @@ class HomeController extends Controller
 	
 	public function actionPdf()
 	{
-	  $model = new StorySearch('search');
+	  	$model = new StorySearch('search');
 		$model->unsetAttributes();
 		if(isset($_POST['StorySearch']))
 		{
@@ -64,8 +64,8 @@ class HomeController extends Controller
 			$model->startdate = date('Y-m-d',strtotime(str_replace('-', '/', $model->startdate)));
 			$model->enddate = date('Y-m-d',strtotime(str_replace('-', '/', $model->enddate)));
 		}
-	  // $this->render('pdf',array('model'=>$model));
-	  $mPDF1 = Yii::app()->ePdf2->Download('pdf',array('model'=>$model),'PDF');
+		// $this->render('pdf',array('model'=>$model));
+		$mPDF1 = Yii::app()->ePdf2->Download('pdf',array('model'=>$model),'PDF');
 	}
 
 	public function actionExcel()

@@ -20,7 +20,7 @@ class Swfviewer{
     </tr>
     <tr>
       <td width="100%" valign="top">
-        <span class="cmention">Download this Page : <a href="http://www.reelforge.com/reelmedia/files/pdf/'.$array->file.'">PDF File</a> | <a href="#">JPG Image</a> | <a href="#">Crop Image</a> | <a href="#">Highlight Page Section</a>
+        <span class="cmention">Download this Page : <a href="http://www.reelforge.com/reelmedia/files/pdf/'.$array->file.'">PDF File</a> | <a href="'.Yii::app()->createUrl("swf/image", array("file"=>$array->file)).'">JPG Image</a> | <a href="#">Crop Image</a> | <a href="#">Highlight Page Section</a>
         </span>
       </td>
     </tr>
