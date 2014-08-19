@@ -56,16 +56,17 @@ class SwfController extends Controller
 			echo $pdf_file =  substr($file, 11);
 			if(file_exists($pdf_path = '/home/srv/www/htdocs/reelmedia/files/pdf/'.$file)){
 				echo $pdf_path;
-				$png_file = 'final_'.$story_id."_".substr($pdf_file, 0,-3).'png';
-				// $png_path = '/home/srv/www/htdocs/reelapp/rf_droid/files/'.$png_file;
-				// $cmd_conv_pdf = "/usr/bin/convert  -flatten -density 150 " .$pdf_path. " " .$png_path;
-				// $cmd_resize = "convert $png_path  -resize 50% $png_path";
+				$png_file = substr($pdf_file, 0,-3).'png';
+				$png_path = '/home/srv/www/htdocs/reelmediad/conversions/'.$png_file;
+				$cmd_conv_pdf = "/usr/bin/convert  -flatten -density 150 " .$pdf_path. " " .$png_path;
+				$cmd_resize = "convert $png_path  -resize 50% $png_path";
 
-				// system($cmd_conv_pdf);
+				system($cmd_conv_pdf);
 				// //$final_file_path['url'] = str_replace('/home/srv/www/htdocs/', 'http://www.reelforge.com/', $png);
 				// $final_file_path['url'] = "http://reelapp.reelforge.com/rf_droid/view/view.php?id=".$story_id."&img=".$png_file;
+				echo '<img src="http://192.168.0.60/reelmediad/conversions/'.$png_file.'" />';
 			}else{
-				// echo 'pdf_file_missing';
+				echo 'pdf_file_missing';
 			}
 		}else{
 			throw new CHttpException(404,'The requested page does not exist.');
