@@ -94,11 +94,37 @@ class SwfController extends Controller
 		if(!isset($_POST['x1']) || !isset($_POST['x2']) || !isset($_POST['y1']) || !isset($_POST['y2']) || !isset($_POST['width']) || !isset($_POST['height']) || !isset($_POST['image']) ){
 			echo 'kubaya';
 		}else{
-			if($highlighted = ImageClass::Highlight($_POST['image'],$_POST['x1'],$_POST['y1'],$_POST['width'],$_POST['height'])){
-				echo 'wazi';
-			}else{
-				echo 'March Madness';
-			}
+			$uniquefile=ImageClass::Generatestory_uniqueid();
+			$my_image="highlight_" .$uniquefile. ".jpg";
+			$highlight_image="highlight_" .$uniquefile. ".jpg";
+
+			//Get ratios
+			$cmd="identify -format \"%w\"  /home/srv/www/htdocs/reelmediad/conversions/" . trim($_POST['image']);
+			$actual_width=exec($cmd);
+			$cmd="identify -format \"%h\"  /home/srv/www/htdocs/reelmediad/conversions/" . trim($_POST['image']);
+			$actual_height=exec($cmd);
+
+			$width_ratio=$actual_width/1000;
+			$height_ratio=$actual_height/1298;
+
+			$resize="/usr/bin/convert    /home/srv/www/htdocs/reelmediad/images/watermark.png  -resize  ". ($_POST['width']*$width_ratio)."x".($_POST['height']*$height_ratio)."\!   /home/srv/www/htdocs/reelmediad/tmp/$highlight_image" ;
+			exec($resize);
+			//echo "<hr>";
+			$cmd="/usr/bin/composite -compose multiply -geometry  +".($_POST['x1']*$width_ratio)."+".($_POST['y1']*$height_ratio) ." /home/srv/www/htdocs/reelmediad/tmp/$highlight_image   /home/srv/www/htdocs/reelmediad/conversions/" . trim($relative_img) ."  " . $my_image;
+			exec($cmd);
+
+			$fullpath2="/home/srv/www/htdocs/reelmediad/tmp/";
+			//$cropped=$fullpath2 . $my_image;
+			$cropped= $my_image;
+			header('Content-Description: File Transfer');
+			header("Content-type: image/jpg");
+			header("Content-disposition: attachment; filename= ".$cropped."");
+			readfile($cropped);
+			// if($highlighted = ImageClass::Highlight($_POST['image'],$_POST['x1'],$_POST['y1'],$_POST['width'],$_POST['height'])){
+			// 	echo 'wazi';
+			// }else{
+			// 	echo 'March Madness';
+			// }
 		}
 		
 	}
