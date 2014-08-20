@@ -110,7 +110,7 @@ class SwfController extends Controller
 			$resize="/usr/bin/convert    /home/srv/www/htdocs/reelmediad/images/watermark.png  -resize  ". ($_POST['width']*$width_ratio)."x".($_POST['height']*$height_ratio)."\!   /home/srv/www/htdocs/reelmediad/tmp/$highlight_image" ;
 			exec($resize);
 			//echo "<hr>";
-			$cmd="/usr/bin/composite -compose multiply -geometry  +".($_POST['x1']*$width_ratio)."+".($_POST['y1']*$height_ratio) ." /home/srv/www/htdocs/reelmediad/tmp/$highlight_image   /home/srv/www/htdocs/reelmediad/conversions/" . trim($relative_img) ."  " . $my_image;
+			$cmd="/usr/bin/composite -compose multiply -geometry  +".($_POST['x1']*$width_ratio)."+".($_POST['y1']*$height_ratio) ." /home/srv/www/htdocs/reelmediad/tmp/$highlight_image   /home/srv/www/htdocs/reelmediad/conversions/" . trim($_POST['image']) ."  " . $my_image;
 			exec($cmd);
 
 			$fullpath2="/home/srv/www/htdocs/reelmediad/tmp/";
