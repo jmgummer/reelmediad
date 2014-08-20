@@ -11123,3 +11123,185 @@ Stack trace:
 REQUEST_URI=/reelmediad/swf/image?file=2014%2F08%2F19%2FBDA_20140819_2ADGHJKLOQ8.pdf
 HTTP_REFERER=http://192.168.0.234/reelmediad/swf/view/2131918
 ---
+2014/08/19 14:55:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/builder.js".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('js/builder.js')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/js/builder.js
+HTTP_REFERER=http://192.168.0.234/reelmediad/swf/highlight?x=155&y=100&width=435&height=233
+---
+2014/08/19 14:55:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/effects.js".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('js/effects.js')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/js/effects.js
+HTTP_REFERER=http://192.168.0.234/reelmediad/swf/highlight?x=155&y=100&width=435&height=233
+---
+2014/08/19 14:55:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/dragdrop.js".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('js/dragdrop.js')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/js/dragdrop.js
+HTTP_REFERER=http://192.168.0.234/reelmediad/swf/highlight?x=155&y=100&width=435&height=233
+---
+2014/08/19 14:55:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/controls.js".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('js/controls.js')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/js/controls.js
+HTTP_REFERER=http://192.168.0.234/reelmediad/swf/highlight?x=155&y=100&width=435&height=233
+---
+2014/08/19 14:55:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/slider.js".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('js/slider.js')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/js/slider.js
+HTTP_REFERER=http://192.168.0.234/reelmediad/swf/highlight?x=155&y=100&width=435&height=233
+---
+2014/08/19 14:55:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/sound.js".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('js/sound.js')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/js/sound.js
+HTTP_REFERER=http://192.168.0.234/reelmediad/swf/highlight?x=155&y=100&width=435&height=233
+---
+2014/08/19 14:56:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/builder.js".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('js/builder.js')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/js/builder.js
+HTTP_REFERER=http://192.168.0.234/reelmediad/swf/highlight?x=155&y=100&width=435&height=233
+---
+2014/08/19 14:56:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/effects.js".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('js/effects.js')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/js/effects.js
+HTTP_REFERER=http://192.168.0.234/reelmediad/swf/highlight?x=155&y=100&width=435&height=233
+---
+2014/08/19 14:56:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/dragdrop.js".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('js/dragdrop.js')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/js/dragdrop.js
+HTTP_REFERER=http://192.168.0.234/reelmediad/swf/highlight?x=155&y=100&width=435&height=233
+---
+2014/08/19 14:56:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/controls.js".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('js/controls.js')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/js/controls.js
+HTTP_REFERER=http://192.168.0.234/reelmediad/swf/highlight?x=155&y=100&width=435&height=233
+---
+2014/08/19 14:56:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/slider.js".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('js/slider.js')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/js/slider.js
+HTTP_REFERER=http://192.168.0.234/reelmediad/swf/highlight?x=155&y=100&width=435&height=233
+---
+2014/08/19 14:56:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "js/sound.js".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('js/sound.js')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/js/sound.js
+HTTP_REFERER=http://192.168.0.234/reelmediad/swf/highlight?x=155&y=100&width=435&height=233
+---
+2014/08/19 16:16:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sound".' in C:\xampp\htdocs\yii_back\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CController.php(270): CController->missingAction('sound')
+#1 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(282): CController->run('sound')
+#2 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/sound/mess...')
+#3 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmediad/home/sound/messagebox.mp3
+HTTP_REFERER=http://192.168.0.234/reelmediad/home/print
+---
+2014/08/19 16:16:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/f304dac7/img/glyphicons-halflings.png".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f304dac7...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/assets/f304dac7/img/glyphicons-halflings.png
+HTTP_REFERER=http://192.168.0.234/reelmediad/assets/f304dac7/css/demo.css
+---
+2014/08/20 07:36:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/f304dac7/img/glyphicons-halflings.png".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f304dac7...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/assets/f304dac7/img/glyphicons-halflings.png
+HTTP_REFERER=http://192.168.0.234/reelmediad/assets/f304dac7/css/demo.css
+---
+2014/08/20 09:20:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/f304dac7/img/glyphicons-halflings.png".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f304dac7...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/assets/f304dac7/img/glyphicons-halflings.png
+HTTP_REFERER=http://192.168.0.234/reelmediad/assets/f304dac7/css/demo.css
+---
+2014/08/20 10:28:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "periodicals/default/madness".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('periodicals/def...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/periodicals/default/madness
+HTTP_REFERER=http://192.168.0.234/reelmediad/swf/highlight?x1=0&x2=0&y1=0&y2=0&width=0&height=0
+---
+2014/08/20 10:29:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "periodicals/default/madness".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('periodicals/def...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/periodicals/default/madness
+HTTP_REFERER=http://192.168.0.234/reelmediad/swf/highlight?x1=0&x2=0&y1=0&y2=0&width=0&height=0
+---
+2014/08/20 10:31:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/f304dac7/img/glyphicons-halflings.png".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/f304dac7...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/assets/f304dac7/img/glyphicons-halflings.png
+HTTP_REFERER=http://192.168.0.234/reelmediad/assets/f304dac7/css/demo.css
+---
+2014/08/20 10:33:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "periodicals/default/madness".' in C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('periodicals/def...')
+#1 C:\xampp\htdocs\yii_back\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/periodicals/default/madness
+HTTP_REFERER=http://192.168.0.234/reelmediad/swf/highlight?file=2014%2F08%2F20%2FBDA_20140820_25HIJKPTVWY4.pdf
+---
