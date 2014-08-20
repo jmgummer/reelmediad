@@ -119,7 +119,7 @@ class SwfController extends Controller
 			header('Content-Description: File Transfer');
 			header("Content-type: image/jpg");
 			header("Content-disposition: attachment; filename= ".$cropped."");
-			readfile($cropped);
+			readfile("/home/srv/www/htdocs/reelmediad/tmp/".$cropped);
 			// if($highlighted = ImageClass::Highlight($_POST['image'],$_POST['x1'],$_POST['y1'],$_POST['width'],$_POST['height'])){
 			// 	echo 'wazi';
 			// }else{
