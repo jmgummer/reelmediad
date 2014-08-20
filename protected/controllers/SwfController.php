@@ -29,8 +29,7 @@ class SwfController extends Controller
 
 	public function actionIndex()
 	{
-		
-		$this->render('index');
+		$this->render('indexs');
 	}
 
 	public function actionView($id)
@@ -92,7 +91,7 @@ class SwfController extends Controller
 
 	public function actionManipulator()
 	{
-		if(!isset($_POST['x1']) || !isset($_POST['x2']) || !isset($_POST['y1']) || !isset($_POST['y2']) || !isset($_POST['width']) || !isset($_POST['height'] || !isset($_POST['image']))){
+		if(!isset($_POST['x1']) || !isset($_POST['x2']) || !isset($_POST['y1']) || !isset($_POST['y2']) || !isset($_POST['width']) || !isset($_POST['height']) || !isset($_POST['image']) ){
 			echo 'kubaya';
 		}else{
 			if($highlighted = ImageClass::Highlight($_POST['image'],$_POST['x1'],$_POST['y1'],$_POST['width'],$_POST['height'])){
