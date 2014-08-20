@@ -29,7 +29,7 @@ class SwfController extends Controller
 
 	public function actionIndex()
 	{
-		$this->render('indexs');
+		$this->render('index');
 	}
 
 	public function actionView($id)
