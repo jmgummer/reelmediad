@@ -91,7 +91,7 @@ class SwfController extends Controller
 
 	public function actionManipulator()
 	{
-		if(!isset($_POST['x1']) || !isset($_POST['x2']) || !isset($_POST['y1']) || !isset($_POST['y2']) || !isset($_POST['width']) || !isset($_POST['height']) || !isset($_POST['image']) ){
+		if(!isset($_POST['x1'])  || !isset($_POST['y1']) || !isset($_POST['width']) || !isset($_POST['height']) || !isset($_POST['image']) ){
 			echo 'kubaya';
 		}else{
 			$uniquefile=ImageClass::Generatestory_uniqueid();
