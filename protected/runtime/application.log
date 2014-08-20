@@ -33,6 +33,7 @@ Stack trace:
 #11 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
 #12 {main}
 REQUEST_URI=/reelmediad/swf/view/
+<<<<<<< HEAD
 ---
 2014/08/20 14:44:26 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\xampp\htdocs\yii_back\framework\web\CController.php:336
 Stack trace:
@@ -50,4 +51,6 @@ Stack trace:
 #11 C:\xampp\htdocs\reelmediad\index.php(13): CApplication->run()
 #12 {main}
 REQUEST_URI=/reelmediad/swf/view/
+=======
+>>>>>>> 5f214c63dc6594d6dd39f86476d8c5d19cc92c9c
 ---
