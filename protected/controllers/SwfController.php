@@ -82,8 +82,10 @@ class SwfController extends Controller
 				$png_file = substr($pdf_file, 0,-3).'jpg';
 				$png_path = '/home/srv/www/htdocs/reelmediad/conversions/'.$png_file;
 				$cmd_conv_pdf = "/usr/bin/convert  -flatten -density 150 " .$pdf_path. " " .$png_path;
-				$cmd_resize = "convert $png_path  -resize 80% $png_path";
-				system($cmd_conv_pdf);
+				$cmd_resize="/usr/bin/convert  -resize 1000x 1298\!    $png_path  $png_path";
+				// $cmd_resize = "convert $png_path  -resize 1000x 1298\! $png_path";
+				exec($cmd_conv_pdf);
+				exec($cmd_resize);
 				$this->render('highlight', array('png_file'=>$png_file));
 			}else{
 				echo 'pdf_file_missing';
@@ -136,8 +138,10 @@ class SwfController extends Controller
 				$png_file = substr($pdf_file, 0,-3).'jpg';
 				$png_path = '/home/srv/www/htdocs/reelmediad/conversions/'.$png_file;
 				$cmd_conv_pdf = "/usr/bin/convert  -flatten -density 150 " .$pdf_path. " " .$png_path;
-				$cmd_resize = "convert $png_path  -resize 80% $png_path";
-				system($cmd_conv_pdf);
+				$cmd_resize="/usr/bin/convert  -resize 1000x 1298\!    $png_path  $png_path";
+				// $cmd_resize = "convert $png_path  -resize 1000x 1298\! $png_path";
+				exec($cmd_conv_pdf);
+				exec($cmd_resize);
 				$this->render('crop', array('png_file'=>$png_file));
 			}else{
 				echo 'pdf_file_missing';
