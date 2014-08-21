@@ -7,37 +7,37 @@
         <h2>Image Highlighting</h2>
         <p><em>Click and drag anywhere on the image below to begin:</em></p>
         <p><form class="form-horizontal">
-            <div class="form-group">
+            <div class="form-group dont-show">
                 <label class="col-xs-5 control-label"><em>x1</em> coordinate</label>
                 <div class="col-xs-7">
                     <input type="text" name="x1" id="x-1" class="form-control" value="0" />
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group dont-show">
                 <label class="col-xs-5 control-label"><em>x2</em> coordinate</label>
                 <div class="col-xs-7">
                     <input type="text" name="x2" id="x-2" class="form-control" value="0" />
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group dont-show">
                 <label class="col-xs-5 control-label"><em>y1</em> coordinate</label>
                 <div class="col-xs-7">
                     <input type="text" name="y1" id="y-1" class="form-control" value="0" />
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group dont-show">
                 <label class="col-xs-5 control-label"><em>y2</em> coordinate</label>
                 <div class="col-xs-7">
                     <input type="text" name="y2" id="y-2" class="form-control" value="0" />
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group dont-show">
                 <label class="col-xs-5 control-label">Selected <em>width</em></label>
                 <div class="col-xs-7">
                     <input type="text" name="width" id="width-1" class="form-control" value="0" />
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group dont-show">
                 <label class="col-xs-5 control-label">Selected <em>height</em></label>
                 <div class="col-xs-7">
                     <input type="text" name="height" id="height-1" class="form-control" value="0" />
@@ -53,7 +53,11 @@
         <?php echo '<img src="http://192.168.0.60/reelmediad/conversions/'.$png_file.'" width="100%" id="image-1" alt="" />'; ?>
     </div>
 </div>
-
+<style type="text/css">
+.dont-show{
+    display: none;
+}
+</style>
 <script type="text/javascript">
     document.getElementById('image-1').onload = function () {
         new Cropper(this, {
