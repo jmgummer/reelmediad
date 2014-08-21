@@ -46,7 +46,7 @@
             <div class="form-group">
                 <label class="col-xs-5 control-label"></label>
                 <div class="col-xs-7">
-                    <input type="submit" value="Highlight Section" class="btn btn-primary" onclick="event.preventDefault();SendData(this);" />
+                    <input type="submit" value="Crop Section" class="btn btn-primary" onclick="event.preventDefault();SendData(this);" />
                 </div>
             </div>
         </form></p>
@@ -84,7 +84,7 @@
         var width = document.getElementById("width-1").value;
         var height = document.getElementById("height-1").value;
         var image = '<?=$image;?>';
-        var link = '<?=Yii::app()->createUrl("swf/manipulator");?>';
+        var link = '<?=Yii::app()->createUrl("swf/cropper");?>';
 
         if (x1 == null || x1 == 0 || y1 == null || y1 ==0 || width == null || width == 0 || height == null || height ==0 ) {
             alert("Please Select Required Fields");
