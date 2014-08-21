@@ -87,6 +87,7 @@
                                 var height = document.getElementById("height-1").value;
                                 var image = '<?=$image;?>';
                                 var link = '<?=Yii::app()->createUrl("swf/manipulator");?>';
+                                var im_link = 'http://192.168.0.60/reelmediad/tmp';
 
                                 if (x1 == null || x1 == 0 || y1 == null || y1 ==0 || width == null || width == 0 || height == null || height ==0 ) {
                                     alert("Please Select Required Fields");
@@ -99,8 +100,8 @@
                                         cache: false,
 
                                         success: function(data) {
-                                            // window.location = link+'?publication='+publication+'&date='+date+'&company='+company+'&query='+query+'';
-                                            window.location.assign(data);
+                                            window.location = im_link+data;
+                                            // window.location.assign(data);
                                         },
                                         //failure class
                                         error: function() {

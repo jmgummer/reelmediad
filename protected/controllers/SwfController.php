@@ -111,21 +111,17 @@ class SwfController extends Controller
 			exec($resize);
 			//echo "<hr>";
 			$my_image = "/home/srv/www/htdocs/reelmediad/tmp/".$my_image;
-			echo $cmd="/usr/bin/composite -compose multiply -geometry  +".($_POST['x1']*$width_ratio)."+".($_POST['y1']*$height_ratio) ." /home/srv/www/htdocs/reelmediad/tmp/$highlight_image   /home/srv/www/htdocs/reelmediad/conversions/" . trim($_POST['image']) ."  " . $my_image;
+			$cmd="/usr/bin/composite -compose multiply -geometry  +".($_POST['x1']*$width_ratio)."+".($_POST['y1']*$height_ratio) ." /home/srv/www/htdocs/reelmediad/tmp/$highlight_image   /home/srv/www/htdocs/reelmediad/conversions/" . trim($_POST['image']) ."  " . $my_image;
 			exec($cmd);
 
-			$fullpath2="/home/srv/www/htdocs/reelmediad/tmp/";
+			// $fullpath2="/home/srv/www/htdocs/reelmediad/tmp/";
 			//$cropped=$fullpath2 . $my_image;
-			$cropped= $my_image;
-			header('Content-Description: File Transfer');
-			header("Content-type: image/jpg");
-			header("Content-disposition: attachment; filename= ".$cropped."");
-			readfile($cropped);
-			// if($highlighted = ImageClass::Highlight($_POST['image'],$_POST['x1'],$_POST['y1'],$_POST['width'],$_POST['height'])){
-			// 	echo 'wazi';
-			// }else{
-			// 	echo 'March Madness';
-			// }
+			// echo $cropped= $my_image;
+			echo $highlight_image;
+			// header('Content-Description: File Transfer');
+			// header("Content-type: image/jpg");
+			// header("Content-disposition: attachment; filename= ".$cropped."");
+			// readfile($cropped);
 		}
 		
 	}
