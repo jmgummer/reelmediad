@@ -50,7 +50,7 @@
                 </div>
             </div>
         </form></p>
-        <?php echo '<img src="http://192.168.0.60/reelmediad/conversions/'.$png_file.'" width="100%" id="image-1" alt="" />'; ?>
+        <?php echo '<img src="http://192.168.0.60/reelmediad/conversions/'.$png_file.'" style="width:100px !important; height:1298px !important;" id="image-1" alt="" />'; ?>
     </div>
 </div>
 <style type="text/css">
