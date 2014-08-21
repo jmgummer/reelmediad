@@ -99,8 +99,8 @@
                                         cache: false,
 
                                         success: function(data) {
-                                            //add in the new posts
-                                            $( "#result" ).append( data );
+                                            // window.location = link+'?publication='+publication+'&date='+date+'&company='+company+'&query='+query+'';
+                                            window.location.assign(data);
                                         },
                                         //failure class
                                         error: function() {
