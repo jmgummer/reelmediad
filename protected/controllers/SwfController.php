@@ -18,7 +18,7 @@ class SwfController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','view','image','crop','highlight','manipulator'),
+				'actions'=>array('index','view','image','crop','highlight','manipulator','cropper'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users

@@ -5,7 +5,7 @@
 <div class="row-fluid clearfix">
 	<div class="example">
         <h2>Image Highlighting</h2>
-        <p><em>Click and drag anywhere on the image below to highlight and click the button</em></p>
+        <p><em>Click and drag anywhere on the image below to select the area to crop and click the button</em></p>
         <p><form class="form-horizontal">
             <div class="form-group dont-show">
                 <label class="col-xs-5 control-label"><em>x1</em> coordinate</label>
