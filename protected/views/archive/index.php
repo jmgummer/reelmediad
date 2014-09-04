@@ -170,7 +170,6 @@ $this->breadcrumbs=array('Archive Reports'=>array('csr/index'), 'Print Archive')
 				echo '<p>'.$content.'</p>';
 				echo '<p><a href="http://www.reelforge.com/reelmedia/print_story_console/print_stream.php?itemid='.$key->link_id.'" target="_blank">Read More</a> | <a href="'.$key->url.'" target="_blank">Download PDF</a></p>';
 			}
-			// $this->widget('zii.widgets.CDetailView', array('data'=>$stories,'attributes'=>array('Publication','fulltxt','url'))); 
 		}else{
 			echo 'No Records Found';
 		}

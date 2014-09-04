@@ -78,10 +78,10 @@ return array(
 
 		'db2'=>array(
 			'class'=>'CDbConnection',
-			'connectionString' => 'mysql:host=192.168.0.5;dbname=reelmedia',
+			'connectionString' => 'mysql:host=192.168.0.10;dbname=reelmedia2',
 			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => 'Pambazuka08',
+			'username' => 'reelmedia',
+			'password' => 'R@nt!me',
 			'charset' => 'utf8',
 		),
 

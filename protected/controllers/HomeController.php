@@ -156,14 +156,9 @@ class HomeController extends Controller
 
 	public function actionView($id)
 	{
-		// if($id!=null){
-		// 	header($_GET['ext_link']);
-		// }
 		if($id !=NULL && isset($_GET['ext_link'])){
 			$link = $_GET['ext_link'];
-			// header("'Location: ".$link."'");
 			header("Location: ".$link);
-			// header($_GET['ext_link']);
 		}else{
 			throw new Exception("Error Processing Request", 1);
 		}
