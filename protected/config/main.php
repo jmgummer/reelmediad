@@ -80,7 +80,7 @@ return array(
 			'class'=>'CDbConnection',
 			'connectionString' => 'mysql:host=192.168.0.5;dbname=reelmedia',
 			'emulatePrepare' => true,
-			'username' => 'reelmedia',
+			'username' => 'root',
 			'password' => 'Pambazuka08',
 			'charset' => 'utf8',
 		),
