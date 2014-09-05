@@ -78,12 +78,21 @@ return array(
 
 		'db2'=>array(
 			'class'=>'CDbConnection',
-			'connectionString' => 'mysql:host=192.168.0.10;dbname=reelmedia2',
+			'connectionString' => 'mysql:host=192.168.0.5;dbname=reelmedia',
 			'emulatePrepare' => true,
 			'username' => 'reelmedia',
-			'password' => 'R@nt!me',
+			'password' => 'Pambazuka08',
 			'charset' => 'utf8',
 		),
+
+		// 'db2'=>array(
+		// 	'class'=>'CDbConnection',
+		// 	'connectionString' => 'mysql:host=192.168.0.10;dbname=reelmedia2',
+		// 	'emulatePrepare' => true,
+		// 	'username' => 'reelmedia',
+		// 	'password' => 'R@nt!me',
+		// 	'charset' => 'utf8',
+		// ),
 
 		'db3'=>array(
 			'class'=>'CDbConnection',
