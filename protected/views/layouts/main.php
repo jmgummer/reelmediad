@@ -1,4 +1,10 @@
-<?php /* @var $this Controller */ ?>
+<?php /* @var $this Controller */
+if(!isset($_SESSION['view'])){
+	$class = 'unminified';
+}else{
+	$class = $_SESSION['view'];
+}
+ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -11,26 +17,23 @@
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
-<body class="">
+<body class=" fixed-header fixed-navigation <?=$class;?>">
 <!-- HEADER -->
 		<header id="header">
 			<div id="logo-group">
-
 				<!-- PLACE YOUR LOGO HERE -->
 				<span id="logo"> <a href="<?=Yii::app()->createUrl("site");?>"><img src="<?php echo Yii::app()->request->baseUrl . '/images/reelforge_logo.png'; ?>" alt="<?php echo CHtml::encode(Yii::app()->name); ?>" ></a> </span>
 				<!-- END LOGO PLACEHOLDER -->
-
-				
 			</div>
 
 			<!-- projects dropdown -->
-			<div id="project-context">
+			<!-- <div id="project-context">
 
 				<span class="label">Apps:</span>
 				<span id="project-selector" class="popover-trigger-element dropdown-toggle" data-toggle="dropdown">Other Applications <i class="fa fa-angle-down"></i></span>
 
 				<!-- Suggestion: populate this list with fetch and push technique -->
-				<ul class="dropdown-menu">
+				<!-- <ul class="dropdown-menu">
 					<li>
 						<a href="<?=Yii::app()->createUrl("clientservice");?>">Report Generator</a>
 					</li>
@@ -38,14 +41,15 @@
 					<li>
 						<a href="<?=Yii::app()->createUrl("emailalerts");?>">Email Alerts</a>
 					</li>
-				</ul>
+				</ul> -->
 				<!-- end dropdown-menu-->
 
-			</div>
+			<!-- </div> --> 
 			<!-- end projects dropdown -->
 
 			<!-- pulled right: nav area -->
 			<div class="pull-right">
+				<img src="<?php echo Yii::app()->request->baseUrl . '/images/header_reelmedia.png'; ?>" alt="Reelmedia Logo" >
 
 				<!-- collapse menu button -->
 				<div id="hide-menu" class="btn-header pull-right">
@@ -66,13 +70,13 @@
 				<!-- end search mobile button -->
 
 				<!-- input: search field -->
-				<form action="#search.html" class="header-search pull-right">
+				<!-- <form action="#search.html" class="header-search pull-right">
 					<input type="text" placeholder="Find reports and more" id="search-fld">
 					<button type="submit">
 						<i class="fa fa-search"></i>
 					</button>
 					<a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
-				</form>
+				</form> -->
 				<!-- end input: search field -->
 
 
@@ -122,16 +126,8 @@
 						<a href="<?=Yii::app()->createUrl("account/index");?>" title="My Account"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">My Account</span></a>
 					</li>
 				</ul>
-				<?php 
-				// $this->widget('bootstrap.widgets.TbMenu',array(
-				// 	'type'=>'list', // '', 'tabs', 'pills' (or 'list')
-				// 	'items'=>array(
-				// 		array('label'=>'Home', 'icon'=>'home', 'url'=>array('/home/index')),
-				// 	),
-				// )); 
-				?>
 			</nav>
-			<span class="minifyme" style><i class="fa fa-arrow-circle-left hit" style="margin-top:4px;"></i></span>
+			<span class="minifyme" id="slideopen"><i class="fa fa-arrow-circle-left hit" style="margin-top:4px;"></i></span>
 		
 	</aside>
 	<div id="main" role="main">
@@ -163,3 +159,19 @@
 
 </body>
 </html>
+<script type="text/javascript">
+function SetMinified(){
+    var view = 'minified';
+    $.post("../site/minified", {"view": view}, function(results) {
+        // $('#slideopen').html(results);
+    });
+}
+</script>
+
+<script>
+$(document).ready(function(){
+	$("#slideopen").click(function(){
+		SetMinified();
+	});
+});
+</script>

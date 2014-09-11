@@ -129,4 +129,25 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+
+	public function actionMinified()
+	{
+		if(isset($_POST['view'])){
+			session_start();
+			if(isset($_SESSION['view'])){
+				echo 'session_set';
+				if($_SESSION['view']=='minified'){
+					unset($_SESSION['view']);
+					echo $_SESSION['view']='unminified';
+				}else{
+					unset($_SESSION['view']);
+					echo $_SESSION['view']='minified';
+				}
+			}else{
+				echo $_SESSION['view'] = 'minified';
+			}
+		}else{
+			echo 'unset';
+		}
+	}
 }

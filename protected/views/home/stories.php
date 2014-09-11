@@ -44,7 +44,7 @@ if(isset($_POST['StorySearch'])){
 	?>
 	<div id="wid-id-0" class="jarviswidget jarviswidget-sortable"style="" role="widget">
 		<header role="heading">
-			<h2>Print PDF and Create Spreadsheets ? 
+			<h2>Export Reports ? 
 				<a href="<?=Yii::app()->createUrl("home/pdf?startdate=$startdate&enddate=$enddate&search=$search&industries=$industries&cat_identifier=$cat_identifier&type_identifier=$type_identifier");?>" class="btn btn-danger btn-xs pdf-excel"><i class="fa fa-file-pdf-o"></i> PDF</a>
 				<a href="<?=Yii::app()->createUrl("home/excel?startdate=$startdate&enddate=$enddate&search=$search&industries=$industries&cat_identifier=$cat_identifier&type_identifier=$type_identifier");?>" class="btn btn-success btn-xs pdf-excel"><i class="fa fa-file-excel-o"></i> EXCEL</a>
 			</h2>
@@ -77,7 +77,7 @@ if(isset($_POST['StorySearch'])){
 }else{ ?>
 	<div id="wid-id-0" class="jarviswidget jarviswidget-sortable"style="" role="widget">
 		<header role="heading">
-			<h2>Print PDF and Create Spreadsheets ? 
+			<h2>Export Reports ? 
 				<a href="<?=Yii::app()->createUrl("home/pdf");?>" class="btn btn-danger btn-xs pdf-excel"><i class="fa fa-file-pdf-o"></i> PDF</a> 
 				<a href="<?=Yii::app()->createUrl("home/excel");?>" class="btn btn-success btn-xs pdf-excel"><i class="fa fa-file-excel-o"></i> EXCEL</a>
 			</h2>
