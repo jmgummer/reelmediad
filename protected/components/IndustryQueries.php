@@ -100,7 +100,12 @@ class IndustryQueries{
 					}else{
 						$color_code = $weekday.'_b';
 					}
-					$rate = Ratecard::model()->find('Media_House_ID=:a AND color_code=:b', array(':a'=>$Media_House_ID,':b'=>$color_code))->rate;
+					if($rate = Ratecard::model()->find('Media_House_ID=:a AND color_code=:b', array(':a'=>$Media_House_ID,':b'=>$color_code))){
+						$rate = $rate->rate;
+					}else{
+						$rate=0;
+					}
+					
 					$this_rate = $rate*$col*$centimeter;
 				}else{
 					$words = $StoryDuration;
