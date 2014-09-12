@@ -1,5 +1,9 @@
 <?php
-
+if(!isset($_POST['StorySearch']))
+{
+	$model->startdate = date('Y-m-d');
+	$model->enddate = date('Y-m-d');
+}
 ?>
 <div id="wid-id-0" class="jarviswidget jarviswidget-sortable"style="" role="widget">
 	<header role="heading"><h2>Search Form</h2></header>
@@ -9,15 +13,15 @@
 		<?php echo $form->errorSummary($model); ?>
 		<fieldset>
 			<label class="input">
-				<?php echo $form->textFieldRow($model,'search_text',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
+				<?php echo $form->textFieldRow($model,'search_text',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off" )); ?>
 			</label>
 			<hr class="simple"></hr>
 			<label class="input">
-				<?php echo $form->textFieldRow($model,'startdate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
+				<?php echo $form->textFieldRow($model,'startdate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off")); ?>
 			</label>
 			<hr class="simple"></hr>
 			<label class="input">
-				<?php echo $form->textFieldRow($model,'enddate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
+				<?php echo $form->textFieldRow($model,'enddate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off")); ?>
 			</label>
 			<hr class="simple"></hr>
 			<label class="checkbox">
