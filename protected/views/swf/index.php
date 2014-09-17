@@ -1,38 +1,41 @@
 <?php $this->breadcrumbs=array('SWF Viewer'=>array('view','id'=>$model->Story_ID)); ?>
 <div class="swf-table">
-  <?php echo Swfviewer::GetSwfHeader($model); ?>
-  <?php $swffile = Swfviewer::GetSwfFile($model->Link); ?>
+  <div class="row-fluid clearfix">
+    <div class="col-md-3"><?php echo Swfviewer::GetSwfHeader($model); ?></div>
+    <div class="col-md-9"><?php echo Swfviewer::GetSwfTitles($model); ?>
+      <div class="push-in">
+        <?php $swffile = Swfviewer::GetSwfFile($model->Link); ?>
+        <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl . '/swfobject/swfobject.js'; ?>"></script>
+        <script type="text/javascript">
+          var flashvars = {
+            doc_url: "<?php echo 'http://192.168.0.60/reelmedia/files/pdf/'.$model->Link;  ?>",
+          };
+          var params = {
+            menu: "false",
+            //bgcolor: '#efefef',
+          bgcolor: '#efefef',
+            allowFullScreen: 'true'
+          };
+          var attributes = {
+                  id: 'website'
+          };
+          swfobject.embedSWF('<?php echo Yii::app()->request->baseUrl; ?>/swfobject/zviewer.swf?r=11', 'website', '100%', '1100', '10.0.45',
+          '<?php echo Yii::app()->request->baseUrl; ?>/swfobject/expressinstall.swf', flashvars, params, attributes);
+
+        </script>
+        <table width='100%'><tr>
+        <td width="100%" valign=top><div align=center><div id="website">
+        <p align="center" class="style1">In order to view this page you need Flash Player 9+ support!</p>
+        <p align="center"><a href="http://www.adobe.com/go/getflashplayer">
+        <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
+        </a></p></div></div></td></tr></table>
+      </div>
+    </div>
+  </div>
 </div>
-
-<?php //echo $swffile;  ?>
-
-<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl . '/swfobject/swfobject.js'; ?>"></script>
-<script type="text/javascript">
-                var flashvars = {
-                  doc_url: "<?php echo 'http://192.168.0.60/reelmedia/files/pdf/'.$model->Link;  ?>",
-                };
-                var params = {
-                  menu: "false",
-                  //bgcolor: '#efefef',
-                bgcolor: '#efefef',
-                  allowFullScreen: 'true'
-                };
-                var attributes = {
-                        id: 'website'
-                };
-                swfobject.embedSWF('<?php echo Yii::app()->request->baseUrl; ?>/swfobject/zviewer.swf?r=11', 'website', '700', '1100', '10.0.45',
-                '<?php echo Yii::app()->request->baseUrl; ?>/swfobject/expressinstall.swf', flashvars, params, attributes);
-
-</script>
-<table width='100%'><tr>
-<td width="100%" valign=top><div align=center><div id="website">
-<p align="center" class="style1">In order to view this page you need Flash Player 9+ support!</p>
-<p align="center"><a href="http://www.adobe.com/go/getflashplayer">
-<img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
-</a></p></div></div></td></tr></table>
 <style type="text/css">
 .swf-table{
-  width: 700px;
+  width: 100%;
   margin: 10px auto;
 }
 .swf-table a,.swf-table a:hover{
@@ -78,5 +81,8 @@
   -o-transform: rotate(359deg);
   -moz-transform: rotate(359deg);
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.28);
+}
+.push-in{
+  z-index: -1000;
 }
 </style>

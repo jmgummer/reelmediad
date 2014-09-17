@@ -130,6 +130,10 @@ class SiteController extends Controller
 		$this->redirect(Yii::app()->homeUrl);
 	}
 
+	/*
+	** Used to change the site views
+	*/
+
 	public function actionMinified()
 	{
 		if(isset($_POST['view'])){

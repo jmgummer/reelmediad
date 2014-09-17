@@ -1,7 +1,7 @@
-$('#ribbon')
-    .append(
-        '<div class="demo"><span id="demo-setting"><i class="fa fa-cog txt-color-blueDark"></i></span> <form><legend class="no-padding margin-bottom-10">Layout Options</legend><section><label><input name="subscription" id="smart-fixed-nav" type="checkbox" class="checkbox style-0"><span>Fixed header</span></label><label><input type="checkbox" name="terms" id="smart-fixed-ribbon" class="checkbox style-0"><span>Fixed Ribbon</span></label><label><input type="checkbox" name="terms" id="smart-fixed-navigation" class="checkbox style-0"><span>Fixed Navigation</span></label><label><input type="checkbox" name="terms" id="smart-fixed-container" class="checkbox style-0"></label><label style="display:none;"><input type="checkbox" name="terms" id="smart-rtl" class="checkbox style-0"><span>Right to left <b>(rtl)</b></span></label> </section></form> </div>'
-)
+// $('#ribbon')
+//     .append(
+//         '<div class="demo"><span id="demo-setting"><i class="fa fa-cog txt-color-blueDark"></i></span> <form><legend class="no-padding margin-bottom-10">Layout Options</legend><section><label><input name="subscription" id="smart-fixed-nav" type="checkbox" class="checkbox style-0"><span>Fixed header</span></label><label><input type="checkbox" name="terms" id="smart-fixed-ribbon" class="checkbox style-0"><span>Fixed Ribbon</span></label><label><input type="checkbox" name="terms" id="smart-fixed-navigation" class="checkbox style-0"><span>Fixed Navigation</span></label><label><input type="checkbox" name="terms" id="smart-fixed-container" class="checkbox style-0"></label><label style="display:none;"><input type="checkbox" name="terms" id="smart-rtl" class="checkbox style-0"><span>Right to left <b>(rtl)</b></span></label> </section></form> </div>'
+// )
 
 // hide bg options
 var smartbgimage =
@@ -9,12 +9,12 @@ var smartbgimage =
 $("#smart-bgimages")
     .fadeOut();
 
-$('#demo-setting')
-    .click(function () {
-        //console.log('setting');
-        $('#ribbon .demo')
-            .toggleClass('activate');
-    })
+// $('#demo-setting')
+//     .click(function () {
+//         //console.log('setting');
+//         $('#ribbon .demo')
+//             .toggleClass('activate');
+//     })
 
 /*
  * FIXED HEADER
