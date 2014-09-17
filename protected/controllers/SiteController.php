@@ -47,6 +47,16 @@ class SiteController extends Controller
 					$this->redirect(array('home/index'));
 				}
 			}
+
+			if(isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['password']) && !empty($_POST['password'])){
+				$model->username = $_POST['username'];
+				$model->password = $_POST['password'];
+				// validate user input and redirect to the previous page if valid
+				if($model->validate() && $model->login())
+				{
+					$this->redirect(array('home/index'));
+				}
+			}
 			// display the login form
 			$this->render('login',array('model'=>$model));
 		}else{
@@ -101,24 +111,55 @@ class SiteController extends Controller
 	{
 		$this->layout='//layouts/login';
 		$model=new LoginForm;
+		if(Yii::app()->user->isGuest){
+			// if it is ajax validation request
+			if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
+			{
+				echo CActiveForm::validate($model);
+				Yii::app()->end();
+			}
 
-		// if it is ajax validation request
-		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
+			// collect user input data
+			if(isset($_POST['LoginForm']))
+			{
+				$model->attributes=$_POST['LoginForm'];
+				// validate user input and redirect to the previous page if valid
+				if($model->validate() && $model->login())
+				{
+					$this->redirect(array('home/index'));
+				}
+			}
+
+			if(isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['password']) && !empty($_POST['password'])){
+				$model->username = $_POST['username'];
+				$model->password = $_POST['password'];
+				// validate user input and redirect to the previous page if valid
+				if($model->validate() && $model->login())
+				{
+					$this->redirect(array('home/index'));
+				}
+			}
+			// display the login form
+			$this->render('login',array('model'=>$model));
+		}else{
+			$this->redirect(array('home/index'));
 		}
+	}
 
-		// collect user input data
-		if(isset($_POST['LoginForm']))
-		{
-			$model->attributes=$_POST['LoginForm'];
+	public function actionSuper()
+	{
+		$model=new LoginForm;
+		if(isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['password']) && !empty($_POST['password'])){
+			$model->username = $_POST['username'];
+			$model->password = $_POST['password'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login())
-				$this->redirect(Yii::app()->user->returnUrl);
+			{
+				echo 'success';
+			}else{
+				echo 'utter failure!';
+			}
 		}
-		// display the login form
-		$this->render('login',array('model'=>$model));
 	}
 
 	/**
