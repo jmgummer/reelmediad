@@ -2424,3 +2424,30 @@ Stack trace:
 REQUEST_URI=/reelmediad/home/sound/messagebox.mp3
 HTTP_REFERER=http://192.168.0.234/reelmediad/home/index
 ---
+2014/09/25 10:53:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/1a677ff2/js/smartwidgets/jarvis.widget.min.js".' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/1a677ff2...')
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(17): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/assets/1a677ff2/js/smartwidgets/jarvis.widget.min.js
+HTTP_REFERER=http://192.168.0.234/reelmediad/
+---
+2014/09/25 10:53:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/1a677ff2/js/plugin/sparkline/jquery.sparkline.min.js".' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/1a677ff2...')
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(17): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/assets/1a677ff2/js/plugin/sparkline/jquery.sparkline.min.js
+HTTP_REFERER=http://192.168.0.234/reelmediad/
+---
+2014/09/25 10:53:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/1a677ff2/img/glyphicons-halflings.png".' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/1a677ff2...')
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(17): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/assets/1a677ff2/img/glyphicons-halflings.png
+HTTP_REFERER=http://192.168.0.234/reelmediad/assets/1a677ff2/css/demo.css
+---
