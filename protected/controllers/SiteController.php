@@ -168,7 +168,13 @@ class SiteController extends Controller
 	public function actionLogout()
 	{
 		Yii::app()->user->logout();
-		$this->redirect(Yii::app()->homeUrl);
+		if(isset($_SESSION)){
+			session_start();
+			session_destroy();
+		}
+		
+		// $this->redirect(Yii::app()->homeUrl);
+		$this->redirect('http://192.168.0.234/reelforge_back');
 	}
 
 	/*
