@@ -1,5 +1,5 @@
 <?php
-$yii=dirname(__FILE__).'/../yii_back/framework/yii.php';
+$yii=dirname(__FILE__).'/yii_back/framework/yii.php';
 switch ($_SERVER['SERVER_ADDR']) 
 {
     case "192.168.0.234":

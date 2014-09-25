@@ -27,12 +27,11 @@ class UserIdentity extends CUserIdentity
 			$this->setState('user_id', $client->client_users_id);
 			$this->setState('client_name',$client->UserName);
 			$this->setState('company_id',$company_id);
-			// if(empty($client->company) || $client->company==null ){
-			// 	$this->setState('company_name', 'unknown');
-			// }else{
-			// 	$this->setState('company_name', $client->company);
-			// }
-			$this->setState('company_name', 'unknown');
+			if(empty($client->company) || $client->company==null ){
+				$this->setState('company_name', 'unknown');
+			}else{
+				$this->setState('company_name', $client->company);
+			}
 			
 			$this->errorCode=self::ERROR_NONE;
 		}
