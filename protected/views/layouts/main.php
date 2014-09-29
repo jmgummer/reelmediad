@@ -87,7 +87,7 @@
 					<a href="javascript:void(0);" id="show-shortcut">
 						<img src="<?php echo Yii::app()->request->baseUrl . '/images/avatars/male.png'; ?>" alt="me" class="online" /> 
 						<span>
-							<?php //echo Yii::app()->user->company_name; ?>
+							<?php echo Yii::app()->user->company_name; ?>
 						</span>
 					</a> 
 					

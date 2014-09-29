@@ -2451,3 +2451,45 @@ Stack trace:
 REQUEST_URI=/reelmediad/assets/1a677ff2/img/glyphicons-halflings.png
 HTTP_REFERER=http://192.168.0.234/reelmediad/assets/1a677ff2/css/demo.css
 ---
+2014/09/25 13:56:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sound".' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(270): CController->missingAction('sound')
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('sound')
+#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('account/sound/m...')
+#3 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\reelmediad\index.php(17): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmediad/account/sound/messagebox.mp3
+HTTP_REFERER=http://192.168.0.234/reelmediad/account/index
+---
+2014/09/29 11:13:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "assets/1a677ff2/img/glyphicons-halflings.png".' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('assets/1a677ff2...')
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 C:\xampp\htdocs\reelmediad\index.php(17): CApplication->run()
+#3 {main}
+REQUEST_URI=/reelmediad/assets/1a677ff2/img/glyphicons-halflings.png
+HTTP_REFERER=http://192.168.0.234/reelmediad/assets/1a677ff2/css/demo.css
+---
+2014/09/29 11:14:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sound".' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(270): CController->missingAction('sound')
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('sound')
+#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/sound/mess...')
+#3 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\reelmediad\index.php(17): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmediad/home/sound/messagebox.mp3
+HTTP_REFERER=http://192.168.0.234/reelmediad/home/print
+---
+2014/09/29 11:16:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sound".' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php:483
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(270): CController->missingAction('sound')
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('sound')
+#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/sound/mess...')
+#3 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 C:\xampp\htdocs\reelmediad\index.php(17): CApplication->run()
+#5 {main}
+REQUEST_URI=/reelmediad/home/sound/messagebox.mp3
+HTTP_REFERER=http://192.168.0.234/reelmediad/home/index
+---
