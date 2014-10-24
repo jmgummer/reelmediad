@@ -69,10 +69,10 @@ return array(
 		
 		'db'=>array(
 			'class'=>'CDbConnection',
-			'connectionString' => 'mysql:host=localhost;dbname=app_settings',
+			'connectionString' => 'mysql:host=192.168.0.60;dbname=app_settings',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => 'gridlock@2014',
+			'password' => 'Pambazuka08',
 			'charset' => 'utf8',
 		),
 
