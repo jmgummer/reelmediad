@@ -69,28 +69,28 @@ return array(
 		
 		'db'=>array(
 			'class'=>'CDbConnection',
-			'connectionString' => 'mysql:host=192.168.0.60;dbname=app_settings',
+			'connectionString' => 'mysql:host=localhost;dbname=app_settings',
+			'emulatePrepare' => true,
+			'username' => 'root',
+			'password' => 'gridlock@2014',
+			'charset' => 'utf8',
+		),
+
+		'db2'=>array(
+			'class'=>'CDbConnection',
+			'connectionString' => 'mysql:host=192.168.0.5;dbname=reelmedia',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => 'Pambazuka08',
 			'charset' => 'utf8',
 		),
 
-		'db2'=>array(
-			'class'=>'CDbConnection',
-			'connectionString' => 'mysql:host=192.168.0.10;dbname=reelmedia2',
-			'emulatePrepare' => true,
-			'username' => 'crptic',
-			'password' => 'R@nt!me',
-			'charset' => 'utf8',
-		),
-
 		'db3'=>array(
 			'class'=>'CDbConnection',
-			'connectionString' => 'mysql:host=192.168.0.10;dbname=forgedb',
+			'connectionString' => 'mysql:host=192.168.0.5;dbname=forgedb',
 			'emulatePrepare' => true,
-			'username' => 'crptic',
-			'password' => 'R@nt!me',
+			'username' => 'root',
+			'password' => 'Pambazuka08',
 			'charset' => 'utf8',
 		),
 		

@@ -67,32 +67,32 @@ return array(
 		// ),
 		// uncomment the following to use a MySQL database
 		
-		'db'=>array(
-			'class'=>'CDbConnection',
-			'connectionString' => 'mysql:host=192.168.0.60;dbname=app_settings',
-			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => 'Pambazuka08',
-			'charset' => 'utf8',
-		),
+		// 'db'=>array(
+		// 	'class'=>'CDbConnection',
+		// 	'connectionString' => 'mysql:host=192.168.0.60;dbname=app_settings',
+		// 	'emulatePrepare' => true,
+		// 	'username' => 'root',
+		// 	'password' => 'Pambazuka08',
+		// 	'charset' => 'utf8',
+		// ),
 
-		'db2'=>array(
-			'class'=>'CDbConnection',
-			'connectionString' => 'mysql:host=192.168.0.10;dbname=reelmedia2',
-			'emulatePrepare' => true,
-			'username' => 'crptic',
-			'password' => 'R@nt!me',
-			'charset' => 'utf8',
-		),
+		// 'db2'=>array(
+		// 	'class'=>'CDbConnection',
+		// 	'connectionString' => 'mysql:host=192.168.0.10;dbname=reelmedia2',
+		// 	'emulatePrepare' => true,
+		// 	'username' => 'crptic',
+		// 	'password' => 'R@nt!me',
+		// 	'charset' => 'utf8',
+		// ),
 
-		'db3'=>array(
-			'class'=>'CDbConnection',
-			'connectionString' => 'mysql:host=192.168.0.10;dbname=forgedb',
-			'emulatePrepare' => true,
-			'username' => 'crptic',
-			'password' => 'R@nt!me',
-			'charset' => 'utf8',
-		),
+		// 'db3'=>array(
+		// 	'class'=>'CDbConnection',
+		// 	'connectionString' => 'mysql:host=192.168.0.10;dbname=forgedb',
+		// 	'emulatePrepare' => true,
+		// 	'username' => 'crptic',
+		// 	'password' => 'R@nt!me',
+		// 	'charset' => 'utf8',
+		// ),
 		
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
