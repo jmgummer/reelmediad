@@ -54,12 +54,6 @@
 				</div>
 				<!-- end logout button -->
 
-				<!-- search mobile button (this is hidden till mobile view port) -->
-				<div id="search-mobile" class="btn-header transparent pull-right">
-					<span> <a href="javascript:void(0)" title="Search"><i class="fa fa-search"></i></a> </span>
-				</div>
-				<!-- end search mobile button -->
-
 				<!-- input: search field -->
 				<!-- <form action="#search.html" class="header-search pull-right">
 					<input type="text" placeholder="Find reports and more" id="search-fld">

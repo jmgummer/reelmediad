@@ -16,7 +16,7 @@ echo $time = ($hours>0?$hours." hr(s) ":"").$mins." min(s) ".$s." sec(s)";
 <div id="myElement">Loading the player...</div>
 <script type="text/javascript">
     jwplayer("myElement").setup({
-        file: "<?php echo Yii::app()->request->baseUrl; ?>/videos/test_video.flv",
+        file: "<?php echo Yii::app()->request->baseUrl; ?>/videos/test.flv",
         width: 640,
         height: 360
     });
