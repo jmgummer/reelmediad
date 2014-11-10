@@ -79,7 +79,7 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 	if($story = Story::model()->findAllBySql($q2)){
 		echo RecentStories::ElectronicTableHead();
 		foreach ($story as $key) {
-			echo RecentStories::PrintTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,$key->IndustryCategory,$key->Tonality,$key->AVE,$key->Link,$key->Continues);
+			echo RecentStories::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,$key->IndustryCategory,$key->Tonality,$key->AVE,$key->Link,$key->Continues);
 			// if($story = RecentStories::GetStories($key->Story_ID)){
 			// 	echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->IndustryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
 			// }
@@ -143,7 +143,7 @@ public static function GetClientElectronicIndustryStory($client,$startdate,$endd
 	if($story = Story::model()->findAllBySql($q2)){
 		echo RecentStories::ElectronicTableHead();
 		foreach ($story as $key) {
-			echo RecentStories::PrintTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,$key->IndustryCategory,$key->Tonality,$key->AVE,$key->Link,$key->Continues);
+			echo RecentStories::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,$key->IndustryCategory,$key->Tonality,$key->AVE,$key->Link,$key->Continues);
 			// if($story = RecentStories::GetStories($key->Story_ID)){key
 			// 	echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->IndustryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
 			// }
@@ -209,6 +209,24 @@ public static function PrintTableBody($date,$storyid,$pub,$journo,$head,$page,$p
 	<td>'.$pub.'</td>
 	<td>'.$journo.'</td>
 	<td><a href="'.Yii::app()->createUrl("swf/view").'/'.$storyid.'" target="_blank">'.$head.'</a><br><font size="1">'.$cont.'</font></td>
+	<td>'.$page.'</td>
+	<td>'.$pubtype.'</td>
+	<td>'.$pic.'</td>
+	<td>'.$effect.'</td>
+	<td style="text-align:right;">'.number_format($ave).'</td>
+	</tr>';
+}
+
+/*
+* Print The Body of the Table This function may be called recursively
+* NB - Just for the Print Section
+*/
+public static function ElectronicTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont){
+	return '<tr>
+	<td><a href="'.Yii::app()->createUrl("video").'/'.$storyid.'" target="_blank">'.$date.'</a></td>
+	<td>'.$pub.'</td>
+	<td>'.$journo.'</td>
+	<td><a href="'.Yii::app()->createUrl("video").'/'.$storyid.'" target="_blank">'.$head.'</a><br><font size="1">'.$cont.'</font></td>
 	<td>'.$page.'</td>
 	<td>'.$pubtype.'</td>
 	<td>'.$pic.'</td>

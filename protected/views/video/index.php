@@ -33,16 +33,16 @@ if($query_companies_mentioned=Company::model()->findAllBySql($sql_companies_ment
 	}
 }
 $companies_mentioned=substr($companies_mentioned,0,-2);
-// $seconds = 1585; //example
+$seconds = $duration; //example
 
-// $hours = floor($seconds / 3600);
-// $mins = floor(($seconds - $hours*3600) / 60);
-// $s = $seconds - ($hours*3600 + $mins*60);
+$hours = floor($seconds / 3600);
+$mins = floor(($seconds - $hours*3600) / 60);
+$s = $seconds - ($hours*3600 + $mins*60);
 
-// $mins = ($mins<10?"0".$mins:"".$mins);
-// $s = ($s<10?"0".$s:"".$s); 
+$mins = ($mins<10?"0".$mins:"".$mins);
+$s = ($s<10?"0".$s:"".$s); 
 
-// $time = ($hours>0?$hours." hr(s) ":"").$mins." min(s) ".$s." sec(s)";
+$formatedtime = ($hours>0?$hours." hr(s) ":"").$mins." min(s) ".$s." sec(s)";
 
 
 /* The File Path */
@@ -64,7 +64,7 @@ if(substr($flash_clip,-3)=="mpg") {
 	$flash_clip=strtolower(substr($flash_clip,0,-3) ."flv");
 }
 
-
+$flash_clip ='http://www.reelforge.com/'.$flash_clip;
 
 
 ?>
@@ -85,7 +85,7 @@ if(substr($flash_clip,-3)=="mpg") {
 		<p><strong>Station : <?php echo $mediahouse; ?></strong></p>
 		<p><?php echo $story_date; ?></p>
 		<p>Time : <?php echo substr($StoryTime, 0,4); ?> hrs<?php //echo $ampm; ?></p>
-		<p>Length : <?php echo $duration; ?></p>
+		<p>Length : <?php echo $formatedtime; ?></p>
 		<p>Type : <?php echo $clip_type; ?></p>
 		<p><strong>Summary </strong><br></p>
 		<p><?php echo $summary; ?></p><br>
