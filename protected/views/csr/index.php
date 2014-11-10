@@ -21,14 +21,14 @@ if(isset($_POST['StorySearch'])){
     }
 }else{
 	$todays = date('Y-m-d');
-$startdate = $enddate = $todays;
+	$startdate = $enddate = $todays;
 }
 if($search!=' '){
 	$nara_search = '( '.$search.' )';
 }else{
 	$nara_search = '';
 }
-$narrative= 'Searched for CSR Stories '.$nara_search.' between 2014-06-25 and 2014-06-25';
+$narrative= 'Searched for CSR Stories '.$nara_search.' between '.$startdate.' and '.$enddate;
 
 echo '<div id="wid-id-0" class="jarviswidget jarviswidget-sortable"style="" role="widget">
 		<header role="heading"><h2>'.$narrative.'</h2></header>

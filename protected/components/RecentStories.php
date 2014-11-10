@@ -219,7 +219,7 @@ public static function PrintTableBody($date,$storyid,$pub,$journo,$head,$page,$p
 
 /*
 * Print The Body of the Table This function may be called recursively
-* NB - Just for the Print Section
+* NB - Just for the Electronic Section
 */
 public static function ElectronicTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont){
 	return '<tr>

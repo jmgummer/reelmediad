@@ -63,7 +63,7 @@ $flash_clip=$filepath .$clip;
 if(substr($flash_clip,-3)=="mpg") {
 	$flash_clip=strtolower(substr($flash_clip,0,-3) ."flv");
 }
-
+$download_clip = 'http://www.reelforge.com/'.$download_clip;
 $flash_clip ='http://www.reelforge.com/'.$flash_clip;
 
 
