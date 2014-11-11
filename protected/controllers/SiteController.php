@@ -172,9 +172,8 @@ class SiteController extends Controller
 			session_start();
 			session_destroy();
 		}
-		
-		// $this->redirect(Yii::app()->homeUrl);
-		$this->redirect('http://192.168.0.234/reelforge_back');
+		$site_url = $_SERVER['SERVER_ADDR'];
+		$this->redirect('http://'.$site_url.'/reelforge_back');
 	}
 
 	/*
