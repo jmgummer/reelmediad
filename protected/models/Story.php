@@ -430,22 +430,26 @@ class Story extends CActiveRecord
 					$rate_cost = 0;
 				}
 			}else{
-			  $sql_electronic_rate='SELECT rate,duration from forgedb.ratecard_base, reelmedia.anvil_match where ratecard_base.station_id=anvil_match.station_id and anvil_match.Media_House_ID='.$Media_House_ID.' and forgedb.ratecard_base.weekday="'.$weekday.'" and forgedb.ratecard_base.time_start<="'.$StoryTime.'" order by forgedb.ratecard_base.duration,  ratecard_base.date_start desc,ratecard_base.time_start desc, forgedb.ratecard_base.time_end asc limit 1';
+			  $sql_electronic_rate='SELECT rate,duration 
+			  from forgedb.ratecard_base, reelmedia.anvil_match 
+			  where ratecard_base.station_id=anvil_match.station_id and anvil_match.Media_House_ID='.$Media_House_ID.' 
+			  and forgedb.ratecard_base.weekday="'.$weekday.'" and forgedb.ratecard_base.time_start<="'.$StoryTime.'" 
+			  order by forgedb.ratecard_base.duration,  ratecard_base.date_start desc,ratecard_base.time_start desc, forgedb.ratecard_base.time_end asc limit 1';
 			  $incantation_length=str_replace("sec","",$incantation_length);
 			  $this_rate_det = RatecardBase::model()->findBySql($sql_electronic_rate);
 			  if(isset($this_rate_det->rate) && isset($this_rate_det->duration)){
 			    $this_rate = $this_rate_det->rate;
 			    $this_duration = $this_rate_det->duration;
+				if($rate_cost = round(($incantation_length * $this_rate)/$this_duration,-1)==60){
+					$rate_cost = 0;
+				}else{
+					$rate_cost = round(($incantation_length * $this_rate)/$this_duration,-1);
+				}
 			  }else{
-			    $this_rate = 1;
-			    $this_duration = 1;
+			    $rate_cost = 0;
 			  }
 			  // $rate_cost = ($this_rate*$this_duration)/$incantation_length;
-			  if($rate_cost = round(($incantation_length * $this_rate)/$this_duration,-1)==60){
-			    $rate_cost = 0;
-			  }else{
-			    $rate_cost = round(($incantation_length * $this_rate)/$this_duration,-1);
-			  }
+			  
 			}
 		}else{
 			$rate_cost = 0;

@@ -24,9 +24,10 @@ if(!isset($_POST['StorySearch']))
 				<?php echo $form->textFieldRow($model,'enddate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off")); ?>
 			</label>
 			<hr class="simple"></hr>
-			<label class="checkbox">
-				<?php echo $form->checkBoxRow($model,'country', array('checked'=>'checked')); ?>
-			</label>
+			
+			<div class="form-group">
+				<?php echo $form->dropDownListRow($model, 'country', Country::CountryList(), array('class'=>'form-control')); ?>
+			</div>
 			<hr class="simple"></hr>
 			<label class="radio">
 				<?php echo $form->radioButtonListRow($model,'storytype', StoryType::model()->getStoryTypes(), array('class'=>'radio-beat')); ?>

@@ -13,7 +13,7 @@ $todays = date('Y-m-d');
 $startdate = $enddate = $todays;
 $search = ' ';
 // Adding Country Code
-$country = 1;
+$country = Yii::app()->user->country_id;
 $industries = '';
 // Adding backdate
 
@@ -24,6 +24,7 @@ $company_words = Company::model()->find('company_id=:a order by keywords', array
 $backdate = $company_words->backdate;
 
 if(isset($_POST['StorySearch'])){
+	$country = $model->country;
 	$startdate = $model->startdate;
 	$enddate = $model->enddate;
 	$search = $model->search_text;

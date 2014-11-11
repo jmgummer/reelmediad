@@ -19,6 +19,7 @@ class UserIdentity extends CUserIdentity
 	{
 		$client = ClientUsers::model()->find('username=:a AND password=:b', array(':a'=>$this->username,':b'=>md5($this->password)));
 
+
 		if($client==FALSE){
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
 		}else{
@@ -32,7 +33,13 @@ class UserIdentity extends CUserIdentity
 			}else{
 				$this->setState('company_name', $client->company);
 			}
-			
+			$company_country = 'select * from company_country where company_id ='.$company_id;
+			if($company_country = CompanyCountry::model()->findBySql($company_country)){
+				$country_id = $company_country->country_id;
+			}else{
+				$country_id = 1;
+			}
+			$this->setState('country_id',$country_id);
 			$this->errorCode=self::ERROR_NONE;
 		}
 
