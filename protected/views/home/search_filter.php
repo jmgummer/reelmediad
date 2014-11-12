@@ -13,38 +13,37 @@ if(!isset($_POST['StorySearch']))
 		<?php echo $form->errorSummary($model); ?>
 		<fieldset>
 			<label class="input">
-				<?php echo $form->textFieldRow($model,'search_text',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off" )); ?>
+				<header>Search Text</header>
+				<?php echo $form->textField($model,'search_text',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off" )); ?>
 			</label>
-			<hr class="simple"></hr>
 			<label class="input">
-				<?php echo $form->textFieldRow($model,'startdate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off")); ?>
+				<header>Beginning</header>
+				<?php echo $form->textField($model,'startdate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off")); ?>
 			</label>
-			<hr class="simple"></hr>
 			<label class="input">
-				<?php echo $form->textFieldRow($model,'enddate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off")); ?>
+				<header>Ending</header>
+				<?php echo $form->textField($model,'enddate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off")); ?>
 			</label>
-			<hr class="simple"></hr>
-			
 			<div class="form-group">
-				<?php echo $form->dropDownListRow($model, 'country', Country::CountryList(), array('class'=>'form-control')); ?>
+				<header>Select Country(default Kenya)</header>
+				<?php echo $form->dropDownList($model, 'country', Country::CountryList(), array('class'=>'form-control')); ?>
 			</div>
-			<hr class="simple"></hr>
 			<label class="radio">
+				<header>Type of Story</header>
 				<?php echo $form->radioButtonListRow($model,'storytype', StoryType::model()->getStoryTypes(), array('class'=>'radio-beat')); ?>
 		    </label>
-		    <hr class="simple"></hr>
 		    <label class="radio">
-		    	<?php echo $form->radioButtonListRow($model,'storycategory', StoryCategory::model()->getStoryCategories()); ?>
+		    	<header>Category of Story</header>
+		    	<?php echo $form->radioButtonList($model,'storycategory', StoryCategory::model()->getStoryCategories()); ?>
 			</label>
-			<hr class="simple"></hr>
 		    <div class="form-group">
-				<?php echo $form->dropDownListRow($model, 'news_section', Category::model()->getCategories(), array('prompt'=>'All','class'=>'form-control')); ?>
+		    	<header>News Section</header>
+				<?php echo $form->dropDownList($model, 'news_section', Category::model()->getCategories(), array('prompt'=>'All','class'=>'form-control')); ?>
 			</div>
-			<hr class="simple"></hr>
 			<div class="form-group">
-				<?php echo $form->dropDownListRow($model, 'industry', Industry::model()->getIndustryList(), array('prompt'=>'All','multiple'=>true, 'class'=>'form-control')); ?>
+				<header>Industry</header>
+				<?php echo $form->dropDownList($model, 'industry', Industry::model()->getIndustryList(), array('prompt'=>'All','multiple'=>true, 'class'=>'form-control')); ?>
 			</div>
-			<hr class="simple"></hr>
 			
 		</fieldset>
 		<footer>
@@ -74,6 +73,10 @@ if(!isset($_POST['StorySearch']))
 }
 .smart-form .radio{
 	padding-left: 10px;
+}
+label header, .form-group header,  .radio header {
+	font-size: 13px !important;
+	margin: 0px 0px 10px 0px !important;
 }
 
 fieldset .col-md-4{
