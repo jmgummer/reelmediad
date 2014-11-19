@@ -117,26 +117,6 @@ echo '<div id="wid-id-0" class="jarviswidget jarviswidget-sortable"style="" role
 		echo '</div>';
 	}
 
-
-
-// echo $sql='select issues_client,csr_client from company where company_id='.Yii::app()->user->company_id;
-// $c_issue = Company::model()->findBySql($sql);
-// echo '<br>this_csr_client'.$this_csr_client = $c_issue->csr_client;
-// if($this_csr_client==1) {
-//         echo $csr_table=', story_client';
-//         echo $csr_query=' and story.story_id=story_client.story_id and story_client.client_id='.Yii::app()->user->company_id;
-// }
-
-// if($this_csr_client==2) {
-//         echo $csr_table=', story_industry';
-//         echo $csr_query=' and story.story_id=story_industry.story_id and story_client.cindustry_id IN (select industry_id from industry_company where company_id='.Yii::app()->user->company_id.')';
-// }
-
-// if($this_csr_client==3) {
-//         echo $csr_table='';
-//         echo $csr_query='';
-// }
-
 	?>
 
 </div>

@@ -15,7 +15,7 @@ class Csr{
 			echo Csr::PrintTableHead();
 			foreach ($story as $key) {
 				if($story = Csr::GetStories($key->Story_ID)){
-					echo Csr::PrintTableBody($story->Story_ID,$story->StoryDate,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,$story->Tonality,$story->Tonality,$story->Link,$story->Continues);
+					echo Csr::PrintTableBody($story->Story_ID,$story->StoryDate,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,Story::ClientTonality($story->Story_ID,$client),Story::ClientTonality($story->Story_ID,$client),$story->Link,$story->Continues);
 				}
 			}
 			echo Csr::PrintTableEnd();
@@ -38,7 +38,7 @@ class Csr{
 			echo Csr::ElectronicTableHead();
 			foreach ($story as $key) {
 				if($story = Csr::GetStories($key->Story_ID)){
-					echo Csr::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,$key->IndustryCategory,$key->Tonality,$key->AVE,$key->Link,$key->Continues);
+					echo Csr::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
 					// echo Csr::PrintTableBody($story->Story_ID,$story->StoryDate,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,$story->Tonality,$story->Tonality,$story->Link,$story->Continues);
 				}
 			}
@@ -62,7 +62,7 @@ class Csr{
 			echo Csr::PrintTableHead();
 			foreach ($story as $key) {
 				if($story = Csr::GetStories($key->Story_ID)){
-					echo Csr::PrintTableBody($story->Story_ID,$story->StoryDate,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,$story->Tonality,$story->Tonality,$story->Link,$story->Continues);
+					echo Csr::PrintTableBody($story->Story_ID,$story->StoryDate,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,Story::ClientTonality($story->Story_ID,$client),Story::ClientTonality($story->Story_ID,$client),$story->Link,$story->Continues);
 				}
 			}
 			echo Csr::PrintTableEnd();
@@ -84,7 +84,7 @@ class Csr{
 			echo Csr::ElectronicTableHead();
 			foreach ($story as $key) {
 				if($story = Csr::GetStories($key->Story_ID)){
-					echo Csr::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,$key->IndustryCategory,$key->Tonality,$key->AVE,$key->Link,$key->Continues);
+					echo Csr::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
 					// echo Csr::PrintTableBody($story->Story_ID,$story->StoryDate,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,$story->Tonality,$story->Tonality,$story->Link,$story->Continues);
 				}
 			}

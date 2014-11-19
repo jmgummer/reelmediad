@@ -40,7 +40,11 @@ class CsrController extends Controller
 			$model->storytype = 1;
 			$model->startdate = $model->enddate = date('Y-m-d');
 		}
-		$this->render('index', array('model'=>$model));
+		if(Yii::app()->user->usertype=='agency'){
+			$this->render('agency_stories',array('model'=>$model));
+		}else{
+			$this->render('index',array('model'=>$model));
+		}
 	}
 
 	public function loadModel($id)

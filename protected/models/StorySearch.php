@@ -19,6 +19,7 @@ class StorySearch extends CFormModel
 	public $industry;
 	public $industryreports;
 	public $publications;
+	public $company;
 
 
 	/**
@@ -31,7 +32,7 @@ class StorySearch extends CFormModel
 		return array(
 			array('enddate,startdate', 'required'),
 			array('country,create_sheet,create_pdf', 'numerical', 'integerOnly'=>true),
-			array('search_text,country,storytype,storycategory,news_section,enddate, startdate,industry,create_pdf,create_sheet,industryreports, publications', 'safe'),
+			array('search_text,country,storytype,storycategory,news_section,enddate, startdate,industry,create_pdf,create_sheet,industryreports, publications, company', 'safe'),
 		);
 	}
 
@@ -50,7 +51,8 @@ class StorySearch extends CFormModel
 			'create_pdf'=>'Create PDF Report',
 			'create_sheet'=>'Create Spreadsheet',
 			'industryreports'=>'Report Type',
-			'publications'=>'Publications'
+			'publications'=>'Publications',
+			'company'=>'Company'
 		);
 	}
 
@@ -62,5 +64,10 @@ class StorySearch extends CFormModel
 	public static function getElecList()
 	{
 		return CHtml::listData(Mediahouse::model()->findAll('Media_ID<>"mp01" order by Media_House_List'),'Media_House_ID','Media_House_List');
+	}
+
+	public static function AgencyCompanies($username){
+		$sql="select distinct company_name, company.company_id from company, agency_user_client, agency_users, agency_client,industry_company  where agency_users.username='$username' and agency_users.agency_users_id=agency_user_client.agency_users_id and agency_user_client.company_id=company.company_id and agency_client.company_id=agency_user_client.company_id and industry_company.company_id = company.company_id and industry_company.Client =1 order by company_name asc";
+		return CHtml::listData(Company::model()->findAllBySql($sql),'company_id','company_name');
 	}
 }

@@ -9,19 +9,26 @@
 		<?php echo $form->errorSummary($model); ?>
 		<fieldset>
 			<label class="input">
-				<?php echo $form->textFieldRow($model,'search_text',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
+				<header>Search Text</header>
+				<?php echo $form->textField($model,'search_text',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off" )); ?>
 			</label>
-			<hr class="simple"></hr>
+			<?php if(Yii::app()->user->usertype=='agency'){ ?>
+			<div class="form-group">
+				<header>Select Company</header>
+				<?php echo $form->dropDownList($model, 'company', StorySearch::AgencyCompanies(Yii::app()->user->agencyusername), array('class'=>'form-control','required'=>'required')); ?>
+			</div>
+			<?php } ?>
 			<label class="input">
-				<?php echo $form->textFieldRow($model,'startdate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
+				<header>Beginning</header>
+				<?php echo $form->textField($model,'startdate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off")); ?>
 			</label>
-			<hr class="simple"></hr>
 			<label class="input">
-				<?php echo $form->textFieldRow($model,'enddate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
+				<header>Ending</header>
+				<?php echo $form->textField($model,'enddate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off")); ?>
 			</label>
-			<hr class="simple"></hr>
 			<label class="radio">
-				<?php echo $form->radioButtonListRow($model,'storytype', StoryType::model()->getStoryTypes(), array('class'=>'radio-beat')); ?>
+				<header>Type of Story</header>
+				<?php echo $form->radioButtonList($model,'storytype', StoryType::model()->getStoryTypes(), array('class'=>'radio-beat')); ?>
 		    </label>
 		</fieldset>
 		<footer>
@@ -62,6 +69,10 @@
 }
 .smart-form .radio{
 	padding-left: 10px;
+}
+label header, .form-group header,  .radio header {
+	font-size: 13px !important;
+	margin: 0px 0px 10px 0px !important;
 }
 
 fieldset .col-md-4{

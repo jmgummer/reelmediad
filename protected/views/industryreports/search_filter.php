@@ -8,20 +8,49 @@
 		<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array('id'=>'login-form','type'=>'smart-form','enableClientValidation'=>true, 'clientOptions'=>array('validateOnSubmit'=>true), 'htmlOptions'=>array('class'=>'smart-form'))); ?>
 		<?php echo $form->errorSummary($model); ?>
 		<fieldset>
-			<label class="input">
-				<?php echo $form->textFieldRow($model,'startdate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
-			</label>
-			<hr class="simple"></hr>
-			<label class="input">
-				<?php echo $form->textFieldRow($model,'enddate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
-			</label>
-			<hr class="simple"></hr>
+			<?php if(Yii::app()->user->usertype=='agency'){ ?>
 			<div class="form-group">
-				<?php echo $form->dropDownListRow($model, 'industry', Industry::model()->getIndustryList(), array('multiple'=>true, 'class'=>'form-control','required'=>'required')); ?>
+				<header>Select Company</header>
+				<?php echo $form->dropDownList($model, 'company', StorySearch::AgencyCompanies(Yii::app()->user->agencyusername), 
+				array(
+					'empty'=>'--Please Select An Company --',
+					'class'=>'form-control',
+					'ajax'=>array(
+						'type'=>'POST',
+						'data'=>array('company'=>'js:this.value'),
+						'url'=>CController::createURL('getdata'),'update'=>'#StorySearch_industry',
+						),
+					'required'=>'required'
+					)); 
+				?>
 			</div>
-			<hr class="simple"></hr>
+			<?php } ?>
+			<label class="input">
+				<header>Beginning</header>
+				<?php echo $form->textField($model,'startdate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off")); ?>
+			</label>
+			<label class="input">
+				<header>Ending</header>
+				<?php echo $form->textField($model,'enddate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off")); ?>
+			</label>
+			<div class="form-group">
+				<header>Industry</header>
+				<?php 
+				if(Yii::app()->user->usertype=='agency'){
+					if(isset($model->company)){
+						echo $form->dropDownList($model, 'industry', Industry::model()->AgencyIndustryList($model->company), array('multiple'=>true, 'class'=>'form-control','required'=>'required'));
+					}else{
+						echo $form->dropDownList($model, 'industry', array(), array('multiple'=>true, 'class'=>'form-control','required'=>'required'));
+					}
+					
+				}else{
+					echo $form->dropDownList($model, 'industry', Industry::model()->getIndustryList(), array('multiple'=>true, 'class'=>'form-control','required'=>'required'));
+				} 
+				?>
+			</div>
 			<label class="checkbox">
-	    		<?php echo $form->checkBoxListRow($model,'industryreports', IndustryReportTypes::model()->getReportTypes()); ?>
+				<header>Report Type</header>
+	    		<?php echo $form->checkBoxList($model,'industryreports', IndustryReportTypes::model()->getReportTypes()); ?>
 		    </label>
 		</fieldset>
 		<footer>
@@ -62,6 +91,11 @@
 }
 .smart-form .radio{
 	padding-left: 10px;
+}
+
+label header, .form-group header,  .radio header {
+	font-size: 13px !important;
+	margin: 0px 0px 10px 0px !important;
 }
 
 fieldset .col-md-4{

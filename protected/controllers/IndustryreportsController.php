@@ -18,7 +18,7 @@ class IndustryreportsController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','mentions'),
+				'actions'=>array('index','mentions','getdata'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -55,7 +55,33 @@ class IndustryreportsController extends Controller
 			$model->industry = IndustryCompany::model()->find('company_id=:a', array(':a'=>Yii::app()->user->company_id))->industry_id;
 			$model->startdate = $model->enddate = date('Y-m-d');
 		}
-		$this->render('mentions', array('model'=>$model));
+		if(Yii::app()->user->usertype=='agency'){
+			$this->render('agency_reports',array('model'=>$model));
+		}else{
+			$this->render('mentions', array('model'=>$model));
+		}
+		
+	}
+
+	public function actionGetdata()
+	{
+		/* For Industry Data */
+
+		if(isset($_POST['company'])){
+			$company = $_POST['company'];
+			$sql = 'SELECT Industry_List, industry.Industry_ID, sup_ind_id, sect_id, sub_ind_id FROM industry,industry_company 
+			where industry_company.company_id='.$company.' and industry_company.industry_id=industry.Industry_ID order by sub_ind_id, Industry_List';
+			if($industries = Industry::model()->findAllBySql($sql)){
+				foreach ($industries as $value) {
+					$this_industry_id=$value["Industry_ID"];
+					$this_industry_name=trim($value["ConcatName"]);
+
+					echo '<option value="'.$this_industry_id.'">'.$this_industry_name.'</option>';
+				}
+			}else{
+				echo '<option>No Results Found</option>';
+			}
+		}
 	}
 
 	public function loadModel($id)

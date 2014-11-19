@@ -58,7 +58,12 @@ if(isset($_POST['StorySearch'])){
 	//This is where we start the search
 
 	//first we get the Company keywords
-	$sql_mykeywords = Company::model()->find('company_id=:a', array(':a'=>Yii::app()->user->company_id));
+	if(Yii::app()->user->usertype=='agency'){
+		$clientid = $model->company;
+	}else{
+		$clientid = Yii::app()->user->company_id;
+	}
+	$sql_mykeywords = Company::model()->find('company_id=:a', array(':a'=>$clientid));
 	$backdate = $sql_mykeywords->backdate;
 	$my_keywords=$sql_mykeywords->keywords;
 	$my_subs=trim($sql_mykeywords->subs);

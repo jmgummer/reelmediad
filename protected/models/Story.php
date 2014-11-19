@@ -313,21 +313,53 @@ class Story extends CActiveRecord
 			return 'N/A';
 		}
 	}
+
+	public static function ClientTonality($storyid,$company_id)
+	{
+		if($tonality = MediamapAnalysis::model()->find('story_id=:a AND company_id=:b', array(':a'=>$storyid, ':b'=>$company_id))){
+			if($tonality->tonality=='positive'){
+			  return 'Positive';
+			}elseif($tonality->tonality=='negative'){
+			  return 'Negative';
+			}elseif($tonality->tonality=='neutral'){
+			  return 'Neutral';
+			}else{
+			  return 'N/A';
+			}
+		}else{
+			return 'N/A';
+		}
+	}
 	
 	public function getIndustryCategory()
 	{
-	  $sql = 'SELECT Industry_List, story_id FROM story_industry inner join industry on story_industry.industry_id = industry.industry_id
-    INNER JOIN industry_subs ON story_industry.industry_id = industry_subs.industry_id
-    where story_id='.$this->Story_ID.' and company_id = '.Yii::app()->user->company_id;
-    $catarray=array();
-    if($categories = Industry::model()->findAllBySql($sql)){
-     foreach($categories as $cats){
-       $catarray[]=$cats->Industry_List;
-     }
-    }
-    $imploded = implode(", ",$catarray);
-    return $imploded;
+		$sql = 'SELECT Industry_List, story_id FROM story_industry inner join industry on story_industry.industry_id = industry.industry_id
+		INNER JOIN industry_subs ON story_industry.industry_id = industry_subs.industry_id
+		where story_id='.$this->Story_ID.' and company_id = '.Yii::app()->user->company_id;
+		$catarray=array();
+		if($categories = Industry::model()->findAllBySql($sql)){
+			foreach($categories as $cats){
+				$catarray[]=$cats->Industry_List;
+			}
+		}
+		$imploded = implode(", ",$catarray);
+		return $imploded;
     
+	}
+
+	public static function ClientIndustryCategory($storyid,$company_id)
+	{
+		$sql = 'SELECT Industry_List, story_id FROM story_industry inner join industry on story_industry.industry_id = industry.industry_id
+		INNER JOIN industry_subs ON story_industry.industry_id = industry_subs.industry_id
+		where story_id='.$storyid.' and company_id = '.$company_id;
+		$catarray=array();
+		if($categories = Industry::model()->findAllBySql($sql)){
+			foreach($categories as $cats){
+				$catarray[]=$cats->Industry_List;
+			}
+		}
+		$imploded = implode(", ",$catarray);
+		return $imploded;
 	}
 
 	public function getLink()

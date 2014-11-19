@@ -9,19 +9,26 @@
 		<?php echo $form->errorSummary($model); ?>
 		<fieldset>
 			<label class="input">
-				<?php echo $form->textFieldRow($model,'search_text',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
+				<header>Search Text</header>
+				<?php echo $form->textField($model,'search_text',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off" )); ?>
 			</label>
-			<hr class="simple"></hr>
-		    <div class="form-group">
-				<?php echo $form->dropDownListRow($model, 'publications', StorySearch::getElecList(), array('prompt'=>'All','class'=>'form-control')); ?>
+			<?php if(Yii::app()->user->usertype=='agency'){ ?>
+			<div class="form-group">
+				<header>Select Company</header>
+				<?php echo $form->dropDownList($model, 'company', StorySearch::AgencyCompanies(Yii::app()->user->agencyusername), array('class'=>'form-control')); ?>
 			</div>
-			<hr class="simple"></hr>
+			<?php } ?>
+		    <div class="form-group">
+		    	<header>Publication</header>
+				<?php echo $form->dropDownList($model, 'publications', StorySearch::getPrintList('mp01'), array('prompt'=>'All','class'=>'form-control')); ?>
+			</div>
 			<label class="input">
-				<?php echo $form->textFieldRow($model,'startdate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
+				<header>Beginning</header>
+				<?php echo $form->textField($model,'startdate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off")); ?>
 			</label>
-			<hr class="simple"></hr>
 			<label class="input">
-				<?php echo $form->textFieldRow($model,'enddate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs')); ?>
+				<header>Ending</header>
+				<?php echo $form->textField($model,'enddate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off")); ?>
 			</label>
 		</fieldset>
 		<footer>
@@ -62,6 +69,10 @@
 }
 .smart-form .radio{
 	padding-left: 10px;
+}
+label header, .form-group header,  .radio header {
+	font-size: 13px !important;
+	margin: 0px 0px 10px 0px !important;
 }
 
 fieldset .col-md-4{

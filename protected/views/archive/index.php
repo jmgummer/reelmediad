@@ -1,6 +1,6 @@
 <?php
 $this->pageTitle=Yii::app()->name.' | Archive Reports';
-$this->breadcrumbs=array('Archive Reports'=>array('csr/index'), 'Print Archive');
+$this->breadcrumbs=array('Archive Reports'=>array('archive/index'), 'Print Archive');
 ?>
 <div class="row-fluid clearfix">
 <div class="col-md-3">
@@ -46,7 +46,12 @@ $this->breadcrumbs=array('Archive Reports'=>array('csr/index'), 'Print Archive')
 		//This is where we start the search
 
 		//first we get the Company keywords
-		$sql_mykeywords = Company::model()->find('company_id=:a', array(':a'=>Yii::app()->user->company_id));
+		if(Yii::app()->user->usertype=='agency'){
+			$clientid = $model->company;
+		}else{
+			$clientid = Yii::app()->user->company_id;
+		}
+		$sql_mykeywords = Company::model()->find('company_id=:a', array(':a'=>$clientid));
 		$backdate = $sql_mykeywords->backdate;
 		$my_keywords=$sql_mykeywords->keywords;
 		$my_subs=trim($sql_mykeywords->subs);
@@ -134,6 +139,18 @@ $this->breadcrumbs=array('Archive Reports'=>array('csr/index'), 'Print Archive')
 		$narrative.="</strong> between " .$display_date;
 
 		// echo '<br><hr>'.$narrative;
+		//Create Temp table
+
+		$temp_table="archive_temp"  .date("Ymhmis");
+		$temp_sql="CREATE TEMPORARY  TABLE `".$temp_table."` (
+		`auto_id` INT  AUTO_INCREMENT PRIMARY KEY ,
+		`media_house_id` INT  ,
+		`link_id` INT  ,
+		`fulltxt` text ,
+		`url` text,
+		`indexdate` varchar(200)
+		) ENGINE = MYISAM ;";
+		Yii::app()->db2->createCommand($temp_sql)->execute();
 
 		for ($x=$year_start;$x<=$year_end;$x++)
 		{
@@ -146,33 +163,39 @@ $this->breadcrumbs=array('Archive Reports'=>array('csr/index'), 'Print Archive')
 			{
 		        if($y<10) { $my_month='0'.$y;   } else {  $my_month=$y; }
 		        $temp_table_month="sph_links_"  .$x."_".$my_month;
+		        $sql="insert into $temp_table (media_house_id,link_id,fulltxt,url,indexdate)";
 		        if(!empty($media_house_id)){
-		        	$sql= "select  media_house_id, link_id, fulltxt, url,indexdate from $temp_table_month  where url IS NOT NULL " . $full_query  . " and media_house_id ='".$media_house_id."' order by url desc limit 10";
+		        	$sql.= "select  media_house_id, link_id, fulltxt, url,indexdate from $temp_table_month  where url IS NOT NULL " . $full_query  . " and media_house_id ='".$media_house_id."' order by url desc limit 10";
 		        }else{
-		        	$sql= "select  media_house_id, link_id, fulltxt, url,indexdate from $temp_table_month  where url IS NOT NULL " . $full_query  . " order by url desc limit 10";
+		        	$sql.= "select  media_house_id, link_id, fulltxt, url,indexdate from $temp_table_month  where url IS NOT NULL " . $full_query  . " order by url desc limit 10";
 		        }
+		        $insertsql = Yii::app()->db2->createCommand($sql)->execute();
 		    }
 		}
-		$final_sql = $sql;
-
-		if($stories = SphLinks::model()->findAllBySql($final_sql)){
+		// $final_sql = $sql;
+		$archivesearch = "SELECT * FROM $temp_table";
+		if($stories = Yii::app()->db2->createCommand($archivesearch)->queryAll()){
 			$record_count = count($stories);
 			echo $record_count.' Records Found';
 			foreach ($stories as $key) {
+				$link_id = $key['link_id'];
+				$media_house_id = $key['media_house_id'];
 				$limit = 300;
-			   	$content = $key->fulltxt;
+			   	$content = $key['fulltxt'];
 			   	if (strlen($content) > $limit){
 					$content = substr($content, 0, strrpos(substr($content, 0, $limit), ' '));
 				}
-				$format_date = date('D, F, Y', strtotime($key->indexdate));
-				echo '<h3><a href="http://www.reelforge.com/reelmedia/print_story_console/print_stream.php?itemid='.$key->link_id.'" target="_blank">'.$key->Publication.'</a></h3>';
-				echo '<p>'.$format_date.''.$key->Page.'</p>';
+				$format_date = date('D, F, Y', strtotime($key['indexdate']));
+				echo '<h3><a href="http://www.reelforge.com/reelmedia/print_story_console/print_stream.php?itemid='.$key['link_id'].'" target="_blank">'.SphLinks::ClientPublication($media_house_id).'</a></h3>';
+				echo '<p>'.$format_date.''.SphLinks::ClientPage($link_id).'</p>';
 				echo '<p>'.$content.'</p>';
-				echo '<p><a href="http://www.reelforge.com/reelmedia/print_story_console/print_stream.php?itemid='.$key->link_id.'" target="_blank">Read More</a> | <a href="'.$key->url.'" target="_blank">Download PDF</a></p>';
+				echo '<p><a href="http://www.reelforge.com/reelmedia/print_story_console/print_stream.php?itemid='.$key['link_id'].'" target="_blank">Read More</a> | <a href="'.$key['url'].'" target="_blank">Download PDF</a></p>';
 			}
+
 		}else{
 			echo 'No Records Found';
 		}
+
 
 		
 	}else{

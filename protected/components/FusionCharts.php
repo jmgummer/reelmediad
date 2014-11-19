@@ -60,7 +60,7 @@ public static function StripExtra($text)
     }
 
 // Simple Function To Package Data to XML
-public static function packageXML($narrative, $co_name,$others, $co_value, $other_value)
+public static function packageXML($client,$narrative, $co_name,$others, $co_value, $other_value)
 {
     $strXML = "<chart bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
     $strXML .= "<set label='".$co_name."' value='".$co_value."' />";
@@ -70,7 +70,7 @@ public static function packageXML($narrative, $co_name,$others, $co_value, $othe
 }
 
 // Simple Function to Package Column Data
-public static function packageColumnXML($narrative,$tv,$radio,$print,$total,$xAxisName,$yAxisName)
+public static function packageColumnXML($client,$narrative,$tv,$radio,$print,$total,$xAxisName,$yAxisName)
 {
     $strXML = "<chart bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='".$xAxisName."' yAxisName='".$yAxisName."'>";
     $strXML .= "<set label='TV' value='".$tv."' />";
@@ -81,7 +81,7 @@ public static function packageColumnXML($narrative,$tv,$radio,$print,$total,$xAx
     return $strXML;
 }
 
-public static function packageMentionsXML($narrative, $array,$company_name, $startdate,$enddate,$industry,$backdate)
+public static function packageMentionsXML($client,$narrative, $array,$company_name, $startdate,$enddate,$industry,$backdate)
 {
     $strXML = "<chart bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
     foreach ($array as $key) {
@@ -89,13 +89,13 @@ public static function packageMentionsXML($narrative, $array,$company_name, $sta
         $co_value2 = IndustryQueries::GetShareVoiceCount($key->client_id,$startdate,$enddate,$industry,$backdate);
         $strXML .= "<set label='".FusionCharts::StripExtra($co_name2)."' value='".$co_value2."' />";
     }
-    $companyvalue=IndustryQueries::GetShareVoiceCount(Yii::app()->user->company_id,$startdate,$enddate,$industry,$backdate);
+    $companyvalue=IndustryQueries::GetShareVoiceCount($client,$startdate,$enddate,$industry,$backdate);
     $strXML .= "<set label='".$company_name."' value='".$companyvalue."' />";
     $strXML .= "</chart>";
     return $strXML;
 }
 
-public static function packageAVEMentionsXML($narrative, $array,$company_name, $startdate,$enddate,$industry,$backdate)
+public static function packageAVEMentionsXML($client,$narrative, $array,$company_name, $startdate,$enddate,$industry,$backdate)
 {
     $strXML = "<chart bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
     foreach ($array as $key) {
@@ -103,19 +103,19 @@ public static function packageAVEMentionsXML($narrative, $array,$company_name, $
         $co_value2 = IndustryQueries::GetCompanyAve($key->client_id,$startdate,$enddate,$industry,$backdate);
         $strXML .= "<set label='".FusionCharts::StripExtra($co_name2)."' value='".$co_value2."' />";
     }
-    $companyvalue=IndustryQueries::GetCompanyAve(Yii::app()->user->company_id,$startdate,$enddate,$industry,$backdate);
+    $companyvalue=IndustryQueries::GetCompanyAve($client,$startdate,$enddate,$industry,$backdate);
     $strXML .= "<set label='".$company_name."' value='".$companyvalue."' />";
     $strXML .= "</chart>";
     return $strXML;
 }
 
-public static function packageCATMentionsXML($narrative, $array, $startdate,$enddate,$industry,$backdate)
+public static function packageCATMentionsXML($client,$narrative, $array, $startdate,$enddate,$industry,$backdate)
 {
     $strXML = "<chart bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
     foreach ($array as $key) {
-        if($number = IndustryQueries::GetCatCount(Yii::app()->user->company_id,$startdate,$enddate,$industry,$key->Category_ID,$backdate) > 0){
+        if($number = IndustryQueries::GetCatCount($client,$startdate,$enddate,$industry,$key->Category_ID,$backdate) > 0){
             $cat_name = $key->Category_List;
-            $cat_value = IndustryQueries::GetCatCount(Yii::app()->user->company_id,$startdate,$enddate,$industry,$key->Category_ID,$backdate);
+            $cat_value = IndustryQueries::GetCatCount($client,$startdate,$enddate,$industry,$key->Category_ID,$backdate);
             $strXML .= "<set label='".$cat_name."' value='".$cat_value."' />";
         }
     }
@@ -124,12 +124,12 @@ public static function packageCATMentionsXML($narrative, $array, $startdate,$end
     return $strXML;
 }
 
-public static function packagePICMentionsXML($narrative, $array, $startdate,$enddate,$industry,$backdate)
+public static function packagePICMentionsXML($client,$narrative, $array, $startdate,$enddate,$industry,$backdate)
 {
     $strXML = "<chart bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
     foreach ($array as $key) {
         $pic_name = $key->picture;
-        $pic_value = IndustryQueries::GetPicCount(Yii::app()->user->company_id,$startdate,$enddate,$industry,$key->picture,$backdate);
+        $pic_value = IndustryQueries::GetPicCount($client,$startdate,$enddate,$industry,$key->picture,$backdate);
         $strXML .= "<set label='".$pic_name."' value='".$pic_value."' />";
     }
 
@@ -137,12 +137,12 @@ public static function packagePICMentionsXML($narrative, $array, $startdate,$end
     return $strXML;
 }
 
-public static function packageTonMentionsXML($narrative, $array, $startdate,$enddate,$industry,$backdate)
+public static function packageTonMentionsXML($client,$narrative, $array, $startdate,$enddate,$industry,$backdate)
 {
     $strXML = "<chart bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
     foreach ($array as $key) {
         $ton_name = $key->tonality;
-        $ton_value = IndustryQueries::GetSpTonality(Yii::app()->user->company_id,$startdate,$enddate,$industry,$key->tonality,$backdate);
+        $ton_value = IndustryQueries::GetSpTonality($client,$startdate,$enddate,$industry,$key->tonality,$backdate);
         $strXML .= "<set label='".$ton_name."' value='".$ton_value."' />";
     }
 

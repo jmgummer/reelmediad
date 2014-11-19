@@ -18,7 +18,7 @@ class HomeController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','print','view','video','tests','pdf','excel'),
+				'actions'=>array('index','print','view','video','tests','pdf','excel','getdata'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -50,8 +50,15 @@ class HomeController extends Controller
 			$model->attributes=Yii::app()->input->stripClean($_POST['StorySearch']);
 			$model->startdate = date('Y-m-d',strtotime(str_replace('-', '/', $model->startdate)));
 			$model->enddate = date('Y-m-d',strtotime(str_replace('-', '/', $model->enddate)));
+		}else{
+			$model->storycategory = 1;
+			$model->storytype = 1;
 		}
-		$this->render('stories',array('model'=>$model));
+		if(Yii::app()->user->usertype=='agency'){
+			$this->render('agency_stories',array('model'=>$model));
+		}else{
+			$this->render('stories',array('model'=>$model));
+		}
 	}
 	
 	public function actionPdf()
@@ -82,8 +89,13 @@ class HomeController extends Controller
 		// Adding backdate
 		$cat_identifier = 1;
 		$type_identifier = 1;
+		if(isset($_GET['clientid'])){
+			$client = $_GET['clientid'];
+		}else{
+			$client = Yii::app()->user->company_id;
+		}
 
-		$company_words = Company::model()->find('company_id=:a order by keywords', array(':a'=>Yii::app()->user->company_id));
+		$company_words = Company::model()->find('company_id=:a order by keywords', array(':a'=>$client));
 		$backdate = $company_words->backdate;
 
 		if(isset($_GET['startdate'])){
@@ -139,10 +151,10 @@ class HomeController extends Controller
 				$option = 9;
 			}
 		}
-    	$stories = ExcelStories::GetMainOption(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries,$option);
+    	$stories = ExcelStories::GetMainOption($client,$startdate,$enddate,$search,$backdate,$country,$industries,$option);
 		Yii::app()->end();
 	}
-
+	
 	public function loadModel($id)
 	{
 		$model=Users::model()->findByPk($id);
@@ -180,6 +192,27 @@ class HomeController extends Controller
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
+		}
+	}
+
+	public function actionGetdata()
+	{
+		/* For Industry Data */
+
+		if(isset($_POST['company'])){
+			$company = $_POST['company'];
+			$sql = 'SELECT Industry_List, industry.Industry_ID, sup_ind_id, sect_id, sub_ind_id FROM industry,industry_company 
+			where industry_company.company_id='.$company.' and industry_company.industry_id=industry.Industry_ID order by sub_ind_id, Industry_List';
+			if($industries = Industry::model()->findAllBySql($sql)){
+				foreach ($industries as $value) {
+					$this_industry_id=$value["Industry_ID"];
+					$this_industry_name=trim($value["ConcatName"]);
+
+					echo '<option value="'.$this_industry_id.'">'.$this_industry_name.'</option>';
+				}
+			}else{
+				echo '<option>No Results Found</option>';
+			}
 		}
 	}
 }

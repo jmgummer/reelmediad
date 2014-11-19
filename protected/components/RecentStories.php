@@ -14,7 +14,7 @@ public static function PrintStories($client)
 		echo RecentStories::PrintTableHead();
 		foreach ($clientstories as $key) {
 			if($story = RecentStories::GetStories($key->story_id)){
-				echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE);
+				echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,Story::ClientTonality($story->Story_ID,$client),$story->AVE);
 			}
 		}
 		echo RecentStories::PrintTableEnd();
@@ -54,7 +54,7 @@ public static function GetClientStory($client,$startdate,$enddate,$search,$backd
 	if($story = Story::model()->findAllBySql($q2)){
 		echo RecentStories::PrintTableHead();
 		foreach ($story as $key) {
-			echo RecentStories::PrintTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->StoryPage,$key->PublicationType,$key->Picture,$key->Tonality,$key->AVE,$key->Link,$key->Continues);
+			echo RecentStories::PrintTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->StoryPage,$key->PublicationType,$key->Picture,Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
 			// if($story = RecentStories::GetStories($key->Story_ID)){
 			// 	echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
 			// }
@@ -79,10 +79,8 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 	if($story = Story::model()->findAllBySql($q2)){
 		echo RecentStories::ElectronicTableHead();
 		foreach ($story as $key) {
-			echo RecentStories::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,$key->IndustryCategory,$key->Tonality,$key->AVE,$key->Link,$key->Continues);
-			// if($story = RecentStories::GetStories($key->Story_ID)){
-			// 	echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->IndustryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
-			// }
+			echo RecentStories::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
+			
 		}
 		echo RecentStories::ElectronicTableEnd();
 	}else{
@@ -111,7 +109,7 @@ public static function GetClientIndustryStory($client,$startdate,$enddate,$searc
 	if($story = Story::model()->findAllBySql($q2)){
 		echo RecentStories::PrintTableHead();
 		foreach ($story as $key) {
-			echo RecentStories::PrintTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->StoryPage,$key->PublicationType,$key->Picture,$key->Tonality,$key->AVE,$key->Link,$key->Continues);
+			echo RecentStories::PrintTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->StoryPage,$key->PublicationType,$key->Picture,Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
 			// if($story = RecentStories::GetStories($key->Story_ID)){
 			// 	echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
 			// }
@@ -143,10 +141,8 @@ public static function GetClientElectronicIndustryStory($client,$startdate,$endd
 	if($story = Story::model()->findAllBySql($q2)){
 		echo RecentStories::ElectronicTableHead();
 		foreach ($story as $key) {
-			echo RecentStories::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,$key->IndustryCategory,$key->Tonality,$key->AVE,$key->Link,$key->Continues);
-			// if($story = RecentStories::GetStories($key->Story_ID)){key
-			// 	echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->IndustryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
-			// }
+			echo RecentStories::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
+			
 		}
 		echo RecentStories::ElectronicTableEnd();
 	}else{
@@ -157,7 +153,6 @@ public static function GetClientElectronicIndustryStory($client,$startdate,$endd
 public static function getClientPrint($client_id)
 {
 	/* Using Sammy's Query - Simple and Clean, but adding Joins */
-	// $mainsql = "select * from story,story_mention, mediahouse where story_mention.client_id=".$client_id." and story.Story_ID=story_mention.story_id and story.Media_ID='mp01' and story.step3=1 and StoryDate ='2014-05-29' and story.Media_House_ID=mediahouse.Media_House_ID order by Media_House_List asc, StoryDate desc, page_no asc"
 	$mainsql = "select * from story inner join story_mention on story.Story_ID=story_mention.story_id inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID  where story_mention.client_id=".$client_id." and story.Media_ID='mp01' and story.step3=1 and StoryDate ='2014-05-29' order by Media_House_List asc, StoryDate desc, page_no asc";
 }
 

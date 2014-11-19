@@ -24,13 +24,31 @@ if(!isset($_POST['StorySearch']))
 				<header>Ending</header>
 				<?php echo $form->textField($model,'enddate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off")); ?>
 			</label>
+			<?php if(Yii::app()->user->usertype=='agency'){ ?>
+			<div class="form-group">
+				<header>Select Company</header>
+				<?php echo $form->dropDownList($model, 'company', StorySearch::AgencyCompanies(Yii::app()->user->agencyusername), 
+				array(
+					'empty'=>'--Please Select An Company --',
+					'class'=>'form-control',
+					'ajax'=>array(
+						'type'=>'POST',
+						'data'=>array('company'=>'js:this.value'),
+						'url'=>CController::createURL('getdata'),'update'=>'#StorySearch_industry',
+						),
+					'required'=>'required'
+					)); 
+				?>
+			</div>
+			<?php } ?>
+
 			<div class="form-group">
 				<header>Select Country(default Kenya)</header>
 				<?php echo $form->dropDownList($model, 'country', Country::CountryList(), array('class'=>'form-control')); ?>
 			</div>
 			<label class="radio">
 				<header>Type of Story</header>
-				<?php echo $form->radioButtonListRow($model,'storytype', StoryType::model()->getStoryTypes(), array('class'=>'radio-beat')); ?>
+				<?php echo $form->radioButtonList($model,'storytype', StoryType::model()->getStoryTypes(), array('class'=>'radio-beat')); ?>
 		    </label>
 		    <label class="radio">
 		    	<header>Category of Story</header>
@@ -42,7 +60,18 @@ if(!isset($_POST['StorySearch']))
 			</div>
 			<div class="form-group">
 				<header>Industry</header>
-				<?php echo $form->dropDownList($model, 'industry', Industry::model()->getIndustryList(), array('prompt'=>'All','multiple'=>true, 'class'=>'form-control')); ?>
+				<?php 
+				if(Yii::app()->user->usertype=='agency'){
+					if(isset($model->company)){
+						echo $form->dropDownList($model, 'industry', Industry::model()->AgencyIndustryList($model->company), array('multiple'=>true, 'class'=>'form-control','required'=>'required'));
+					}else{
+						echo $form->dropDownList($model, 'industry', array(), array('multiple'=>true, 'class'=>'form-control','required'=>'required'));
+					}
+					
+				}else{
+					echo $form->dropDownList($model, 'industry', Industry::model()->getIndustryList(), array('multiple'=>true, 'class'=>'form-control','required'=>'required'));
+				} 
+				?>
 			</div>
 			
 		</fieldset>

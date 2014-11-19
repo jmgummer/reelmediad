@@ -85,7 +85,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("E$count", $story->StoryPage)
 		            ->setCellValue("F$count", $story->PublicationType)
 		            ->setCellValue("G$count", $story->Picture)
-		            ->setCellValue("H$count", $story->Tonality)
+		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("I$count", $story->AVE);
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
@@ -160,8 +160,8 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("D$count", $story->Title)
 		            ->setCellValue("E$count", $story->FormatedTime)
 		            ->setCellValue("F$count", $story->FormatedDuration)
-		            ->setCellValue("G$count", $story->IndustryCategory)
-		            ->setCellValue("H$count", $story->Tonality)
+		            ->setCellValue("G$count", Story::ClientIndustryCategory($story->Story_ID,$client))
+		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("I$count", $story->AVE);
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
@@ -244,7 +244,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("E$count", $story->StoryPage)
 		            ->setCellValue("F$count", $story->PublicationType)
 		            ->setCellValue("G$count", $story->Picture)
-		            ->setCellValue("H$count", $story->Tonality)
+		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("I$count", $story->AVE);
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
@@ -326,8 +326,8 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("D$count", $story->Title)
 		            ->setCellValue("E$count", $story->FormatedTime)
 		            ->setCellValue("F$count", $story->FormatedDuration)
-		            ->setCellValue("G$count", $story->IndustryCategory)
-		            ->setCellValue("H$count", $story->Tonality)
+		            ->setCellValue("G$count", Story::ClientIndustryCategory($story->Story_ID,$client))
+		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("I$count", $story->AVE);
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
@@ -430,7 +430,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("E$count", $story->StoryPage)
 		            ->setCellValue("F$count", $story->PublicationType)
 		            ->setCellValue("G$count", $story->Picture)
-		            ->setCellValue("H$count", $story->Tonality)
+		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("I$count", $story->AVE);
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
@@ -505,8 +505,8 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("D$count", $story->Title)
 		            ->setCellValue("E$count", $story->FormatedTime)
 		            ->setCellValue("F$count", $story->FormatedDuration)
-		            ->setCellValue("G$count", $story->IndustryCategory)
-		            ->setCellValue("H$count", $story->Tonality)
+		            ->setCellValue("G$count", Story::ClientIndustryCategory($story->Story_ID,$client))
+		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("I$count", $story->AVE);
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
@@ -601,7 +601,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("E$count", $story->StoryPage)
 		            ->setCellValue("F$count", $story->PublicationType)
 		            ->setCellValue("G$count", $story->Picture)
-		            ->setCellValue("H$count", $story->Tonality)
+		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("I$count", $story->AVE);
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
@@ -683,8 +683,8 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("D$count", $story->Title)
 		            ->setCellValue("E$count", $story->FormatedTime)
 		            ->setCellValue("F$count", $story->FormatedDuration)
-		            ->setCellValue("G$count", $story->IndustryCategory)
-		            ->setCellValue("H$count", $story->Tonality)
+		            ->setCellValue("G$count", Story::ClientIndustryCategory($story->Story_ID,$client))
+		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("I$count", $story->AVE);
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
@@ -787,7 +787,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("E$count", $story->StoryPage)
 		            ->setCellValue("F$count", $story->PublicationType)
 		            ->setCellValue("G$count", $story->Picture)
-		            ->setCellValue("H$count", $story->Tonality)
+		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("I$count", $story->AVE);
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
@@ -869,7 +869,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("E$count", $story->StoryPage)
 		            ->setCellValue("F$count", $story->PublicationType)
 		            ->setCellValue("G$count", $story->Picture)
-		            ->setCellValue("H$count", $story->Tonality)
+		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("I$count", $story->AVE);
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
@@ -972,7 +972,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("E$count", $story->StoryPage)
 		            ->setCellValue("F$count", $story->PublicationType)
 		            ->setCellValue("G$count", $story->Picture)
-		            ->setCellValue("H$count", $story->Tonality)
+		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("I$count", $story->AVE);
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
@@ -1065,7 +1065,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("E$count", $story->StoryPage)
 		            ->setCellValue("F$count", $story->PublicationType)
 		            ->setCellValue("G$count", $story->Picture)
-		            ->setCellValue("H$count", $story->Tonality)
+		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("I$count", $story->AVE);
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
@@ -1151,8 +1151,8 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("D$count", $story->Title)
 		            ->setCellValue("E$count", $story->FormatedTime)
 		            ->setCellValue("F$count", $story->FormatedDuration)
-		            ->setCellValue("G$count", $story->IndustryCategory)
-		            ->setCellValue("H$count", $story->Tonality)
+		            ->setCellValue("G$count", Story::ClientIndustryCategory($story->Story_ID,$client))
+		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("I$count", $story->AVE);
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
@@ -1234,8 +1234,8 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("D$count", $story->Title)
 		            ->setCellValue("E$count", $story->FormatedTime)
 		            ->setCellValue("F$count", $story->FormatedDuration)
-		            ->setCellValue("G$count", $story->IndustryCategory)
-		            ->setCellValue("H$count", $story->Tonality)
+		            ->setCellValue("G$count", Story::ClientIndustryCategory($story->Story_ID,$client))
+		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("I$count", $story->AVE);
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
@@ -1320,8 +1320,8 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("D$count", $story->Title)
 		            ->setCellValue("E$count", $story->FormatedTime)
 		            ->setCellValue("F$count", $story->FormatedDuration)
-		            ->setCellValue("G$count", $story->IndustryCategory)
-		            ->setCellValue("H$count", $story->Tonality)
+		            ->setCellValue("G$count", Story::ClientIndustryCategory($story->Story_ID,$client))
+		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("I$count", $story->AVE);
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
@@ -1414,8 +1414,8 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("D$count", $story->Title)
 		            ->setCellValue("E$count", $story->FormatedTime)
 		            ->setCellValue("F$count", $story->FormatedDuration)
-		            ->setCellValue("G$count", $story->IndustryCategory)
-		            ->setCellValue("H$count", $story->Tonality)
+		            ->setCellValue("G$count", Story::ClientIndustryCategory($story->Story_ID,$client))
+		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("I$count", $story->AVE);
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);

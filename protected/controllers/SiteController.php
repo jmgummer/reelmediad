@@ -172,8 +172,9 @@ class SiteController extends Controller
 			session_start();
 			session_destroy();
 		}
-		$site_url = $_SERVER['SERVER_ADDR'];
-		$this->redirect('http://'.$site_url.'/reelforge_back');
+		// $site_url = $_SERVER['SERVER_ADDR'];
+		// $this->redirect('http://'.$site_url.'/reelforge_back');
+		$this->redirect(array('site/login'));
 	}
 
 	/*

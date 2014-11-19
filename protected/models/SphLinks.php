@@ -150,4 +150,31 @@ class SphLinks extends CActiveRecord
 			return '';
 		}
 	}
+
+	public static function ClientPublication($media_house_id)
+	{
+		if(!empty($media_house_id)){
+			return Mediahouse::model()->find('Media_House_ID=:a', array(':a'=>$media_house_id))->Media_House_List;
+		}else{
+			return 'Unknown';
+		}
+	}
+
+	public static function ClientTruncatedFText()
+	{
+		$limit = 200;
+	   	$content = $this->fulltxt;
+	   	if (strlen($content) > $limit){
+			$content = substr($content, 0, strrpos(substr($content, 0, $limit), ' '));
+		}
+	}
+
+	public static function ClientPage($link_id)
+	{
+		if($page = Story::model()->find('link_id=:a', array(':a'=>$link_id))){
+			return ': Page '.$page ->StoryPage;
+		}else{
+			return '';
+		}
+	}
 }

@@ -1,6 +1,6 @@
 <?php
 $this->pageTitle=Yii::app()->name.' | Stories';
-$this->breadcrumbs=array('Index');
+$this->breadcrumbs=array('Stories');
 ?>
 <div class="row-fluid clearfix">
 <div class="col-md-3">

@@ -151,4 +151,6 @@ class Company extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	
 }
