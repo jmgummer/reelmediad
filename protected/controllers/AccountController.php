@@ -94,6 +94,14 @@ class AccountController  extends Controller
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		else
+			if(isset($_POST['AgencyUsers'])){
+				$model->attributes=$_POST['AgencyUsers'];
+				if($model->save()){
+					Yii::app()->user->setFlash('success', "<strong>Success ! </strong> Details Updated");
+				}else{
+					Yii::app()->user->setFlash('danger', "<strong>Error ! </strong>Your Details were not Updated, please try later");
+				}
+			}
 			$this->render('updateuser', array('model'=>$model));
 		
 		
@@ -110,24 +118,53 @@ class AccountController  extends Controller
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		else
+			/* Remove Company Assignment */
 			if(isset($_POST['remove'])){
 				if(isset($_POST['company_id'])){
-					$void = Yii::app()->input->stripClean($_POST['company_id']);
-					foreach($void as $company_id)
+					$company_id = Yii::app()->input->stripClean($_POST['company_id']);
+					foreach($company_id as $set_id)
 					{
-						$values = Products::model()->find('id=:a',array(':a'=>$company_id));
+						$values = AgencyUserClient::model()->find('company_id=:a and agency_users_id=:b',array(':a'=>$set_id,':b'=>$id));
 						if($values==true){
 							if($values->delete()){
-								Yii::app()->user->setFlash('success', "<strong>Success ! Product(s) Deleted </strong>");
+								Yii::app()->user->setFlash('success', "<strong>Success !</strong> Company(s) Removed ");
 							}else{
-								Yii::app()->user->setFlash('danger', "<strong>Error ! Product(s) NOT Deleted </strong>");
+								Yii::app()->user->setFlash('danger', "<strong>Warning !</strong> Some Company(s) could NOT be Removed ");
 							}
 						}else{
-							Yii::app()->user->setFlash('danger', "<strong>Warning ! Product(s) Could not be found, try again later </strong>");
+							Yii::app()->user->setFlash('danger', "<strong>Warning !</strong> Company(s) could not be found, try again later ");
 						}
 					}
 				}else{
-					Yii::app()->user->setFlash('danger', "<strong>Error ! You need to select at LEAST one Product</strong>");
+					Yii::app()->user->setFlash('danger', "<strong>Error !</strong> You need to select at LEAST one Company");
+				}
+			}
+
+			/* Add Company Assignment */
+
+			if(isset($_POST['assign'])){
+				if(isset($_POST['company_id'])){
+					$company_id = Yii::app()->input->stripClean($_POST['company_id']);
+					foreach($company_id as $set_id)
+					{
+						$values = AgencyUserClient::model()->find('company_id=:a and agency_users_id=:b',array(':a'=>$set_id,':b'=>$id));
+						if($values!=true){
+							$values = new AgencyUserClient;
+							$values->agency_users_id = $id;
+							$values->company_id = $set_id;
+							$values->reelmedia_email = 0;
+							$values->reelonline_email = 0;
+							if($values->save()){
+								Yii::app()->user->setFlash('success', "<strong>Success !</strong> Company(s) Assigned ");
+							}else{
+								Yii::app()->user->setFlash('danger', "<strong>Error !</strong> Some Company(s) could not be Assigned ");
+							}
+						}else{
+							Yii::app()->user->setFlash('danger', "<strong>Warning !</strong> The user is already assigned to theCompany(s)");
+						}
+					}
+				}else{
+					Yii::app()->user->setFlash('danger', "<strong>Error !</strong> You need to select at LEAST one Company");
 				}
 			}
 			$user_id = $id;
