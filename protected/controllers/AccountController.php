@@ -18,7 +18,7 @@ class AccountController  extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','password'),
+				'actions'=>array('index','password','users','updateuser','companies','assignclients'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -76,6 +76,62 @@ class AccountController  extends Controller
 			throw new CHttpException(404,'The requested page does not exist.');
 		else
 			return $model;
+	}
+
+	public function actionUsers()
+	{
+		$this->render('users');
+	}
+
+	public function actionAdduser()
+	{
+		$this->render('adduser');
+	}
+
+	public function actionUpdateuser($id)
+	{
+		$model = AgencyUsers::model()->findByPk($id);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		else
+			$this->render('updateuser', array('model'=>$model));
+		
+		
+	}
+
+	public function actionCompanies()
+	{
+		$this->render('companies');
+	}
+
+	public function actionAssignclients($id)
+	{
+		$model = AgencyUsers::model()->findByPk($id);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		else
+			if(isset($_POST['remove'])){
+				if(isset($_POST['company_id'])){
+					$void = Yii::app()->input->stripClean($_POST['company_id']);
+					foreach($void as $company_id)
+					{
+						$values = Products::model()->find('id=:a',array(':a'=>$company_id));
+						if($values==true){
+							if($values->delete()){
+								Yii::app()->user->setFlash('success', "<strong>Success ! Product(s) Deleted </strong>");
+							}else{
+								Yii::app()->user->setFlash('danger', "<strong>Error ! Product(s) NOT Deleted </strong>");
+							}
+						}else{
+							Yii::app()->user->setFlash('danger', "<strong>Warning ! Product(s) Could not be found, try again later </strong>");
+						}
+					}
+				}else{
+					Yii::app()->user->setFlash('danger', "<strong>Error ! You need to select at LEAST one Product</strong>");
+				}
+			}
+			$user_id = $id;
+			$this ->render('assignclients',array('user_id'=>$user_id));
 	}
 	
 }

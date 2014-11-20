@@ -107,9 +107,19 @@
 					<li>
 						<a href="<?=Yii::app()->createUrl("csr/index");?>" title="Stories"><i class="fa fa-lg fa-fw fa-heart"></i> <span class="menu-item-parent">CSR</span></a>
 					</li>
+					<?php if(Yii::app()->user->usertype=='agency'){ ?>
+					<li>
+						<a href="#" title="User Management"><i class="fa fa-lg fa-fw fa-users"></i> <span class="menu-item-parent">User Management</span></a>
+						<ul>
+							<li><a href="<?=Yii::app()->createUrl("account/users");?>">Staff Management</a></li>
+							<li><a href="<?=Yii::app()->createUrl("account/companies");?>">Clients</a></li>
+						</ul>
+					</li>
+					<?php } ?>
 					<li>
 						<a href="<?=Yii::app()->createUrl("account/index");?>" title="My Account"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">My Account</span></a>
 					</li>
+
 				</ul>
 			</nav>
 			<span class="minifyme" id="slideopen"><i class="fa fa-arrow-circle-left hit" style="margin-top:4px;"></i></span>

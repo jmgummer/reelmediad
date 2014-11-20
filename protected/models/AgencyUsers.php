@@ -146,4 +146,31 @@ class AgencyUsers extends CActiveRecord
 			return 'Agency Name Unset';
 		}
 	}
+
+	public function getAlerts()
+	{
+		if($this->email_alert==1){
+			return 'Yes';
+		}else{
+			return 'No';
+		}
+	}
+
+	public function getLevel()
+	{
+		if($this->user_level==1){
+			return 'Admin';
+		}else{
+			return 'User';
+		}
+	}
+
+	public function getStatus()
+	{
+		if($this->user_status==1){
+			return 'Active';
+		}else{
+			return 'Inactive';
+		}
+	}
 }

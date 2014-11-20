@@ -43,8 +43,11 @@ if(!isset($_POST['StorySearch']))
 			<?php } ?>
 
 			<div class="form-group">
-				<header>Select Country(default Kenya)</header>
-				<?php echo $form->dropDownList($model, 'country', Country::CountryList(), array('class'=>'form-control')); ?>
+				<header>Select Country</header>
+				<?php 
+				$model->country = Yii::app()->user->country_id;
+				echo $form->dropDownList($model, 'country', Country::CountryListByID($model->country), array('class'=>'form-control')); 
+				?>
 			</div>
 			<label class="radio">
 				<header>Type of Story</header>

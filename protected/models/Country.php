@@ -120,4 +120,10 @@ class Country extends CActiveRecord
 	{
 		return CHtml::listData(Country::model()->findAll(),'country_id','country_name');
 	}
+
+	public static function CountryListByID($id)
+	{
+		$country_sql = 'SELECT * FROM country where country_id = '.$id;
+		return CHtml::listData(Country::model()->findAllBySql($country_sql),'country_id','country_name');
+	}
 }
