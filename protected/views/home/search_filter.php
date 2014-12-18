@@ -18,11 +18,11 @@ if(!isset($_POST['StorySearch']))
 			</label>
 			<label class="input">
 				<header>Beginning</header>
-				<?php echo $form->textField($model,'startdate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off")); ?>
+				<?php echo $form->textField($model,'startdate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off", 'id'=>'beginning')); ?>
 			</label>
 			<label class="input">
 				<header>Ending</header>
-				<?php echo $form->textField($model,'enddate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off")); ?>
+				<?php echo $form->textField($model,'enddate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off", 'id'=>'ending')); ?>
 			</label>
 			<?php if(Yii::app()->user->usertype=='agency'){ ?>
 			<div class="form-group">
@@ -121,16 +121,5 @@ fieldset .col-md-3{
 }
 </style>
 <script type="text/javascript">
-/* Jquery UI Datepicker
-    /*====================================================================*/
-    $(function () {
-        // Date
-        $('input[name="StorySearch[start_date]"]').datepicker();
-    });
-</script>
-<script>
-  $(function() {
-    $( "#StorySearch_startdate" ).datepicker();
-    $( "#StorySearch_enddate" ).datepicker();
-  });
+$('#beginning,#ending').datepick();
   </script>

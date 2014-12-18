@@ -38,7 +38,7 @@ class AgencyUsers extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, surname, firstname, password, agency_id, email, user_status, user_level, email_alert, intranet_id', 'required'),
+			// array('username, surname, firstname, password, agency_id, email, user_status, user_level, email_alert, intranet_id', 'required'),
 			array('agency_id, intranet_id', 'numerical', 'integerOnly'=>true),
 			array('username, surname, firstname, password, email', 'length', 'max'=>50),
 			array('user_status, user_level, email_alert', 'length', 'max'=>1),

@@ -63,7 +63,8 @@ class StorySearch extends CFormModel
 
 	public static function getElecList()
 	{
-		return CHtml::listData(Mediahouse::model()->findAll('Media_ID<>"mp01" order by Media_House_List'),'Media_House_ID','Media_House_List');
+		$sql = "SELECT * FROM mediahouse WHERE Media_ID!='mp01'";
+		return CHtml::listData(Mediahouse::model()->findAllBySql($sql),'Media_House_ID','Media_House_List');
 	}
 
 	public static function AgencyCompanies($username){

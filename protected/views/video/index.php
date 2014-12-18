@@ -90,7 +90,7 @@ $flash_clip ='http://www.reelforge.com/'.$flash_clip;
 		<p><strong>Summary </strong><br></p>
 		<p><?php echo $summary; ?></p><br>
 		<p><strong>Download </strong><br></p>
-		<p>You may download this clip by <a href="<?php echo $download_clip; ?>">clicking here</a>.</p>
+		<p><a href="<?php echo $download_clip; ?>"><i class="fa fa-download fa-2x"></i></a></p>
 	</div>
 </div>
 <div class="row-fluid clearfix">

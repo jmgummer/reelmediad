@@ -18,7 +18,7 @@ class AccountController  extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','password','users','updateuser','companies','assignclients'),
+				'actions'=>array('index','password','users','updateuser','companies','assignclients','resetpassword'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -169,6 +169,13 @@ class AccountController  extends Controller
 			}
 			$user_id = $id;
 			$this ->render('assignclients',array('user_id'=>$user_id));
+	}
+
+	public function actionResetpassword($id)
+	{
+		$reset = GeneratePassword::ResetPassword($id);
+		Yii::app()->user->setFlash('success', "<strong>$reset</strong>");
+		$this->redirect(array('account/users'));
 	}
 	
 }

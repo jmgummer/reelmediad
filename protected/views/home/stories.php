@@ -2,6 +2,9 @@
 $this->pageTitle=Yii::app()->name.' | Stories';
 $this->breadcrumbs=array('Stories');
 ?>
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl . '/js/datepick/jquery.datepick.css'; ?>"> 
+<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl . '/js/datepick/jquery.plugin.js'; ?>"></script> 
+<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl . '/js/datepick/jquery.datepick.js'; ?>"></script>
 <div class="row-fluid clearfix">
 <div class="col-md-3">
 <?php $this->renderPartial('search_filter',array('model'=>$model)); ?>

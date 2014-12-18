@@ -828,3 +828,36 @@ article .minifyme i{
 
 	header{font-weight: bold !important;}
 	header a{cursor: pointer;text-decoration: none; color: #FF5A14;font-weight: normal;}
+
+#tabs { background-color: #EEE !important;}
+	.nav-tabs>li>a{cursor: pointer;}
+	.nav-tabs>li>a:hover{border-top: 1px solid #ddd;border-right: 1px solid #ddd;border-left: 1px solid #ddd;}
+	p#preloaderAnimation{
+    position: relative;
+    top: 50%;
+    left: 50%;
+}
+img#preloaderAnimation{
+    position: relative;
+    top: 50%;
+    left: 50%;
+}
+
+	div#preLoaderDiv
+{
+    position: fixed;
+    _position: absolute;
+    _top:expression(eval(document.body.scrollTop));
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 1000;
+}
+
+div#preLoaderDiv
+{
+    background-color: black;
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+}

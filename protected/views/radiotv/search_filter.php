@@ -10,29 +10,31 @@
 		<fieldset>
 			<label class="input">
 				<header>Search Text</header>
-				<?php echo $form->textField($model,'search_text',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off" )); ?>
+				<?php echo $form->textField($model,'search_text',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off", 'id'=>'search' )); ?>
 			</label>
 			<?php if(Yii::app()->user->usertype=='agency'){ ?>
 			<div class="form-group">
 				<header>Select Company</header>
-				<?php echo $form->dropDownList($model, 'company', StorySearch::AgencyCompanies(Yii::app()->user->agencyusername), array('class'=>'form-control')); ?>
+				<?php echo $form->dropDownList($model, 'company', StorySearch::AgencyCompanies(Yii::app()->user->agencyusername), array('class'=>'form-control', 'id'=>'clientid')); ?>
 			</div>
+			<?php }else{ ?> 
+			<input type="hidden" value="<?php echo Yii::app()->user->company_id; ?>" id="clientid">
 			<?php } ?>
 		    <div class="form-group">
 		    	<header>Publication</header>
-				<?php echo $form->dropDownList($model, 'publications', StorySearch::getPrintList('mp01'), array('prompt'=>'All','class'=>'form-control')); ?>
+				<?php echo $form->dropDownList($model, 'publications', StorySearch::getElecList(), array('prompt'=>'All','class'=>'form-control', 'id'=>'media_house_id')); ?>
 			</div>
 			<label class="input">
 				<header>Beginning</header>
-				<?php echo $form->textField($model,'startdate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off")); ?>
+				<?php echo $form->textField($model,'startdate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off", 'id'=>'beginning')); ?>
 			</label>
 			<label class="input">
 				<header>Ending</header>
-				<?php echo $form->textField($model,'enddate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off")); ?>
+				<?php echo $form->textField($model,'enddate',array('size'=>60,'maxlength'=>60, 'class'=>'input-xs','autocomplete'=>"off", 'id'=>'ending')); ?>
 			</label>
 		</fieldset>
 		<footer>
-		<?php echo CHtml::submitButton('Generate', array('class'=>'btn btn-primary')); ?>
+		<?php echo CHtml::submitButton('Generate', array('class'=>'btn btn-primary', 'name'=>'Generate', 'id'=>'generate')); ?>
 		</footer>
 		<?php $this->endWidget(); ?>
 
@@ -84,17 +86,70 @@ fieldset .col-md-3{
 	padding: 0px 10px 0px 0px;
 }
 </style>
-<script type="text/javascript">
-/* Jquery UI Datepicker
-    /*====================================================================*/
-    $(function () {
-        // Date
-        $('input[name="StorySearch[start_date]"]').datepicker();
-    });
-</script>
+
 <script>
-  $(function() {
-    $( "#StorySearch_startdate" ).datepicker();
-    $( "#StorySearch_enddate" ).datepicker();
-  });
+$('#beginning,#ending').datepick();
+  $("#generate").click(
+    function(event) {
+    	event.preventDefault();
+    	Generate();
+    }
+);
+  
+function loadcomplete()
+{
+	$("#imageloadstatus").hide();
+}
+function ShowMore(start,stop)
+{
+	clientid 		= document.getElementById('clientid').value;
+	search 			= document.getElementById('search').value;
+	beginning 		= document.getElementById('beginning').value;
+	ending 			= document.getElementById('ending').value;
+	media_house_id	= document.getElementById('media_house_id').value;
+	load 			= document.getElementById("load-content");
+	load.innerHTML 	= "<div id='preLoaderDiv'><p id='preloaderAnimation' style='color:#fff;text-align:center;position: relative;top: 50%;margin-left:15px;'>Loading  </p> <img id='preloaderAnimation' src='<?php echo Yii::app()->request->baseUrl . "/images/loading.gif"; ?>' /></div>";
+	$.ajax({
+        url: '<?=Yii::app()->createUrl("radiotv/stories");?>',
+        data: { 'start': start,'stop': stop,'clientid': clientid, 'search': search, 'beginning':beginning,'ending':ending,'media_house_id':media_house_id  },
+        type: 'POST',
+        cache: false,
+        success: function(data){
+            load.innerHTML = data;
+        },
+        error: function(){
+        	load.innerHTML = "<br><h4><span class='label label-info'>There was an error generating the report! Please Try Again Later</span></h4>";
+        },
+        complete: function() {
+            // loadcomplete();
+        }
+    });
+}
+
+function Generate()
+{
+	
+	clientid 		= document.getElementById('clientid').value;
+	search 			= document.getElementById('search').value;
+	beginning 		= document.getElementById('beginning').value;
+	ending 			= document.getElementById('ending').value;
+	media_house_id	= document.getElementById('media_house_id').value;
+	load 			= document.getElementById("load-content");
+	load.innerHTML 	= "<div id='preLoaderDiv'><p id='preloaderAnimation' style='color:#fff;text-align:center;position: relative;top: 50%;margin-left:15px;'>Loading  </p> <img id='preloaderAnimation' src='<?php echo Yii::app()->request->baseUrl . "/images/loading.gif"; ?>' /></div>";
+	$.ajax({
+        url: '<?=Yii::app()->createUrl("radiotv/stories");?>',
+        data: { 'clientid': clientid, 'search': search, 'beginning':beginning,'ending':ending,'media_house_id':media_house_id  },
+        type: 'POST',
+        cache: false,
+        success: function(data){
+            load.innerHTML = data;
+        },
+        error: function(){
+        	load.innerHTML = "<br><h4><span class='label label-info'>There was an error generating the report! Please Try Again Later</span></h4>";
+        },
+        complete: function() {
+            // loadcomplete();
+        }
+    });
+}
   </script>

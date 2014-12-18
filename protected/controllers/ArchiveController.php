@@ -18,7 +18,7 @@ class ArchiveController  extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index'),
+				'actions'=>array('index','stories'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -41,6 +41,28 @@ class ArchiveController  extends Controller
 			$model->startdate = $model->enddate = date('Y-m-d');
 		}
 		$this->render('index', array('model'=>$model));
+	}
+
+	public function actionStories()
+	{
+		if(isset($_POST['clientid']) && isset($_POST['search']) && isset($_POST['beginning']) && isset($_POST['ending']) && isset($_POST['media_house_id']) ){
+			$clientid = $_POST['clientid'];
+			$search = $_POST['search'];
+			$beginning = date('Y-m-d',strtotime($_POST['beginning']));
+			$ending =  date('Y-m-d',strtotime($_POST['ending']));;
+			$media_house_id = $_POST['media_house_id'];
+			if(isset($_POST['start'])){ 
+				$start=$_POST['start']; 
+			}else{ 
+				$start=0; 
+			}
+			if(isset($_POST['stop'])){ 
+				$number_of_posts=$_POST['stop']; 
+			}else{ 
+				$number_of_posts = 10; 
+			}
+			echo ArchiveStories::UserStories($clientid,$search,$beginning,$ending,$media_house_id,$start,$number_of_posts);
+		}
 	}
 	
 }
