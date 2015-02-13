@@ -174,11 +174,17 @@ public static function GetStories($story_id){
 * NB - Just for the Print Section
 */
 public static function PrintTableHead(){
+	$country = Yii::app()->user->country_id;
+	if($currency = Country::model()->find('country_id=:a', array(':a'=>$country))){
+		$currency = $currency->currency;
+	}else{
+		$currency = 'KES';
+	}
 	return '<div class="widget-body">
 	<div>
 	<table id="dt_basic" class="table table-striped table-bordered table-hover">
 	<thead>
-	<th style="width:11%;">DATE</th><th>PUBLICATION</th><th>JOURNALIST</th><th>HEADLINE/SUBJECT</th><th>PAGE</th><th>PUBLICATION TYPE</th><th>PICTURE</th><th>EFFECT</th><th style="text-align:right;">AVE(Kshs.)</th>
+	<th style="width:11%;">DATE</th><th>PUBLICATION</th><th>JOURNALIST</th><th>HEADLINE/SUBJECT</th><th>PAGE</th><th>PUBLICATION TYPE</th><th>PICTURE</th><th>EFFECT</th><th style="text-align:right;">AVE('.$currency.')</th>
 	</thead>';
 }
 
@@ -187,11 +193,17 @@ public static function PrintTableHead(){
 * NB - Just for the Electronic Section
 */
 public static function ElectronicTableHead(){
+	$country = Yii::app()->user->country_id;
+	if($currency = Country::model()->find('country_id=:a', array(':a'=>$country))){
+		$currency = $currency->currency;
+	}else{
+		$currency = 'KES';
+	}
 	return '<div class="widget-body">
 	<div>
 	<table id="dt_basic" class="table table-striped table-bordered table-hover">
 	<thead>
-	<th style="width:11%;">DATE</th><th>STATION</th><th>JOURNALIST</th><th>SUMMARY</th><th>TIME</th><th>DURATION</th><th>CATEGORY</th><th>EFFECT</th><th style="text-align:right;">AVE(Kshs.)</th>
+	<th style="width:11%;">DATE</th><th>STATION</th><th>JOURNALIST</th><th>SUMMARY</th><th>TIME</th><th>DURATION</th><th>CATEGORY</th><th>EFFECT</th><th style="text-align:right;">AVE('.$currency.')</th>
 	</thead>';
 }
 /*

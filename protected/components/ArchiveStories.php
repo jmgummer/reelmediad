@@ -10,7 +10,7 @@ class ArchiveStories{
 
 		if(!empty($search)){
 			$display_search=$search=trim($search);
-			$search=str_replace("  "," ",$search);  $search=str_replace("  "," ",$search);
+			$search=str_replace("  "," ",$search);  
 			$strings=explode(" ",$search);
 			$search_strings= count($strings);
 			$search2=str_replace(" ","%",trim($search));

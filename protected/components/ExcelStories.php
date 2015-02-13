@@ -11,6 +11,15 @@ class ExcelStories{
 
 public static function GetMainOption($client,$startdate,$enddate,$search,$backdate,$country_list,$industries,$option)
 {
+	// Currency Value Based on Country
+
+	$country = Yii::app()->user->country_id;
+	if($currency = Country::model()->find('country_id=:a', array(':a'=>$country))){
+		$currency = $currency->currency;
+	}else{
+		$currency = 'KES';
+	}
+
 	$PHPExcel = new PHPExcel();
 			
 	// Set properties
@@ -31,7 +40,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		->setCellValue('F1', 'PUBLICATION TYPE')
 		->setCellValue('G1', 'PICTURE')
 		->setCellValue('H1', 'EFFECT')
-		->setCellValue('I1', 'AVE(Kshs.)');
+		->setCellValue('I1', 'AVE('.$currency.')');
 
 		$PHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(15);
 		$PHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(15);
@@ -124,7 +133,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		->setCellValue('F1', 'DURATION')
 		->setCellValue('G1', 'CATEGORY')
 		->setCellValue('H1', 'EFFECT')
-		->setCellValue('I1', 'AVE(Kshs.)');
+		->setCellValue('I1', 'AVE('.$currency.')');
 
 		$PHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(15);
 		$PHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(15);
@@ -200,7 +209,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		->setCellValue('F1', 'PUBLICATION TYPE')
 		->setCellValue('G1', 'PICTURE')
 		->setCellValue('H1', 'EFFECT')
-		->setCellValue('I1', 'AVE(Kshs.)');
+		->setCellValue('I1', 'AVE('.$currency.')');
 
 		$PHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(15);
 		$PHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(15);
@@ -283,7 +292,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		->setCellValue('F1', 'DURATION')
 		->setCellValue('G1', 'CATEGORY')
 		->setCellValue('H1', 'EFFECT')
-		->setCellValue('I1', 'AVE(Kshs.)');
+		->setCellValue('I1', 'AVE('.$currency.')');
 
 		$PHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(15);
 		$PHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(15);
@@ -376,7 +385,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		->setCellValue('F1', 'PUBLICATION TYPE')
 		->setCellValue('G1', 'PICTURE')
 		->setCellValue('H1', 'EFFECT')
-		->setCellValue('I1', 'AVE(Kshs.)');
+		->setCellValue('I1', 'AVE('.$currency.')');
 
 		$PHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(15);
 		$PHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(15);
@@ -469,7 +478,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		->setCellValue('F1', 'DURATION')
 		->setCellValue('G1', 'CATEGORY')
 		->setCellValue('H1', 'EFFECT')
-		->setCellValue('I1', 'AVE(Kshs.)');
+		->setCellValue('I1', 'AVE('.$currency.')');
 
 		$PHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(15);
 		$PHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(15);
@@ -557,7 +566,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		->setCellValue('F1', 'PUBLICATION TYPE')
 		->setCellValue('G1', 'PICTURE')
 		->setCellValue('H1', 'EFFECT')
-		->setCellValue('I1', 'AVE(Kshs.)');
+		->setCellValue('I1', 'AVE('.$currency.')');
 
 		$PHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(15);
 		$PHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(15);
@@ -640,7 +649,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		->setCellValue('F1', 'DURATION')
 		->setCellValue('G1', 'CATEGORY')
 		->setCellValue('H1', 'EFFECT')
-		->setCellValue('I1', 'AVE(Kshs.)');
+		->setCellValue('I1', 'AVE('.$currency.')');
 
 		$PHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(15);
 		$PHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(15);
@@ -733,7 +742,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		->setCellValue('F1', 'PUBLICATION TYPE')
 		->setCellValue('G1', 'PICTURE')
 		->setCellValue('H1', 'EFFECT')
-		->setCellValue('I1', 'AVE(Kshs.)');
+		->setCellValue('I1', 'AVE('.$currency.')');
 
 		$PHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(15);
 		$PHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(15);
@@ -825,7 +834,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		->setCellValue('F1', 'PUBLICATION TYPE')
 		->setCellValue('G1', 'PICTURE')
 		->setCellValue('H1', 'EFFECT')
-		->setCellValue('I1', 'AVE(Kshs.)');
+		->setCellValue('I1', 'AVE('.$currency.')');
 
 		$PHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(15);
 		$PHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(15);
@@ -918,7 +927,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		->setCellValue('F1', 'PUBLICATION TYPE')
 		->setCellValue('G1', 'PICTURE')
 		->setCellValue('H1', 'EFFECT')
-		->setCellValue('I1', 'AVE(Kshs.)');
+		->setCellValue('I1', 'AVE('.$currency.')');
 
 		$PHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(15);
 		$PHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(15);
@@ -1021,7 +1030,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		->setCellValue('F1', 'PUBLICATION TYPE')
 		->setCellValue('G1', 'PICTURE')
 		->setCellValue('H1', 'EFFECT')
-		->setCellValue('I1', 'AVE(Kshs.)');
+		->setCellValue('I1', 'AVE('.$currency.')');
 
 		$PHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(15);
 		$PHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(15);
@@ -1115,7 +1124,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		->setCellValue('F1', 'DURATION')
 		->setCellValue('G1', 'CATEGORY')
 		->setCellValue('H1', 'EFFECT')
-		->setCellValue('I1', 'AVE(Kshs.)');
+		->setCellValue('I1', 'AVE('.$currency.')');
 
 		$PHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(15);
 		$PHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(15);
@@ -1191,7 +1200,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		->setCellValue('F1', 'DURATION')
 		->setCellValue('G1', 'CATEGORY')
 		->setCellValue('H1', 'EFFECT')
-		->setCellValue('I1', 'AVE(Kshs.)');
+		->setCellValue('I1', 'AVE('.$currency.')');
 
 		$PHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(15);
 		$PHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(15);
@@ -1284,7 +1293,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		->setCellValue('F1', 'DURATION')
 		->setCellValue('G1', 'CATEGORY')
 		->setCellValue('H1', 'EFFECT')
-		->setCellValue('I1', 'AVE(Kshs.)');
+		->setCellValue('I1', 'AVE('.$currency.')');
 
 		$PHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(15);
 		$PHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(15);
@@ -1371,7 +1380,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		->setCellValue('F1', 'DURATION')
 		->setCellValue('G1', 'CATEGORY')
 		->setCellValue('H1', 'EFFECT')
-		->setCellValue('I1', 'AVE(Kshs.)');
+		->setCellValue('I1', 'AVE('.$currency.')');
 
 		$PHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(15);
 		$PHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(15);

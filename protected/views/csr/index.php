@@ -2,8 +2,9 @@
 $this->pageTitle=Yii::app()->name.' | Corporate Social Responsibility Reports';
 $this->breadcrumbs=array('CSR Reports'=>array('csr/index'), 'Corporate Social Responsibility');
 ?>
-<script src="<?php echo Yii::app()->request->baseUrl . '/FusionCharts/FusionCharts/FusionCharts/FusionCharts.js'; ?>"></script>
-<script language="JavaScript" src="<?php echo Yii::app()->request->baseUrl . '/FusionCharts/FusionCharts/FusionCharts/FusionChartsExportComponent.js'; ?>"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl . '/js/datepick/jquery.datepick.css'; ?>"> 
+<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl . '/js/datepick/jquery.plugin.js'; ?>"></script> 
+<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl . '/js/datepick/jquery.datepick.js'; ?>"></script>
 <div class="row-fluid clearfix">
 <div class="col-md-3">
 	<?php $this->renderPartial('search_filter',array('model'=>$model)); ?>

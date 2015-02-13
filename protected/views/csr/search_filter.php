@@ -85,16 +85,5 @@ fieldset .col-md-3{
 }
 </style>
 <script type="text/javascript">
-/* Jquery UI Datepicker
-    /*====================================================================*/
-    $(function () {
-        // Date
-        $('input[name="StorySearch[start_date]"]').datepicker();
-    });
-</script>
-<script>
-  $(function() {
-    $( "#StorySearch_startdate" ).datepicker();
-    $( "#StorySearch_enddate" ).datepicker();
-  });
+$('#StorySearch_startdate,#StorySearch_enddate').datepick();
   </script>

@@ -2,11 +2,8 @@
 $todays = date('Y-m-d');
 $startdate = $enddate = $todays;
 $search = ' ';
-/*
-*  Adding Country Code
-*  Current Default value is Kenya
-*/
-$country = 1;
+// Adding Country Code
+$country = Yii::app()->user->country_id;
 $industries = '';
 // Adding backdate
 $cat_identifier = 1;

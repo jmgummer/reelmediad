@@ -2,6 +2,9 @@
 $this->pageTitle=Yii::app()->name.' | Industry Reports';
 $this->breadcrumbs=array('Industry Reports'=>array('industryreports/index'), 'Number of Mentions'=>array('industryreports/mentions'));
 ?>
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl . '/js/datepick/jquery.datepick.css'; ?>"> 
+<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl . '/js/datepick/jquery.plugin.js'; ?>"></script> 
+<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl . '/js/datepick/jquery.datepick.js'; ?>"></script>
 <script src="<?php echo Yii::app()->request->baseUrl . '/FusionCharts/FusionCharts/FusionCharts/FusionCharts.js'; ?>"></script>
 <script language="JavaScript" src="<?php echo Yii::app()->request->baseUrl . '/FusionCharts/FusionCharts/FusionCharts/FusionChartsExportComponent.js'; ?>"></script>
 <div class="row-fluid clearfix">
@@ -10,6 +13,12 @@ $this->breadcrumbs=array('Industry Reports'=>array('industryreports/index'), 'Nu
 </div>
 <div class="col-md-9">
 <?php
+$country = Yii::app()->user->country_id;
+if($currency = Country::model()->find('country_id=:a', array(':a'=>$country))){
+    $currency = $currency->currency;
+}else{
+    $currency = 'KES';
+}
 $csql = 'SELECT backdate from company WHERE company_id ='.Yii::app()->user->company_id;
 $company_words = Company::model()->findBySql($csql);
 $backdate = $company_words->backdate;
@@ -104,8 +113,8 @@ $backdate = $company_words->backdate;
         $chart_name = 'AVE';
         echo '<p>Ad Value Equivalent (AVE) is a measuring tool that calculates the value of the ´space´ or ´air-time´ used for a story on the basis of the rate-card of the particular media house. The value derived thus is calculated on the same basis an Ad of similar page coverage or air play placed on the same page or time segment would. AVE compares the subscriber´s values to those of other players in the industry if the subscription includes competitors or the entire industry.</p>';
         $avnarrative = $company.' AVE in '.$inda_text.' Between '.$drange;
-        $ctext ='My Ave(Kshs.'.number_format($avtotal).')';
-        $otext = 'Others (Kshs.'.number_format($avttotal).')';
+        $ctext ='My Ave('.$currency .number_format($avtotal).')';
+        $otext = 'Others ('.$currency.number_format($avttotal).')';
         echo '<div style="padding:0px; background-color:#fff; border:0px solid #745C92; width: 100%;">';
         $strXML = FusionCharts::packageXML(Yii::app()->user->company_id,$avnarrative, $ctext,$otext, $avtotal, $avttotal,$backdate);
         $charty = new FusionCharts;

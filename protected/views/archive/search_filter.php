@@ -90,12 +90,13 @@ fieldset .col-md-3{
 }
 </style>
 <script type="text/javascript">
-  $('#beginning,#ending').datepick();
-  $("#generate").click(
-    function(event) {
-    	event.preventDefault();
-    	Generate();
-    }
+$('#beginning,#ending').datepick();
+$("#generate").click(
+function(event) 
+{
+event.preventDefault();
+Generate();
+}
 );
   
 function loadcomplete()
