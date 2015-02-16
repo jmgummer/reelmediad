@@ -2,7 +2,7 @@
 <div class="row-fluid clearfix">
 <?php
 
-echo '<img src="http://192.168.0.60/reelmediad/conversions/'.$png_file.'" width="100%" />';
+echo '<img src="http://www.reelforge.com/reelmediad/conversions/'.$png_file.'" width="100%" />';
 
 ?>
 </div>

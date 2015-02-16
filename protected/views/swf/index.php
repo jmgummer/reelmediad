@@ -8,7 +8,7 @@
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl . '/swfobject/swfobject.js'; ?>"></script>
         <script type="text/javascript">
           var flashvars = {
-            doc_url: "<?php echo 'http://192.168.0.60/reelmedia/files/pdf/'.$model->Link;  ?>",
+            doc_url: "<?php echo 'www.reelforge.com/reelmedia/files/pdf/'.$model->Link;  ?>",
           };
           var params = {
             menu: "false",

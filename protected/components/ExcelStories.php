@@ -85,7 +85,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		if($story = Story::model()->findAllBySql($q2)){
 			foreach ($story as $key) {
 				if($story = ExcelStories::GetStories($key->Story_ID)){
-					$link = 'http://192.168.0.234/reelmediad/swf/view/'.$story->Story_ID;
+					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
 		            ->setCellValue("A$count", $story->StoryDate)
 		            ->setCellValue("B$count", $story->Publication)
@@ -161,7 +161,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		if($story = Story::model()->findAllBySql($q3)){
 			foreach ($story as $key) {
 				if($story = ExcelStories::GetStories($key->Story_ID)){
-					$link = 'http://192.168.0.234/reelmediad/swf/view/'.$story->Story_ID;
+					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
 		            ->setCellValue("A$count", $story->StoryDate)
 		            ->setCellValue("B$count", $story->Publication)
@@ -244,7 +244,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		if($story = Story::model()->findAllBySql($q4)){
 			foreach ($story as $key) {
 				if($story = ExcelStories::GetStories($key->Story_ID)){
-					$link = 'http://192.168.0.234/reelmediad/swf/view/'.$story->Story_ID;
+					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
 		            ->setCellValue("A$count", $story->StoryDate)
 		            ->setCellValue("B$count", $story->Publication)
@@ -327,7 +327,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		if($story = Story::model()->findAllBySql($q5)){
 			foreach ($story as $key) {
 				if($story = ExcelStories::GetStories($key->Story_ID)){
-					$link = 'http://192.168.0.234/reelmediad/swf/view/'.$story->Story_ID;
+					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
 		            ->setCellValue("A$count", $story->StoryDate)
 		            ->setCellValue("B$count", $story->Publication)
@@ -430,7 +430,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		if($story = Story::model()->findAllBySql($q2)){
 			foreach ($story as $key) {
 				if($story = ExcelStories::GetStories($key->Story_ID)){
-					$link = 'http://192.168.0.234/reelmediad/swf/view/'.$story->Story_ID;
+					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
 		            ->setCellValue("A$count", $story->StoryDate)
 		            ->setCellValue("B$count", $story->Publication)
@@ -506,7 +506,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		if($story = Story::model()->findAllBySql($q3)){
 			foreach ($story as $key) {
 				if($story = ExcelStories::GetStories($key->Story_ID)){
-					$link = 'http://192.168.0.234/reelmediad/swf/view/'.$story->Story_ID;
+					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
 		            ->setCellValue("A$count", $story->StoryDate)
 		            ->setCellValue("B$count", $story->Publication)
@@ -601,7 +601,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		if($story = Story::model()->findAllBySql($q4)){
 			foreach ($story as $key) {
 				if($story = ExcelStories::GetStories($key->Story_ID)){
-					$link = 'http://192.168.0.234/reelmediad/swf/view/'.$story->Story_ID;
+					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
 		            ->setCellValue("A$count", $story->StoryDate)
 		            ->setCellValue("B$count", $story->Publication)
@@ -684,7 +684,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		if($story = Story::model()->findAllBySql($q5)){
 			foreach ($story as $key) {
 				if($story = ExcelStories::GetStories($key->Story_ID)){
-					$link = 'http://192.168.0.234/reelmediad/swf/view/'.$story->Story_ID;
+					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
 		            ->setCellValue("A$count", $story->StoryDate)
 		            ->setCellValue("B$count", $story->Publication)
@@ -787,7 +787,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		if($story = Story::model()->findAllBySql($q2)){
 			foreach ($story as $key) {
 				if($story = ExcelStories::GetStories($key->Story_ID)){
-					$link = 'http://192.168.0.234/reelmediad/swf/view/'.$story->Story_ID;
+					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
 		            ->setCellValue("A$count", $story->StoryDate)
 		            ->setCellValue("B$count", $story->Publication)
@@ -869,7 +869,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		if($story = Story::model()->findAllBySql($q4)){
 			foreach ($story as $key) {
 				if($story = ExcelStories::GetStories($key->Story_ID)){
-					$link = 'http://192.168.0.234/reelmediad/swf/view/'.$story->Story_ID;
+					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
 		            ->setCellValue("A$count", $story->StoryDate)
 		            ->setCellValue("B$count", $story->Publication)
@@ -972,7 +972,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		if($story = Story::model()->findAllBySql($q2)){
 			foreach ($story as $key) {
 				if($story = ExcelStories::GetStories($key->Story_ID)){
-					$link = 'http://192.168.0.234/reelmediad/swf/view/'.$story->Story_ID;
+					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
 		            ->setCellValue("A$count", $story->StoryDate)
 		            ->setCellValue("B$count", $story->Publication)
@@ -1065,7 +1065,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		if($story = Story::model()->findAllBySql($q4)){
 			foreach ($story as $key) {
 				if($story = ExcelStories::GetStories($key->Story_ID)){
-					$link = 'http://192.168.0.234/reelmediad/swf/view/'.$story->Story_ID;
+					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
 		            ->setCellValue("A$count", $story->StoryDate)
 		            ->setCellValue("B$count", $story->Publication)
@@ -1152,7 +1152,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		if($story = Story::model()->findAllBySql($q3)){
 			foreach ($story as $key) {
 				if($story = ExcelStories::GetStories($key->Story_ID)){
-					$link = 'http://192.168.0.234/reelmediad/swf/view/'.$story->Story_ID;
+					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
 		            ->setCellValue("A$count", $story->StoryDate)
 		            ->setCellValue("B$count", $story->Publication)
@@ -1235,7 +1235,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		if($story = Story::model()->findAllBySql($q5)){
 			foreach ($story as $key) {
 				if($story = ExcelStories::GetStories($key->Story_ID)){
-					$link = 'http://192.168.0.234/reelmediad/swf/view/'.$story->Story_ID;
+					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
 		            ->setCellValue("A$count", $story->StoryDate)
 		            ->setCellValue("B$count", $story->Publication)
@@ -1321,7 +1321,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		if($story = Story::model()->findAllBySql($q3)){
 			foreach ($story as $key) {
 				if($story = ExcelStories::GetStories($key->Story_ID)){
-					$link = 'http://192.168.0.234/reelmediad/swf/view/'.$story->Story_ID;
+					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
 		            ->setCellValue("A$count", $story->StoryDate)
 		            ->setCellValue("B$count", $story->Publication)
@@ -1415,7 +1415,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		if($story = Story::model()->findAllBySql($q5)){
 			foreach ($story as $key) {
 				if($story = ExcelStories::GetStories($key->Story_ID)){
-					$link = 'http://192.168.0.234/reelmediad/swf/view/'.$story->Story_ID;
+					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
 		            ->setCellValue("A$count", $story->StoryDate)
 		            ->setCellValue("B$count", $story->Publication)
