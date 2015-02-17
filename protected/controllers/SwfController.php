@@ -104,7 +104,7 @@ class SwfController extends Controller
 	public function actionManipulator()
 	{
 		if(!isset($_POST['x1'])  || !isset($_POST['y1']) || !isset($_POST['width']) || !isset($_POST['height']) || !isset($_POST['image']) ){
-			echo 'kubaya';
+			echo 'Error';
 		}else{
 			$uniquefile=ImageClass::Generatestory_uniqueid();
 			$my_image="highlight_" .$uniquefile. ".jpg";
@@ -120,7 +120,15 @@ class SwfController extends Controller
 			$my_image = "/home/srv/www/htdocs/reelmediad/tmp/".$my_image;
 			$cmd="/usr/bin/composite -compose multiply -geometry  +".($_POST['x1']*$width_ratio)."+".($_POST['y1']*$height_ratio) ." /home/srv/www/htdocs/reelmediad/tmp/$highlight_image   /home/srv/www/htdocs/reelmediad/conversions/" . trim($_POST['image']) ."  " . $my_image;
 			exec($cmd);
-			echo $highlight_image;
+			// echo $highlight_image;
+
+			header('Content-Type: image/jpeg');
+
+			// Output the image
+			imagejpeg($highlight_image);
+
+			// Free up memory
+			imagedestroy($highlight_image);
 		}
 	}
 
