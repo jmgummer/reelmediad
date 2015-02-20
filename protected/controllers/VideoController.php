@@ -5,22 +5,7 @@ class VideoController extends Controller
 	/**
 	 * @var This is the admin controller
 	 */
-	public $layout='//layouts/column1';
-
-	public function filters()
-	{
-		return array(
-			'accessControl',
-		);
-	}
-
-	public function accessRules()
-	{
-		return array(
-			array('allow', 'actions'=>array('index','view'), 'users'=>array('admin')),
-			array('deny',  'users'=>array('*')),
-		);
-	}
+	public $layout='//layouts/swf';
 
 	public function actionIndex($id)
 	{

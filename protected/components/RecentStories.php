@@ -29,32 +29,27 @@ public static function GetClientStory($client,$startdate,$enddate,$search,$backd
 	$year = date('Y');
 	$story_month = 'story_'.$year.'_'.$month;
 	if(!empty($industries)){
-	  $q2 = 'SELECT distinct story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID 
-	  FROM story
-    inner join story_mention on story.Story_ID=story_mention.story_id
-    inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
-    INNER JOIN story_industry on story_industry.story_id=story.Story_ID
-    INNER JOIN industry_subs ON story_industry.industry_id = industry_subs.industry_id
-    where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
-    and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
-    and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
-    and industry_subs.company_id ='.$client.' and industry_subs.industry_id IN('.$industries.')
-    order by Media_House_List asc, StoryDate desc, page_no asc';
+		$q2 = 'SELECT distinct story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID 
+		FROM story inner join story_mention on story.Story_ID=story_mention.story_id inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
+		INNER JOIN story_industry on story_industry.story_id=story.Story_ID INNER JOIN industry_subs ON story_industry.industry_id = industry_subs.industry_id
+		where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
+		and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
+		and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
+		and industry_subs.company_id ='.$client.' and industry_subs.industry_id IN('.$industries.')
+		order by StoryDate asc, Media_House_List asc, page_no asc';
 	}else{
-	  $q2 = 'SELECT distinct story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID 
-			FROM story
-  	inner join story_mention on story.Story_ID=story_mention.story_id
-  	inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
-  	where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
-  	and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
-  	and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
-  	order by Media_House_List asc, StoryDate desc, page_no asc';
+		$q2 = 'SELECT distinct story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID 
+		FROM story inner join story_mention on story.Story_ID=story_mention.story_id inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
+		where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
+		and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
+		and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
+		order by StoryDate asc, Media_House_List asc, page_no asc';
 	}
 	
 	if($story = Story::model()->findAllBySql($q2)){
 		echo RecentStories::PrintTableHead();
 		foreach ($story as $key) {
-			echo RecentStories::PrintTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->StoryPage,$key->PublicationType,$key->Picture,Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
+			echo RecentStories::PrintTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->StoryPage,$key->PublicationType,$key->Picture,Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues,$key->StoryColumn,$key->ContinuingAve);
 			// if($story = RecentStories::GetStories($key->Story_ID)){
 			// 	echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
 			// }
@@ -75,7 +70,7 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 	and story.Media_ID!="mp01" and story.step3=1
 	and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 	and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
-	order by Media_House_List asc, StoryDate desc';
+	order by StoryDate asc, Media_House_List asc';
 	if($story = Story::model()->findAllBySql($q2)){
 		echo RecentStories::ElectronicTableHead();
 		foreach ($story as $key) {
@@ -105,11 +100,11 @@ public static function GetClientIndustryStory($client,$startdate,$enddate,$searc
 	and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 	and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
 	and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
-	order by Media_House_List asc, StoryDate desc';
+	order by StoryDate asc, Media_House_List asc';
 	if($story = Story::model()->findAllBySql($q2)){
 		echo RecentStories::PrintTableHead();
 		foreach ($story as $key) {
-			echo RecentStories::PrintTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->StoryPage,$key->PublicationType,$key->Picture,Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
+			echo RecentStories::PrintTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->StoryPage,$key->PublicationType,$key->Picture,Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues,$key->StoryColumn,$key->ContinuingAve);
 			// if($story = RecentStories::GetStories($key->Story_ID)){
 			// 	echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
 			// }
@@ -137,7 +132,7 @@ public static function GetClientElectronicIndustryStory($client,$startdate,$endd
 	and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 	and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
 	and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
-	order by Media_House_List asc, StoryDate desc';
+	order by StoryDate asc, Media_House_List asc';
 	if($story = Story::model()->findAllBySql($q2)){
 		echo RecentStories::ElectronicTableHead();
 		foreach ($story as $key) {
@@ -210,7 +205,7 @@ public static function ElectronicTableHead(){
 * Print The Body of the Table This function may be called recursively
 * NB - Just for the Print Section
 */
-public static function PrintTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont){
+public static function PrintTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont,$StoryColum,$ContinuingAve){
 	return '<tr>
 	<td><a href="'.Yii::app()->createUrl("swf/view").'/'.$storyid.'" target="_blank">'.$date.'</a></td>
 	<td>'.$pub.'</td>
@@ -220,7 +215,7 @@ public static function PrintTableBody($date,$storyid,$pub,$journo,$head,$page,$p
 	<td>'.$pubtype.'</td>
 	<td>'.$pic.'</td>
 	<td>'.$effect.'</td>
-	<td style="text-align:right;">'.number_format($ave).'</td>
+	<td style="text-align:right;">'.number_format($ContinuingAve).'</td>
 	</tr>';
 }
 

@@ -258,8 +258,17 @@ class Story extends CActiveRecord
 
 	public function getPublication()
 	{
+		$StoryPage = $this->StoryPage;
 		if($publication = Mediahouse::model()->find('Media_House_ID=:a', array(':a'=>$this->Media_House_ID))){
-			return $publication ->Media_House_List;
+			if(is_numeric($StoryPage)){
+				return $publication ->Media_House_List;
+			}else{
+				if($this->Media_ID!="mp01"){
+					return $publication ->Media_House_List;
+				}else{
+					return $publication ->Media_House_List.' - '.$this->StoryPullout;
+				}
+			}
 		}else{
 			return 'Unknown';
 		}
@@ -378,8 +387,6 @@ class Story extends CActiveRecord
 
 	public static function GetSwf($link)
 	{
-		// return $name = strtolower(pathinfo($link, PATHINFO_FILENAME)).'.swf';
-
 		$output  = str_replace('.pdf', '.swf', $link);
 		return strtolower($output);
 	}
@@ -502,4 +509,175 @@ class Story extends CActiveRecord
 			return ' ';
 		}
 	}
+
+	public function getClassification()
+	{
+
+	}
+
+	public static function AgencyPRValue($agency_pr_rate,$this_rate)
+	{
+		$this_agency_pr_rate=number_format( ($this_rate+0)*$agency_pr_rate,0);
+		return $this_agency_pr_rate;
+	}
+
+	public function getStoryCategory()
+	{
+		$this_category_id = $this->Category_ID;
+		$sql_category_name="select distinct Category_List from category where Category_ID='$this_category_id'";
+		if($category_name=Category::model()->findBySql($sql_category_name)){
+			return $category_name->Category_List;
+		}else{
+			return 'Uncategorized';
+		}
+	}
+
+	public function getStoryPullout()
+	{
+		$Media_House_ID = $this->Media_House_ID;
+		$StoryPage = $this->StoryPage;
+		if(!is_numeric($StoryPage)){
+			$letter= substr($StoryPage, 0,1); 
+			$sql_po="select pullout_name from mediahouse,mediahouse_pullouts where mediahouse.Media_House_ID='$Media_House_ID' and mediahouse_pullouts.media_house_id=mediahouse.Media_House_ID and pullout_code = '$letter';";
+			if($pullout = MediahousePullouts::model()->findBySql($sql_po)){
+				$pullout = $pullout->pullout_name;
+			}else{
+				$pullout = 'Unknown Pullout';
+			}
+			return $pullout;
+		}else{
+			return $this->Publication;
+		}
+
+	}
+
+	public static function StoryIndustry($storyid,$agency_client_co_id)
+	{
+		$sql_ind="select Industry_List from story_industry,industry, industry_company where story_industry.industry_id=industry. Industry_ID 
+		and story_industry.story_id=$storyid and industry_company.company_id=$agency_client_co_id and industry_company.industry_id=story_industry.industry_id";
+		if($industry_name=Industry::model()->findBySql($sql_ind)){
+			return $industry_name->Industry_List;
+		}else{
+			return 'No Industry Set';
+		}
+	}
+
+	public function getStorySummary()
+	{
+		return $this->Story;
+	}
+
+	public function getPhotoJournalist()
+	{
+		return $photo_journalist = ucwords(strtolower($this->photo_journalist));
+	}
+
+	public function getStoryColumn()
+	{
+		$colcm = 0;
+		$cont_on=$this->cont_on;
+		if($cont_on!=0) {
+			$cont_col=Story::ColumnContinuation($this->Story_ID);
+			$colcm+=$cont_col;
+		}else{
+			$colcm = $this->col*$this->centimeter;
+		}
+		return $colcm;
+	}
+
+	public static function ColumnContinuation($id) 
+	{
+		$my_continuation = 0;
+		if(is_numeric($id)){
+			$sql="select Media_House_ID,cont_on, cont_from, picture,col, centimeter , Media_ID from story where story_id=$id";
+			if($ContStory = Story::model()->findBySql($sql)){
+				$storyid = $ContStory->Story_ID;
+				$col=$ContStory->col;
+				$centimeter = $ContStory->centimeter;
+				$colcm = $col*$centimeter;
+				$cont_on=$ContStory->cont_on;
+
+				if($cont_on!=0) {
+					$my_continuation=Story::ColumnContinuation($storyid);
+				}
+				$colcm+=$my_continuation;
+			}else{
+				$colcm = 0;
+			}
+		}else{
+			$colcm = 0;
+		}
+		return $colcm;
+	}
+
+	public function getContinuingAve()
+	{
+		$colcm = 0;
+		$weekday = strtolower(date('D', strtotime($this->StoryDate)));
+		$Media_House_ID = $this->Media_House_ID;
+		$picture = $this->picture;
+		$col = $this->col;
+		$centimeter = $this->centimeter;
+
+		if($picture=='color'){
+			$color_code = $weekday.'_c';
+		}else{
+			$color_code = $weekday.'_b';
+		}
+
+		if($rate = Ratecard::model()->find('Media_House_ID=:a AND color_code=:b', array(':a'=>$Media_House_ID,':b'=>$color_code))){
+			$rate=$rate->rate;
+			$rate_cost = $rate*$col*$centimeter;
+		}else{
+			$rate_cost = 0;
+		}
+		$this_rate=$rate_cost;
+		
+		if($this->cont_on!=0) {
+			$cont_rate=RateContinuation($cont_on);
+			$this_rate+=$cont_rate;
+		}
+		return $this_rate;
+	}
+
+	public static function RateContinuation($id) 
+	{
+		$this_rate=0;
+		$my_continuation = 0;
+		$sql="select Media_House_ID,cont_on, cont_from, picture,col, centimeter , Media_ID from story where story_id=$id";
+		if($ContStory = Story::model()->findBySql($sql)){
+			$StoryDate=$ContStory->StoryDate;
+			$Media_House_ID=$ContStory->Media_House_ID;
+			$Media_ID =$ContStory->Media_ID;
+			$picture=$ContStory->picture;
+			$col=$ContStory->col;
+			$centimeter=$ContStory->centimeter;
+
+			$cont_on=$ContStory->cont_on;
+			$cont_from=$ContStory->cont_from;	 
+
+			$weekday = strtolower(date('D', strtotime($StoryDate)));
+
+			if($picture=='color'){
+				$color_code = $weekday.'_c';
+			}else{
+				$color_code = $weekday.'_b';
+			}
+
+			if($rate = Ratecard::model()->find('Media_House_ID=:a AND color_code=:b', array(':a'=>$Media_House_ID,':b'=>$color_code))){
+				$rate=$rate->rate;
+				$rate_cost = $rate*$col*$centimeter;
+			}else{
+				$rate_cost = 0;
+			}
+
+			if($cont_on!=0) {
+				$my_continuation=RateContinuation($cont_on);
+			}
+			$this_rate+=$my_continuation;
+		}
+		return $this_rate;
+	}
+
+	
 }

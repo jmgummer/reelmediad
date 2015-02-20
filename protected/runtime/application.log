@@ -1,67 +1,301 @@
-2014/12/17 10:26:51 [error] [php] Undefined variable: clientid (C:\xampp\htdocs\reelmediad\protected\controllers\ArchiveController.php:49)
+2015/02/20 09:09:49 [error] [system.db.CDbCommand] CDbCommand::fetch() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. The SQL statement executed was: select Media_House_ID,cont_on, cont_from, picture,col, centimeter , Media_ID from story where story_id=.
+2015/02/20 09:09:49 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1' in C:\xampp\htdocs\reelmediad\yii_back\framework\db\CDbCommand.php:543
 Stack trace:
-#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilterChain.php(133): ArchiveController->runAction()
-#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
-#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(1145): CAccessControlFilter->filter()
-#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CInlineFilter.php(58): ArchiveController->filterAccessControl()
-#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
-#5 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(291): CFilterChain->run()
-#6 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): ArchiveController->runActionWithFilters()
-#7 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): ArchiveController->run()
-#8 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController()
-#9 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
-#10 C:\xampp\htdocs\reelmediad\index.php(18): CWebApplication->run()
-REQUEST_URI=/reelmediad/archive/stories
-2014/12/17 10:27:21 [error] [php] Undefined variable: clientid (C:\xampp\htdocs\reelmediad\protected\controllers\ArchiveController.php:49)
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\db\CDbCommand.php(415): CDbCommand->queryInternal('fetch', Array, Array)
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\db\ar\CActiveRecord.php(1558): CDbCommand->queryRow()
+#2 C:\xampp\htdocs\reelmediad\protected\models\Story.php(594): CActiveRecord->findBySql('select Media_Ho...')
+#3 C:\xampp\htdocs\reelmediad\protected\models\Story.php(602): Story::ColumnContinuation(NULL)
+#4 C:\xampp\htdocs\reelmediad\protected\models\Story.php(582): Story::ColumnContinuation('2531766')
+#5 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CComponent.php(111): Story->getStoryColumn()
+#6 C:\xampp\htdocs\reelmediad\yii_back\framework\db\ar\CActiveRecord.php(145): CComponent->__get('StoryColumn')
+#7 C:\xampp\htdocs\reelmediad\protected\components\AgencyExcelStories.php(121): CActiveRecord->__get('StoryColumn')
+#8 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(152): AgencyExcelStories::GetMainOption('128', '2015-02-02', '2015-02-20', '', '2008-01-01', 1, '', 1)
+#9 C:\xampp\htdocs\reelmediad\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionExcel()
+#10 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('excel')
+#19 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/excel')
+#20 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\reelmediad\index.php(18): CApplication->run()
+#22 {main}
+REQUEST_URI=/reelmediad/home/excel?clientid=128&startdate=2015-02-02&enddate=2015-02-20&search=&industries=&cat_identifier=1&type_identifier=1
+---
+2015/02/20 09:55:31 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php:336
 Stack trace:
-#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilterChain.php(133): ArchiveController->runAction()
-#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
-#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(1145): CAccessControlFilter->filter()
-#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CInlineFilter.php(58): ArchiveController->filterAccessControl()
-#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
-#5 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(291): CFilterChain->run()
-#6 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): ArchiveController->runActionWithFilters()
-#7 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): ArchiveController->run()
-#8 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController()
-#9 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
-#10 C:\xampp\htdocs\reelmediad\index.php(18): CWebApplication->run()
-REQUEST_URI=/reelmediad/archive/stories
-2014/12/17 13:44:04 [error] [php] Undefined variable: next_stop (C:\xampp\htdocs\reelmediad\protected\components\ArchiveStories.php:186)
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('view')
+#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('swf/view/www.re...')
+#5 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\reelmediad\index.php(18): CApplication->run()
+#7 {main}
+REQUEST_URI=/reelmediad/swf/view/www.reelforge.com/reelmedia/files/pdf/2015/02/02/bda_20150202_23cflnstw457.swf
+HTTP_REFERER=http://192.168.0.234/reelmediad/swfobject/zviewer.swf?r=11
+---
+2015/02/20 09:56:44 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php:336
 Stack trace:
-#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams()
-#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilterChain.php(133): ArchiveController->runAction()
-#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
-#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(1145): CAccessControlFilter->filter()
-#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CInlineFilter.php(58): ArchiveController->filterAccessControl()
-#5 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
-#6 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(291): CFilterChain->run()
-#7 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): ArchiveController->runActionWithFilters()
-#8 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): ArchiveController->run()
-#9 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController()
-#10 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
-#11 C:\xampp\htdocs\reelmediad\index.php(18): CWebApplication->run()
-REQUEST_URI=/reelmediad/archive/stories
-2014/12/18 09:24:33 [error] [php] Undefined variable: mp01 (C:\xampp\htdocs\reelmediad\protected\models\StorySearch.php:66)
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('view')
+#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('swf/view/www.re...')
+#5 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\reelmediad\index.php(18): CApplication->run()
+#7 {main}
+REQUEST_URI=/reelmediad/swf/view/www.reelforge.com/reelmedia/files/pdf/2015/02/02/bda_20150202_23cflnstw457.swf
+HTTP_REFERER=http://192.168.0.234/reelmediad/swfobject/zviewer.swf?r=11
+---
+2015/02/20 09:58:00 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php:336
 Stack trace:
-#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CBaseController.php(95): RadiotvController->renderInternal()
-#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(869): RadiotvController->renderFile()
-#2 C:\xampp\htdocs\reelmediad\protected\views\radiotv\index.php(7): RadiotvController->renderPartial()
-#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CBaseController.php(126): require()
-#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CBaseController.php(95): RadiotvController->renderInternal()
-#5 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(869): RadiotvController->renderFile()
-#6 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(782): RadiotvController->renderPartial()
-#7 C:\xampp\htdocs\reelmediad\protected\controllers\RadiotvController.php(43): RadiotvController->render()
-#8 C:\xampp\htdocs\reelmediad\yii_back\framework\web\actions\CInlineAction.php(49): RadiotvController->actionIndex()
-#9 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams()
-#10 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilterChain.php(133): RadiotvController->runAction()
-#11 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
-#12 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(1145): CAccessControlFilter->filter()
-#13 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CInlineFilter.php(58): RadiotvController->filterAccessControl()
-#14 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
-#15 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(291): CFilterChain->run()
-#16 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): RadiotvController->runActionWithFilters()
-#17 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): RadiotvController->run()
-#18 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController()
-#19 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
-#20 C:\xampp\htdocs\reelmediad\index.php(18): CWebApplication->run()
-REQUEST_URI=/reelmediad/radiotv/index
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('view')
+#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('swf/view/www.re...')
+#5 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\reelmediad\index.php(18): CApplication->run()
+#7 {main}
+REQUEST_URI=/reelmediad/swf/view/www.reelforge.com/reelmedia/files/pdf/2015/02/02/bda_20150202_23cflnstw457.swf
+HTTP_REFERER=http://192.168.0.234/reelmediad/swfobject/zviewer.swf?r=11
+---
+2015/02/20 09:59:24 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('view')
+#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('swf/view/www.re...')
+#5 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\reelmediad\index.php(18): CApplication->run()
+#7 {main}
+REQUEST_URI=/reelmediad/swf/view/www.reelforge.com/reelmedia/files/pdf/2015/02/02/bda_20150202_23cflnstw457.swf
+HTTP_REFERER=http://192.168.0.234/reelmediad/swfobject/zviewer.swf?r=11
+---
+2015/02/20 09:59:41 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('view')
+#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('swf/view/www.re...')
+#5 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\reelmediad\index.php(18): CApplication->run()
+#7 {main}
+REQUEST_URI=/reelmediad/swf/view/www.reelforge.com/reelmedia/files/pdf/2015/02/02/bda_20150202_23cflnstw457.swf
+HTTP_REFERER=http://192.168.0.234/reelmediad/swfobject/zviewer.swf?r=11
+---
+2015/02/20 10:00:22 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('view')
+#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('swf/view/www.re...')
+#5 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\reelmediad\index.php(18): CApplication->run()
+#7 {main}
+REQUEST_URI=/reelmediad/swf/view/www.reelforge.com/reelmedia/files/pdf/2015/02/02/bda_20150202_23cflnstw457.swf
+HTTP_REFERER=http://192.168.0.234/reelmediad/swfobject/zviewer.swf?r=11
+---
+2015/02/20 10:01:40 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('view')
+#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('swf/view/www.re...')
+#5 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\reelmediad\index.php(18): CApplication->run()
+#7 {main}
+REQUEST_URI=/reelmediad/swf/view/www.reelforge.com/reelmedia/files/pdf/2015/02/02/bda_20150202_23cflnstw457.swf
+HTTP_REFERER=http://192.168.0.234/reelmediad/swfobject/zviewer.swf?r=11
+---
+2015/02/20 10:02:02 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('view')
+#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('swf/view/www.re...')
+#5 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\reelmediad\index.php(18): CApplication->run()
+#7 {main}
+REQUEST_URI=/reelmediad/swf/view/www.reelforge.com/reelmedia/files/pdf/2015/02/02/bda_20150202_23cflnstw457.swf
+HTTP_REFERER=http://192.168.0.234/reelmediad/swfobject/zviewer.swf?r=11
+---
+2015/02/20 10:02:16 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('view')
+#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('swf/view/www.re...')
+#5 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\reelmediad\index.php(18): CApplication->run()
+#7 {main}
+REQUEST_URI=/reelmediad/swf/view/www.reelforge.com/reelmedia/files/pdf/2015/02/02/bda_20150202_23cflnstw457.swf
+HTTP_REFERER=http://192.168.0.234/reelmediad/swfobject/zviewer.swf?r=11
+---
+2015/02/20 10:15:57 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('view')
+#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('swf/view/www.re...')
+#5 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\reelmediad\index.php(18): CApplication->run()
+#7 {main}
+REQUEST_URI=/reelmediad/swf/view/www.reelforge.com/reelmedia/files/pdf/2015/02/02/bda_20150202_23cflnstw457.swf
+HTTP_REFERER=http://192.168.0.234/reelmediad/swfobject/zviewer.swf?r=11
+---
+2015/02/20 10:17:13 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('view')
+#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('swf/view/www.re...')
+#5 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\reelmediad\index.php(18): CApplication->run()
+#7 {main}
+REQUEST_URI=/reelmediad/swf/view/www.reelforge.com/reelmedia/files/pdf/2015/02/02/bda_20150202_23cflnstw457.swf
+HTTP_REFERER=http://192.168.0.234/reelmediad/swfobject/zviewer.swf?r=11
+---
+2015/02/20 10:19:58 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('view')
+#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('swf/view/www.re...')
+#5 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\reelmediad\index.php(18): CApplication->run()
+#7 {main}
+REQUEST_URI=/reelmediad/swf/view/www.reelforge.com/reelmedia/files/pdf/2015/02/02/bda_20150202_23cflnstw457.swf
+HTTP_REFERER=http://192.168.0.234/reelmediad/swfobject/zviewer.swf?r=11
+---
+2015/02/20 10:20:15 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('view')
+#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('swf/view/www.re...')
+#5 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\reelmediad\index.php(18): CApplication->run()
+#7 {main}
+REQUEST_URI=/reelmediad/swf/view/www.reelforge.com/reelmedia/files/pdf/2015/02/02/bda_20150202_23cflnstw457.swf
+HTTP_REFERER=http://192.168.0.234/reelmediad/swfobject/zviewer.swf?r=11
+---
+2015/02/20 10:21:11 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('view')
+#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('swf/view/www.re...')
+#5 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\reelmediad\index.php(18): CApplication->run()
+#7 {main}
+REQUEST_URI=/reelmediad/swf/view/www.reelforge.com/reelmedia/files/pdf/2015/02/02/bda_20150202_23cflnstw457.swf
+HTTP_REFERER=http://192.168.0.234/reelmediad/swfobject/zviewer.swf?r=11
+---
+2015/02/20 10:22:56 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('view')
+#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('swf/view/www.re...')
+#5 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\reelmediad\index.php(18): CApplication->run()
+#7 {main}
+REQUEST_URI=/reelmediad/swf/view/www.reelforge.com/reelmedia/files/pdf/2015/02/02/bda_20150202_23cflnstw457.swf
+HTTP_REFERER=http://192.168.0.234/reelmediad/swfobject/zviewer.swf?r=11
+---
+2015/02/20 10:23:23 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('view')
+#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('swf/view/www.re...')
+#5 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\reelmediad\index.php(18): CApplication->run()
+#7 {main}
+REQUEST_URI=/reelmediad/swf/view/www.reelforge.com/reelmedia/files/pdf/2015/02/02/bda_20150202_23cflnstw457.swf
+HTTP_REFERER=http://192.168.0.234/reelmediad/swfobject/zviewer.swf?r=11
+---
+2015/02/20 10:25:45 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('view')
+#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('swf/view/www.re...')
+#5 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\reelmediad\index.php(18): CApplication->run()
+#7 {main}
+REQUEST_URI=/reelmediad/swf/view/www.reelforge.com/reelmedia/files/pdf/2015/02/02/bda_20150202_23cflnstw457.swf
+HTTP_REFERER=http://192.168.0.234/reelmediad/swfobject/zviewer.swf?r=11
+---
+2015/02/20 10:40:17 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('view')
+#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('swf/view/2015/0...')
+#5 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\reelmediad\index.php(18): CApplication->run()
+#7 {main}
+REQUEST_URI=/reelmediad/swf/view/2015/02/02/bda_20150202_23cflnstw457.swf
+HTTP_REFERER=http://192.168.0.234/reelmediad/swfobject/zviewer.swf?r=11
+---
+2015/02/20 10:41:32 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('view')
+#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('swf/view/www.re...')
+#5 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\reelmediad\index.php(18): CApplication->run()
+#7 {main}
+REQUEST_URI=/reelmediad/swf/view/www.reelforge.com/reelmedia/files/pdf/2015/02/02/bda_20150202_23cflnstw457.swf
+HTTP_REFERER=http://192.168.0.234/reelmediad/swfobject/zviewer.swf?r=11
+---
+2015/02/20 10:45:44 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('view')
+#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('swf/view/www.re...')
+#5 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\reelmediad\index.php(18): CApplication->run()
+#7 {main}
+REQUEST_URI=/reelmediad/swf/view/www.reelforge.com/reelmedia/files/pdf/2015/02/02/bda_20150202_23cflnstw457.swf
+HTTP_REFERER=http://192.168.0.234/reelmediad/swfobject/zviewer.swf?r=11
+---
+2015/02/20 10:46:31 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php:336
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('view')
+#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('swf/view/2015/0...')
+#5 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\xampp\htdocs\reelmediad\index.php(18): CApplication->run()
+#7 {main}
+REQUEST_URI=/reelmediad/swf/view/2015/02/02/bda_20150202_23cflnstw457.swf
+HTTP_REFERER=http://192.168.0.234/reelmediad/swfobject/zviewer.swf?r=11
+---

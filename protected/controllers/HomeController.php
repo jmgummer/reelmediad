@@ -148,7 +148,13 @@ class HomeController extends Controller
 				$option = 9;
 			}
 		}
-    	$stories = ExcelStories::GetMainOption($client,$startdate,$enddate,$search,$backdate,$country,$industries,$option);
+		if(Yii::app()->user->usertype=='agency'){
+			$stories = AgencyExcelStories::GetMainOption($client,$startdate,$enddate,$search,$backdate,$country,$industries,$option);
+		}else{
+			$stories = ExcelStories::GetMainOption($client,$startdate,$enddate,$search,$backdate,$country,$industries,$option);
+		}
+
+    	
 		Yii::app()->end();
 	}
 	
@@ -201,6 +207,7 @@ class HomeController extends Controller
 			$sql = 'SELECT Industry_List, industry.Industry_ID, sup_ind_id, sect_id, sub_ind_id FROM industry,industry_company 
 			where industry_company.company_id='.$company.' and industry_company.industry_id=industry.Industry_ID order by sub_ind_id, Industry_List';
 			if($industries = Industry::model()->findAllBySql($sql)){
+				echo '<option value="all">All Industries</option>';
 				foreach ($industries as $value) {
 					$this_industry_id=$value["Industry_ID"];
 					$this_industry_name=trim($value["ConcatName"]);

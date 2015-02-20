@@ -5,7 +5,9 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
+	
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/url.js"></script>
 </head>
 <script type="text/javascript">
     setInterval("checkLoad()",2000);
@@ -93,8 +95,8 @@
 				</span>
 			</div>
 			<nav>
-				<ul>
-					<li class="active">
+				<ul class="nav">
+					<li>
 						<a href="<?=Yii::app()->createUrl("home/index");?>" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
 					</li>
 					<li>

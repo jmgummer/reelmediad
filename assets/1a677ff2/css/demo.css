@@ -832,6 +832,11 @@ article .minifyme i{
 #tabs { background-color: #EEE !important;}
 	.nav-tabs>li>a{cursor: pointer;}
 	.nav-tabs>li>a:hover{border-top: 1px solid #ddd;border-right: 1px solid #ddd;border-left: 1px solid #ddd;}
+	p#preloaderAnimation{
+    position: relative;
+    top: 50%;
+    left: 50%;
+}
 img#preloaderAnimation{
     position: relative;
     top: 50%;

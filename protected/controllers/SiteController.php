@@ -27,38 +27,8 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$this->layout='//layouts/login';
-		$model=new LoginForm;
 		if(Yii::app()->user->isGuest){
-			// if it is ajax validation request
-			if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
-			{
-				echo CActiveForm::validate($model);
-				Yii::app()->end();
-			}
-
-			// collect user input data
-			if(isset($_POST['LoginForm']))
-			{
-				$model->attributes=$_POST['LoginForm'];
-				// validate user input and redirect to the previous page if valid
-				if($model->validate() && $model->login())
-				{
-					$this->redirect(array('home/index'));
-				}
-			}
-
-			if(isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['password']) && !empty($_POST['password'])){
-				$model->username = $_POST['username'];
-				$model->password = $_POST['password'];
-				// validate user input and redirect to the previous page if valid
-				if($model->validate() && $model->login())
-				{
-					$this->redirect(array('home/index'));
-				}
-			}
-			// display the login form
-			$this->render('login',array('model'=>$model));
+			$this->redirect(array('site/login'));
 		}else{
 			$this->redirect(array('home/index'));
 		}
@@ -111,6 +81,7 @@ class SiteController extends Controller
 	{
 		$this->layout='//layouts/login';
 		$model=new LoginForm;
+		
 		if(Yii::app()->user->isGuest){
 			// if it is ajax validation request
 			if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
@@ -119,6 +90,8 @@ class SiteController extends Controller
 				Yii::app()->end();
 			}
 
+			$return = Yii::app()->user->returnUrl;
+
 			// collect user input data
 			if(isset($_POST['LoginForm']))
 			{
@@ -126,7 +99,11 @@ class SiteController extends Controller
 				// validate user input and redirect to the previous page if valid
 				if($model->validate() && $model->login())
 				{
-					$this->redirect(array('home/index'));
+					if($return == "/reelmediad/"){
+						$this->redirect(array('home/index'));
+					}else{
+						$this->redirect(Yii::app()->user->returnUrl);
+					}
 				}
 			}
 
@@ -136,13 +113,17 @@ class SiteController extends Controller
 				// validate user input and redirect to the previous page if valid
 				if($model->validate() && $model->login())
 				{
-					$this->redirect(array('home/index'));
+					if($return == "/reelmediad/"){
+						$this->redirect(array('home/index'));
+					}else{
+						$this->redirect(Yii::app()->user->returnUrl);
+					}
 				}
 			}
 			// display the login form
 			$this->render('login',array('model'=>$model));
 		}else{
-			$this->redirect(array('home/index'));
+			$this->redirect(Yii::app()->user->returnUrl);
 		}
 	}
 
@@ -172,7 +153,7 @@ class SiteController extends Controller
 			session_start();
 			session_destroy();
 		}
-		// $site_url = $_SERVER['SERVER_ADDR'];
+		// $site_url = "www.reelforge.com";
 		// $this->redirect('http://'.$site_url.'/reelforge_back');
 		$this->redirect(array('site/login'));
 	}

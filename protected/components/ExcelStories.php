@@ -66,7 +66,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		    and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 		    and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
 		    and industry_subs.company_id ='.$client.' and industry_subs.industry_id IN('.$industries.')
-		    order by Media_House_List asc, StoryDate desc, page_no asc';
+		    order by StoryDate asc, Media_House_List asc,  page_no asc';
 		}else{
 		  $q2 = 'SELECT distinct story.Story_ID FROM story
 		  	inner join story_mention on story.Story_ID=story_mention.story_id
@@ -74,7 +74,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  	where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
 		  	and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 		  	and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
-		  	order by Media_House_List asc, StoryDate desc, page_no asc';
+		  	order by StoryDate asc, Media_House_List asc,  page_no asc';
 		}
 		$count = 2;
 		$styleArray = array(
@@ -151,7 +151,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		and story.Media_ID!="mp01" and story.step3=1
 		and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 		and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
-		order by Media_House_List asc, StoryDate desc';
+		order by StoryDate asc, Media_House_List asc';
 		$count = 2;
 		$styleArray = array(
 		  'font' => array(
@@ -234,7 +234,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 		and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
 		and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
-		order by Media_House_List asc, StoryDate desc';
+		order by StoryDate asc, Media_House_List asc';
 		$count = 2;
 		$styleArray = array(
 		  'font' => array(
@@ -317,7 +317,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 		and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
 		and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
-		order by Media_House_List asc, StoryDate desc';
+		order by StoryDate asc, Media_House_List asc';
 		$count = 2;
 		$styleArray = array(
 		  'font' => array(
@@ -367,8 +367,9 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 	$PHPExcel->setActiveSheetIndex(0);
 		
 	// Redirect output to a clients web browser (Excel2003)
+	$time = date("Ymdhis");
 	header('Content-Type: application/excel');
-	header('Content-Disposition: attachment;filename="Stories.xls"');
+	header("Content-Disposition: attachment;filename=Reelmedia_Stories_Report_".$time.".xls");
 	header('Cache-Control: max-age=0');
 
 	$objWriter = PHPExcel_IOFactory::createWriter($PHPExcel, 'Excel5');
@@ -411,7 +412,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		    and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 		    and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
 		    and industry_subs.company_id ='.$client.' and industry_subs.industry_id IN('.$industries.')
-		    order by Media_House_List asc, StoryDate desc, page_no asc';
+		    order by StoryDate asc, Media_House_List asc,  page_no asc';
 		}else{
 		  $q2 = 'SELECT distinct story.Story_ID FROM story
 		  	inner join story_mention on story.Story_ID=story_mention.story_id
@@ -419,7 +420,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  	where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
 		  	and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 		  	and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
-		  	order by Media_House_List asc, StoryDate desc, page_no asc';
+		  	order by StoryDate asc, Media_House_List asc,  page_no asc';
 		}
 		$count = 2;
 		$styleArray = array(
@@ -496,7 +497,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		and story.Media_ID!="mp01" and story.step3=1
 		and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 		and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
-		order by Media_House_List asc, StoryDate desc';
+		order by StoryDate asc, Media_House_List asc';
 		$count = 2;
 		$styleArray = array(
 		  'font' => array(
@@ -548,8 +549,9 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		$PHPExcel->setActiveSheetIndex(0);
 			
 		// Redirect output to a clients web browser (Excel2003)
+		$time = date("Ymdhis");
 		header('Content-Type: application/excel');
-		header('Content-Disposition: attachment;filename="Stories.xls"');
+		header("Content-Disposition: attachment;filename=Reelmedia_Stories_Report_".$time.".xls");
 		header('Cache-Control: max-age=0');
 
 		$objWriter = PHPExcel_IOFactory::createWriter($PHPExcel, 'Excel5');
@@ -591,7 +593,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 		and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
 		and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
-		order by Media_House_List asc, StoryDate desc';
+		order by StoryDate asc, Media_House_List asc';
 		$count = 2;
 		$styleArray = array(
 		  'font' => array(
@@ -674,7 +676,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 		and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
 		and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
-		order by Media_House_List asc, StoryDate desc';
+		order by StoryDate asc, Media_House_List asc';
 		$count = 2;
 		$styleArray = array(
 		  'font' => array(
@@ -724,8 +726,9 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 	$PHPExcel->setActiveSheetIndex(0);
 		
 	// Redirect output to a clients web browser (Excel2003)
+	$time = date("Ymdhis");
 	header('Content-Type: application/excel');
-	header('Content-Disposition: attachment;filename="Stories.xls"');
+	header("Content-Disposition: attachment;filename=Reelmedia_Stories_Report_".$time.".xls");
 	header('Cache-Control: max-age=0');
 
 	$objWriter = PHPExcel_IOFactory::createWriter($PHPExcel, 'Excel5');
@@ -768,7 +771,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		    and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 		    and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
 		    and industry_subs.company_id ='.$client.' and industry_subs.industry_id IN('.$industries.')
-		    order by Media_House_List asc, StoryDate desc, page_no asc';
+		    order by StoryDate asc, Media_House_List asc,  page_no asc';
 		}else{
 		  $q2 = 'SELECT distinct story.Story_ID FROM story
 		  	inner join story_mention on story.Story_ID=story_mention.story_id
@@ -776,7 +779,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  	where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
 		  	and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 		  	and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
-		  	order by Media_House_List asc, StoryDate desc, page_no asc';
+		  	order by StoryDate asc, Media_House_List asc,  page_no asc';
 		}
 		$count = 2;
 		$styleArray = array(
@@ -859,7 +862,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 		and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
 		and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
-		order by Media_House_List asc, StoryDate desc';
+		order by StoryDate asc, Media_House_List asc';
 		$count = 2;
 		$styleArray = array(
 		  'font' => array(
@@ -909,8 +912,9 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		$PHPExcel->setActiveSheetIndex(0);
 			
 		// Redirect output to a clients web browser (Excel2003)
+		$time = date("Ymdhis");
 		header('Content-Type: application/excel');
-		header('Content-Disposition: attachment;filename="Stories.xls"');
+		header("Content-Disposition: attachment;filename=Reelmedia_Stories_Report_".$time.".xls");
 		header('Cache-Control: max-age=0');
 
 		$objWriter = PHPExcel_IOFactory::createWriter($PHPExcel, 'Excel5');
@@ -953,7 +957,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		    and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 		    and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
 		    and industry_subs.company_id ='.$client.' and industry_subs.industry_id IN('.$industries.')
-		    order by Media_House_List asc, StoryDate desc, page_no asc';
+		    order by StoryDate asc, Media_House_List asc,  page_no asc';
 		}else{
 		  $q2 = 'SELECT distinct story.Story_ID FROM story
 		  	inner join story_mention on story.Story_ID=story_mention.story_id
@@ -961,7 +965,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  	where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
 		  	and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 		  	and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
-		  	order by Media_House_List asc, StoryDate desc, page_no asc';
+		  	order by StoryDate asc, Media_House_List asc,  page_no asc';
 		}
 		$count = 2;
 		$styleArray = array(
@@ -1012,8 +1016,9 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		$PHPExcel->setActiveSheetIndex(0);
 			
 		// Redirect output to a clients web browser (Excel2003)
+		$time = date("Ymdhis");
 		header('Content-Type: application/excel');
-		header('Content-Disposition: attachment;filename="Stories.xls"');
+		header("Content-Disposition: attachment;filename=Reelmedia_Stories_Report_".$time.".xls");
 		header('Cache-Control: max-age=0');
 
 		$objWriter = PHPExcel_IOFactory::createWriter($PHPExcel, 'Excel5');
@@ -1055,7 +1060,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 		and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
 		and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
-		order by Media_House_List asc, StoryDate desc';
+		order by StoryDate asc, Media_House_List asc';
 		$count = 2;
 		$styleArray = array(
 		  'font' => array(
@@ -1106,8 +1111,9 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		$PHPExcel->setActiveSheetIndex(0);
 			
 		// Redirect output to a clients web browser (Excel2003)
+		$time = date("Ymdhis");
 		header('Content-Type: application/excel');
-		header('Content-Disposition: attachment;filename="Stories.xls"');
+		header("Content-Disposition: attachment;filename=Reelmedia_Stories_Report_".$time.".xls");
 		header('Cache-Control: max-age=0');
 
 		$objWriter = PHPExcel_IOFactory::createWriter($PHPExcel, 'Excel5');
@@ -1142,7 +1148,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		and story.Media_ID!="mp01" and story.step3=1
 		and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 		and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
-		order by Media_House_List asc, StoryDate desc';
+		order by StoryDate asc, Media_House_List asc';
 		$count = 2;
 		$styleArray = array(
 		  'font' => array(
@@ -1225,7 +1231,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 		and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
 		and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
-		order by Media_House_List asc, StoryDate desc';
+		order by StoryDate asc, Media_House_List asc';
 		$count = 2;
 		$styleArray = array(
 		  'font' => array(
@@ -1275,8 +1281,9 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		$PHPExcel->setActiveSheetIndex(0);
 			
 		// Redirect output to a clients web browser (Excel2003)
+		$time = date("Ymdhis");
 		header('Content-Type: application/excel');
-		header('Content-Disposition: attachment;filename="Stories.xls"');
+		header("Content-Disposition: attachment;filename=Reelmedia_Stories_Report_".$time.".xls");
 		header('Cache-Control: max-age=0');
 
 		$objWriter = PHPExcel_IOFactory::createWriter($PHPExcel, 'Excel5');
@@ -1311,7 +1318,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		and story.Media_ID!="mp01" and story.step3=1
 		and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 		and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
-		order by Media_House_List asc, StoryDate desc';
+		order by StoryDate asc, Media_House_List asc';
 		$count = 2;
 		$styleArray = array(
 		  'font' => array(
@@ -1362,8 +1369,9 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		$PHPExcel->setActiveSheetIndex(0);
 			
 		// Redirect output to a clients web browser (Excel2003)
+		$time = date("Ymdhis");
 		header('Content-Type: application/excel');
-		header('Content-Disposition: attachment;filename="Stories.xls"');
+		header("Content-Disposition: attachment;filename=Reelmedia_Stories_Report_".$time.".xls");
 		header('Cache-Control: max-age=0');
 
 		$objWriter = PHPExcel_IOFactory::createWriter($PHPExcel, 'Excel5');
@@ -1405,7 +1413,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 		and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
 		and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
-		order by Media_House_List asc, StoryDate desc';
+		order by StoryDate asc, Media_House_List asc';
 		$count = 2;
 		$styleArray = array(
 		  'font' => array(
@@ -1455,8 +1463,9 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		$PHPExcel->setActiveSheetIndex(0);
 			
 		// Redirect output to a clients web browser (Excel2003)
+		$time = date("Ymdhis");
 		header('Content-Type: application/excel');
-		header('Content-Disposition: attachment;filename="Stories.xls"');
+		header("Content-Disposition: attachment;filename=Reelmedia_Stories_Report_".$time.".xls");
 		header('Cache-Control: max-age=0');
 
 		$objWriter = PHPExcel_IOFactory::createWriter($PHPExcel, 'Excel5');

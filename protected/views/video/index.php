@@ -44,7 +44,6 @@ $s = ($s<10?"0".$s:"".$s);
 
 $formatedtime = ($hours>0?$hours." hr(s) ":"").$mins." min(s) ".$s." sec(s)";
 
-
 /* The File Path */
 $filepath=$model->file_path;
 $clip= "../" . $model->file;

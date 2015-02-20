@@ -14,6 +14,7 @@ $this->breadcrumbs=array('Archive Reports'=>array('archive/index'), 'Print Archi
 	<div class="archive-section" id="load-content">
 		<h3>Print Archive</h3>
 		<p>You may search our print archives here. Search results are limited to your subscription terms. Please call your client service representative for more information. </p>
+		<p style="font-style:italic"><strong>NB:- </strong>A longer date range will result in a delayed query</p>
 	</div>
 </div>
 </div>

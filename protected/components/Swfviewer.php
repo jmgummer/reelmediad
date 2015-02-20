@@ -15,16 +15,19 @@ class Swfviewer{
     <br><a href="http://www.reelforge.com/reelmedia/files/pdf/'.$array->file.'"><i class="fa fa-file-pdf-o"></i> Download PDF File</a> 
     <br><a href="'.Yii::app()->createUrl("swf/image", array("file"=>$array->file)).'"><i class="fa fa-file-image-o"></i> Download JPG Image</a> 
     <br><a href="'.Yii::app()->createUrl("swf/crop", array("file"=>$array->file)).'"><i class="fa fa-crop"></i> Crop This Image</a> 
-    <br><a href="'.Yii::app()->createUrl("swf/highlight", array("file"=>$array->file)).'"><i class="fa fa-file-text"></i> Highlight Page Section</a></span></p>';
+    <br><a href="'.Yii::app()->createUrl("swf/highlight", array("file"=>$array->file)).'"><i class="fa fa-file-text"></i> Highlight Page Section</a></span></p>
+    <br><p><strong>Summary</strong><br>'.$array->Story.'</p>';
 	}
 
   public static function GetSwfTitles($array){
-    return '<span class="style3"><p><strong>'.$array->Title.'</strong></p><strong class="cmention">Companies Mentioned : </strong><font class="cmention">'.substr($array->CompanyMentions, 0, -2).'</font></span><br><hr class="simple"></hr>';
+    return '<span class="style3"><h3>'.$array->Title.'</h3><strong class="cmention">Companies Mentioned : </strong><font class="cmention">'.substr($array->CompanyMentions, 0, -2).'</font></span><br><hr class="simple"></hr>';
   }
 
   public static function GetSwfFile($link)
   {
-    return $_SERVER['DOCUMENT_ROOT'].'/reelmedia/files/pdf/'.$link;
+    $site = 'http://www.reelforge.com';
+    // return $_SERVER['DOCUMENT_ROOT'].'/reelmedia/files/pdf/'.$link;
+    return $site.'/reelmedia/files/pdf/'.$link;
   }
 }
 

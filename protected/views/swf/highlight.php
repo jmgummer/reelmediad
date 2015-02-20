@@ -50,7 +50,7 @@
                 </div>
             </div>
         </form></p>
-        <?php echo '<img src="http://192.168.0.60/reelmediad/conversions/'.$png_file.'" style="width:1000px; height:1298px;" id="image-1" alt="" />'; ?>
+        <?php echo '<img src="http://http://www.reelforge.com/reelmediad/conversions/'.$png_file.'" style="width:1000px; height:1298px;" id="image-1" alt="" />'; ?>
     </div>
 </div>
 <style type="text/css">
@@ -98,7 +98,7 @@
                 cache: false,
 
                 success: function(data) {
-                    window.location = "http://192.168.0.60/reelmediad/tmp/"+data;
+                    window.location = "http://http://www.reelforge.com/reelmediad/tmp/"+data;
                 },
                 //In Case Of Failure, Do This
                 error: function() {
