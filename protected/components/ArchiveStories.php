@@ -36,48 +36,54 @@ class ArchiveStories{
 		//This is where we start the search
 
 		//first we get the Company keywords
-		$sql_mykeywords = Company::model()->find('company_id=:a', array(':a'=>$clientid));
-		$backdate = $sql_mykeywords->backdate;
-		$my_keywords=$sql_mykeywords->keywords;
-		$my_subs=trim($sql_mykeywords->subs);
-
-		$words=$my_keywords;
-		$my_keywords=str_replace(", ",",",$my_keywords);
-		$all_keywords=explode(",",$words);
-		$all_keywords=array_filter($all_keywords);
-		$all_my_keywords=array_unique($all_keywords);
-		$all_my_keywords=array_unique($all_my_keywords);
-		$my_keyword_count=count($all_keywords);
-		// This Query is Used to Build the FullText Search Options, it grows quite big, depending on the size of the keywords
-		for($x=0; $x<=$my_keyword_count; $x++) 
+		if(!empty($clientid))
 		{
-			if(isset($all_my_keywords[$x])){
-				if(trim($all_my_keywords[$x])){
-			        $all_my_keywords[$x]=trim($all_my_keywords[$x]);
-			        $display_keywords.=$all_my_keywords[$x] . ", ";
-			        if(strlen($all_my_keywords[$x])>4) {
-			            $query.=' fulltxt like "%'. trim($all_my_keywords[$x]) .'%" or ';	
-			        }
-			        if(strlen($all_my_keywords[$x])<=4) {
-			            $query.=' fulltxt like "%'. trim($all_my_keywords[$x]) .', %" or ';
-			            $query.=' fulltxt like "%'. trim($all_my_keywords[$x]) . '. %" or ';
-			        }
-			    }
+			$sql_mykeywords = Company::model()->find('company_id=:a', array(':a'=>$clientid));
+			$backdate = $sql_mykeywords->backdate;
+			$my_keywords=$sql_mykeywords->keywords;
+			$my_subs=trim($sql_mykeywords->subs);
+
+			$words=$my_keywords;
+			$my_keywords=str_replace(", ",",",$my_keywords);
+			$all_keywords=explode(",",$words);
+			$all_keywords=array_filter($all_keywords);
+			$all_my_keywords=array_unique($all_keywords);
+			$all_my_keywords=array_unique($all_my_keywords);
+			$my_keyword_count=count($all_keywords);
+			// This Query is Used to Build the FullText Search Options, it grows quite big, depending on the size of the keywords
+			for($x=0; $x<=$my_keyword_count; $x++) 
+			{
+				if(isset($all_my_keywords[$x])){
+					if(trim($all_my_keywords[$x])){
+				        $all_my_keywords[$x]=trim($all_my_keywords[$x]);
+				        $display_keywords.=$all_my_keywords[$x] . ", ";
+				        if(strlen($all_my_keywords[$x])>4) {
+				            $query.=' fulltxt like "%'. trim($all_my_keywords[$x]) .'%" or ';	
+				        }
+				        if(strlen($all_my_keywords[$x])<=4) {
+				            $query.=' fulltxt like "%'. trim($all_my_keywords[$x]) .', %" or ';
+				            $query.=' fulltxt like "%'. trim($all_my_keywords[$x]) . '. %" or ';
+				        }
+				    }
+				}
 			}
-		}
 
-		$display_keywords=trim($display_keywords);
-		if(substr($display_keywords,-1)==","){
-			$display_keywords=substr($display_keywords,0,-1);
-		}
+			$display_keywords=trim($display_keywords);
+			if(substr($display_keywords,-1)==","){
+				$display_keywords=substr($display_keywords,0,-1);
+			}
 
-		if($query){
-		    $query=' and (' . substr($query,0,-3) . ') ';
-		    $full_query=$full_query . $query;
+			if($query){
+			    $query=' and (' . substr($query,0,-3) . ') ';
+			    $full_query=$full_query . $query;
+			}
+			$url_query=" indexdate between '" . $beginning . "' and '" . $ending ."' ";
+			$full_query=$full_query . " and indexdate>'$backdate'";
+		}else{
+			$query.='';
+			$url_query=" indexdate between '" . $beginning . "' and '" . $ending ."' ";
+			$full_query=$full_query . " and indexdate>2008";
 		}
-
-		$url_query=" indexdate between '" . $beginning . "' and '" . $ending ."' ";
-		$full_query=$full_query . " and indexdate>'$backdate'";
 
 		if($url_query){
 		    $url_query=" and (" . $url_query. " ) ";

@@ -393,14 +393,23 @@ class Story extends CActiveRecord
 
 	public function getContinues()
 	{
-		if($this->cont_on!=0){
-			if($cont = Story::model()->find('story_id=:a', array(':a'=>$this->cont_on))){
-				return 'Continues on Page '.$cont->page_no;
+		if($this->cont_on!=0) 
+		{ 
+			$cont_on = $this->cont_on;
+			$sql_cont="select story_id,uniqueID, StoryPage from story where Story_ID='$cont_on'";
+			if($cont = Story::model()->findBySql($sql_cont)){
+				$storyid = $cont->Story_ID;
+				return $link = '<a href="'.Yii::app()->createUrl("swf/view").'/'.$cont_on.'" target="_blank">Continues on Page '.$cont->StoryPage.'</a>';
 			}
 		}
-		if($this->cont_from!=0){
-			if($cont = Story::model()->find('story_id=:a', array(':a'=>$this->cont_from))){
-				return 'From Page '.$cont->page_no;
+
+		if($this->cont_from!=0) 
+		{ 
+			$cont_from = $this->cont_from;
+			$sql_from="select story_id,uniqueID, StoryPage from story where Story_ID='$cont_from'";
+			if($from = Story::model()->findBySql($sql_from)){
+				$storyid = $from->Story_ID;
+				return $link = '<a href="'.Yii::app()->createUrl("swf/view").'/'.$cont_from.'" target="_blank">From Page '.$from->StoryPage.'</a>';
 			}
 		}
 	}

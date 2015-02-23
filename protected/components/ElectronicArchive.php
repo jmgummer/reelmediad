@@ -48,45 +48,53 @@ class ElectronicArchive{
 		//This is where we start the search
 
 		//first we get the Company keywords
-		$sql_mykeywords = Company::model()->find('company_id=:a', array(':a'=>$clientid));
-		$backdate = $sql_mykeywords->backdate;
-		$my_keywords=$sql_mykeywords->keywords;
-		$my_subs=trim($sql_mykeywords->subs);
-
-		$words=$my_keywords;
-		$my_keywords=str_replace(", ",",",$my_keywords);
-		$all_keywords=explode(",",$words);
-		$all_keywords=array_filter($all_keywords);
-		$all_my_keywords=array_unique($all_keywords);
-		$all_my_keywords=array_unique($all_my_keywords);
-		$my_keyword_count=count($all_keywords);
-
-		for($x=0; $x<=$my_keyword_count; $x++)
+		if(!empty($clientid))
 		{
-			if(isset($all_my_keywords[$x])){
-				if(trim($all_my_keywords[$x])){
-			        $all_my_keywords[$x]=trim($all_my_keywords[$x]);
-			        $display_keywords.=$all_my_keywords[$x] . ", ";
-			        $query.="story.mentioned like '% " . trim($all_my_keywords[$x]) . " %' or ";
-			        $query.="story.mentioned like '% " . trim($all_my_keywords[$x]) . ", %' or ";
-			        $query.="story.mentioned like '% " . trim($all_my_keywords[$x]) . ". %' or ";
-			        $query.="story.Title like '% " . trim($all_my_keywords[$x]) . " %' or ";
-			        $query.="story.Title like '% " . trim($all_my_keywords[$x]) . ", %' or ";
-			        $query.="story.Title like '% " . trim($all_my_keywords[$x]) . ". %' or ";
-			        $my_query_words.="'\"".trim($all_my_keywords[$x]) ."\"' ";
-			    }
+
+			$sql_mykeywords = Company::model()->find('company_id=:a', array(':a'=>$clientid));
+			$backdate = $sql_mykeywords->backdate;
+			$my_keywords=$sql_mykeywords->keywords;
+			$my_subs=trim($sql_mykeywords->subs);
+
+			$words=$my_keywords;
+			$my_keywords=str_replace(", ",",",$my_keywords);
+			$all_keywords=explode(",",$words);
+			$all_keywords=array_filter($all_keywords);
+			$all_my_keywords=array_unique($all_keywords);
+			$all_my_keywords=array_unique($all_my_keywords);
+			$my_keyword_count=count($all_keywords);
+
+			for($x=0; $x<=$my_keyword_count; $x++)
+			{
+				if(isset($all_my_keywords[$x])){
+					if(trim($all_my_keywords[$x])){
+				        $all_my_keywords[$x]=trim($all_my_keywords[$x]);
+				        $display_keywords.=$all_my_keywords[$x] . ", ";
+				        $query.="story.mentioned like '% " . trim($all_my_keywords[$x]) . " %' or ";
+				        $query.="story.mentioned like '% " . trim($all_my_keywords[$x]) . ", %' or ";
+				        $query.="story.mentioned like '% " . trim($all_my_keywords[$x]) . ". %' or ";
+				        $query.="story.Title like '% " . trim($all_my_keywords[$x]) . " %' or ";
+				        $query.="story.Title like '% " . trim($all_my_keywords[$x]) . ", %' or ";
+				        $query.="story.Title like '% " . trim($all_my_keywords[$x]) . ". %' or ";
+				        $my_query_words.="'\"".trim($all_my_keywords[$x]) ."\"' ";
+				    }
+				}
 			}
+
+			$display_keywords=trim($display_keywords);
+			if(substr($display_keywords,-1)==",") {
+				$display_keywords=substr($display_keywords,0,-1);
+			}
+
+			if($query) {
+		        $query=" and (" . substr($query,0,-3) . " ) ";
+		        $full_query=$full_query . $query;
+			}
+			$full_query=$full_query . " and StoryDate>'$backdate'";
+		}else{
+			$full_query=$full_query . " and StoryDate>2008";
 		}
 
-		$display_keywords=trim($display_keywords);
-		if(substr($display_keywords,-1)==",") {
-			$display_keywords=substr($display_keywords,0,-1);
-		}
-
-		if($query) {
-	        $query=" and (" . substr($query,0,-3) . " ) ";
-	        $full_query=$full_query . $query;
-		}
 
 		for($x=0; $x<=$number_of_days; $x++) {
 	        $offset=$x*60*60*24;
@@ -99,13 +107,21 @@ class ElectronicArchive{
 
 		$url_query=" StoryDate between '" . $year_start."-".$month_start."-".$day_start . "' and '" . $year_end."-".$month_end."-0".$day_end ."' ";
 
-		$full_query=$full_query . " and StoryDate>'$backdate'";
-
-		if($url_query) {
-		    $url_query=" and (" . $url_query. " ) ";
-		    $full_query=$full_query . $url_query;
-		    $full_query2=$full_query2 . $url_query;
+		
+		if(!empty($clientid)){
+			if($url_query) {
+			    $url_query=" and (" . $url_query. " ) ";
+			    $full_query=$full_query . $url_query;
+			    $full_query2=$full_query2 . $url_query;
+			}
+		}else{
+			if($url_query) {
+			    $url_query=" (" . $url_query. " ) ";
+			    $full_query=$full_query . $url_query;
+			    $full_query2=$full_query2 . $url_query;
+			}
 		}
+		
 
 		if(     $mysearch || $search) {
 			$full_query=$full_query . " and " . $search ;
@@ -147,9 +163,17 @@ class ElectronicArchive{
 		$narrative="<p style='font-size:11px;'>Searched <strong>$publication</strong> for the following keywords <strong>";
 		if($display_search) {$narrative.='including '.$display_search;}
 		$narrative.="</strong> between " .$display_date.'</p>';
-		
-		$sql_industry="select  distinct(Story_ID), Title, mentioned,StoryDate,StoryTime,Media_House_ID,file_path,file,uniqueID from story where MATCH(Title,mentioned) AGAINST ($my_query_words IN BOOLEAN MODE ) ". $full_query2 ." and (Media_ID='mt01' or Media_ID='mr01') 
-		order by StoryDate  limit $start,10"  ;
+
+		if(!empty($clientid))
+		{
+			$sql_industry="select  distinct(Story_ID), Title, mentioned,StoryDate,StoryTime,Media_House_ID,file_path,file,uniqueID from story 
+			where MATCH(Title,mentioned) AGAINST ($my_query_words IN BOOLEAN MODE ) ". $full_query2 ." and (Media_ID='mt01' or Media_ID='mr01') 
+			order by StoryDate  limit $start,10"  ;
+		}else{
+			$sql_industry="select  distinct(Story_ID), Title, mentioned,StoryDate,StoryTime,Media_House_ID,file_path,file,uniqueID from story 
+			where ". $full_query2 ." and (Media_ID='mt01' or Media_ID='mr01') 
+			order by StoryDate  limit $start,10"  ;
+		}
 		
 		if($stories = Story::model()->findAllBySql($sql_industry)){
 			$record_count = count($stories);

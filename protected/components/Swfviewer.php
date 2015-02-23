@@ -10,7 +10,7 @@ class Swfviewer{
 
 	public static function GetSwfHeader($array)
 	{
-		return '<p><strong>'.$array->Publication.'</strong><br>'.$array->FStoryDate.'<br>'.str_replace(':', '', $array->Page).'<br></p>
+		return '<p><strong>'.$array->Publication.'</strong><br>'.$array->FStoryDate.'<br>'.str_replace(':', '', $array->Page).'<br>'.$array->Continues.'</p>
     <p><span class="cmention"><strong>Actions</strong> 
     <br><a href="http://www.reelforge.com/reelmedia/files/pdf/'.$array->file.'"><i class="fa fa-file-pdf-o"></i> Download PDF File</a> 
     <br><a href="'.Yii::app()->createUrl("swf/image", array("file"=>$array->file)).'"><i class="fa fa-file-image-o"></i> Download JPG Image</a> 

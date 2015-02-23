@@ -76,6 +76,9 @@ class AgencyUsers extends CActiveRecord
 			'user_level' => 'User Level',
 			'email_alert' => 'Email Alert',
 			'intranet_id' => 'Intranet',
+			'dummypass'=>'Current Password',
+			'dummypass2'=>'New Password',
+			'dummypass3'=>'Confirm Password'
 		);
 	}
 

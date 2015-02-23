@@ -30,52 +30,91 @@ class AccountController  extends Controller
 	public function actionIndex()
 	{
 		$model=$this->loadModel(Yii::app()->user->user_id);
-		// $this->render('index',array('model'=>$this->loadModel(Yii::app()->user->user_id)));
-		if(isset($_POST['ClientUsers']))
-		{
-			$model->attributes=$_POST['ClientUsers'];
-			if($model->save()){
-				Yii::app()->user->setFlash('success', "<strong>Success ! </strong> Details Updated");
-			}else{
-				Yii::app()->user->setFlash('danger', "<strong>Error ! </strong>Your Details were not Updated, please try later");
+		if(Yii::app()->user->usertype=='agency'){
+			if(isset($_POST['AgencyUsers']))
+			{
+				$model->attributes=$_POST['AgencyUsers'];
+				if($model->save()){
+					Yii::app()->user->setFlash('success', "<strong>Success ! </strong> Details Updated");
+				}else{
+					Yii::app()->user->setFlash('danger', "<strong>Error ! </strong>Your Details were not Updated, please try later");
+				}
+			}
+		}else{
+			if(isset($_POST['ClientUsers']))
+			{
+				$model->attributes=$_POST['ClientUsers'];
+				if($model->save()){
+					Yii::app()->user->setFlash('success', "<strong>Success ! </strong> Details Updated");
+				}else{
+					Yii::app()->user->setFlash('danger', "<strong>Error ! </strong>Your Details were not Updated, please try later");
+				}
 			}
 		}
+		
 		$this->render('index',array('model'=>$model,));
 	}
 
 	public function actionPassword()
 	{
 		$model=$this->loadModel(Yii::app()->user->user_id);
-		if(isset($_POST['ClientUsers'])){
-			$old = md5($_POST['ClientUsers']['dummypass']);
-			$new = md5($_POST['ClientUsers']['dummypass2']);
-			$confirm = md5($_POST['ClientUsers']['dummypass3']);
+		if(Yii::app()->user->usertype=='agency'){
+			if(isset($_POST['AgencyUsers'])){
+				$old = md5($_POST['AgencyUsers']['dummypass']);
+				$new = md5($_POST['AgencyUsers']['dummypass2']);
+				$confirm = md5($_POST['AgencyUsers']['dummypass3']);
 
-			if($_POST['ClientUsers']['dummypass2'] =='' || $_POST['ClientUsers']['dummypass3']==''){
-				Yii::app()->user->setFlash('danger', "<strong>Error ! You need to add values in the Password Fields! </strong>");
-			}else{
-				if($old==$model->password && $new==$confirm){
-					$model->password=$confirm;
-					if($model->save()){
-						Yii::app()->user->setFlash('success', "<strong>Success ! Your account password has been updated, login again to effect changes! </strong>");
-					}
+				if($_POST['AgencyUsers']['dummypass2'] =='' || $_POST['AgencyUsers']['dummypass3']==''){
+					Yii::app()->user->setFlash('danger', "<strong>Error ! You need to add values in the Password Fields! </strong>");
 				}else{
-					Yii::app()->user->setFlash('danger', "<strong>Error ! Your account could not be updated, check your passwords again! </strong>");
+					if($old==$model->password && $new==$confirm){
+						$model->password=$confirm;
+						if($model->save()){
+							Yii::app()->user->setFlash('success', "<strong>Success ! Your account password has been updated, login again to effect changes! </strong>");
+						}
+					}else{
+						Yii::app()->user->setFlash('danger', "<strong>Error ! Your account could not be updated, check your passwords again! </strong>");
+					}
+				}
+			}
+		}else{
+			if(isset($_POST['ClientUsers'])){
+				$old = md5($_POST['ClientUsers']['dummypass']);
+				$new = md5($_POST['ClientUsers']['dummypass2']);
+				$confirm = md5($_POST['ClientUsers']['dummypass3']);
+
+				if($_POST['ClientUsers']['dummypass2'] =='' || $_POST['ClientUsers']['dummypass3']==''){
+					Yii::app()->user->setFlash('danger', "<strong>Error ! You need to add values in the Password Fields! </strong>");
+				}else{
+					if($old==$model->password && $new==$confirm){
+						$model->password=$confirm;
+						if($model->save()){
+							Yii::app()->user->setFlash('success', "<strong>Success ! Your account password has been updated, login again to effect changes! </strong>");
+						}
+					}else{
+						Yii::app()->user->setFlash('danger', "<strong>Error ! Your account could not be updated, check your passwords again! </strong>");
+					}
 				}
 			}
 		}
+		
 		$this->render('update',array('model'=>$model,));
 	}
 
 	public function loadModel($id)
 	{
+		// $sql_activate = "select * from agency_users,agency where agency_users.username='$this->username' and agency_users.password=md5('$this->password') and agency_users.agency_id=agency.agency_id";
+		
+		$agency = AgencyUsers::model()->find('agency_users_id=:a', array(':a'=>$id));
 		$model = ClientUsers::model()->find('client_users_id=:a', array(':a'=>$id));
-		if($model===null)
+		if($model===null && $agency===null){
 			throw new CHttpException(404,'The requested page does not exist.');
-		elseif($model->client_users_id!=Yii::app()->user->user_id)
-			throw new CHttpException(404,'The requested page does not exist.');
-		else
-			return $model;
+		}
+			
+		if($model===null && $agency!=null){
+			$model=$agency;
+		}	
+		return $model;
 	}
 
 	public function actionUsers()

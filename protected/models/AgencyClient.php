@@ -54,6 +54,9 @@ class AgencyClient extends CActiveRecord
 			'auto_id' => 'Auto',
 			'agency_id' => 'Agency',
 			'company_id' => 'Company',
+			'dummypass'=>'Current Password',
+			'dummypass2'=>'New Password',
+			'dummypass3'=>'Confirm Password'
 		);
 	}
 

@@ -3,9 +3,13 @@
   <div class="row-fluid clearfix">
     <div class="col-md-3"><?php echo Swfviewer::GetSwfTitles($model); ?>
       <?php echo Swfviewer::GetSwfHeader($model); ?></div>
+
     <div class="col-md-9">
       <div class="push-in">
         <?php $swffile = Swfviewer::GetSwfFile($model->Link); ?>
+        <?php
+      echo $swffile;
+      ?>
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl . '/swfobject/swfobject.js'; ?>"></script>
         <script type="text/javascript">
           var flashvars = {

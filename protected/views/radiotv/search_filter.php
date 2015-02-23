@@ -15,7 +15,11 @@
 			<?php if(Yii::app()->user->usertype=='agency'){ ?>
 			<div class="form-group">
 				<header>Select Company</header>
-				<?php echo $form->dropDownList($model, 'company', StorySearch::AgencyCompanies(Yii::app()->user->agencyusername), array('class'=>'form-control', 'id'=>'clientid')); ?>
+				<?php 
+				echo $form->dropDownList($model, 'company', 
+				StorySearch::AgencyCompanies(Yii::app()->user->agencyusername), 
+				array('prompt'=>'All Companies','class'=>'form-control', 'id'=>'clientid')); 
+				?>
 			</div>
 			<?php }else{ ?> 
 			<input type="hidden" value="<?php echo Yii::app()->user->company_id; ?>" id="clientid">
@@ -108,7 +112,7 @@ function ShowMore(start,stop)
 	ending 			= document.getElementById('ending').value;
 	media_house_id	= document.getElementById('media_house_id').value;
 	load 			= document.getElementById("load-content");
-	load.innerHTML 	= "<div id='preLoaderDiv'><p id='preloaderAnimation' style='color:#fff;text-align:center;position: relative;top: 50%;margin-left:15px;'>Loading  </p> <img id='preloaderAnimation' src='<?php echo Yii::app()->request->baseUrl . "/images/loading.gif"; ?>' /></div>";
+	load.innerHTML 	= "<div id='preLoaderDiv'><img id='preloaderAnimation' src='<?php echo Yii::app()->request->baseUrl . "/images/loading.gif"; ?>' /></div>";
 	$.ajax({
         url: '<?=Yii::app()->createUrl("radiotv/stories");?>',
         data: { 'start': start,'stop': stop,'clientid': clientid, 'search': search, 'beginning':beginning,'ending':ending,'media_house_id':media_house_id  },
@@ -135,7 +139,7 @@ function Generate()
 	ending 			= document.getElementById('ending').value;
 	media_house_id	= document.getElementById('media_house_id').value;
 	load 			= document.getElementById("load-content");
-	load.innerHTML 	= "<div id='preLoaderDiv'><p id='preloaderAnimation' style='color:#fff;text-align:center;position: relative;top: 50%;margin-left:15px;'>Loading  </p> <img id='preloaderAnimation' src='<?php echo Yii::app()->request->baseUrl . "/images/loading.gif"; ?>' /></div>";
+	load.innerHTML 	= "<div id='preLoaderDiv'> <img id='preloaderAnimation' src='<?php echo Yii::app()->request->baseUrl . "/images/loading.gif"; ?>' /></div>";
 	$.ajax({
         url: '<?=Yii::app()->createUrl("radiotv/stories");?>',
         data: { 'clientid': clientid, 'search': search, 'beginning':beginning,'ending':ending,'media_house_id':media_house_id  },

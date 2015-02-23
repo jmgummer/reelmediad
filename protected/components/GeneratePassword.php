@@ -65,9 +65,9 @@ class GeneratePassword{
 		Yii::app()->mailer->From = "info@reelforge.com";
 		Yii::app()->mailer->AddReplyTo = 'info@reelforge.com';
 		Yii::app()->mailer->FromName = "ReelMedia Administrator";
-		// Yii::app()->mailer->AddAddress($email);
+		Yii::app()->mailer->AddAddress($email);
 		// Yii::app()->mailer->AddBCC("sammy.lusiola@reelforge.com");
-		Yii::app()->mailer->AddBCC("steve.oyugi@reelforge.com");
+		// Yii::app()->mailer->AddBCC("steve.oyugi@reelforge.com");
 		Yii::app()->mailer->Subject = $subject;
 		Yii::app()->mailer->Body = $message;
 		Yii::app()->mailer->IsHTML(true);
