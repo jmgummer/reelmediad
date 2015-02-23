@@ -8,7 +8,7 @@
       <div class="push-in">
         <?php $swffile = Swfviewer::GetSwfFile($model->Link); ?>
         <?php
-      echo $swffile;
+      // echo $swffile;
       ?>
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl . '/swfobject/swfobject.js'; ?>"></script>
         <script type="text/javascript">

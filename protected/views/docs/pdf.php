@@ -5,8 +5,8 @@
 	<style type="text/css">
 		body {
 		  margin: 0;
-		  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-		  font-size: 13px;
+		  font-family: "Arial Narrow", Helvetica, Arial, sans-serif;
+		  font-size: 12px;
 		  line-height: 18px;
 		  color: #333333;
 		  width:1000px;

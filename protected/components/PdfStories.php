@@ -50,10 +50,19 @@ public static function GetClientStory($client,$startdate,$enddate,$search,$backd
 	}
 	
 	if($story = Story::model()->findAllBySql($q2)){
-		echo PdfStories::PrintTableHead();
-		foreach ($story as $key) {
-			if($story = PdfStories::GetStories($key->Story_ID)){
-				echo PdfStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+		if(Yii::app()->user->usertype=='agency'){
+			echo PdfStories::AgencyPrintTableHead();
+			foreach ($story as $key) {
+				if($story = PdfStories::GetStories($key->Story_ID)){
+					echo PdfStories::AgencyPrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+				}
+			}
+		}else{
+			echo PdfStories::PrintTableHead();
+			foreach ($story as $key) {
+				if($story = PdfStories::GetStories($key->Story_ID)){
+					echo PdfStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+				}
 			}
 		}
 		echo PdfStories::PrintTableEnd();
@@ -74,10 +83,19 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 	and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
 	order by Media_House_List asc, StoryDate desc';
 	if($story = Story::model()->findAllBySql($q2)){
-		echo PdfStories::ElectronicTableHead();
-		foreach ($story as $key) {
-			if($story = PdfStories::GetStories($key->Story_ID)){
-				echo PdfStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->IndustryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+		if(Yii::app()->user->usertype=='agency'){
+			echo PdfStories::AgencyElectronicTableHead();
+			foreach ($story as $key) {
+				if($story = PdfStories::GetStories($key->Story_ID)){
+					echo PdfStories::AgencyPrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+				}
+			}
+		}else{
+			echo PdfStories::ElectronicTableHead();
+			foreach ($story as $key) {
+				if($story = PdfStories::GetStories($key->Story_ID)){
+					echo PdfStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+				}
 			}
 		}
 		echo PdfStories::ElectronicTableEnd();
@@ -105,10 +123,19 @@ public static function GetClientIndustryStory($client,$startdate,$enddate,$searc
 	and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
 	order by Media_House_List asc, StoryDate desc';
 	if($story = Story::model()->findAllBySql($q2)){
-		echo PdfStories::PrintTableHead();
-		foreach ($story as $key) {
-			if($story = PdfStories::GetStories($key->Story_ID)){
-				echo PdfStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+		if(Yii::app()->user->usertype=='agency'){
+			echo PdfStories::AgencyPrintTableHead();
+			foreach ($story as $key) {
+				if($story = PdfStories::GetStories($key->Story_ID)){
+					echo PdfStories::AgencyPrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+				}
+			}
+		}else{
+			echo PdfStories::PrintTableHead();
+			foreach ($story as $key) {
+				if($story = PdfStories::GetStories($key->Story_ID)){
+					echo PdfStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+				}
 			}
 		}
 		echo PdfStories::PrintTableEnd();
@@ -136,10 +163,19 @@ public static function GetClientElectronicIndustryStory($client,$startdate,$endd
 	and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
 	order by Media_House_List asc, StoryDate desc';
 	if($story = Story::model()->findAllBySql($q2)){
-		echo PdfStories::ElectronicTableHead();
-		foreach ($story as $key) {
-			if($story = PdfStories::GetStories($key->Story_ID)){
-				echo PdfStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->IndustryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+		if(Yii::app()->user->usertype=='agency'){
+			echo PdfStories::AgencyElectronicTableHead();
+			foreach ($story as $key) {
+				if($story = PdfStories::GetStories($key->Story_ID)){
+					echo PdfStories::AgencyPrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+				}
+			}
+		}else{
+			echo PdfStories::ElectronicTableHead();
+			foreach ($story as $key) {
+				if($story = PdfStories::GetStories($key->Story_ID)){
+					echo PdfStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+				}
 			}
 		}
 		echo PdfStories::ElectronicTableEnd();
@@ -184,6 +220,18 @@ public static function PrintTableHead(){
 	</tr>';
 }
 
+public static function AgencyPrintTableHead(){
+	$country = Yii::app()->user->country_id;
+	if($currency = Country::model()->find('country_id=:a', array(':a'=>$country))){
+		$currency = $currency->currency;
+	}else{
+		$currency = 'KES';
+	}
+	return '<table><tr>
+	<td style="width:11%;">DATE</td><td>PUBLICATION</td><td>JOURNALIST</td><td>HEADLINE/SUBJECT</td><td>PAGE</td><td>PUBLICATION TYPE</td><td>PICTURE</td><td>EFFECT</td><td style="text-align:right;">AVE('.$currency.')</td><td style="text-align:right;">PRV('.$currency.')</td>
+	</tr>';
+}
+
 /*
 * Print The Top Section of Every Table
 * NB - Just for the Electronic Section
@@ -199,6 +247,19 @@ public static function ElectronicTableHead(){
 	<td style="width:11%;">DATE</td><td>STATION</td><td>JOURNALIST</td><td>SUMMARY</td><td>TIME</td><td>DURATION</td><td>CATEGORY</td><td>EFFECT</td><td style="text-align:right;">AVE('.$currency.')</td>
 	</tr>';
 }
+
+public static function AgencyElectronicTableHead(){
+	$country = Yii::app()->user->country_id;
+	if($currency = Country::model()->find('country_id=:a', array(':a'=>$country))){
+		$currency = $currency->currency;
+	}else{
+		$currency = 'KES';
+	}
+	return '<table><tr>
+	<td style="width:11%;">DATE</td><td>STATION</td><td>JOURNALIST</td><td>SUMMARY</td><td>TIME</td><td>DURATION</td><td>CATEGORY</td><td>EFFECT</td><td style="text-align:right;">AVE('.$currency.')</td><td style="text-align:right;">PRV('.$currency.')</td>
+	</tr>';
+}
+
 /*
 * Print The Body of the Table This function may be called recursively
 * NB - Just for the Print Section
@@ -214,6 +275,29 @@ public static function PrintTableBody($date,$storyid,$pub,$journo,$head,$page,$p
 	<td>'.$pic.'</td>
 	<td>'.$effect.'</td>
 	<td style="text-align:right;">'.number_format($ave).'</td>
+	</tr>';
+}
+
+public static function AgencyPrintTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont){
+	// Obtain the Agency ID from Session
+	$agency_id = Yii::app()->user->company_id;
+	$sql_agency_pr="select agency_pr_rate  from agency where agency_id=$agency_id";
+	if($agency_pr_rate = Agency::model()->findBySql($sql_agency_pr)){
+		$agency_pr_rate = $agency_pr_rate->agency_pr_rate;
+	}else{
+		$agency_pr_rate = 3;
+	}
+	return '<tr>
+	<td><a href="'.Yii::app()->createUrl("swf/view").'/'.$storyid.'" target="_blank">'.$date.'</a></td>
+	<td>'.$pub.'</td>
+	<td>'.$journo.'</td>
+	<td><a href="'.Yii::app()->createUrl("swf/view").'/'.$storyid.'" target="_blank">'.$head.'</a><br><font size="1">'.$cont.'</font></td>
+	<td>'.$page.'</td>
+	<td>'.$pubtype.'</td>
+	<td>'.$pic.'</td>
+	<td>'.$effect.'</td>
+	<td style="text-align:right;">'.number_format($ave).'</td>
+	<td style="text-align:right;">'.number_format($ave*$agency_pr_rate).'</td>
 	</tr>';
 }
 /*

@@ -378,7 +378,9 @@ class Story extends CActiveRecord
 			if($link = SphLinks::model()->find('link_id=:a', array(':a'=>$linkid))){
 				return $this->GetSwf($this->file);
 			}else{
-				return '#';
+				$pdf_file = strtolower($this->file);
+				$swf_file = str_replace('pdf', 'swf', $pdf_file);
+				return $swf_file;
 			}
 		}else{
 			return '#';
@@ -393,25 +395,26 @@ class Story extends CActiveRecord
 
 	public function getContinues()
 	{
-		if($this->cont_on!=0) 
+		$continues = '';
+		if($this->cont_on!=0 && $this->cont_from==0) 
 		{ 
 			$cont_on = $this->cont_on;
 			$sql_cont="select story_id,uniqueID, StoryPage from story where Story_ID='$cont_on'";
 			if($cont = Story::model()->findBySql($sql_cont)){
 				$storyid = $cont->Story_ID;
-				return $link = '<a href="'.Yii::app()->createUrl("swf/view").'/'.$cont_on.'" target="_blank">Continues on Page '.$cont->StoryPage.'</a>';
+				$continues = '<a href="'.Yii::app()->createUrl("swf/view").'/'.$cont_on.'" style="color:#000;text-decoration:underline;">Continues on Page '.$cont->StoryPage.'</a>';
 			}
 		}
 
-		if($this->cont_from!=0) 
-		{ 
+		if($this->cont_from!=0 && $this->cont_on==0){ 
 			$cont_from = $this->cont_from;
 			$sql_from="select story_id,uniqueID, StoryPage from story where Story_ID='$cont_from'";
 			if($from = Story::model()->findBySql($sql_from)){
 				$storyid = $from->Story_ID;
-				return $link = '<a href="'.Yii::app()->createUrl("swf/view").'/'.$cont_from.'" target="_blank">From Page '.$from->StoryPage.'</a>';
+				$continues = '<a href="'.Yii::app()->createUrl("swf/view").'/'.$cont_from.'" style="color:#000;text-decoration:underline;">From Page '.$from->StoryPage.'</a>';
 			}
 		}
+		return $continues;
 	}
 
 	public function getClient()
@@ -643,7 +646,7 @@ class Story extends CActiveRecord
 		$this_rate=$rate_cost;
 		
 		if($this->cont_on!=0) {
-			$cont_rate=RateContinuation($cont_on);
+			$cont_rate=Story::RateContinuation($this->cont_on);
 			$this_rate+=$cont_rate;
 		}
 		return $this_rate;
@@ -681,7 +684,7 @@ class Story extends CActiveRecord
 			}
 
 			if($cont_on!=0) {
-				$my_continuation=RateContinuation($cont_on);
+				$my_continuation=Story::RateContinuation($cont_on);
 			}
 			$this_rate+=$my_continuation;
 		}

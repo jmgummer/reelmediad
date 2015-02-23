@@ -36,7 +36,8 @@ if(isset($_GET['cat_identifier'])){
 if(isset($_GET['type_identifier'])){
   $type_identifier= $_GET['type_identifier'];
 }
-
+$reelmedia_header = Yii::app()->request->baseUrl . '/images/reelmedia_header.jpg';
+echo '<img src="'.$reelmedia_header.'" width="100%" />';
 if($type_identifier==1){
 	if($cat_identifier==1){
 		echo '<table><tr><td>My Stories</td></tr></table><br>';

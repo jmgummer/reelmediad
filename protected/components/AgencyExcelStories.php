@@ -26,7 +26,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 	if($agency_pr_rate = Agency::model()->findBySql($sql_agency_pr)){
 		$agency_pr_rate = $agency_pr_rate->agency_pr_rate;
 	}else{
-		$agency_pr_rate = 0;
+		$agency_pr_rate = 3;
 	}
 
 	$PHPExcel = new PHPExcel();
