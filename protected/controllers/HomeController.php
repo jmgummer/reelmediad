@@ -85,7 +85,37 @@ class HomeController extends Controller
 			$model->startdate = date('Y-m-d',strtotime(str_replace('-', '/', $model->startdate)));
 			$model->enddate = date('Y-m-d',strtotime(str_replace('-', '/', $model->enddate)));
 		}
-		$this->render('cd',array('model'=>$model));
+
+		if(isset($_GET['clientid'])){
+			$client = $_GET['clientid'];
+		}else{
+			$client = Yii::app()->user->company_id;
+		}
+		if(isset($_GET['startdate'])){
+		  $startdate= $_GET['startdate'];
+		}
+		if(isset($_GET['enddate'])){
+		  $enddate= $_GET['enddate'];
+		}
+		if(isset($_GET['search'])){
+		  $search= $_GET['search'];
+		}
+		if(isset($_GET['industries'])){
+		  $industries= $_GET['industries'];
+		}
+
+		if(isset($_GET['cat_identifier'])){
+		  $cat_identifier= $_GET['cat_identifier'];
+		}
+		if(isset($_GET['type_identifier'])){
+		  $type_identifier= $_GET['type_identifier'];
+		}
+
+		$zipped_file = CompileCD::Compiler($client,$startdate,$enddate,$search,$industries,$cat_identifier,$type_identifier);
+
+
+
+		// $this->render('cd',array('model'=>$model));
 		// $mPDF1 = Yii::app()->ePdf2->Download('pdf',array('model'=>$model),'PDF');
 	}
 
