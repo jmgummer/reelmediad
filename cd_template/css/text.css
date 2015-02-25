@@ -1,0 +1,85 @@
+.text {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color:#222222;
+
+}
+.textlogin {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color:#222222;
+
+}
+.textmenu {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight:bold;
+
+}
+
+.error {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color:#FF0000;
+
+}
+.tabletitle {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight:bold;
+	color:#000055;
+}
+.hsTitle {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight:bold;
+	color:#222222;
+}
+.storyTitle {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 28px;
+	color:#474747;
+}
+.storyMain {
+font-family:Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color:#2c2c2c;
+}
+.storySubtitle {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color:#474747;
+}
+.storySubtitle2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color:#474747;
+}
+.footer {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color:#666666;
+}
+.storyMH {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color:#474747;
+}
+input {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight:bold;
+
+}
+textarea {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+A.set1:link {text-decoration: underline; color:#006378;}
+A.set1:visited {text-decoration: underline; color:#006378;}
+A.set1:active {text-decoration: none; color:#2F5961;}
+A.set1:hover {text-decoration: none; color:#2F5961;}
+A.set2:link {text-decoration: none; color:#FF8A00;}
+A.set2:visited {text-decoration: none; color:#FF8A00;}
+A.set2:active {text-decoration: none; color:#FEB362;}
+A.set2:hover {text-decoration: none; color:#FEB362;}

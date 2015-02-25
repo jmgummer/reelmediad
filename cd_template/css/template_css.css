@@ -1,0 +1,854 @@
+/*--------------------------------------------------------------
+# Reelforge - March 2009
+# Copyright (C) 2008 - 2009 Corporate Art. All Rights Reserved.
+# Website: http://www.corporateart.co.ke
+# Support: support@corporateart.co.ke  
+---------------------------------------------------------------*/
+	
+
+html {
+	height: 100%;
+	margin-bottom: 1px;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background:#F5F2ED;
+	font-size: 62.5%; /* Reset: 1em = 10px */
+}
+.topwrap{
+	width:1028px;
+	background-color:#F5F2ED;
+}
+.midwrap{
+	width:1028px;
+}
+.footerwrap{
+	width:1028px;
+}
+.horiz-menu {
+	margin-left:15px;
+	}
+.horiz-menu-item {
+	background: url(../images/horiz-menu-bgactive.png) 0 0 repeat-x;
+	color:#FFFFFF;
+	font-family:Tahoma;
+	font-size:13px;
+	padding-right:5px;
+	padding-left:5px;
+	padding-bottom:3px;
+	padding-top:3px;
+	}	
+.horiz-menu-item-active {
+	background: url(../images/horiz-menu-bg.png) 0 0 repeat-x;
+	color:#FFFFFF;
+	font-family:Tahoma;
+	font-size:13px;
+	padding-right:5px;
+	padding-left:5px;
+	padding-bottom:3px;
+	padding-top:3px;
+	}		
+
+.quicklinks{
+	width:1028px;
+	background-image:url(../images/links.gif);
+	background-repeat:no-repeat;
+	background-position:right;
+	background-color:#F5F2ED;
+	text-align:right;
+	height:33px;
+}
+.menu_bar{
+	width:1028px;
+	
+	background-repeat:no-repeat;
+	background-position:left;
+	height:50px;
+	margin-top:1px;
+	margin-bottom:1px;
+}
+.header{
+	width:1028px;
+	background-image:url(../images/header_bg.jpg);
+	background-repeat:repeat-x;
+	margin-left:25px;
+	margin-right:25px;
+	text-align:right;
+}
+.content_box{
+	width:1028px;
+	margin-left:25px;
+	margin-right:25px;
+	text-align:right;
+	height:300px;
+	background:#FCFCFC;
+	border-left:1px solid #C0B8AD;
+	border-right:1px solid #C0B8AD;		
+	padding-left:10px;
+	padding-right:10px;
+	padding-bottom:10px;
+	vertical-align:top;
+}
+.content_box2{
+	width:1028px;
+	text-align:right;
+	background:#FCFCFC;
+	border-left:1px solid #C0B8AD;
+	border-right:1px solid #C0B8AD;		
+	vertical-align:top;
+}
+.content_box3{
+	width:1028px;
+	text-align:center;
+	background:#FCFCFC;
+	border-left:1px solid #C0B8AD;
+	border-right:1px solid #C0B8AD;		
+	vertical-align:top;
+}
+.left_column{
+	width:150px;
+	background:#FCFCFA;
+	height:100%;
+	text-align:left;
+	padding:5px;
+}
+.main_column{
+	height:100%;
+	text-align:left;
+	padding-top:15px;
+	padding-right:0px;
+	padding-left:5px;	
+}
+.module_box_dark{
+	background:#F5F2ED;
+	text-align:left;
+	padding-top:10px;
+	margin-bottom:10px;
+}
+.module_box_welcome{
+	background:#F5F2ED;
+	text-align:left;
+}
+.module_box_heading{
+	color:#666666;
+	font-family:Verdana;
+	font-size:16px;
+}
+.module_box_content{
+	color:#333333;
+	font-family:Tahoma;
+	font-size:11px;
+	padding-right:10px;
+	padding-left:10px;	
+	padding-bottom:5px;	
+}
+.main_box_content{
+	color:#333333;
+	font-family:Tahoma;
+	font-size:11px;
+	padding-right:10px;
+	padding-bottom:15px;	
+}
+.products_box{
+	background:#FCFCFA;
+	border:1px solid #D7D6D1;
+	text-align:left;
+	padding:10px;
+}
+.products_box_anvil{
+	background:#FCFCFA;
+	border-left:1px solid #D7D6D1;
+	border-right:1px solid #D7D6D1;
+	border-bottom:5px solid #D7D6D1;
+	border-top:1px solid #333333;
+	text-align:left;
+	padding:10px;
+	width:200px;
+}
+.products_box_reelmedia{
+	background:#FCFCFA;
+	border-left:1px solid #D7D6D1;
+	border-right:1px solid #D7D6D1;
+	border-bottom:5px solid #D7D6D1;
+	border-top:1px solid #115469;
+	text-align:left;
+	padding:10px;
+		width:200px;
+}
+.products_box_adflite{
+	background:#FCFCFA;
+	border-left:1px solid #D7D6D1;
+	border-right:1px solid #D7D6D1;
+	border-bottom:5px solid #D7D6D1;
+	border-top:1px solid #0093DD;
+	text-align:left;
+	padding:10px;
+		width:200px;
+}
+.products_box_reeltrak{
+	background:#FCFCFA;
+	border-left:1px solid #D7D6D1;
+	border-right:1px solid #D7D6D1;
+	border-bottom:5px solid #D7D6D1;
+	border-top:1px solid #A5CE3A;
+	text-align:left;
+	padding:10px;
+		width:200px;
+}
+.login_box_heading{
+	background-image:url(../images/login_header.gif);
+	background-repeat:no-repeat;	
+	color:#666666;
+	font-family:Verdana;
+	font-size:16px;
+	height:35px;
+}
+.ad_box_heading{
+	background-image:url(../images/ad_header.jpg);
+	background-repeat:no-repeat;	
+	color:#666666;
+	font-family:Verdana;
+	font-size:16px;
+	height:35px;
+}
+.readmore{
+	background-image:url(../images/readmore_but.gif);
+	background-repeat:no-repeat;
+	background-position:right;
+	height:34px;
+}
+.welcome_box_heading{
+	background-image:url(../images/welcome_header.gif);
+	background-repeat:no-repeat;	
+	height:35px;
+	}
+.products_box_heading{
+	background-image:url(../images/products_header.jpg);
+	background-repeat:no-repeat;	
+	height:35px;
+	border-bottom:1px solid #D7D6D1;
+	
+}
+.products_box_content{
+	color:#333333;
+	font-family:Tahoma;
+	font-size:11px;
+	padding-top:2px;
+	padding-right:5px;
+	padding-bottom:5px;		
+}
+.picture_box{
+border: 1px solid #e9e9e9;
+}
+.anvil_box{
+background: #2C3794;
+color:#FFFFFF;
+border:1px solid #FCFCFA;
+font-family:Tahoma;
+font-size:10px;
+padding:5px;
+}
+.reeltrak_box{
+background: #A5CE3A;
+border:1px solid #FCFCFA;
+color:#FFFFFF;
+font-family:Tahoma;
+font-size:10px;
+padding:5px;
+}
+.adflite_box{
+background: #0093DD;
+border:1px solid #FCFCFA;
+color:#FFFFFF;
+font-family:Tahoma;
+font-size:10px;
+padding:5px;
+}
+.reelmedia_box{
+background: #115469;
+border:1px solid #FCFCFA;
+color:#FFFFFF;
+font-family:Tahoma;
+font-size:10px;
+padding:5px;
+
+}
+.anvil_box_content{
+	color:#333333;
+	font-family:Tahoma;
+	font-size:11px;
+	padding-right:5px;
+	padding-left:5px;	
+	padding-bottom:2px;
+}
+
+.style5{
+	color:#333333;
+	font-family:Tahoma;
+	font-size:12px;
+}
+.reeltrak_box_content{
+	color:#333333;
+	font-family:Tahoma;
+	font-size:11px;
+	padding-right:5px;
+	padding-left:5px;		
+	padding-bottom:2px;		
+}
+.reelmedia_box_content{
+	color:#333333;
+	font-family:Tahoma;
+	font-size:11px;
+	padding-right:5px;
+	padding-left:5px;		
+	padding-bottom:2px;		
+}
+.separator {
+
+}
+.separator2 {
+padding-bottom:2px;
+}
+.txtfield {
+	background-color: #FFFFFF;
+	border: 1px solid #e9e9e9;
+	padding-top:4px;
+	font-size:11px;
+	height:25px;
+	color:#999999;
+	width:150px;
+}
+.footer{
+	width:1028px;
+	background-image:url(../images/footer.jpg);
+	background-repeat:no-repeat;
+	background-position:center;
+	background-color:#F5F2ED;
+	text-align:center;
+	height:34px;
+	color:#C8BFB8;
+	font-family:Tahoma;
+	font-size:11px;
+	padding:2px;
+}
+
+
+.copyright{
+	width:1028px;
+	background-color:#F5F2ED;
+	text-align:right;
+	height:15px;
+	padding-right:40px;
+}
+.copyright_content{
+	text-align:right;
+	height:15px;
+	color:#C8BFB8;
+	font-family:Tahoma;
+	font-size:10px;
+}
+
+div#wrapper_userarea,
+div#wrapper_menu, 
+div#wrapper_main{
+	font: normal 1.2em/1.5em Arial, Helvetica, sans-serif; /* Basic font size: 12px, line-height: 15px */
+}
+
+/* Basic link styles 
+---------------------------------------------------------------*/
+
+a {
+	outline: none;
+	cursor: pointer;
+}
+
+a:link,
+a:visited,
+a:active {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+/* Basic image style 
+----------------------------------------------------------------*/
+
+img {
+	border: none;
+	text-decoration: none;
+}
+
+/* Basic lists styles 
+----------------------------------------------------------------*/
+
+ul {
+	padding: 0 0 0 2px;
+	margin: 0;
+	margin-left: 1px;
+	list-style: none;
+}
+
+ul li {
+	padding-left: 0;
+	line-height: 170%;
+	padding: 5px 0;
+}
+
+ul li a {
+	text-decoration: none !important;
+}
+
+ul li a:hover {
+	text-decoration: underline !important;
+}
+
+ol li {
+	line-height: 170%;
+}
+
+dl#system-message dd ul li{
+	border: none !important;
+}
+
+/* Basic heading styles 
+-----------------------------------------------------------------*/
+
+th {
+	padding: 4px;
+	text-align: left;
+}
+
+h1 { font-size: 200%; }
+h2 { font-size: 175%; }
+h3 { font-size: 150%; }
+h4 { font-size: 125%; }
+h5 { font-size: 115%; }
+
+p, pre, blockquote, h1, h2, h3, h4, h5, h6 {
+	margin: 1em 0;
+	padding: 0;
+}
+
+/* Basic form styles 
+-----------------------------------------------------------------*/
+
+fieldset {
+	border: none;
+	padding: 5px 0;
+}
+
+fieldset a {
+	font-weight: bold;
+}
+
+input, select, button {
+	font: normal 11px Tahoma, Arial, Verdana, sans-serif;
+}
+
+/* Basic HR-line style 
+-----------------------------------------------------------------*/
+
+hr {
+	border-right: 0;
+	border-left: 0;
+	border-bottom: 0;
+	height: 1px;
+	color: #eee;
+	background-color: #eee;
+}
+
+/* Basic positioning classes 
+-----------------------------------------------------------------*/
+
+.clearfix {
+	clear: both;
+}
+
+.lf {
+	float: left;
+}
+
+.rf {
+	float: right;
+}
+
+/* Basic wrapper styles 
+-----------------------------------------------------------------*/
+
+div.wrapper_centered{
+	width: 1028px;
+	margin: 0 auto;
+}
+
+div#wrapper_menu,
+div#wrapper_main,
+div#wrapper_userarea,
+div#wrapper_header {
+	width: 100%;
+}
+
+div#wrapper_userarea{
+	overflow: hidden;
+}
+
+div#userarea{
+	padding: 5px 0 5px 0;
+	min-height: 60px;
+}
+
+div#wrapper_userarea div.userarea_left{
+	width: 640px;
+	margin: 20px;
+}
+
+div#wrapper_userarea div.userarea_left_100{
+	width: 100%;
+}
+
+div#wrapper_userarea div.userarea_right{
+	width: 300px;
+}
+
+div#wrapper_menu{
+	height: 48px;
+	position: relative;
+}
+
+div#wrapper_top{
+	height: 125px;
+}
+
+div#wrapper_header{
+	margin-bottom: 20px;
+	overflow: hidden;
+}
+
+div#header1{
+	float: left;
+}
+
+div#header2{
+	float: right;
+}
+
+div#wrapper_content{
+	width: 944px;
+	padding: 8px;
+}
+
+/* Logo 
+------------------------------------------------------------*/
+
+a#logo {
+	float: left;
+	display: block;
+}
+
+a#logo_styled{
+	/* 
+		Here you can change width or height of your logo 
+		if you've disabled option "logo as image"
+	*/
+	width: 300px;
+	height: 80px; 
+}
+
+/* Userarea
+-----------------------------------------------------------*/
+
+div#userarea{
+	display: none;
+}
+
+div#font_plus_btn,
+div#font_reset_btn,
+div#font_minus_btn,
+div#login_btn{
+	float: right;
+	cursor: pointer;
+	margin: 10px 3px 0 0;
+	height: 22px;
+	padding: 0 5px 0 0;
+	font-size: 0.9em;
+	line-height: 22px;
+	text-align: center;
+}
+
+div#font_plus_btn span,
+div#font_reset_btn span,
+div#font_minus_btn span,
+div#login_btn span{
+	display: block;
+	float: left;
+	height: 22px;
+	padding: 0 0 0 5px;
+}
+
+/* Search styles */
+
+div#wrapper_search {
+	float: right;
+	margin: 18px 0 0 0;
+	line-height: 29px;
+}
+
+input#mod_search_searchword {
+	width:282px;
+	height: 21px;
+	padding: 4px;
+	border: none;
+	font-size: 16px;
+}
+
+div#wrapper_search input.button {	
+	height: 29px;
+	width: 29px;
+	position: relative;
+	top: -6px;
+	font-size: 0px;
+	margin-left: 4px;
+}
+
+/* Modules combinations
+-------------------------------------------------------------------*/
+
+/* Moduletables Template contains suffixes:
+* _text
+* _menu
+* _bottom
+* _clear
+* _blue
+* _green
+* _brown
+* _yellow
+* _green_bottom
+* _blue_bottom
+-------------------------------------------------------------------*/
+
+/* - All suffixes - */
+
+div.moduletable_content {
+	padding: 10px;
+}
+
+div.moduletable,
+div.moduletable_bottom,
+div.moduletable_clear,
+div.moduletable_text,
+div.moduletable_menu,
+div.moduletable_blue,
+div.moduletable_green,
+div.moduletable_brown,
+div.moduletable_yellow,
+div.moduletable_blue_bottom,
+div.moduletable_green_bottom {
+	margin:0 0 8px;
+}
+
+div.moduletable h3,
+div.moduletable_clear h3,
+div.moduletable_text h3,
+div.moduletable_bottom h3,
+div.moduletable_menu h3,
+div.moduletable_blue h3,
+div.moduletable_green h3,
+div.moduletable_brown h3,
+div.moduletable_yellow h3,
+div.moduletable_blue_bottom h3,
+div.moduletable_green_bottom h3 {
+	font: bold 1.2em Arial, Helvetica, sans-serif;
+	line-height: 37px;
+	text-transform: uppercase;
+	padding: 0 12px;
+	margin: 0;
+	height: 38px;
+}
+
+/* - _clear -  */
+
+div.moduletable_clear{
+	border: none;
+	overflow: hidden;
+}
+
+div.moduletable_clear div.moduletable_content{
+	background-image: none;	
+	padding: 0;
+}
+
+/* - help class for News Show styles - */
+
+.newsshow .moduletable_content {
+	padding: 0;
+}
+
+/* component + right 
+-------------------------------------------------------------------*/
+
+div#component-2 {
+	float: left;
+	width: 634px;
+}
+
+div#right {
+	float: right;
+	width: 300px;
+}
+
+/* component 
+-------------------------------------------------------------------*/
+
+div#component {
+	width: 100%;
+}
+
+div#mainbody{
+	padding: 0;
+}
+
+/* set the width of user modules 
+-------------------------------------------------------------------*/
+
+.us_width-24b,
+.us_width-32b,
+.us_width-49b {
+	overflow: hidden;
+	float: left;
+	margin-left: 1%;
+}
+
+.us_width-24b {
+	width: 24.25%;
+}
+
+.us_width-32b {
+	width: 32.6%;
+}
+
+.us_width-49b {
+	width: 49.5%;
+}
+
+div:first-child.us_width-24b,
+div:first-child.us_width-32b,
+div:first-child.us_width-49b {
+	margin-left: 0;
+}
+
+.us-stand {
+	clear: both;	
+	margin: 0 22px 6px;
+}
+
+.users {
+	overflow: hidden;
+	float: left;
+	margin-left:1%;
+	padding: 6px 0 16px;
+}
+
+#bottom_wrap_2 .users:first-child {
+	margin-left: 0;
+}
+
+.us_width-16 .users {
+	width: 15.8%;
+}
+
+.us_width-19 .users {
+	width: 19.2%;
+}
+
+.us_width-24 .users {
+	width: 24.25%;
+}
+
+.us_width-33 .users {
+	width: 32.6%;
+}
+
+.us_width-49 .users {
+	width: 49.5%;
+}
+
+.us_width-99 .users {
+	width: 100%;
+}
+
+/* Restrictions 
+-----------------------------------------------------------*/
+
+div#bottom_wrap_2 .users {
+	padding: 0;
+}
+
+div#bottom_wrap_2 div.moduletable_content{
+	background: none;
+}
+
+div#bottom_wrap_2 ul li {
+	padding-left: 22px;
+}
+
+/* Menu slider 
+-----------------------------------------------------*/
+
+div#slide_path{
+	height: 5px;
+	position: absolute;
+	top: 43px;
+}
+
+div#slide_knob{
+	height: 5px;
+	width: 74px;
+}
+
+div#slide_knob div{
+	margin-left: 6px;
+	height: 5px;
+	width: 100%;
+}
+
+/* Footer 
+----------------------------------------------------*/
+
+div#wrapper_footer {
+	width: 940px;
+	clear: both;
+	height: 140px;
+	line-height: 40px;
+	font-size: 0.9em;
+	padding: 0 10px;
+}
+
+div#copyright {
+	width: 940px;
+}
+
+div#informations {
+	margin: 0;
+	float: left;
+	width: 80%;
+}
+
+div#footer_wrap a {
+	text-decoration: none;
+}
+
+div#stylearea {
+	margin:0;
+	float: right;
+	width: auto;
+	line-height: 50px;
+}
+
+div#stylearea a.bg_switcher{
+	position: relative;
+	top: -3px;
+}
+<title>Reelforge - Media Monitoring</title>

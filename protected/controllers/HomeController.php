@@ -18,7 +18,7 @@ class HomeController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','print','view','video','tests','pdf','excel','getdata'),
+				'actions'=>array('index','print','view','video','tests','pdf','excel','cd','getdata'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -73,6 +73,20 @@ class HomeController extends Controller
 		}
 		// $this->render('pdf',array('model'=>$model));
 		$mPDF1 = Yii::app()->ePdf2->Download('pdf',array('model'=>$model),'PDF');
+	}
+
+	public function actionCd()
+	{
+	  	$model = new StorySearch('search');
+		$model->unsetAttributes();
+		if(isset($_POST['StorySearch']))
+		{
+			$model->attributes=Yii::app()->input->stripClean($_POST['StorySearch']);
+			$model->startdate = date('Y-m-d',strtotime(str_replace('-', '/', $model->startdate)));
+			$model->enddate = date('Y-m-d',strtotime(str_replace('-', '/', $model->enddate)));
+		}
+		$this->render('cd',array('model'=>$model));
+		// $mPDF1 = Yii::app()->ePdf2->Download('pdf',array('model'=>$model),'PDF');
 	}
 
 	public function actionExcel()
