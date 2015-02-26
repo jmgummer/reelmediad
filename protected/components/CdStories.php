@@ -299,20 +299,6 @@ public static function AgencyPrintTableBody($date,$storyid,$pub,$journo,$head,$p
 		$agency_pr_rate = 3;
 	}
 
-	/* Return The Table Row */
-	$html = '<tr>
-	<td><a href="view/'.$file.'" target="_blank" >'.$date.'</a></td>
-	<td>'.$pub.'</td>
-	<td>'.$journo.'</td>
-	<td><a href="view/'.$file.'" target="_blank" >'.$head.'</a></td>
-	<td>'.$page.'</td>
-	<td>'.$pubtype.'</td>
-	<td>'.$pic.'</td>
-	<td>'.$effect.'</td>
-	<td style="text-align:right;">'.number_format($ave).'</td>
-	<td style="text-align:right;">'.number_format($ave*$agency_pr_rate).'</td>
-	</tr>';
-
 	/* Create a Copy of Print Files */
 	$copy_files = CompileCD::MovePrintFile($file,$date,$cd_name);
 
@@ -332,7 +318,22 @@ public static function AgencyPrintTableBody($date,$storyid,$pub,$journo,$head,$p
 		fclose($handle);
 	}
 
-	return $html;
+	/* Return The Table Row */
+	return '<tr>
+	<td><a href="view/'.$file.'" target="_blank" >'.$date.'</a></td>
+	<td>'.$pub.'</td>
+	<td>'.$journo.'</td>
+	<td><a href="view/'.$file.'" target="_blank" >'.$head.'</a></td>
+	<td>'.$page.'</td>
+	<td>'.$pubtype.'</td>
+	<td>'.$pic.'</td>
+	<td>'.$effect.'</td>
+	<td style="text-align:right;">'.number_format($ave).'</td>
+	<td style="text-align:right;">'.number_format($ave*$agency_pr_rate).'</td>
+	</tr>';
+
+	
+
 }
 
 public static function AgencyElectronicTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont,$file,$cd_name,$summary)
@@ -346,27 +347,6 @@ public static function AgencyElectronicTableBody($date,$storyid,$pub,$journo,$he
 	}else{
 		$agency_pr_rate = 3;
 	}
-
-	// Return The Table Row
-
-	$html = '<tr>
-	<td><a href="view/'.$file.'" target="_blank" >'.$date.'</a></td>
-	<td>'.$pub.'</td>
-	<td>'.$journo.'</td>
-	<td><a href="view/'.$file.'" target="_blank" >'.$head.'</a></td>
-	<td>'.$page.'</td>
-	<td>'.$pubtype.'</td>
-	<td>'.$pic.'</td>
-	<td>'.$effect.'</td>
-	<td style="text-align:right;">'.number_format($ave).'</td>
-	<td style="text-align:right;">'.number_format($ave*$agency_pr_rate).'</td>
-	</tr>';
-
-	/* Create a Copy of Print Files */
-	$copy_files = CompileCD::MoveElectronicFile($file,$date,$cd_name);
-
-	// echo $date.'/'.$file;
-
 
 	// Create the HTML Files, Individually
 
@@ -385,7 +365,23 @@ public static function AgencyElectronicTableBody($date,$storyid,$pub,$journo,$he
 		fclose($handle);
 	}
 
-	return $html;
+	/* Create a Copy of Print Files */
+	$copy_files = CompileCD::MoveElectronicFile($file,$date,$cd_name);
+
+	// Return The Table Row
+
+	return '<tr>
+	<td><a href="view/'.$file.'" target="_blank" >'.$date.'</a></td>
+	<td>'.$pub.'</td>
+	<td>'.$journo.'</td>
+	<td><a href="view/'.$file.'" target="_blank" >'.$head.'</a></td>
+	<td>'.$page.'</td>
+	<td>'.$pubtype.'</td>
+	<td>'.$pic.'</td>
+	<td>'.$effect.'</td>
+	<td style="text-align:right;">'.number_format($ave).'</td>
+	<td style="text-align:right;">'.number_format($ave*$agency_pr_rate).'</td>
+	</tr>';
 }
 /*
 * Close the Table and Its Bottom section
