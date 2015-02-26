@@ -311,7 +311,7 @@ class CompileCD{
 				$i++;
 			}
 		}
-		$story_uniqueid.=date('Y_m_d_').$story_uniqueid;
+		$story_uniqueid.=date('Y_m_d_h_i_s_').$story_uniqueid;
 		return $story_uniqueid;
 	}
 
