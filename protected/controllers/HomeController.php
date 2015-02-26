@@ -115,7 +115,7 @@ class HomeController extends Controller
 
 
 
-		// $this->render('cd',array('model'=>$model));
+		$this->render('cd',array('model'=>$model,'file'=>$zipped_file));
 		// $mPDF1 = Yii::app()->ePdf2->Download('pdf',array('model'=>$model),'PDF');
 	}
 

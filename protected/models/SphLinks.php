@@ -174,7 +174,12 @@ class SphLinks extends CActiveRecord
 		if($page = Story::model()->find('link_id=:a', array(':a'=>$link_id))){
 			return ': Page '.$page ->StoryPage;
 		}else{
-			return '';
+			if($page = SphLinks::model()->find('link_id=:a', array(':a'=>$link_id))){
+				$page = $page->page;
+				return ': Page '.$page;
+			}else{
+				return '';
+			}
 		}
 	}
 }

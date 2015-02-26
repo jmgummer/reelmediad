@@ -121,7 +121,6 @@ class ArchiveStories{
 			$publication = Mediahouse::model()->find('media_house_id=:a', array(':a'=>$media_code))->Media_House_List;
 		}
 
-
 		$narrative='Searched <strong>'.$publication.'</strong> for <strong>';
 		if(isset($display_search)) {
 			$narrative.=$display_search.",";
