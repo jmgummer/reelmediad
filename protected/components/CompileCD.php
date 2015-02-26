@@ -4,22 +4,10 @@ class CompileCD{
 
 	public static function Compiler($client,$startdate,$enddate,$search,$industries,$cat_identifier,$type_identifier)
 	{
-		$todays = date('Y-m-d');
-		$startdate = $enddate = $todays;
-		$search = ' ';
-		// Adding Country Code
+
 		$country = Yii::app()->user->country_id;
-		$industries = '';
-		// Adding backdate
-		$cat_identifier = 1;
-		$type_identifier = 1;
-		
 		$company_words = Company::model()->find('company_id=:a order by keywords', array(':a'=>$client));
 		$backdate = $company_words->backdate;
-
-
-		
-
 		$agency_id = Yii::app()->user->company_id;
 		$random = CompileCD::GenerateRandomId();
 		$cd_name=$agency_id . "_". $random;

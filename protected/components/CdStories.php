@@ -153,45 +153,6 @@ public static function GetClientIndustryStory($client,$startdate,$enddate,$searc
 public static function GetClientElectronicIndustryStory($client,$startdate,$enddate,$search,$backdate,$country_list,$industries,$cd_name)
 {
 	$client_data = '';
-	// $month = date('m');
-	// $year = date('Y');
-	// $story_month = 'story_'.$year.'_'.$month;
-	// $q2 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story
-	// from story, story_industry, industry_subs, mediahouse
-	// where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.')
-	// and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.'
-	// and story_industry.industry_id=industry_subs.industry_id ';
-	// if(!empty($industries)){
-	//   $q2 .= ' and industry_subs.industry_id IN('.$industries.')';
-	// }
-	// $q2 .='	and story.Media_ID!="mp01"
-	// and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
-	// and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
-	// and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
-	// order by Media_House_List asc, StoryDate desc';
-	// if($story = Story::model()->findAllBySql($q2)){
-		
-	// 	if(Yii::app()->user->usertype=='agency'){
-	// 		$client_data .= CdStories::AgencyElectronicTableHead();
-	// 		foreach ($story as $key) {
-	// 			if($story = CdStories::GetStories($key->Story_ID)){
-	// 				$client_data .= CdStories::AgencyElectronicTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
-	// 			}
-	// 		}
-	// 	}else{
-	// 		$client_data .= CdStories::ElectronicTableHead();
-	// 		foreach ($story as $key) {
-	// 			if($story = CdStories::GetStories($key->Story_ID)){
-	// 				$client_data .= CdStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
-	// 			}
-	// 		}
-	// 	}
-	// 	$client_data .= CdStories::ElectronicTableEnd();
-	// }else{
-	// 	$client_data = 'No Records Found';
-	// }
-	
-
 	$month = date('m');
 	$year = date('Y');
 	$story_month = 'story_'.$year.'_'.$month;
@@ -402,27 +363,27 @@ public static function AgencyElectronicTableBody($date,$storyid,$pub,$journo,$he
 	</tr>';
 
 	/* Create a Copy of Print Files */
-	// $copy_files = CompileCD::MoveElectronicFile($file,$date,$cd_name);
+	$copy_files = CompileCD::MoveElectronicFile($file,$date,$cd_name);
 
-	// // echo $date.'/'.$file;
+	// echo $date.'/'.$file;
 
 
-	// // Create the HTML Files, Individually
+	// Create the HTML Files, Individually
 
-	// $path=$_SERVER['DOCUMENT_ROOT'].'/reelmediad/cd/'.$cd_name.'/view/';
-	// $filename_html=$path. $storyid . ".html";
-	// $crunch = CompileCD::ElectronicBody($head,$pub,$date,$pubtype,$journo,$page,$ave,$summary,$link);
-	// $filecontent = $crunch;
-	// $file = $storyid.'.html';
-	// if (!$handle = fopen($filename_html, 'w')) {
-	// 	echo "Cannot open file ($filename_html')";
-	// }else{
-	// 	if (fwrite($handle, $filecontent) === FALSE) 
-	// 	{
-	// 		echo "Cannot write to file ($filename_html)";
-	// 	}
-	// 	fclose($handle);
-	// }
+	$path=$_SERVER['DOCUMENT_ROOT'].'/reelmediad/cd/'.$cd_name.'/view/';
+	$filename_html=$path. $storyid . ".html";
+	$crunch = CompileCD::ElectronicBody($head,$pub,$date,$pubtype,$journo,$page,$ave,$summary,$link);
+	$filecontent = $crunch;
+	$file = $storyid.'.html';
+	if (!$handle = fopen($filename_html, 'w')) {
+		echo "Cannot open file ($filename_html')";
+	}else{
+		if (fwrite($handle, $filecontent) === FALSE) 
+		{
+			echo "Cannot write to file ($filename_html)";
+		}
+		fclose($handle);
+	}
 
 	return $html;
 }
