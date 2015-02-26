@@ -1,12 +1,14 @@
 <?php
 $this->pageTitle=Yii::app()->name.' | File Zipper';
 $this->breadcrumbs=array('CD');
+$date = date('d-m-Y');
 ?>
 <div class="supercenter">
 	<p>Download Your File</p>
 	<br>
 	<i class="fa fa-file-archive-o fa-4x"></i>
 	<br>
+	<p><?php echo $date; ?></p>
 	<a href="<?=Yii::app()->createUrl("$file");?>" class="btn btn-primary" >Download</a>
 </div>
 <style type="text/css">
@@ -22,4 +24,7 @@ $this->breadcrumbs=array('CD');
 	text-align: center;
 }
 
+.supercenter a{
+	margin: 
+}
 </style>
