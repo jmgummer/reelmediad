@@ -6,7 +6,8 @@ $this->breadcrumbs=array('CD');
 	<p>Download Your File</p>
 	<br>
 	<i class="fa fa-file-archive-o fa-4x"></i>
-	<a href="<?=Yii::app()->createUrl("$file");?>" class="btn btn-" >Download</a>
+	<br>
+	<a href="<?=Yii::app()->createUrl("$file");?>" class="btn btn-primary" >Download</a>
 </div>
 <style type="text/css">
 .supercenter{
@@ -16,8 +17,9 @@ $this->breadcrumbs=array('CD');
 	padding: 150px 50px 50px 50px;
 }
 
-.supercenter p{
+.supercenter i,.supercenter p,.supercenter a{
 	font-weight: normal;
-	
+	text-align: center;
 }
+
 </style>
