@@ -112,11 +112,7 @@ class HomeController extends Controller
 		}
 
 		$zipped_file = CompileCD::Compiler($client,$startdate,$enddate,$search,$industries,$cat_identifier,$type_identifier);
-
-
-
 		$this->render('cd',array('model'=>$model,'file'=>$zipped_file));
-		// $mPDF1 = Yii::app()->ePdf2->Download('pdf',array('model'=>$model),'PDF');
 	}
 
 	public function actionExcel()

@@ -25,6 +25,7 @@ public static function PrintStories($client)
 
 public static function GetClientStory($client,$startdate,$enddate,$search,$backdate,$country_list,$industries,$cd_name)
 {
+	$client_data = '';
 	$month = date('m');
 	$year = date('Y');
 	$story_month = 'story_'.$year.'_'.$month;
@@ -50,19 +51,18 @@ public static function GetClientStory($client,$startdate,$enddate,$search,$backd
 	}
 	
 	if($story = Story::model()->findAllBySql($q2)){
-		$client_data = '';
 		if(Yii::app()->user->usertype=='agency'){
 			$client_data.= CdStories::AgencyPrintTableHead();
 			foreach ($story as $key) {
 				if($story = CdStories::GetStories($key->Story_ID)){
-					$client_data.= CdStories::AgencyPrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name);
+					$client_data.= CdStories::AgencyPrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
 				}
 			}
 		}else{
 			$client_data.= CdStories::PrintTableHead();
 			foreach ($story as $key) {
 				if($story = CdStories::GetStories($key->Story_ID)){
-					$client_data.= CdStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+					$client_data.= CdStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
 				}
 			}
 		}
@@ -75,6 +75,7 @@ public static function GetClientStory($client,$startdate,$enddate,$search,$backd
 
 public static function GetElectronicStory($client,$startdate,$enddate,$search,$backdate,$country_list,$industries,$cd_name)
 {
+	$client_data = '';
 	$month = date('m');
 	$year = date('Y');
 	$story_month = 'story_'.$year.'_'.$month;
@@ -85,19 +86,18 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 	and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
 	order by Media_House_List asc, StoryDate desc';
 	if($story = Story::model()->findAllBySql($q2)){
-		$client_data = '';
 		if(Yii::app()->user->usertype=='agency'){
 			$client_data .= CdStories::AgencyElectronicTableHead();
 			foreach ($story as $key) {
 				if($story = CdStories::GetStories($key->Story_ID)){
-					$client_data .= CdStories::AgencyElectronicTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name);
+					$client_data .= CdStories::AgencyElectronicTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
 				}
 			}
 		}else{
 			$client_data .= CdStories::ElectronicTableHead();
 			foreach ($story as $key) {
 				if($story = CdStories::GetStories($key->Story_ID)){
-					$client_data .= CdStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+					$client_data .= CdStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
 				}
 			}
 		}
@@ -110,6 +110,7 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 
 public static function GetClientIndustryStory($client,$startdate,$enddate,$search,$backdate,$country_list,$industries,$cd_name)
 {
+	$client_data = '';
 	$month = date('m');
 	$year = date('Y');
 	$story_month = 'story_'.$year.'_'.$month;
@@ -127,19 +128,18 @@ public static function GetClientIndustryStory($client,$startdate,$enddate,$searc
 	and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
 	order by Media_House_List asc, StoryDate desc';
 	if($story = Story::model()->findAllBySql($q2)){
-		$client_data = '';
 		if(Yii::app()->user->usertype=='agency'){
 			$client_data .= CdStories::AgencyPrintTableHead();
 			foreach ($story as $key) {
 				if($story = CdStories::GetStories($key->Story_ID)){
-					$client_data .= CdStories::AgencyPrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name);
+					$client_data .= CdStories::AgencyPrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
 				}
 			}
 		}else{
 			$client_data .= CdStories::PrintTableHead();
 			foreach ($story as $key) {
 				if($story = CdStories::GetStories($key->Story_ID)){
-					$client_data .= CdStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+					$client_data .= CdStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
 				}
 			}
 		}
@@ -152,6 +152,7 @@ public static function GetClientIndustryStory($client,$startdate,$enddate,$searc
 
 public static function GetClientElectronicIndustryStory($client,$startdate,$enddate,$search,$backdate,$country_list,$industries,$cd_name)
 {
+	$client_data = '';
 	$month = date('m');
 	$year = date('Y');
 	$story_month = 'story_'.$year.'_'.$month;
@@ -169,19 +170,18 @@ public static function GetClientElectronicIndustryStory($client,$startdate,$endd
 	and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
 	order by Media_House_List asc, StoryDate desc';
 	if($story = Story::model()->findAllBySql($q2)){
-		$client_data = '';
 		if(Yii::app()->user->usertype=='agency'){
 			$client_data .= CdStories::AgencyElectronicTableHead();
 			foreach ($story as $key) {
 				if($story = CdStories::GetStories($key->Story_ID)){
-					$client_data .= CdStories::AgencyElectronicTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name);
+					$client_data .= CdStories::AgencyElectronicTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
 				}
 			}
 		}else{
 			$client_data .= CdStories::ElectronicTableHead();
 			foreach ($story as $key) {
 				if($story = CdStories::GetStories($key->Story_ID)){
-					$client_data .= CdStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+					$client_data .= CdStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
 				}
 			}
 		}
@@ -272,7 +272,8 @@ public static function AgencyElectronicTableHead(){
 * Print The Body of the Table This function may be called recursively
 * NB - Just for the Print Section
 */
-public static function PrintTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont){
+public static function PrintTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont,$file,$cd_name,$summary)
+{
 	return '<tr>
 	<td><a href="'.Yii::app()->createUrl("swf/view").'/'.$storyid.'" target="_blank">'.$date.'</a></td>
 	<td>'.$pub.'</td>
@@ -286,7 +287,7 @@ public static function PrintTableBody($date,$storyid,$pub,$journo,$head,$page,$p
 	</tr>';
 }
 
-public static function AgencyPrintTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont,$file,$cd_name)
+public static function AgencyPrintTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont,$file,$cd_name,$summary)
 {
 	/* Obtain the Agency ID from Session */
 	$agency_id = Yii::app()->user->company_id;
@@ -303,7 +304,7 @@ public static function AgencyPrintTableBody($date,$storyid,$pub,$journo,$head,$p
 	/* Create the HTML Files, Individually */
 	$path=$_SERVER['DOCUMENT_ROOT'].'/reelmediad/cd/'.$cd_name.'/view/';
 	$filename_html=$path. $storyid . ".html";
-	$crunch = CompileCD::PrintBody($head,$pub,$date,$pubtype,$journo,$page,$ave,'Test Summary',$link);
+	$crunch = CompileCD::PrintBody($head,$pub,$date,$pubtype,$journo,$page,$ave,$summary,$link);
 	$filecontent = $crunch;
 	$file = $storyid.'.html';
 	if (!$handle = fopen($filename_html, 'w')) {
@@ -331,7 +332,8 @@ public static function AgencyPrintTableBody($date,$storyid,$pub,$journo,$head,$p
 	</tr>';
 }
 
-public static function AgencyElectronicTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont,$file,$cd_name){
+public static function AgencyElectronicTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont,$file,$cd_name,$summary)
+{
 	
 
 	// Obtain the Agency ID from Session
@@ -355,7 +357,7 @@ public static function AgencyElectronicTableBody($date,$storyid,$pub,$journo,$he
 
 	$path=$_SERVER['DOCUMENT_ROOT'].'/reelmediad/cd/'.$cd_name.'/view/';
 	$filename_html=$path. $storyid . ".html";
-	$crunch = CompileCD::ElectronicBody($head,$pub,$date,$pubtype,$journo,$page,$ave,'Test Summary',$link);
+	$crunch = CompileCD::ElectronicBody($head,$pub,$date,$pubtype,$journo,$page,$ave,$summary,$link);
 	$filecontent = $crunch;
 	$file = $storyid.'.html';
 	if (!$handle = fopen($filename_html, 'w')) {
