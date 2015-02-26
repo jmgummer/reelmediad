@@ -54,16 +54,12 @@ public static function GetClientStory($client,$startdate,$enddate,$search,$backd
 		if(Yii::app()->user->usertype=='agency'){
 			$client_data.= CdStories::AgencyPrintTableHead();
 			foreach ($story as $key) {
-				if($story = CdStories::GetStories($key->Story_ID)){
-					$client_data.= CdStories::AgencyPrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
-				}
+				$client_data.= CdStories::AgencyPrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
 			}
 		}else{
 			$client_data.= CdStories::PrintTableHead();
 			foreach ($story as $key) {
-				if($story = CdStories::GetStories($key->Story_ID)){
-					$client_data.= CdStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
-				}
+				$client_data.= CdStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
 			}
 		}
 		$client_data.= CdStories::PrintTableEnd();
@@ -89,16 +85,12 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 		if(Yii::app()->user->usertype=='agency'){
 			$client_data .= CdStories::AgencyElectronicTableHead();
 			foreach ($story as $key) {
-				if($story = CdStories::GetStories($key->Story_ID)){
-					$client_data .= CdStories::AgencyElectronicTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
-				}
+				$client_data .= CdStories::AgencyElectronicTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
 			}
 		}else{
 			$client_data .= CdStories::ElectronicTableHead();
 			foreach ($story as $key) {
-				if($story = CdStories::GetStories($key->Story_ID)){
-					$client_data .= CdStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
-				}
+				$client_data .= CdStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
 			}
 		}
 		$client_data .= CdStories::ElectronicTableEnd();
@@ -131,16 +123,12 @@ public static function GetClientIndustryStory($client,$startdate,$enddate,$searc
 		if(Yii::app()->user->usertype=='agency'){
 			$client_data .= CdStories::AgencyPrintTableHead();
 			foreach ($story as $key) {
-				if($story = CdStories::GetStories($key->Story_ID)){
-					$client_data .= CdStories::AgencyPrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
-				}
+				$client_data .= CdStories::AgencyPrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
 			}
 		}else{
 			$client_data .= CdStories::PrintTableHead();
 			foreach ($story as $key) {
-				if($story = CdStories::GetStories($key->Story_ID)){
-					$client_data .= CdStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
-				}
+				$client_data .= CdStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
 			}
 		}
 		$client_data .= CdStories::PrintTableEnd();
@@ -174,16 +162,12 @@ public static function GetClientElectronicIndustryStory($client,$startdate,$endd
 		if(Yii::app()->user->usertype=='agency'){
 			$client_data .= CdStories::AgencyElectronicTableHead();
 			foreach ($story as $key) {
-				if($story = CdStories::GetStories($key->Story_ID)){
-					$client_data .= CdStories::AgencyElectronicTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
-				}
+				$client_data .= CdStories::AgencyElectronicTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
 			}
 		}else{
 			$client_data .= CdStories::ElectronicTableHead();
 			foreach ($story as $key) {
-				if($story = CdStories::GetStories($key->Story_ID)){
-					$client_data .= CdStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
-				}
+				$client_data .= CdStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
 			}
 		}
 		$client_data .= CdStories::ElectronicTableEnd();
