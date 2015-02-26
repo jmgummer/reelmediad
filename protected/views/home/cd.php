@@ -7,9 +7,10 @@ $date = date('d-m-Y');
 	<p>Download Your File</p>
 	<br>
 	<i class="fa fa-file-archive-o fa-4x"></i>
-	<br>
-	<p><?php echo $date; ?></p>
-	<a href="<?=Yii::app()->createUrl("$file");?>" class="btn btn-primary" >Download</a>
+	<div class="media-content">
+		<p><?php echo $date; ?></p>
+		<p><a href="<?=Yii::app()->createUrl("$file");?>" class="btn btn-primary" >Download</a></p>
+	</div>
 </div>
 <style type="text/css">
 .supercenter{
@@ -18,13 +19,18 @@ $date = date('d-m-Y');
 	text-align: center;
 	padding: 150px 50px 50px 50px;
 }
-
 .supercenter i,.supercenter p,.supercenter a{
 	font-weight: normal;
 	text-align: center;
 }
-
 .supercenter a{
 	margin: 
+}
+.media-content p{
+	font-size: 12px;
+	padding: 10px 10px;
+}
+.media-content a{
+	font-size: 14px;
 }
 </style>
