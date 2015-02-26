@@ -8,20 +8,20 @@ class CdStories{
 * This function handles all the heavylifting for Print Stories, fetch story and print out
 * NB - Just for the Print Section
 */
-public static function PrintStories($client)
-{
-	if($clientstories = StoryClient::model()->findAllBySql("SELECT story_id FROM story_client WHERE client_id = $client ORDER BY auto_id DESC LIMIT 20")){
-		echo CdStories::PrintTableHead();
-		foreach ($clientstories as $key) {
-			if($story = CdStories::GetStories($key->story_id)){
-				echo CdStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE);
-			}
-		}
-		echo CdStories::PrintTableEnd();
-	}else{
-		return 'No Stories exist';
-	}
-}
+// public static function PrintStories($client)
+// {
+// 	if($clientstories = StoryClient::model()->findAllBySql("SELECT story_id FROM story_client WHERE client_id = $client ORDER BY auto_id DESC LIMIT 20")){
+// 		echo CdStories::PrintTableHead();
+// 		foreach ($clientstories as $key) {
+// 			if($story = CdStories::GetStories($key->story_id)){
+// 				echo CdStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE);
+// 			}
+// 		}
+// 		echo CdStories::PrintTableEnd();
+// 	}else{
+// 		return 'No Stories exist';
+// 	}
+// }
 
 public static function GetClientStory($client,$startdate,$enddate,$search,$backdate,$country_list,$industries,$cd_name)
 {
@@ -170,6 +170,7 @@ public static function GetClientElectronicIndustryStory($client,$startdate,$endd
 	and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
 	order by Media_House_List asc, StoryDate desc';
 	if($story = Story::model()->findAllBySql($q2)){
+		
 		if(Yii::app()->user->usertype=='agency'){
 			$client_data .= CdStories::AgencyElectronicTableHead();
 			foreach ($story as $key) {
@@ -298,6 +299,20 @@ public static function AgencyPrintTableBody($date,$storyid,$pub,$journo,$head,$p
 		$agency_pr_rate = 3;
 	}
 
+	/* Return The Table Row */
+	$html = '<tr>
+	<td><a href="view/'.$file.'" target="_blank" >'.$date.'</a></td>
+	<td>'.$pub.'</td>
+	<td>'.$journo.'</td>
+	<td><a href="view/'.$file.'" target="_blank" >'.$head.'</a></td>
+	<td>'.$page.'</td>
+	<td>'.$pubtype.'</td>
+	<td>'.$pic.'</td>
+	<td>'.$effect.'</td>
+	<td style="text-align:right;">'.number_format($ave).'</td>
+	<td style="text-align:right;">'.number_format($ave*$agency_pr_rate).'</td>
+	</tr>';
+
 	/* Create a Copy of Print Files */
 	$copy_files = CompileCD::MovePrintFile($file,$date,$cd_name);
 
@@ -317,8 +332,24 @@ public static function AgencyPrintTableBody($date,$storyid,$pub,$journo,$head,$p
 		fclose($handle);
 	}
 
-	/* Return The Table Row */
-	return '<tr>
+	return $html;
+}
+
+public static function AgencyElectronicTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont,$file,$cd_name,$summary)
+{
+	
+	// Obtain the Agency ID from Session
+	$agency_id = Yii::app()->user->company_id;
+	$sql_agency_pr="select agency_pr_rate  from agency where agency_id=$agency_id";
+	if($agency_pr_rate = Agency::model()->findBySql($sql_agency_pr)){
+		$agency_pr_rate = $agency_pr_rate->agency_pr_rate;
+	}else{
+		$agency_pr_rate = 3;
+	}
+
+	// Return The Table Row
+
+	$html = '<tr>
 	<td><a href="view/'.$file.'" target="_blank" >'.$date.'</a></td>
 	<td>'.$pub.'</td>
 	<td>'.$journo.'</td>
@@ -330,22 +361,6 @@ public static function AgencyPrintTableBody($date,$storyid,$pub,$journo,$head,$p
 	<td style="text-align:right;">'.number_format($ave).'</td>
 	<td style="text-align:right;">'.number_format($ave*$agency_pr_rate).'</td>
 	</tr>';
-}
-
-public static function AgencyElectronicTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont,$file,$cd_name,$summary)
-{
-	
-
-	// Obtain the Agency ID from Session
-	$agency_id = Yii::app()->user->company_id;
-	$sql_agency_pr="select agency_pr_rate  from agency where agency_id=$agency_id";
-	if($agency_pr_rate = Agency::model()->findBySql($sql_agency_pr)){
-		$agency_pr_rate = $agency_pr_rate->agency_pr_rate;
-	}else{
-		$agency_pr_rate = 3;
-	}
-
-	
 
 	/* Create a Copy of Print Files */
 	$copy_files = CompileCD::MoveElectronicFile($file,$date,$cd_name);
@@ -370,20 +385,7 @@ public static function AgencyElectronicTableBody($date,$storyid,$pub,$journo,$he
 		fclose($handle);
 	}
 
-	// Return The Table Row
-
-	return '<tr>
-	<td><a href="view/'.$file.'" target="_blank" >'.$date.'</a></td>
-	<td>'.$pub.'</td>
-	<td>'.$journo.'</td>
-	<td><a href="view/'.$file.'" target="_blank" >'.$head.'</a></td>
-	<td>'.$page.'</td>
-	<td>'.$pubtype.'</td>
-	<td>'.$pic.'</td>
-	<td>'.$effect.'</td>
-	<td style="text-align:right;">'.number_format($ave).'</td>
-	<td style="text-align:right;">'.number_format($ave*$agency_pr_rate).'</td>
-	</tr>';
+	return $html;
 }
 /*
 * Close the Table and Its Bottom section
