@@ -1,4 +1,4 @@
-<?php $this->breadcrumbs=array('SWF Viewer'=>array('view','id'=>$model->Story_ID)); ?>
+<?php $this->breadcrumbs=array('SWF Viewer'); ?>
 <div class="swf-table">
   <div class="row-fluid clearfix">
     <div class="col-md-3"><?php echo Swfviewer::GetSwfTitles($model); ?>

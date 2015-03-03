@@ -46,7 +46,13 @@ if(isset($_POST['StorySearch'])){
 }
 
 if(isset($_POST['StorySearch'])){
-  echo '<div class="widget-body">
+    
+    // $industry = implode(',', $model->industry);
+    $startdate = $_POST['StorySearch']['startdate'];
+    $enddate = $_POST['StorySearch']['enddate'];
+    $setindustry = implode(',', $_POST['StorySearch']['industry']);
+
+    echo '<div class="widget-body">
     <ul id="tabs" class="nav nav-tabs bordered">';
     $active_tab = $report_identifier[0];
     foreach ($report_identifier as $report_header) {
@@ -77,13 +83,14 @@ if(isset($_POST['StorySearch'])){
         }else{
             echo '<div class="tab-pane fade" id="1">';
         }
+        // $setindustries = implode(',', $model->industry);
         $total = IndustryQueries::GetAllCompanyMentions($startdate,$enddate,$industry,$backdate);
         $ctotal = IndustryQueries::GetCompanyMentions($client,$startdate,$enddate,$industry,$backdate);
         $ttotal = $total - $ctotal;
         echo '<p>This simply gives an aggregate of the total number of stories that appeared in the media about your organisation or topic of interest being monitored. If the subscriber is interested in industry mentions, the report will aggregate the total number of stories for the industry and indicate which stories were about ´myself´ and how many were for the ´others´. The number of mentions is also reported by distribution by media-house.</p>';
         $chart_name = 'Number_of_Mentions';
         echo '<div style="padding:0px; background-color:#fff; border:0px solid #745C92; width: 100%;">';
-        $strXML = FusionCharts::packageXML($client,$narrative, $company, 'Others', $ctotal, $ttotal,$backdate);
+        $strXML = FusionCharts::packageXML($client,$narrative, $company, 'Others', $ctotal, $ttotal,$backdate,$startdate,$enddate,$setindustry);
         $charty = new FusionCharts;
         echo FusionCharts::renderChart(Yii::app()->request->baseUrl . '/FusionCharts/FusionCharts/FusionCharts/Pie2D.swf', "", $strXML, $chart_name, 600, 300, false, true, true);
         echo '</div>';
@@ -104,7 +111,7 @@ if(isset($_POST['StorySearch'])){
         $ctext ='My Ave(Kshs.'.number_format($avtotal).')';
         $otext = 'Others (Kshs.'.number_format($avttotal).')';
         echo '<div style="padding:0px; background-color:#fff; border:0px solid #745C92; width: 100%;">';
-        $strXML = FusionCharts::packageXML($client,$avnarrative, $ctext,$otext, $avtotal, $avttotal,$backdate);
+        $strXML = FusionCharts::packageXML($client,$avnarrative, $ctext,$otext, $avtotal, $avttotal,$backdate,$startdate,$enddate,$industry);
         $charty = new FusionCharts;
         echo FusionCharts::renderChart(Yii::app()->request->baseUrl . '/FusionCharts/FusionCharts/FusionCharts/Pie2D.swf', "", $strXML, $chart_name, 600, 300, false, true, true);
         echo '</div>';
@@ -234,7 +241,7 @@ if(isset($_POST['StorySearch'])){
         $ttotal = $total - $ctotal;
         $chart_name = 'default';
         echo '<div style="padding:0px; background-color:#fff; border:0px solid #745C92; width: 100%;">';
-        $strXML = FusionCharts::packageXML($narrative, $company,'Others', $ctotal, $ttotal,$backdate);
+        $strXML = FusionCharts::packageXML($narrative, $company,'Others', $ctotal, $ttotal,$backdate,$startdate,$enddate,$industry);
         $charty = new FusionCharts;
         echo FusionCharts::renderChart(Yii::app()->request->baseUrl . '/FusionCharts/FusionCharts/FusionCharts/Pie2D.swf', "", $strXML, $chart_name, 600, 300, false, true, true);
         echo '</div>';

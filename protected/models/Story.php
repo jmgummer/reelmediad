@@ -505,6 +505,13 @@ class Story extends CActiveRecord
 		}else{
 			$rate_cost = 0;
 		}
+
+		if($rate_cost==0){
+			$rate_cost = 0;
+		}else{
+			$rate_cost = intval(trim($rate_cost, "'"));
+			// $rate_cost =  number_format(($rate_cost +0),0);
+		}
 		
 		return $rate_cost;
 	}
@@ -525,6 +532,12 @@ class Story extends CActiveRecord
 	public function getClassification()
 	{
 
+	}
+
+	public static function AVEFormatted($ave)
+	{
+		$ave=number_format( ($ave+0),0);
+		return $ave;
 	}
 
 	public static function AgencyPRValue($agency_pr_rate,$this_rate)

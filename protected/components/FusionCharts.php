@@ -60,11 +60,30 @@ public static function StripExtra($text)
     }
 
 // Simple Function To Package Data to XML
-public static function packageXML($client,$narrative, $co_name,$others, $co_value, $other_value)
+public static function packageXML($client,$narrative, $co_name,$others, $co_value, $other_value,$startdate,$enddate,$setindustry)
 {
-    $strXML = "<chart bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
-    $strXML .= "<set label='".$co_name."' value='".$co_value."' />";
-    $strXML .= "<set label='".$others."' value='".$other_value."' />";
+    /**
+    * Sending Varials Are Being Troublesome so we 
+    * Obtain the Post Variables 
+    **/
+    if(isset($_POST['StorySearch'])){
+        $startdate = $_POST['StorySearch']['startdate'];
+        $enddate = $_POST['StorySearch']['enddate'];
+        $setindustry = implode(',', $_POST['StorySearch']['industry']);
+    }else{
+        $model = $model = new StorySearch('search');
+        $model->industry = IndustryCompany::model()->find('company_id=:a', array(':a'=>Yii::app()->user->company_id))->industry_id;
+        $model->startdate = $model->enddate = date('Y-m-d');
+
+        $startdate = $model->startdate;
+        $enddate = $model->enddate;
+        $setindustry = $model->industry;
+    }
+    
+
+    $strXML = "<chart  exportEnabled='1' exportAtClient='0'  exportHandler='http://www.reelforge.com/FusionCharts/FusionCharts/ExportHandlers/PHP/FCExporter.php'  exportAction='download' bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
+    $strXML .= "<set label='".$co_name."' value='".$co_value."' link='P-detailsWin,width=950,height=400,toolbar=no,scrollbars=yes, resizable=no-../drilldown/mentions" . urlencode("?client_id=$client&startdate=$startdate&enddate=$enddate&industries=$setindustry&mystories=1")."' />";
+    $strXML .= "<set label='".$others."' value='".$other_value."' link='P-detailsWin,width=950,height=400,toolbar=no,scrollbars=yes, resizable=no-../drilldown/mentions" . urlencode("?client_id=$client&startdate=$startdate&enddate=$enddate&industries=$setindustry&mystories=0")."' />";
     $strXML .= "</chart>";
     return $strXML;
 }
@@ -72,7 +91,7 @@ public static function packageXML($client,$narrative, $co_name,$others, $co_valu
 // Simple Function to Package Column Data
 public static function packageColumnXML($client,$narrative,$tv,$radio,$print,$total,$xAxisName,$yAxisName)
 {
-    $strXML = "<chart bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='".$xAxisName."' yAxisName='".$yAxisName."'>";
+    $strXML = "<chart  exportEnabled='1' exportAtClient='0'  exportHandler='http://www.reelforge.com/FusionCharts/FusionCharts/ExportHandlers/PHP/FCExporter.php'  exportAction='download' bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='".$xAxisName."' yAxisName='".$yAxisName."'>";
     $strXML .= "<set label='TV' value='".$tv."' />";
     $strXML .= "<set label='Radio' value='".$radio."' />";
     $strXML .= "<set label='Print' value='".$print."' />";
@@ -83,21 +102,40 @@ public static function packageColumnXML($client,$narrative,$tv,$radio,$print,$to
 
 public static function packageMentionsXML($client,$narrative, $array,$company_name, $startdate,$enddate,$industry,$backdate)
 {
-    $strXML = "<chart bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
+    /**
+    * Sending Varials Are Being Troublesome so we 
+    * Obtain the Post Variables 
+    **/
+    if(isset($_POST['StorySearch'])){
+        $startdate = $_POST['StorySearch']['startdate'];
+        $enddate = $_POST['StorySearch']['enddate'];
+        $setindustry = implode(',', $_POST['StorySearch']['industry']);
+    }else{
+        $model = $model = new StorySearch('search');
+        $model->industry = IndustryCompany::model()->find('company_id=:a', array(':a'=>Yii::app()->user->company_id))->industry_id;
+        $model->startdate = $model->enddate = date('Y-m-d');
+
+        $startdate = $model->startdate;
+        $enddate = $model->enddate;
+        $setindustry = $model->industry;
+    }
+
+    $strXML = "<chart  exportEnabled='1' exportAtClient='0'  exportHandler='http://www.reelforge.com/FusionCharts/FusionCharts/ExportHandlers/PHP/FCExporter.php'  exportAction='download' bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
     foreach ($array as $key) {
         $co_name2 = $key->Client;
+        $client = $key->client_id;
         $co_value2 = IndustryQueries::GetShareVoiceCount($key->client_id,$startdate,$enddate,$industry,$backdate);
-        $strXML .= "<set label='".FusionCharts::StripExtra($co_name2)."' value='".$co_value2."' />";
+        $strXML .= "<set label='".FusionCharts::StripExtra($co_name2)."' value='".$co_value2."' link='P-detailsWin,width=950,height=400,toolbar=no,scrollbars=yes, resizable=no-../drilldown/clientmentions" . urlencode("?client_id=$client&startdate=$startdate&enddate=$enddate&industries=$setindustry&mystories=1")."' />";
     }
     $companyvalue=IndustryQueries::GetShareVoiceCount($client,$startdate,$enddate,$industry,$backdate);
-    $strXML .= "<set label='".$company_name."' value='".$companyvalue."' />";
+    $strXML .= "<set label='".$company_name."' value='".$companyvalue."' link='P-detailsWin,width=950,height=400,toolbar=no,scrollbars=yes, resizable=no-../drilldown/clientmentions" . urlencode("?client_id=$client&startdate=$startdate&enddate=$enddate&industries=$setindustry&mystories=0")."' />";
     $strXML .= "</chart>";
     return $strXML;
 }
 
 public static function packageAVEMentionsXML($client,$narrative, $array,$company_name, $startdate,$enddate,$industry,$backdate)
 {
-    $strXML = "<chart bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
+    $strXML = "<chart  exportEnabled='1' exportAtClient='0'  exportHandler='http://www.reelforge.com/FusionCharts/FusionCharts/ExportHandlers/PHP/FCExporter.php'  exportAction='download' bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
     foreach ($array as $key) {
         $co_name2 = $key->Client;
         $co_value2 = IndustryQueries::GetCompanyAve($key->client_id,$startdate,$enddate,$industry,$backdate);
@@ -111,7 +149,7 @@ public static function packageAVEMentionsXML($client,$narrative, $array,$company
 
 public static function packageCATMentionsXML($client,$narrative, $array, $startdate,$enddate,$industry,$backdate)
 {
-    $strXML = "<chart bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
+    $strXML = "<chart  exportEnabled='1' exportAtClient='0'  exportHandler='http://www.reelforge.com/FusionCharts/FusionCharts/ExportHandlers/PHP/FCExporter.php'  exportAction='download' bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
     foreach ($array as $key) {
         if($number = IndustryQueries::GetCatCount($client,$startdate,$enddate,$industry,$key->Category_ID,$backdate) > 0){
             $cat_name = $key->Category_List;
@@ -126,7 +164,7 @@ public static function packageCATMentionsXML($client,$narrative, $array, $startd
 
 public static function packagePICMentionsXML($client,$narrative, $array, $startdate,$enddate,$industry,$backdate)
 {
-    $strXML = "<chart bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
+    $strXML = "<chart  exportEnabled='1' exportAtClient='0'  exportHandler='http://www.reelforge.com/FusionCharts/FusionCharts/ExportHandlers/PHP/FCExporter.php'  exportAction='download' bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
     foreach ($array as $key) {
         $pic_name = $key->picture;
         $pic_value = IndustryQueries::GetPicCount($client,$startdate,$enddate,$industry,$key->picture,$backdate);
@@ -139,7 +177,7 @@ public static function packagePICMentionsXML($client,$narrative, $array, $startd
 
 public static function packageTonMentionsXML($client,$narrative, $array, $startdate,$enddate,$industry,$backdate)
 {
-    $strXML = "<chart bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
+    $strXML = "<chart  exportEnabled='1' exportAtClient='0'  exportHandler='http://www.reelforge.com/FusionCharts/FusionCharts/ExportHandlers/PHP/FCExporter.php'  exportAction='download' bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
     foreach ($array as $key) {
         $ton_name = $key->tonality;
         $ton_value = IndustryQueries::GetSpTonality($client,$startdate,$enddate,$industry,$key->tonality,$backdate);

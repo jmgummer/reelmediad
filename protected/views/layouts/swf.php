@@ -12,7 +12,7 @@
 <script type="text/javascript">
     setInterval("checkLoad()",2000);
 </script>
-<body class=" fixed-header fixed-navigation minified">
+<body style="min-height: 989px;" class="fixed-header fixed-navigation minified desktop-detected mobile-view-activated">
 	<div id="preLoaderDiv">
 	    <img id="preloaderAnimation" src="<?php echo Yii::app()->request->baseUrl . '/images/loading.gif'; ?>" />
 	</div>
@@ -25,18 +25,10 @@
 		</div>
 		<div class="pull-right">
 			<img src="<?php echo Yii::app()->request->baseUrl . '/images/header_reelmedia.png'; ?>" alt="Reelmedia Logo" >
-			<div id="hide-menu" class="btn-header pull-right">
-				<span> <a href="javascript:void(0);" title="Collapse Menu"><i class="fa fa-reorder"></i></a> </span>
-			</div>
+			
 		</div>
 	</header>
 
-	<aside id="left-panel" style="min-height:100%">
-		<!-- User info -->
-			
-			
-		
-	</aside>
 	<div id="main" role="main">
 		<div id="ribbon">
 			<?php if(isset($this->breadcrumbs)):?>
@@ -90,6 +82,9 @@
     background-color: rgba(135, 135, 135, 0.50);
     text-decoration: none;
     color: #000000;
+}
+.minified #main {
+    margin-left: 0px !important;
 }
 </style>
 <script type="text/javascript">

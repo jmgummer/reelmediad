@@ -112,7 +112,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
-		            ->setCellValue("A$count", $story->StoryDate)
+		            ->setCellValue("A$count", date('d-M-Y', strtotime($story->StoryDate)))
 		            ->setCellValue("B$count", $story->Publication)
 		            ->setCellValue("C$count", $story->Title)
 		            ->setCellValue("D$count", $story->journalist)
@@ -122,7 +122,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("H$count", $story->Picture)
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("K$count", $story->AVE)
+		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
 		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
 		            ->setCellValue("M$count", Story::StoryIndustry($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
@@ -207,7 +207,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/video/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
-					->setCellValue("A$count", $story->StoryDate)
+					->setCellValue("A$count", date('d-M-Y', strtotime($story->StoryDate)))
 		            ->setCellValue("B$count", $story->Publication)
 		            ->setCellValue("C$count", $story->Title)
 		            ->setCellValue("D$count", $story->journalist)
@@ -217,7 +217,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("H$count", '')
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("K$count", $story->AVE)
+		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
 		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
 		            ->setCellValue("M$count", Story::ClientIndustryCategory($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
@@ -310,7 +310,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
-		            ->setCellValue("A$count", $story->StoryDate)
+		            ->setCellValue("A$count", date('d-M-Y', strtotime($story->StoryDate)))
 		            ->setCellValue("B$count", $story->Publication)
 		            ->setCellValue("C$count", $story->Title)
 		            ->setCellValue("D$count", $story->journalist)
@@ -320,7 +320,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("H$count", $story->Picture)
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("K$count", $story->AVE)
+		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
 		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
 		            ->setCellValue("M$count", Story::StoryIndustry($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
@@ -413,7 +413,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/video/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
-		            ->setCellValue("A$count", $story->StoryDate)
+		            ->setCellValue("A$count", date('d-M-Y', strtotime($story->StoryDate)))
 		            ->setCellValue("B$count", $story->Publication)
 		            ->setCellValue("C$count", $story->Title)
 		            ->setCellValue("D$count", $story->journalist)
@@ -423,7 +423,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("H$count", '')
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("K$count", $story->AVE)
+		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
 		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
 		            ->setCellValue("M$count", Story::ClientIndustryCategory($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
@@ -537,7 +537,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
-		            ->setCellValue("A$count", $story->StoryDate)
+		            ->setCellValue("A$count", date('d-M-Y', strtotime($story->StoryDate)))
 		            ->setCellValue("B$count", $story->Publication)
 		            ->setCellValue("C$count", $story->Title)
 		            ->setCellValue("D$count", $story->journalist)
@@ -547,7 +547,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("H$count", $story->Picture)
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("K$count", $story->AVE)
+		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
 		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
 		            ->setCellValue("M$count", Story::StoryIndustry($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
@@ -633,7 +633,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/video/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
-		            ->setCellValue("A$count", $story->StoryDate)
+		            ->setCellValue("A$count", date('d-M-Y', strtotime($story->StoryDate)))
 		            ->setCellValue("B$count", $story->Publication)
 		            ->setCellValue("C$count", $story->Title)
 		            ->setCellValue("D$count", $story->journalist)
@@ -643,7 +643,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("H$count", '')
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("K$count", $story->AVE)
+		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
 		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
 		            ->setCellValue("M$count", Story::ClientIndustryCategory($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
@@ -749,7 +749,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
-		            ->setCellValue("A$count", $story->StoryDate)
+		            ->setCellValue("A$count", date('d-M-Y', strtotime($story->StoryDate)))
 		            ->setCellValue("B$count", $story->Publication)
 		            ->setCellValue("C$count", $story->Title)
 		            ->setCellValue("D$count", $story->journalist)
@@ -759,7 +759,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("H$count", $story->Picture)
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("K$count", $story->AVE)
+		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
 		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
 		            ->setCellValue("M$count", Story::StoryIndustry($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
@@ -852,7 +852,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/video/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
-		            ->setCellValue("A$count", $story->StoryDate)
+		            ->setCellValue("A$count", date('d-M-Y', strtotime($story->StoryDate)))
 		            ->setCellValue("B$count", $story->Publication)
 		            ->setCellValue("C$count", $story->Title)
 		            ->setCellValue("D$count", $story->journalist)
@@ -862,7 +862,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("H$count", '')
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("K$count", $story->AVE)
+		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
 		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
 		            ->setCellValue("M$count", Story::ClientIndustryCategory($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
@@ -976,7 +976,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
-		            ->setCellValue("A$count", $story->StoryDate)
+		            ->setCellValue("A$count", date('d-M-Y', strtotime($story->StoryDate)))
 		            ->setCellValue("B$count", $story->Publication)
 		            ->setCellValue("C$count", $story->Title)
 		            ->setCellValue("D$count", $story->journalist)
@@ -986,7 +986,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("H$count", $story->Picture)
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("K$count", $story->AVE)
+		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
 		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
 		            ->setCellValue("M$count", Story::StoryIndustry($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
@@ -1078,7 +1078,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
-		            ->setCellValue("A$count", $story->StoryDate)
+		            ->setCellValue("A$count", date('d-M-Y', strtotime($story->StoryDate)))
 		            ->setCellValue("B$count", $story->Publication)
 		            ->setCellValue("C$count", $story->Title)
 		            ->setCellValue("D$count", $story->journalist)
@@ -1088,7 +1088,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("H$count", $story->Picture)
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("K$count", $story->AVE)
+		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
 		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
 		            ->setCellValue("M$count", Story::StoryIndustry($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
@@ -1202,7 +1202,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
-		            ->setCellValue("A$count", $story->StoryDate)
+		            ->setCellValue("A$count", date('d-M-Y', strtotime($story->StoryDate)))
 		            ->setCellValue("B$count", $story->Publication)
 		            ->setCellValue("C$count", $story->Title)
 		            ->setCellValue("D$count", $story->journalist)
@@ -1212,7 +1212,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("H$count", $story->Picture)
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("K$count", $story->AVE)
+		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
 		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
 		            ->setCellValue("M$count", Story::StoryIndustry($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
@@ -1316,7 +1316,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
-		            ->setCellValue("A$count", $story->StoryDate)
+		            ->setCellValue("A$count", date('d-M-Y', strtotime($story->StoryDate)))
 		            ->setCellValue("B$count", $story->Publication)
 		            ->setCellValue("C$count", $story->Title)
 		            ->setCellValue("D$count", $story->journalist)
@@ -1326,7 +1326,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("H$count", $story->Picture)
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("K$count", $story->AVE)
+		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
 		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
 		            ->setCellValue("M$count", Story::StoryIndustry($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
@@ -1424,7 +1424,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/video/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
-		            ->setCellValue("A$count", $story->StoryDate)
+		            ->setCellValue("A$count", date('d-M-Y', strtotime($story->StoryDate)))
 		            ->setCellValue("B$count", $story->Publication)
 		            ->setCellValue("C$count", $story->Title)
 		            ->setCellValue("D$count", $story->journalist)
@@ -1434,7 +1434,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("H$count", '')
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("K$count", $story->AVE)
+		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
 		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
 		            ->setCellValue("M$count", Story::ClientIndustryCategory($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
@@ -1527,7 +1527,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/video/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
-		            ->setCellValue("A$count", $story->StoryDate)
+		            ->setCellValue("A$count", date('d-M-Y', strtotime($story->StoryDate)))
 		            ->setCellValue("B$count", $story->Publication)
 		            ->setCellValue("C$count", $story->Title)
 		            ->setCellValue("D$count", $story->journalist)
@@ -1537,7 +1537,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("H$count", '')
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("K$count", $story->AVE)
+		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
 		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
 		            ->setCellValue("M$count", Story::ClientIndustryCategory($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
@@ -1634,7 +1634,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/video/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
-		            ->setCellValue("A$count", $story->StoryDate)
+		            ->setCellValue("A$count", date('d-M-Y', strtotime($story->StoryDate)))
 		            ->setCellValue("B$count", $story->Publication)
 		            ->setCellValue("C$count", $story->Title)
 		            ->setCellValue("D$count", $story->journalist)
@@ -1644,7 +1644,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("H$count", '')
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("K$count", $story->AVE)
+		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
 		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
 		            ->setCellValue("M$count", Story::ClientIndustryCategory($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
@@ -1749,7 +1749,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/video/'.$story->Story_ID;
 					$PHPExcel->getActiveSheet()
-		            ->setCellValue("A$count", $story->StoryDate)
+		            ->setCellValue("A$count", date('d-M-Y', strtotime($story->StoryDate)))
 		            ->setCellValue("B$count", $story->Publication)
 		            ->setCellValue("C$count", $story->Title)
 		            ->setCellValue("D$count", $story->journalist)
@@ -1759,7 +1759,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("H$count", '')
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("K$count", $story->AVE)
+		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
 		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
 		            ->setCellValue("M$count", Story::ClientIndustryCategory($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);

@@ -38,13 +38,25 @@
 				<?php 
 				if(Yii::app()->user->usertype=='agency'){
 					if(isset($model->company)){
-						echo $form->dropDownList($model, 'industry', Industry::model()->AgencyIndustryList($model->company), array('multiple'=>true, 'class'=>'form-control','required'=>'required'));
+						echo $form->dropDownList(
+							$model, 'industry', 
+							Industry::model()->AgencyIndustryList($model->company), 
+							array('multiple'=>true, 'class'=>'form-control','required'=>'required')
+							);
 					}else{
-						echo $form->dropDownList($model, 'industry', array(), array('multiple'=>true, 'class'=>'form-control','required'=>'required'));
+						echo $form->dropDownList(
+							$model, 'industry', 
+							array(), 
+							array('multiple'=>true, 'class'=>'form-control','required'=>'required')
+							);
 					}
 					
 				}else{
-					echo $form->dropDownList($model, 'industry', Industry::model()->getIndustryList(), array('multiple'=>true, 'class'=>'form-control','required'=>'required'));
+					echo $form->dropDownList(
+						$model, 'industry', 
+						Industry::model()->getIndustryList(), 
+						array('multiple'=>true, 'class'=>'form-control','required'=>'required')
+						);
 				} 
 				?>
 			</div>

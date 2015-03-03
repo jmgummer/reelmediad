@@ -265,7 +265,7 @@ public static function AgencyElectronicTableHead(){
 */
 public static function PrintTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont,$StoryColum,$ContinuingAve){
 	return '<tr>
-	<td><a href="'.Yii::app()->createUrl("swf/view").'/'.$storyid.'" target="_blank">'.$date.'</a></td>
+	<td><a href="'.Yii::app()->createUrl("swf/view").'/'.$storyid.'" target="_blank">'.date('d-M-Y', strtotime($date)).'</a></td>
 	<td>'.$pub.'</td>
 	<td>'.$journo.'</td>
 	<td><a href="'.Yii::app()->createUrl("swf/view").'/'.$storyid.'" target="_blank">'.$head.'</a><br><font size="1">'.$cont.'</font></td>
@@ -287,7 +287,7 @@ public static function AgencyPrintTableBody($date,$storyid,$pub,$journo,$head,$p
 		$agency_pr_rate = 3;
 	}
 	return '<tr>
-	<td><a href="'.Yii::app()->createUrl("swf/view").'/'.$storyid.'" target="_blank">'.$date.'</a></td>
+	<td><a href="'.Yii::app()->createUrl("swf/view").'/'.$storyid.'" target="_blank">'.date('d-M-Y', strtotime($date)).'</a></td>
 	<td>'.$pub.'</td>
 	<td>'.$journo.'</td>
 	<td><a href="'.Yii::app()->createUrl("swf/view").'/'.$storyid.'" target="_blank">'.$head.'</a><br><font size="1">'.$cont.'</font></td>
@@ -306,7 +306,7 @@ public static function AgencyPrintTableBody($date,$storyid,$pub,$journo,$head,$p
 */
 public static function ElectronicTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont){
 	return '<tr>
-	<td><a href="'.Yii::app()->createUrl("video").'/'.$storyid.'" target="_blank">'.$date.'</a></td>
+	<td><a href="'.Yii::app()->createUrl("video").'/'.$storyid.'" target="_blank">'.date('d-M-Y', strtotime($date)).'</a></td>
 	<td>'.$pub.'</td>
 	<td>'.$journo.'</td>
 	<td><a href="'.Yii::app()->createUrl("video").'/'.$storyid.'" target="_blank">'.$head.'</a><br><font size="1">'.$cont.'</font></td>
@@ -328,7 +328,7 @@ public static function AgencyElectronicTableBody($date,$storyid,$pub,$journo,$he
 		$agency_pr_rate = 3;
 	}
 	return '<tr>
-	<td><a href="'.Yii::app()->createUrl("video").'/'.$storyid.'" target="_blank">'.$date.'</a></td>
+	<td><a href="'.Yii::app()->createUrl("video").'/'.$storyid.'" target="_blank">'.date('d-M-Y', strtotime($date)).'</a></td>
 	<td>'.$pub.'</td>
 	<td>'.$journo.'</td>
 	<td><a href="'.Yii::app()->createUrl("video").'/'.$storyid.'" target="_blank">'.$head.'</a><br><font size="1">'.$cont.'</font></td>
