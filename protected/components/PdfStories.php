@@ -29,43 +29,37 @@ public static function GetClientStory($client,$startdate,$enddate,$search,$backd
 	$year = date('Y');
 	$story_month = 'story_'.$year.'_'.$month;
 	if(!empty($industries)){
-	  $q2 = 'SELECT distinct story.Story_ID FROM story
-    inner join story_mention on story.Story_ID=story_mention.story_id
-    inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
-    INNER JOIN story_industry on story_industry.story_id=story.Story_ID
-    INNER JOIN industry_subs ON story_industry.industry_id = industry_subs.industry_id
-    where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
-    and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
-    and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
-    and industry_subs.company_id ='.$client.' and industry_subs.industry_id IN('.$industries.')
-    order by Media_House_List asc, StoryDate desc, page_no asc';
+		$q2 = 'SELECT distinct story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.cont_on,story.cont_from,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID 
+		FROM story inner join story_mention on story.Story_ID=story_mention.story_id inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
+		INNER JOIN story_industry on story_industry.story_id=story.Story_ID INNER JOIN industry_subs ON story_industry.industry_id = industry_subs.industry_id
+		where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
+		and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
+		and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
+		and industry_subs.company_id ='.$client.' and industry_subs.industry_id IN('.$industries.')
+		order by StoryDate asc, Media_House_List asc, page_no asc';
 	}else{
-	  $q2 = 'SELECT distinct story.Story_ID FROM story
-  	inner join story_mention on story.Story_ID=story_mention.story_id
-  	inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
-  	where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
-  	and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
-  	and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
-  	order by Media_House_List asc, StoryDate desc, page_no asc';
+		$q2 = 'SELECT distinct story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.cont_on,story.cont_from,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID 
+		FROM story inner join story_mention on story.Story_ID=story_mention.story_id inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
+		where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
+		and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
+		and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
+		order by StoryDate asc, Media_House_List asc, page_no asc';
 	}
 	
 	if($story = Story::model()->findAllBySql($q2)){
 		if(Yii::app()->user->usertype=='agency'){
 			echo PdfStories::AgencyPrintTableHead();
 			foreach ($story as $key) {
-				if($story = PdfStories::GetStories($key->Story_ID)){
-					echo PdfStories::AgencyPrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
-				}
+				echo PdfStories::AgencyPrintTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->StoryPage,$key->PublicationType,$key->Picture,Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues,$key->StoryColumn,$key->ContinuingAve);
 			}
+			echo PdfStories::PrintTableEnd();
 		}else{
 			echo PdfStories::PrintTableHead();
 			foreach ($story as $key) {
-				if($story = PdfStories::GetStories($key->Story_ID)){
-					echo PdfStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
-				}
+				echo PdfStories::PrintTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->StoryPage,$key->PublicationType,$key->Picture,Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues,$key->StoryColumn,$key->ContinuingAve);
 			}
+			echo PdfStories::PrintTableEnd();
 		}
-		echo PdfStories::PrintTableEnd();
 	}else{
 		echo 'No Records Found';
 	}
@@ -76,29 +70,69 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 	$month = date('m');
 	$year = date('Y');
 	$story_month = 'story_'.$year.'_'.$month;
-	$q2 = 'SELECT * from story,story_mention,mediahouse
+	$q2 = 'SELECT story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID from story,story_mention,mediahouse
 	where story_mention.client_id='.$client.' and story.Story_ID=story_mention.story_id
 	and story.Media_ID!="mp01" and story.step3=1
 	and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 	and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
-	order by Media_House_List asc, StoryDate desc';
+	order by StoryDate asc, Media_House_List asc';
 	if($story = Story::model()->findAllBySql($q2)){
 		if(Yii::app()->user->usertype=='agency'){
-			echo PdfStories::AgencyElectronicTableHead();
+			
+			$radio_section = "";
+			$tv_section = "";
+			
 			foreach ($story as $key) {
-				if($story = PdfStories::GetStories($key->Story_ID)){
-					echo PdfStories::AgencyPrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+				if($key->Media_ID=='mr01'){
+					$radio_section .= PdfStories::AgencyElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
+				}else{
+					$tv_section .= PdfStories::AgencyElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
 				}
 			}
+
+			if($radio_section!=""){
+				echo '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>RADIO</strong></td></tr></table>';
+				echo PdfStories::AgencyElectronicTableHead();
+				echo $radio_section;
+				echo PdfStories::ElectronicTableEnd();
+				echo "<br>";
+			}
+			
+			if($tv_section!=""){
+				echo '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>TV</strong></td></tr></table>';
+				echo PdfStories::AgencyElectronicTableHead();
+				echo $tv_section;
+				echo PdfStories::ElectronicTableEnd();
+			}
+
 		}else{
-			echo PdfStories::ElectronicTableHead();
+
+			$radio_section = "";
+			$tv_section = "";
 			foreach ($story as $key) {
-				if($story = PdfStories::GetStories($key->Story_ID)){
-					echo PdfStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+				if($key->Media_ID=='mr01'){
+					$radio_section .= PdfStories::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
+				}else{
+					$tv_section .= PdfStories::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
 				}
 			}
+
+			if($radio_section!=""){
+				echo '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>RADIO</strong></td></tr></table>';
+				echo PdfStories::ElectronicTableHead();
+				echo $radio_section;
+				echo PdfStories::ElectronicTableEnd();
+				echo "<br>";
+			}
+				
+			if($tv_section!=""){
+				echo '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>TV</strong></td></tr></table>';
+				echo PdfStories::ElectronicTableHead();
+				echo $tv_section;
+				echo PdfStories::ElectronicTableEnd();
+			}
+				
 		}
-		echo PdfStories::ElectronicTableEnd();
 	}else{
 		echo 'No Records Found';
 	}
@@ -109,7 +143,7 @@ public static function GetClientIndustryStory($client,$startdate,$enddate,$searc
 	$month = date('m');
 	$year = date('Y');
 	$story_month = 'story_'.$year.'_'.$month;
-	$q2 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story
+	$q2 = 'SELECT distinct(story.story_id) as Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID
 	from story, story_industry, industry_subs, mediahouse
 	where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.')
 	and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.'
@@ -121,24 +155,21 @@ public static function GetClientIndustryStory($client,$startdate,$enddate,$searc
 	and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 	and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
 	and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
-	order by Media_House_List asc, StoryDate desc';
+	order by StoryDate asc, Media_House_List asc';
 	if($story = Story::model()->findAllBySql($q2)){
 		if(Yii::app()->user->usertype=='agency'){
 			echo PdfStories::AgencyPrintTableHead();
 			foreach ($story as $key) {
-				if($story = PdfStories::GetStories($key->Story_ID)){
-					echo PdfStories::AgencyPrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
-				}
+				echo PdfStories::AgencyPrintTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->StoryPage,$key->PublicationType,$key->Picture,Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues,$key->StoryColumn,$key->ContinuingAve);
 			}
+			echo PdfStories::PrintTableEnd();
 		}else{
 			echo PdfStories::PrintTableHead();
 			foreach ($story as $key) {
-				if($story = PdfStories::GetStories($key->Story_ID)){
-					echo PdfStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
-				}
+				echo PdfStories::PrintTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->StoryPage,$key->PublicationType,$key->Picture,Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues,$key->StoryColumn,$key->ContinuingAve);
 			}
+			echo PdfStories::PrintTableEnd();
 		}
-		echo PdfStories::PrintTableEnd();
 	}else{
 		echo 'No Records Found';
 	}
@@ -149,7 +180,7 @@ public static function GetClientElectronicIndustryStory($client,$startdate,$endd
 	$month = date('m');
 	$year = date('Y');
 	$story_month = 'story_'.$year.'_'.$month;
-	$q2 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story
+	$q2 = 'SELECT distinct(story.story_id) as Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID
 	from story, story_industry, industry_subs, mediahouse
 	where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.')
 	and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.'
@@ -161,24 +192,67 @@ public static function GetClientElectronicIndustryStory($client,$startdate,$endd
 	and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 	and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
 	and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
-	order by Media_House_List asc, StoryDate desc';
+	order by StoryDate asc, Media_House_List asc';
 	if($story = Story::model()->findAllBySql($q2)){
 		if(Yii::app()->user->usertype=='agency'){
-			echo PdfStories::AgencyElectronicTableHead();
+
+			$radio_section = "";
+			$tv_section = "";
+			
 			foreach ($story as $key) {
-				if($story = PdfStories::GetStories($key->Story_ID)){
-					echo PdfStories::AgencyPrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+				if($key->Media_ID=='mr01'){
+					$radio_section .= PdfStories::AgencyElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
+				}else{
+					$tv_section .= PdfStories::AgencyElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
 				}
 			}
+
+			if($radio_section!=""){
+				echo '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>RADIO</strong></td></tr></table>';
+				echo PdfStories::AgencyElectronicTableHead();
+				echo $radio_section;
+				echo PdfStories::ElectronicTableEnd();
+				echo "<br>";
+			}
+
+			if($tv_section!=""){
+				echo '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>TV</strong></td></tr></table>';
+				echo PdfStories::AgencyElectronicTableHead();
+				echo $tv_section;
+				echo PdfStories::ElectronicTableEnd();
+			}
+
 		}else{
-			echo PdfStories::ElectronicTableHead();
+			
+			$radio_section = "";
+			$tv_section = "";
 			foreach ($story as $key) {
-				if($story = PdfStories::GetStories($key->Story_ID)){
-					echo PdfStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
+				if($key->Media_ID=='mr01'){
+					$radio_section .= PdfStories::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
+				}else{
+					$tv_section .= PdfStories::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
 				}
 			}
+
+			if($radio_section!=""){
+				echo '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>RADIO</strong></td></tr></table>';
+				echo PdfStories::ElectronicTableHead();
+				echo $radio_section;
+				echo PdfStories::ElectronicTableEnd();
+				echo "<br>";
+			}
+
+			if($tv_section!=""){
+				echo '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>TV</strong></td></tr></table>';
+				echo PdfStories::ElectronicTableHead();
+				echo $tv_section;
+				echo PdfStories::ElectronicTableEnd();
+			}
+
+			
+			
+			
 		}
-		echo PdfStories::ElectronicTableEnd();
 	}else{
 		echo 'No Records Found';
 	}
@@ -264,9 +338,9 @@ public static function AgencyElectronicTableHead(){
 * Print The Body of the Table This function may be called recursively
 * NB - Just for the Print Section
 */
-public static function PrintTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont){
+public static function PrintTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont,$StoryColum,$ContinuingAve){
 	return '<tr>
-	<td><a href="'.Yii::app()->createUrl("swf/view").'/'.$storyid.'" target="_blank">'.$date.'</a></td>
+	<td><a href="'.Yii::app()->createUrl("swf/view").'/'.$storyid.'" target="_blank">'.date('d-M-Y', strtotime($date)).'</a></td>
 	<td>'.$pub.'</td>
 	<td>'.$journo.'</td>
 	<td><a href="'.Yii::app()->createUrl("swf/view").'/'.$storyid.'" target="_blank">'.$head.'</a><br><font size="1">'.$cont.'</font></td>
@@ -274,11 +348,11 @@ public static function PrintTableBody($date,$storyid,$pub,$journo,$head,$page,$p
 	<td>'.$pubtype.'</td>
 	<td>'.$pic.'</td>
 	<td>'.$effect.'</td>
-	<td style="text-align:right;">'.number_format($ave).'</td>
+	<td style="text-align:right;">'.number_format($ContinuingAve).'</td>
 	</tr>';
 }
 
-public static function AgencyPrintTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont){
+public static function AgencyPrintTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont,$StoryColum,$ContinuingAve){
 	// Obtain the Agency ID from Session
 	$agency_id = Yii::app()->user->company_id;
 	$sql_agency_pr="select agency_pr_rate  from agency where agency_id=$agency_id";
@@ -288,10 +362,51 @@ public static function AgencyPrintTableBody($date,$storyid,$pub,$journo,$head,$p
 		$agency_pr_rate = 3;
 	}
 	return '<tr>
-	<td><a href="'.Yii::app()->createUrl("swf/view").'/'.$storyid.'" target="_blank">'.$date.'</a></td>
+	<td><a href="'.Yii::app()->createUrl("swf/view").'/'.$storyid.'" target="_blank">'.date('d-M-Y', strtotime($date)).'</a></td>
 	<td>'.$pub.'</td>
 	<td>'.$journo.'</td>
 	<td><a href="'.Yii::app()->createUrl("swf/view").'/'.$storyid.'" target="_blank">'.$head.'</a><br><font size="1">'.$cont.'</font></td>
+	<td>'.$page.'</td>
+	<td>'.$pubtype.'</td>
+	<td>'.$pic.'</td>
+	<td>'.$effect.'</td>
+	<td style="text-align:right;">'.number_format($ContinuingAve).'</td>
+	<td style="text-align:right;">'.number_format($ContinuingAve*$agency_pr_rate).'</td>
+	</tr>';
+}
+
+/*
+* Print The Body of the Table This function may be called recursively
+* NB - Just for the Electronic Section
+*/
+public static function ElectronicTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont){
+	return '<tr>
+	<td><a href="'.Yii::app()->createUrl("video").'/'.$storyid.'" target="_blank">'.date('d-M-Y', strtotime($date)).'</a></td>
+	<td>'.$pub.'</td>
+	<td>'.$journo.'</td>
+	<td><a href="'.Yii::app()->createUrl("video").'/'.$storyid.'" target="_blank">'.$head.'</a><br><font size="1">'.$cont.'</font></td>
+	<td>'.$page.'</td>
+	<td>'.$pubtype.'</td>
+	<td>'.$pic.'</td>
+	<td>'.$effect.'</td>
+	<td style="text-align:right;">'.number_format($ave).'</td>
+	</tr>';
+}
+
+public static function AgencyElectronicTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont){
+	// Obtain the Agency ID from Session
+	$agency_id = Yii::app()->user->company_id;
+	$sql_agency_pr="select agency_pr_rate  from agency where agency_id=$agency_id";
+	if($agency_pr_rate = Agency::model()->findBySql($sql_agency_pr)){
+		$agency_pr_rate = $agency_pr_rate->agency_pr_rate;
+	}else{
+		$agency_pr_rate = 3;
+	}
+	return '<tr>
+	<td><a href="'.Yii::app()->createUrl("video").'/'.$storyid.'" target="_blank">'.date('d-M-Y', strtotime($date)).'</a></td>
+	<td>'.$pub.'</td>
+	<td>'.$journo.'</td>
+	<td><a href="'.Yii::app()->createUrl("video").'/'.$storyid.'" target="_blank">'.$head.'</a><br><font size="1">'.$cont.'</font></td>
 	<td>'.$page.'</td>
 	<td>'.$pubtype.'</td>
 	<td>'.$pic.'</td>

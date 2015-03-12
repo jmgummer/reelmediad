@@ -72,7 +72,8 @@ class HomeController extends Controller
 			$model->enddate = date('Y-m-d',strtotime(str_replace('-', '/', $model->enddate)));
 		}
 		// $this->render('pdf',array('model'=>$model));
-		$mPDF1 = Yii::app()->ePdf2->Download('pdf',array('model'=>$model),'PDF');
+		$pdf_name = 'Stories_'.date('Y_m_d_h_i_s');
+		$mPDF1 = Yii::app()->ePdf2->Download('pdf',array('model'=>$model),$pdf_name);
 	}
 
 	public function actionCd()

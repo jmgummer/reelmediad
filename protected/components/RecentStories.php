@@ -78,18 +78,46 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 	order by StoryDate asc, Media_House_List asc';
 	if($story = Story::model()->findAllBySql($q2)){
 		if(Yii::app()->user->usertype=='agency'){
+			
+			$radio_section = "";
+			$tv_section = "";
+			
+			foreach ($story as $key) {
+				if($key->Media_ID=='mr01'){
+					$radio_section .= RecentStories::AgencyElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
+				}else{
+					$tv_section .= RecentStories::AgencyElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
+				}
+			}
+
+			echo '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>RADIO</strong></td></tr></table>';
 			echo RecentStories::AgencyElectronicTableHead();
-			foreach ($story as $key) {
-				echo RecentStories::AgencyElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
-				
-			}
+			echo $radio_section;
 			echo RecentStories::ElectronicTableEnd();
+			echo '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>TV</strong></td></tr></table>';
+			echo RecentStories::AgencyElectronicTableHead();
+			echo $tv_section;
+			echo RecentStories::ElectronicTableEnd();
+
 		}else{
-			echo RecentStories::ElectronicTableHead();
+
+			$radio_section = "";
+			$tv_section = "";
 			foreach ($story as $key) {
-				echo RecentStories::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
-				
+				if($key->Media_ID=='mr01'){
+					$radio_section .= RecentStories::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
+				}else{
+					$tv_section .= RecentStories::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
+				}
 			}
+
+			echo '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>RADIO</strong></td></tr></table>';
+			echo RecentStories::ElectronicTableHead();
+			echo $radio_section;
+			echo RecentStories::ElectronicTableEnd();
+			echo '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>TV</strong></td></tr></table>';
+			echo RecentStories::ElectronicTableHead();
+			echo $tv_section;
 			echo RecentStories::ElectronicTableEnd();
 		}
 	}else{
@@ -154,19 +182,48 @@ public static function GetClientElectronicIndustryStory($client,$startdate,$endd
 	order by StoryDate asc, Media_House_List asc';
 	if($story = Story::model()->findAllBySql($q2)){
 		if(Yii::app()->user->usertype=='agency'){
+
+			$radio_section = "";
+			$tv_section = "";
+			
+			foreach ($story as $key) {
+				if($key->Media_ID=='mr01'){
+					$radio_section .= RecentStories::AgencyElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
+				}else{
+					$tv_section .= RecentStories::AgencyElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
+				}
+			}
+
+			echo '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>RADIO</strong></td></tr></table>';
 			echo RecentStories::AgencyElectronicTableHead();
-			foreach ($story as $key) {
-				echo RecentStories::AgencyElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
-				
-			}
+			echo $radio_section;
 			echo RecentStories::ElectronicTableEnd();
+			echo '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>TV</strong></td></tr></table>';
+			echo RecentStories::AgencyElectronicTableHead();
+			echo $tv_section;
+			echo RecentStories::ElectronicTableEnd();
+
 		}else{
-			echo RecentStories::ElectronicTableHead();
+			
+			$radio_section = "";
+			$tv_section = "";
 			foreach ($story as $key) {
-				echo RecentStories::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
-				
+				if($key->Media_ID=='mr01'){
+					$radio_section .= RecentStories::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
+				}else{
+					$tv_section .= RecentStories::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
+				}
 			}
+
+			echo '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>RADIO</strong></td></tr></table>';
+			echo RecentStories::ElectronicTableHead();
+			echo $radio_section;
 			echo RecentStories::ElectronicTableEnd();
+			echo '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>TV</strong></td></tr></table>';
+			echo RecentStories::ElectronicTableHead();
+			echo $tv_section;
+			echo RecentStories::ElectronicTableEnd();
+			
 		}
 	}else{
 		echo 'No Records Found';

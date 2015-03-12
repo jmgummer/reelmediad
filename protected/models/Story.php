@@ -474,7 +474,7 @@ class Story extends CActiveRecord
 				}else{
 					$color_code = $weekday.'_b';
 				}
-				if($rate = Ratecard::model()->find('Media_House_ID=:a AND color_code=:b', array(':a'=>$Media_House_ID,':b'=>$color_code))){
+				if($rate = Ratecard::model()->find('Media_House_ID=:a AND color_code=:b ORDER BY auto_id DESC', array(':a'=>$Media_House_ID,':b'=>$color_code))){
 					$rate=$rate->rate;
 					$rate_cost = $rate*$col*$centimeter;
 				}else{
@@ -542,7 +542,7 @@ class Story extends CActiveRecord
 
 	public static function AgencyPRValue($agency_pr_rate,$this_rate)
 	{
-		$this_agency_pr_rate=number_format( ($this_rate+0)*$agency_pr_rate,0);
+		$this_agency_pr_rate=(($this_rate+0)*$agency_pr_rate);
 		return $this_agency_pr_rate;
 	}
 
@@ -637,32 +637,33 @@ class Story extends CActiveRecord
 
 	public function getContinuingAve()
 	{
-		$colcm = 0;
-		$weekday = strtolower(date('D', strtotime($this->StoryDate)));
-		$Media_House_ID = $this->Media_House_ID;
-		$picture = $this->picture;
-		$col = $this->col;
-		$centimeter = $this->centimeter;
+		// $colcm = 0;
+		// $weekday = strtolower(date('D', strtotime($this->StoryDate)));
+		// $Media_House_ID = $this->Media_House_ID;
+		// $picture = $this->picture;
+		// $col = $this->col;
+		// $centimeter = $this->centimeter;
 
-		if($picture=='color'){
-			$color_code = $weekday.'_c';
-		}else{
-			$color_code = $weekday.'_b';
-		}
+		// if($picture=='color'){
+		// 	$color_code = $weekday.'_c';
+		// }else{
+		// 	$color_code = $weekday.'_b';
+		// }
 
-		if($rate = Ratecard::model()->find('Media_House_ID=:a AND color_code=:b', array(':a'=>$Media_House_ID,':b'=>$color_code))){
-			$rate=$rate->rate;
-			$rate_cost = $rate*$col*$centimeter;
-		}else{
-			$rate_cost = 0;
-		}
-		$this_rate=$rate_cost;
+		// if($rate = Ratecard::model()->find('Media_House_ID=:a AND color_code=:b', array(':a'=>$Media_House_ID,':b'=>$color_code))){
+		// 	$rate=$rate->rate;
+		// 	$rate_cost = $rate*$col*$centimeter;
+		// }else{
+		// 	$rate_cost = 0;
+		// }
+		// $this_rate=$rate_cost;
 		
-		if($this->cont_on!=0) {
-			$cont_rate=Story::RateContinuation($this->cont_on);
-			$this_rate+=$cont_rate;
-		}
-		return $this_rate;
+		// if($this->cont_on!=0) {
+		// 	$cont_rate=Story::RateContinuation($this->cont_on);
+		// 	$this_rate+=$cont_rate;
+		// }
+		// return $this_rate;
+		return $this->Ave;
 	}
 
 	public static function RateContinuation($id) 

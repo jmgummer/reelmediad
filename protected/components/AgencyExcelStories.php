@@ -108,6 +108,8 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  )
 		);
 		if($story = Story::model()->findAllBySql($q2)){
+			$avesum = 0;
+			$prvsum = 0;
 			foreach ($story as $key) {
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
@@ -123,16 +125,25 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
-		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
+		            ->setCellValue("L$count", Story::AVEFormatted($prv = Story::AgencyPRValue($agency_pr_rate,$story->AVE)))
 		            ->setCellValue("M$count", Story::StoryIndustry($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
 		            $PHPExcel->getActiveSheet()->getCell("C$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("C$count")->applyFromArray($styleArray);
 		            $PHPExcel->getActiveSheet()->getStyle("C$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
+
+		            $avesum = $avesum + $story->AVE;
+		            $prvsum = $prvsum + $prv;
 					
 		            $count++;
 				}
 			}
+			$count=$count+1;
+	        $PHPExcel->getActiveSheet()
+	        ->setCellValue("K$count", number_format($avesum))
+	        ->setCellValue("L$count", number_format($prvsum));
+
+
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -203,6 +214,8 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  )
 		);
 		if($story = Story::model()->findAllBySql($q3)){
+			$avesum = 0;
+			$prvsum = 0;
 			foreach ($story as $key) {
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/video/'.$story->Story_ID;
@@ -218,16 +231,24 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
-		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
+		            ->setCellValue("L$count", Story::AVEFormatted($prv = Story::AgencyPRValue($agency_pr_rate,$story->AVE)))
 		            ->setCellValue("M$count", Story::ClientIndustryCategory($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
 					$PHPExcel->getActiveSheet()->getCell("C$count")->getHyperlink()->setUrl($link);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->applyFromArray($styleArray);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
 					
+		            $avesum = $avesum + $story->AVE;
+		            $prvsum = $prvsum + $prv;
+					
 		            $count++;
 				}
 			}
+			$count=$count+1;
+	        $PHPExcel->getActiveSheet()
+	        ->setCellValue("K$count", number_format($avesum))
+	        ->setCellValue("L$count", number_format($prvsum));
+
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -306,6 +327,8 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  )
 		);
 		if($story = Story::model()->findAllBySql($q4)){
+			$avesum = 0;
+			$prvsum = 0;
 			foreach ($story as $key) {
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
@@ -321,16 +344,23 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
-		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
+		            ->setCellValue("L$count", Story::AVEFormatted($prv = Story::AgencyPRValue($agency_pr_rate,$story->AVE)))
 		            ->setCellValue("M$count", Story::StoryIndustry($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
 		            $PHPExcel->getActiveSheet()->getCell("C$count")->getHyperlink()->setUrl($link);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->applyFromArray($styleArray);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
 					
+		            $avesum = $avesum + $story->AVE;
+		            $prvsum = $prvsum + $prv;
+					
 		            $count++;
 				}
 			}
+			$count=$count+1;
+	        $PHPExcel->getActiveSheet()
+	        ->setCellValue("K$count", number_format($avesum))
+	        ->setCellValue("L$count", number_format($prvsum));
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -409,6 +439,8 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  )
 		);
 		if($story = Story::model()->findAllBySql($q5)){
+			$avesum = 0;
+			$prvsum = 0;
 			foreach ($story as $key) {
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/video/'.$story->Story_ID;
@@ -424,16 +456,23 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
-		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
+		            ->setCellValue("L$count", Story::AVEFormatted($prv = Story::AgencyPRValue($agency_pr_rate,$story->AVE)))
 		            ->setCellValue("M$count", Story::ClientIndustryCategory($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
 		            $PHPExcel->getActiveSheet()->getCell("C$count")->getHyperlink()->setUrl($link);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->applyFromArray($styleArray);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
 					
+		            $avesum = $avesum + $story->AVE;
+		            $prvsum = $prvsum + $prv;
+					
 		            $count++;
 				}
 			}
+			$count=$count+1;
+	        $PHPExcel->getActiveSheet()
+	        ->setCellValue("K$count", number_format($avesum))
+	        ->setCellValue("L$count", number_format($prvsum));
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -533,6 +572,8 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  )
 		);
 		if($story = Story::model()->findAllBySql($q2)){
+			$avesum = 0;
+			$prvsum = 0;
 			foreach ($story as $key) {
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
@@ -548,17 +589,23 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
-		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
+		            ->setCellValue("L$count", Story::AVEFormatted($prv = Story::AgencyPRValue($agency_pr_rate,$story->AVE)))
 		            ->setCellValue("M$count", Story::StoryIndustry($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
 		            $PHPExcel->getActiveSheet()->getCell("C$count")->getHyperlink()->setUrl($link);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->applyFromArray($styleArray);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
 					
+		            $avesum = $avesum + $story->AVE;
+		            $prvsum = $prvsum + $prv;
+					
 		            $count++;
-					// echo ExcelStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
 				}
 			}
+			$count=$count+1;
+	        $PHPExcel->getActiveSheet()
+	        ->setCellValue("K$count", number_format($avesum))
+	        ->setCellValue("L$count", number_format($prvsum));
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -629,6 +676,8 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  )
 		);
 		if($story = Story::model()->findAllBySql($q3)){
+			$avesum = 0;
+			$prvsum = 0;
 			foreach ($story as $key) {
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/video/'.$story->Story_ID;
@@ -644,16 +693,23 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
-		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
+		            ->setCellValue("L$count", Story::AVEFormatted($prv = Story::AgencyPRValue($agency_pr_rate,$story->AVE)))
 		            ->setCellValue("M$count", Story::ClientIndustryCategory($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
 		            $PHPExcel->getActiveSheet()->getCell("C$count")->getHyperlink()->setUrl($link);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->applyFromArray($styleArray);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
 					
+		            $avesum = $avesum + $story->AVE;
+		            $prvsum = $prvsum + $prv;
+					
 		            $count++;
 				}
 			}
+			$count=$count+1;
+	        $PHPExcel->getActiveSheet()
+	        ->setCellValue("K$count", number_format($avesum))
+	        ->setCellValue("L$count", number_format($prvsum));
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -745,6 +801,8 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  )
 		);
 		if($story = Story::model()->findAllBySql($q4)){
+			$avesum = 0;
+			$prvsum = 0;
 			foreach ($story as $key) {
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
@@ -760,16 +818,23 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
-		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
+		            ->setCellValue("L$count", Story::AVEFormatted($prv = Story::AgencyPRValue($agency_pr_rate,$story->AVE)))
 		            ->setCellValue("M$count", Story::StoryIndustry($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
 		            $PHPExcel->getActiveSheet()->getCell("C$count")->getHyperlink()->setUrl($link);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->applyFromArray($styleArray);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
 					
+		            $avesum = $avesum + $story->AVE;
+		            $prvsum = $prvsum + $prv;
+					
 		            $count++;
 				}
 			}
+			$count=$count+1;
+	        $PHPExcel->getActiveSheet()
+	        ->setCellValue("K$count", number_format($avesum))
+	        ->setCellValue("L$count", number_format($prvsum));
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -848,6 +913,8 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  )
 		);
 		if($story = Story::model()->findAllBySql($q5)){
+			$avesum = 0;
+			$prvsum = 0;
 			foreach ($story as $key) {
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/video/'.$story->Story_ID;
@@ -863,16 +930,23 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
-		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
+		            ->setCellValue("L$count", Story::AVEFormatted($prv = Story::AgencyPRValue($agency_pr_rate,$story->AVE)))
 		            ->setCellValue("M$count", Story::ClientIndustryCategory($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
 		            $PHPExcel->getActiveSheet()->getCell("C$count")->getHyperlink()->setUrl($link);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->applyFromArray($styleArray);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
 					
+		            $avesum = $avesum + $story->AVE;
+		            $prvsum = $prvsum + $prv;
+					
 		            $count++;
 				}
 			}
+			$count=$count+1;
+	        $PHPExcel->getActiveSheet()
+	        ->setCellValue("K$count", number_format($avesum))
+	        ->setCellValue("L$count", number_format($prvsum));
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -972,6 +1046,8 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  )
 		);
 		if($story = Story::model()->findAllBySql($q2)){
+			$avesum = 0;
+			$prvsum = 0;
 			foreach ($story as $key) {
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
@@ -987,17 +1063,23 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
-		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
+		            ->setCellValue("L$count", Story::AVEFormatted($prv = Story::AgencyPRValue($agency_pr_rate,$story->AVE)))
 		            ->setCellValue("M$count", Story::StoryIndustry($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
 		            $PHPExcel->getActiveSheet()->getCell("C$count")->getHyperlink()->setUrl($link);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->applyFromArray($styleArray);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
 					
+		            $avesum = $avesum + $story->AVE;
+		            $prvsum = $prvsum + $prv;
+					
 		            $count++;
-					// echo ExcelStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
 				}
 			}
+			$count=$count+1;
+	        $PHPExcel->getActiveSheet()
+	        ->setCellValue("K$count", number_format($avesum))
+	        ->setCellValue("L$count", number_format($prvsum));
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -1074,6 +1156,8 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  )
 		);
 		if($story = Story::model()->findAllBySql($q4)){
+			$avesum = 0;
+			$prvsum = 0;
 			foreach ($story as $key) {
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
@@ -1089,16 +1173,23 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
-		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
+		            ->setCellValue("L$count", Story::AVEFormatted($prv = Story::AgencyPRValue($agency_pr_rate,$story->AVE)))
 		            ->setCellValue("M$count", Story::StoryIndustry($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
 		            $PHPExcel->getActiveSheet()->getCell("C$count")->getHyperlink()->setUrl($link);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->applyFromArray($styleArray);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
 					
+		            $avesum = $avesum + $story->AVE;
+		            $prvsum = $prvsum + $prv;
+					
 		            $count++;
 				}
 			}
+			$count=$count+1;
+	        $PHPExcel->getActiveSheet()
+	        ->setCellValue("K$count", number_format($avesum))
+	        ->setCellValue("L$count", number_format($prvsum));
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -1198,6 +1289,8 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  )
 		);
 		if($story = Story::model()->findAllBySql($q2)){
+			$avesum = 0;
+			$prvsum = 0;
 			foreach ($story as $key) {
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
@@ -1213,17 +1306,23 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
-		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
+		            ->setCellValue("L$count", Story::AVEFormatted($prv = Story::AgencyPRValue($agency_pr_rate,$story->AVE)))
 		            ->setCellValue("M$count", Story::StoryIndustry($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
 		            $PHPExcel->getActiveSheet()->getCell("C$count")->getHyperlink()->setUrl($link);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->applyFromArray($styleArray);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
 					
+		            $avesum = $avesum + $story->AVE;
+		            $prvsum = $prvsum + $prv;
+					
 		            $count++;
-					// echo ExcelStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE,$story->Link,$story->Continues);
 				}
 			}
+			$count=$count+1;
+	        $PHPExcel->getActiveSheet()
+	        ->setCellValue("K$count", number_format($avesum))
+	        ->setCellValue("L$count", number_format($prvsum));
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -1312,6 +1411,8 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  )
 		);
 		if($story = Story::model()->findAllBySql($q4)){
+			$avesum = 0;
+			$prvsum = 0;
 			foreach ($story as $key) {
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
@@ -1327,16 +1428,23 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
-		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
+		            ->setCellValue("L$count", Story::AVEFormatted($prv = Story::AgencyPRValue($agency_pr_rate,$story->AVE)))
 		            ->setCellValue("M$count", Story::StoryIndustry($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
 		            $PHPExcel->getActiveSheet()->getCell("C$count")->getHyperlink()->setUrl($link);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->applyFromArray($styleArray);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
 					
+		            $avesum = $avesum + $story->AVE;
+		            $prvsum = $prvsum + $prv;
+					
 		            $count++;
 				}
 			}
+			$count=$count+1;
+	        $PHPExcel->getActiveSheet()
+	        ->setCellValue("K$count", number_format($avesum))
+	        ->setCellValue("L$count", number_format($prvsum));
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -1420,6 +1528,8 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  )
 		);
 		if($story = Story::model()->findAllBySql($q3)){
+			$avesum = 0;
+			$prvsum = 0;
 			foreach ($story as $key) {
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/video/'.$story->Story_ID;
@@ -1435,16 +1545,23 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
-		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
+		            ->setCellValue("L$count", Story::AVEFormatted($prv = Story::AgencyPRValue($agency_pr_rate,$story->AVE)))
 		            ->setCellValue("M$count", Story::ClientIndustryCategory($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
 		            $PHPExcel->getActiveSheet()->getCell("C$count")->getHyperlink()->setUrl($link);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->applyFromArray($styleArray);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
 					
+		            $avesum = $avesum + $story->AVE;
+		            $prvsum = $prvsum + $prv;
+					
 		            $count++;
 				}
 			}
+			$count=$count+1;
+	        $PHPExcel->getActiveSheet()
+	        ->setCellValue("K$count", number_format($avesum))
+	        ->setCellValue("L$count", number_format($prvsum));
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -1523,6 +1640,8 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  )
 		);
 		if($story = Story::model()->findAllBySql($q5)){
+			$avesum = 0;
+			$prvsum = 0;
 			foreach ($story as $key) {
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/video/'.$story->Story_ID;
@@ -1538,16 +1657,23 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
-		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
+		            ->setCellValue("L$count", Story::AVEFormatted($prv = Story::AgencyPRValue($agency_pr_rate,$story->AVE)))
 		            ->setCellValue("M$count", Story::ClientIndustryCategory($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
 		            $PHPExcel->getActiveSheet()->getCell("C$count")->getHyperlink()->setUrl($link);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->applyFromArray($styleArray);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
 					
+		            $avesum = $avesum + $story->AVE;
+		            $prvsum = $prvsum + $prv;
+					
 		            $count++;
 				}
 			}
+			$count=$count+1;
+	        $PHPExcel->getActiveSheet()
+	        ->setCellValue("K$count", number_format($avesum))
+	        ->setCellValue("L$count", number_format($prvsum));
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -1630,6 +1756,8 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  )
 		);
 		if($story = Story::model()->findAllBySql($q3)){
+			$avesum = 0;
+			$prvsum = 0;
 			foreach ($story as $key) {
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/video/'.$story->Story_ID;
@@ -1645,16 +1773,23 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
-		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
+		            ->setCellValue("L$count", Story::AVEFormatted($prv = Story::AgencyPRValue($agency_pr_rate,$story->AVE)))
 		            ->setCellValue("M$count", Story::ClientIndustryCategory($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
 		            $PHPExcel->getActiveSheet()->getCell("C$count")->getHyperlink()->setUrl($link);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->applyFromArray($styleArray);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
 					
+		            $avesum = $avesum + $story->AVE;
+		            $prvsum = $prvsum + $prv;
+					
 		            $count++;
 				}
 			}
+			$count=$count+1;
+	        $PHPExcel->getActiveSheet()
+	        ->setCellValue("K$count", number_format($avesum))
+	        ->setCellValue("L$count", number_format($prvsum));
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -1745,6 +1880,8 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  )
 		);
 		if($story = Story::model()->findAllBySql($q5)){
+			$avesum = 0;
+			$prvsum = 0;
 			foreach ($story as $key) {
 				if($story = AgencyExcelStories::GetStories($key->Story_ID)){
 					$link = 'http://www.reelforge.com/reelmediad/video/'.$story->Story_ID;
@@ -1760,16 +1897,23 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("I$count", $story->StoryCategory)
 		            ->setCellValue("J$count", Story::ClientTonality($story->Story_ID,$client))
 		            ->setCellValue("K$count", Story::AVEFormatted($story->AVE))
-		            ->setCellValue("L$count", Story::AgencyPRValue($agency_pr_rate,$story->AVE))
+		            ->setCellValue("L$count", Story::AVEFormatted($prv = Story::AgencyPRValue($agency_pr_rate,$story->AVE)))
 		            ->setCellValue("M$count", Story::ClientIndustryCategory($story->Story_ID,$client))
 		            ->setCellValue("N$count", $story->StorySummary);
 		            $PHPExcel->getActiveSheet()->getCell("C$count")->getHyperlink()->setUrl($link);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->applyFromArray($styleArray);
 					$PHPExcel->getActiveSheet()->getStyle("C$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
 					
+		            $avesum = $avesum + $story->AVE;
+		            $prvsum = $prvsum + $prv;
+					
 		            $count++;
 				}
 			}
+			$count=$count+1;
+	        $PHPExcel->getActiveSheet()
+	        ->setCellValue("K$count", number_format($avesum))
+	        ->setCellValue("L$count", number_format($prvsum));
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()

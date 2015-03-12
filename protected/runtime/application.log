@@ -655,3 +655,21 @@ Stack trace:
 REQUEST_URI=/reelmediad/drilldown/drilldown_number_of_mentions.php?client_id=1&start_date=2015-03-02&end_date=2015-03-02&industries=2&mystories=1
 HTTP_REFERER=http://192.168.0.234/reelmediad/industryreports/mentions
 ---
+2015/03/04 07:13:10 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'Login Required' in C:\xampp\htdocs\reelmediad\yii_back\framework\web\auth\CWebUser.php:394
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\auth\CAccessControlFilter.php(180): CWebUser->loginRequired()
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('print')
+#9 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/print')
+#10 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\reelmediad\index.php(18): CApplication->run()
+#12 {main}
+REQUEST_URI=/reelmediad/home/print
+HTTP_REFERER=http://192.168.0.234/reelmediad/home/print
+---
