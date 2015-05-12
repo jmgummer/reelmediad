@@ -43,11 +43,10 @@ class IndustryreportsController extends Controller
 	
 	public function actionMentions()
 	{
-		$model = $model = new StorySearch('search');
-		$model->unsetAttributes();
+		$model = new StorySearch('search');
 		if(isset($_POST['StorySearch']))
 		{
-			$model->attributes=Yii::app()->input->stripClean($_POST['StorySearch']);
+			$model->attributes=$_POST['StorySearch'];
 			$model->startdate = date('Y-m-d',strtotime(str_replace('-', '/', $model->startdate)));
 			$model->enddate = date('Y-m-d',strtotime(str_replace('-', '/', $model->enddate)));
 		}else{

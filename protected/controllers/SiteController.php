@@ -39,6 +39,7 @@ class SiteController extends Controller
 	 */
 	public function actionError()
 	{
+		$this->layout='//layouts/error';
 		if($error=Yii::app()->errorHandler->error)
 		{
 			if(Yii::app()->request->isAjaxRequest)
@@ -122,6 +123,8 @@ class SiteController extends Controller
 			}
 			// display the login form
 			$this->render('login',array('model'=>$model));
+			// $site_url = "www.reelforge.com";
+			// $this->redirect('http://'.$site_url.'/reelforge_back/site/sitelogin');
 		}else{
 			$this->redirect(Yii::app()->user->returnUrl);
 		}

@@ -18,7 +18,7 @@ class HomeController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','print','view','video','tests','pdf','excel','cd','getdata'),
+				'actions'=>array('index','print','view','video','tests','pdf','excel','cd','html','getdata'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -76,7 +76,7 @@ class HomeController extends Controller
 		$mPDF1 = Yii::app()->ePdf2->Download('pdf',array('model'=>$model),$pdf_name);
 	}
 
-	public function actionCd()
+	public function actionHtml()
 	{
 	  	$model = new StorySearch('search');
 		$model->unsetAttributes();
@@ -86,6 +86,73 @@ class HomeController extends Controller
 			$model->startdate = date('Y-m-d',strtotime(str_replace('-', '/', $model->startdate)));
 			$model->enddate = date('Y-m-d',strtotime(str_replace('-', '/', $model->enddate)));
 		}
+
+		$todays = date('Y-m-d');
+		$startdate = $enddate = $todays;
+		$search = ' ';
+		$industries = '';
+		$cat_identifier = 1;
+		$type_identifier = 1;
+		if(isset($_GET['clientid'])){ $client = $_GET['clientid']; }else{ 	$client = Yii::app()->user->company_id; }
+		if(isset($_GET['startdate'])){ $startdate= $_GET['startdate']; }
+		if(isset($_GET['enddate'])){ $enddate= $_GET['enddate']; }
+		if(isset($_GET['search'])){ $search= $_GET['search']; }
+		if(isset($_GET['industries'])){ $industries= $_GET['industries'];  }
+		if(isset($_GET['cat_identifier'])){ $cat_identifier= $_GET['cat_identifier']; }
+		if(isset($_GET['type_identifier'])){ $type_identifier= $_GET['type_identifier']; }
+
+		$crunched = CompileHTML::Compiler($client,$startdate,$enddate,$search,$industries,$cat_identifier,$type_identifier);
+
+		$agency_id = Yii::app()->user->company_id;
+		$random = CompileCD::GenerateRandomId();
+		$html_name=$agency_id . "_". $random;
+
+		$path=$_SERVER['DOCUMENT_ROOT'].'/reelmediad/html/';
+		$filename_html=$path . "$html_name.html";
+		$filecontent = $crunched;
+		if (!$handle = fopen($filename_html, 'w')) {
+			echo "Cannot open file ($filename_html')";
+		}else{
+			if (fwrite($handle, $filecontent) === FALSE) 
+			{
+				echo "Cannot write to file ($filename_html)";
+			}
+			fclose($handle);
+		}
+
+		$file = $filename_html;
+		$file_name = 'Stories_'.date('Y_m_d_h_i_s');
+		$type = 'text/html';
+		if(file_exists($file)){
+			header('Content-Type:'.$type);
+			header('Content-Length: ' . filesize($file));
+			header('Content-Disposition: attachment; filename="'.$file_name.'.html"');
+			readfile($file);
+		}else{
+			echo 'file not found';
+		}
+	}
+
+	public function actionCd()
+	{
+		$model = new StorySearch('search');
+		$model->unsetAttributes();
+		if(isset($_POST['StorySearch']))
+		{
+			$model->attributes=Yii::app()->input->stripClean($_POST['StorySearch']);
+			$model->startdate = date('Y-m-d',strtotime(str_replace('-', '/', $model->startdate)));
+			$model->enddate = date('Y-m-d',strtotime(str_replace('-', '/', $model->enddate)));
+		}
+		$todays = date('Y-m-d');
+		$startdate = $enddate = $todays;
+		$search = ' ';
+		// Adding Country Code
+		$country = Yii::app()->user->country_id;
+		$industries = '';
+		// Adding backdate
+		$cat_identifier = 1;
+		$type_identifier = 1;
+		
 
 		if(isset($_GET['clientid'])){
 			$client = $_GET['clientid'];

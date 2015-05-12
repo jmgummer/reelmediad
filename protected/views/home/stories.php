@@ -19,13 +19,14 @@ $search = ' ';
 $country = Yii::app()->user->country_id;
 $industries = '';
 // Adding backdate
-
+$clientid = Yii::app()->user->company_id;
 $cat_identifier = 1;
 $type_identifier = 1;
 
 $company_words = Company::model()->find('company_id=:a order by keywords', array(':a'=>Yii::app()->user->company_id));
 $backdate = $company_words->backdate;
 
+$html = '';
 if(isset($_POST['StorySearch'])){
 	$country = $model->country;
 	$startdate = $model->startdate;
@@ -51,6 +52,8 @@ if(isset($_POST['StorySearch'])){
 			<h2>Export Reports ? 
 				<a href="<?=Yii::app()->createUrl("home/pdf?startdate=$startdate&enddate=$enddate&search=$search&industries=$industries&cat_identifier=$cat_identifier&type_identifier=$type_identifier");?>" class="btn btn-danger btn-xs pdf-excel"><i class="fa fa-file-pdf-o"></i> PDF</a>
 				<a href="<?=Yii::app()->createUrl("home/excel?startdate=$startdate&enddate=$enddate&search=$search&industries=$industries&cat_identifier=$cat_identifier&type_identifier=$type_identifier");?>" class="btn btn-success btn-xs pdf-excel"><i class="fa fa-file-excel-o"></i> EXCEL</a>
+				<a href="<?=Yii::app()->createUrl("home/cd?clientid=$clientid&startdate=$startdate&enddate=$enddate&search=$search&industries=$industries&cat_identifier=$cat_identifier&type_identifier=$type_identifier");?>" class="btn btn-primary btn-xs pdf-excel" target="_blank"><i class="fa fa-circle-o-notch"></i> CD</a>
+				<a href="<?=Yii::app()->createUrl("home/html?clientid=$clientid&startdate=$startdate&enddate=$enddate&search=$search&industries=$industries&cat_identifier=$cat_identifier&type_identifier=$type_identifier");?>" class="btn btn-warning btn-xs pdf-excel" target="_blank"><i class="fa fa-code"></i> HTML</a>
 			</h2>
 		</header>
 	</div>
@@ -84,6 +87,8 @@ if(isset($_POST['StorySearch'])){
 			<h2>Export Reports ? 
 				<a href="<?=Yii::app()->createUrl("home/pdf");?>" class="btn btn-danger btn-xs pdf-excel"><i class="fa fa-file-pdf-o"></i> PDF</a> 
 				<a href="<?=Yii::app()->createUrl("home/excel");?>" class="btn btn-success btn-xs pdf-excel"><i class="fa fa-file-excel-o"></i> EXCEL</a>
+				<a href="<?=Yii::app()->createUrl("home/cd");?>" class="btn btn-primary btn-xs pdf-excel" target="_blank"><i class="fa fa-circle-o-notch"></i> CD</a>
+				<a href="<?=Yii::app()->createUrl("home/html");?>" class="btn btn-warning btn-xs pdf-excel" target="_blank"><i class="fa fa-code"></i> HTML</a>
 			</h2>
 		</header>
 	</div>

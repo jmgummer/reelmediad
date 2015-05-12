@@ -510,7 +510,7 @@ class Story extends CActiveRecord
 			$rate_cost = 0;
 		}else{
 			$rate_cost = intval(trim($rate_cost, "'"));
-			// $rate_cost =  number_format(($rate_cost +0),0);
+			// $rate_cost =  Common::ExcelNumberFormat(($rate_cost +0),0);
 		}
 		
 		return $rate_cost;
@@ -536,7 +536,7 @@ class Story extends CActiveRecord
 
 	public static function AVEFormatted($ave)
 	{
-		$ave=number_format( ($ave+0),0);
+		$ave=Common::ExcelNumberFormat( ($ave+0),0);
 		return $ave;
 	}
 

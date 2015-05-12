@@ -56,7 +56,8 @@ if(isset($_POST['StorySearch'])){
 			<h2>Export Reports ? 
 				<a href="<?=Yii::app()->createUrl("home/pdf?clientid=$model->company&startdate=$startdate&enddate=$enddate&search=$search&industries=$industries&cat_identifier=$cat_identifier&type_identifier=$type_identifier");?>" class="btn btn-danger btn-xs pdf-excel"><i class="fa fa-file-pdf-o"></i> PDF</a>
 				<a href="<?=Yii::app()->createUrl("home/excel?clientid=$model->company&startdate=$startdate&enddate=$enddate&search=$search&industries=$industries&cat_identifier=$cat_identifier&type_identifier=$type_identifier");?>" class="btn btn-success btn-xs pdf-excel"><i class="fa fa-file-excel-o"></i> EXCEL</a>
-				<a href="<?=Yii::app()->createUrl("home/cd?clientid=$model->company&startdate=$startdate&enddate=$enddate&search=$search&industries=$industries&cat_identifier=$cat_identifier&type_identifier=$type_identifier");?>" class="btn btn-primary btn-xs pdf-excel"><i class="fa fa-circle-o-notch"></i> CD</a>
+				<a href="<?=Yii::app()->createUrl("home/cd?clientid=$model->company&startdate=$startdate&enddate=$enddate&search=$search&industries=$industries&cat_identifier=$cat_identifier&type_identifier=$type_identifier");?>" class="btn btn-primary btn-xs pdf-excel" target="_blank"><i class="fa fa-circle-o-notch"></i> CD</a>
+				<a href="<?=Yii::app()->createUrl("home/html?clientid=$model->company&startdate=$startdate&enddate=$enddate&search=$search&industries=$industries&cat_identifier=$cat_identifier&type_identifier=$type_identifier");?>" class="btn btn-warning btn-xs pdf-excel" target="_blank"><i class="fa fa-code"></i> HTML</a>
 			</h2>
 		</header>
 	</div>

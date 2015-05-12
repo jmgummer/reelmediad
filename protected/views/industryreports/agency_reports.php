@@ -16,18 +16,20 @@ $this->breadcrumbs=array('Industry Reports'=>array('industryreports/index'), 'Nu
 
 $report_identifier = array();
 if(isset($_POST['StorySearch'])){
+    $model->attributes=$_POST['StorySearch'];
     $client = $model->company;
     $csql = 'SELECT company_name, backdate from company WHERE company_id ='.$client;
     $company_words = Company::model()->findBySql($csql);
     $backdate = $company_words->backdate;
     $company = $company_words->company_name;
     $narrative = 'Number of '.$company.' stories in ';
-    $model->attributes=Yii::app()->input->stripClean($_POST['StorySearch']);
-    $model->startdate = date('Y-m-d',strtotime(str_replace('-', '/', $model->startdate)));
-    $model->enddate = date('Y-m-d',strtotime(str_replace('-', '/', $model->enddate)));
+
+    $model->startdate = date('Y-m-d',strtotime(str_replace('-', '/', $_POST['StorySearch']['startdate'])));
+    $model->enddate = date('Y-m-d',strtotime(str_replace('-', '/', $_POST['StorySearch']['enddate'])));
 
     $startdate = $model->startdate;
     $enddate = $model->enddate;
+
     $industry = implode(',', $model->industry);
     $inda=array();
     foreach ($model->industry as $key) {
@@ -43,13 +45,7 @@ if(isset($_POST['StorySearch'])){
             $report_identifier[]= $report_id;
         }
     }
-}
-
-if(isset($_POST['StorySearch'])){
     
-    // $industry = implode(',', $model->industry);
-    $startdate = $_POST['StorySearch']['startdate'];
-    $enddate = $_POST['StorySearch']['enddate'];
     $setindustry = implode(',', $_POST['StorySearch']['industry']);
 
     echo '<div class="widget-body">
@@ -153,6 +149,7 @@ if(isset($_POST['StorySearch'])){
         // Get Array of Companies
         $wol = IndustryQueries::GetShareVoiceIndustry($client,$startdate,$enddate,$industry,$backdate);
         echo '<div style="padding:0px; background-color:#fff; border:0px solid #745C92; width: 100%;">';
+        // echo $client ;echo $svm2narrative;echo $company;echo  $startdate;echo $enddate;echo $industry;echo $backdate ;
         $strXML = FusionCharts::packageMentionsXML($client,$svm2narrative, $wol,$company, $startdate,$enddate,$industry,$backdate);
         $charty = new FusionCharts;
         echo FusionCharts::renderChart(Yii::app()->request->baseUrl . '/FusionCharts/FusionCharts/FusionCharts/Pie2D.swf', "", $strXML, $chart_name, 600, 300, false, true, true);

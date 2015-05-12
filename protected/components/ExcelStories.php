@@ -99,7 +99,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("F$count", $story->PublicationType)
 		            ->setCellValue("G$count", $story->Picture)
 		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("I$count", number_format($story->AVE));
+		            ->setCellValue("I$count", Common::ExcelNumberFormat($story->AVE));
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
@@ -110,7 +110,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 			}
 			$count=$count+1;
 	        $PHPExcel->getActiveSheet()
-	        ->setCellValue("I$count", number_format($avesum));
+	        ->setCellValue("I$count", Common::ExcelNumberFormat($avesum));
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -153,7 +153,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		$PHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
 
 		/* Add Values to the Spreadsheet */
-		$q3 = 'SELECT * from story,story_mention,mediahouse
+		$q3 = 'SELECT story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID from story,story_mention,mediahouse
 		where story_mention.client_id='.$client.' and story.Story_ID=story_mention.story_id
 		and story.Media_ID!="mp01" and story.step3=1
 		and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
@@ -166,32 +166,77 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  )
 		);
 		if($story = Story::model()->findAllBySql($q3)){
-			$avesum = 0;
-			$prvsum = 0;
-			foreach ($story as $key) {
-				if($story = ExcelStories::GetStories($key->Story_ID)){
-					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
+
+			$electronic_split = ExcelElectronic::ArrayGenerator($story,$client);
+
+			$tv_section = $electronic_split['tvdata'];
+			if(count($tv_section)>0){
+				$PHPExcel->getActiveSheet()->setCellValue("A$count", "TV");
+				$count=$count+1;
+				$avesum = 0;
+				$prvsum = 0;
+
+				foreach ($tv_section as $key) {
+					$link = $key["link"];
 					$PHPExcel->getActiveSheet()
-		            ->setCellValue("A$count", $story->StoryDate)
-		            ->setCellValue("B$count", $story->Publication)
-		            ->setCellValue("C$count", $story->journalist)
-		            ->setCellValue("D$count", $story->Title)
-		            ->setCellValue("E$count", $story->FormatedTime)
-		            ->setCellValue("F$count", $story->FormatedDuration)
-		            ->setCellValue("G$count", Story::ClientIndustryCategory($story->Story_ID,$client))
-		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("I$count", number_format($story->AVE));
+		            ->setCellValue("A$count", $key["date"])
+		            ->setCellValue("B$count", $key["publication"])
+		            ->setCellValue("C$count", $key["journalist"])
+		            ->setCellValue("D$count", $key["title"])
+		            ->setCellValue("E$count", $key["time"])
+		            ->setCellValue("F$count", $key["duration"])
+		            ->setCellValue("G$count", $key["category"])
+		            ->setCellValue("H$count", $key["tonality"])
+		            ->setCellValue("I$count", $key["ave"]);
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
-					
-		            $avesum = $avesum + $story->AVE;
+		            $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+
+		            $key["ave"] = str_replace(",", "", $key["ave"]);
+		            $avesum = $avesum + $key["ave"];
 		            $count++;
 				}
+				$count=$count+1;
+		        $PHPExcel->getActiveSheet()->setCellValue("I$count", Common::ExcelNumberFormat($avesum));
+		        $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+		        $count=$count+1;
 			}
-			$count=$count+1;
-	        $PHPExcel->getActiveSheet()
-	        ->setCellValue("I$count", number_format($avesum));
+
+	        $radio_section = $electronic_split['radiodata'];
+	        if(count($radio_section)>0){
+				$PHPExcel->getActiveSheet()->setCellValue("A$count", "RADIO");
+				$count=$count+1;
+				$avesum = 0;
+				$prvsum = 0;
+
+				foreach ($radio_section as $key) {
+					$link = $key["link"];
+					$PHPExcel->getActiveSheet()
+		            ->setCellValue("A$count", $key["date"])
+		            ->setCellValue("B$count", $key["publication"])
+		            ->setCellValue("C$count", $key["journalist"])
+		            ->setCellValue("D$count", $key["title"])
+		            ->setCellValue("E$count", $key["time"])
+		            ->setCellValue("F$count", $key["duration"])
+		            ->setCellValue("G$count", $key["category"])
+		            ->setCellValue("H$count", $key["tonality"])
+		            ->setCellValue("I$count", $key["ave"]);
+		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
+		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
+		            $PHPExcel->getActiveSheet()->getStyle("D$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
+		            $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+					
+					$key["ave"] = str_replace(",", "", $key["ave"]);
+		            $avesum = $avesum + $key["ave"];
+		            $count++;
+				}
+				$count=$count+1;
+		        $PHPExcel->getActiveSheet()->setCellValue("I$count", Common::ExcelNumberFormat($avesum));
+		        $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+		        $count=$count+1;
+			}
+
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -269,7 +314,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("F$count", $story->PublicationType)
 		            ->setCellValue("G$count", $story->Picture)
 		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("I$count", number_format($story->AVE));
+		            ->setCellValue("I$count", Common::ExcelNumberFormat($story->AVE));
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
@@ -280,7 +325,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 			}
 			$count=$count+1;
 	        $PHPExcel->getActiveSheet()
-	        ->setCellValue("I$count", number_format($avesum));
+	        ->setCellValue("I$count", Common::ExcelNumberFormat($avesum));
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -324,7 +369,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		$PHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
 
 		/* Add Values to the Spreadsheet */
-		$q5 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story
+		$q5 = 'SELECT distinct(story.story_id) as Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID
 		from story, story_industry, industry_subs, mediahouse
 		where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.')
 		and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.'
@@ -344,32 +389,76 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  )
 		);
 		if($story = Story::model()->findAllBySql($q5)){
-			$avesum = 0;
-			$prvsum = 0;
-			foreach ($story as $key) {
-				if($story = ExcelStories::GetStories($key->Story_ID)){
-					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
+			$electronic_split = ExcelElectronic::ArrayGenerator($story,$client);
+
+			$tv_section = $electronic_split['tvdata'];
+			if(count($tv_section)>0){
+				$PHPExcel->getActiveSheet()->setCellValue("A$count", "TV");
+				$count=$count+1;
+				$avesum = 0;
+				$prvsum = 0;
+
+				foreach ($tv_section as $key) {
+					$link = $key["link"];
 					$PHPExcel->getActiveSheet()
-		            ->setCellValue("A$count", $story->StoryDate)
-		            ->setCellValue("B$count", $story->Publication)
-		            ->setCellValue("C$count", $story->journalist)
-		            ->setCellValue("D$count", $story->Title)
-		            ->setCellValue("E$count", $story->FormatedTime)
-		            ->setCellValue("F$count", $story->FormatedDuration)
-		            ->setCellValue("G$count", Story::ClientIndustryCategory($story->Story_ID,$client))
-		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("I$count", number_format($story->AVE));
+		            ->setCellValue("A$count", $key["date"])
+		            ->setCellValue("B$count", $key["publication"])
+		            ->setCellValue("C$count", $key["journalist"])
+		            ->setCellValue("D$count", $key["title"])
+		            ->setCellValue("E$count", $key["time"])
+		            ->setCellValue("F$count", $key["duration"])
+		            ->setCellValue("G$count", $key["category"])
+		            ->setCellValue("H$count", $key["tonality"])
+		            ->setCellValue("I$count", $key["ave"]);
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
-					
-		            $avesum = $avesum + $story->AVE;
+		            $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+
+		            $key["ave"] = str_replace(",", "", $key["ave"]);
+		            $avesum = $avesum + $key["ave"];
 		            $count++;
 				}
+				$count=$count+1;
+		        $PHPExcel->getActiveSheet()->setCellValue("I$count", Common::ExcelNumberFormat($avesum));
+		        $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+		        $count=$count+1;
 			}
-			$count=$count+1;
-	        $PHPExcel->getActiveSheet()
-	        ->setCellValue("I$count", number_format($avesum));
+
+	        $radio_section = $electronic_split['radiodata'];
+	        if(count($radio_section)>0){
+				$PHPExcel->getActiveSheet()->setCellValue("A$count", "RADIO");
+				$count=$count+1;
+				$avesum = 0;
+				$prvsum = 0;
+
+				foreach ($radio_section as $key) {
+					$link = $key["link"];
+					$PHPExcel->getActiveSheet()
+		            ->setCellValue("A$count", $key["date"])
+		            ->setCellValue("B$count", $key["publication"])
+		            ->setCellValue("C$count", $key["journalist"])
+		            ->setCellValue("D$count", $key["title"])
+		            ->setCellValue("E$count", $key["time"])
+		            ->setCellValue("F$count", $key["duration"])
+		            ->setCellValue("G$count", $key["category"])
+		            ->setCellValue("H$count", $key["tonality"])
+		            ->setCellValue("I$count", $key["ave"]);
+		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
+		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
+		            $PHPExcel->getActiveSheet()->getStyle("D$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
+		            $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+					
+					$key["ave"] = str_replace(",", "", $key["ave"]);
+		            $avesum = $avesum + $key["ave"];
+		            $count++;
+				}
+				$count=$count+1;
+		        $PHPExcel->getActiveSheet()->setCellValue("I$count", Common::ExcelNumberFormat($avesum));
+		        $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+		        $count=$count+1;
+			}
+
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -468,7 +557,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("F$count", $story->PublicationType)
 		            ->setCellValue("G$count", $story->Picture)
 		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("I$count", number_format($story->AVE));
+		            ->setCellValue("I$count", Common::ExcelNumberFormat($story->AVE));
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
@@ -479,7 +568,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 			}
 			$count=$count+1;
 	        $PHPExcel->getActiveSheet()
-	        ->setCellValue("I$count", number_format($avesum));
+	        ->setCellValue("I$count", Common::ExcelNumberFormat($avesum));
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -522,7 +611,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		$PHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
 
 		/* Add Values to the Spreadsheet */
-		$q3 = 'SELECT * from story,story_mention,mediahouse
+		$q3 = 'SELECT story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID from story,story_mention,mediahouse
 		where story_mention.client_id='.$client.' and story.Story_ID=story_mention.story_id
 		and story.Media_ID!="mp01" and story.step3=1
 		and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
@@ -535,32 +624,76 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  )
 		);
 		if($story = Story::model()->findAllBySql($q3)){
-			$avesum = 0;
-			$prvsum = 0;
-			foreach ($story as $key) {
-				if($story = ExcelStories::GetStories($key->Story_ID)){
-					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
+			$electronic_split = ExcelElectronic::ArrayGenerator($story,$client);
+
+			$tv_section = $electronic_split['tvdata'];
+			if(count($tv_section)>0){
+				$PHPExcel->getActiveSheet()->setCellValue("A$count", "TV");
+				$count=$count+1;
+				$avesum = 0;
+				$prvsum = 0;
+
+				foreach ($tv_section as $key) {
+					$link = $key["link"];
 					$PHPExcel->getActiveSheet()
-		            ->setCellValue("A$count", $story->StoryDate)
-		            ->setCellValue("B$count", $story->Publication)
-		            ->setCellValue("C$count", $story->journalist)
-		            ->setCellValue("D$count", $story->Title)
-		            ->setCellValue("E$count", $story->FormatedTime)
-		            ->setCellValue("F$count", $story->FormatedDuration)
-		            ->setCellValue("G$count", Story::ClientIndustryCategory($story->Story_ID,$client))
-		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("I$count", number_format($story->AVE));
+		            ->setCellValue("A$count", $key["date"])
+		            ->setCellValue("B$count", $key["publication"])
+		            ->setCellValue("C$count", $key["journalist"])
+		            ->setCellValue("D$count", $key["title"])
+		            ->setCellValue("E$count", $key["time"])
+		            ->setCellValue("F$count", $key["duration"])
+		            ->setCellValue("G$count", $key["category"])
+		            ->setCellValue("H$count", $key["tonality"])
+		            ->setCellValue("I$count", $key["ave"]);
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
-					
-		            $avesum = $avesum + $story->AVE;
+		            $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+
+		            $key["ave"] = str_replace(",", "", $key["ave"]);
+		            $avesum = $avesum + $key["ave"];
 		            $count++;
 				}
+				$count=$count+1;
+		        $PHPExcel->getActiveSheet()->setCellValue("I$count", Common::ExcelNumberFormat($avesum));
+		        $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+		        $count=$count+1;
 			}
-			$count=$count+1;
-	        $PHPExcel->getActiveSheet()
-	        ->setCellValue("I$count", number_format($avesum));
+
+	        $radio_section = $electronic_split['radiodata'];
+	        if(count($radio_section)>0){
+				$PHPExcel->getActiveSheet()->setCellValue("A$count", "RADIO");
+				$count=$count+1;
+				$avesum = 0;
+				$prvsum = 0;
+
+				foreach ($radio_section as $key) {
+					$link = $key["link"];
+					$PHPExcel->getActiveSheet()
+		            ->setCellValue("A$count", $key["date"])
+		            ->setCellValue("B$count", $key["publication"])
+		            ->setCellValue("C$count", $key["journalist"])
+		            ->setCellValue("D$count", $key["title"])
+		            ->setCellValue("E$count", $key["time"])
+		            ->setCellValue("F$count", $key["duration"])
+		            ->setCellValue("G$count", $key["category"])
+		            ->setCellValue("H$count", $key["tonality"])
+		            ->setCellValue("I$count", $key["ave"]);
+		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
+		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
+		            $PHPExcel->getActiveSheet()->getStyle("D$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
+		            $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+					
+					$key["ave"] = str_replace(",", "", $key["ave"]);
+		            $avesum = $avesum + $key["ave"];
+		            $count++;
+				}
+				$count=$count+1;
+		        $PHPExcel->getActiveSheet()->setCellValue("I$count", Common::ExcelNumberFormat($avesum));
+		        $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+		        $count=$count+1;
+			}
+
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -651,7 +784,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("F$count", $story->PublicationType)
 		            ->setCellValue("G$count", $story->Picture)
 		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("I$count", number_format($story->AVE));
+		            ->setCellValue("I$count", Common::ExcelNumberFormat($story->AVE));
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
@@ -662,7 +795,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 			}
 			$count=$count+1;
 	        $PHPExcel->getActiveSheet()
-	        ->setCellValue("I$count", number_format($avesum));
+	        ->setCellValue("I$count", Common::ExcelNumberFormat($avesum));
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -726,32 +859,76 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  )
 		);
 		if($story = Story::model()->findAllBySql($q5)){
-			$avesum = 0;
-			$prvsum = 0;
-			foreach ($story as $key) {
-				if($story = ExcelStories::GetStories($key->Story_ID)){
-					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
+			$electronic_split = ExcelElectronic::ArrayGenerator($story,$client);
+
+			$tv_section = $electronic_split['tvdata'];
+			if(count($tv_section)>0){
+				$PHPExcel->getActiveSheet()->setCellValue("A$count", "TV");
+				$count=$count+1;
+				$avesum = 0;
+				$prvsum = 0;
+
+				foreach ($tv_section as $key) {
+					$link = $key["link"];
 					$PHPExcel->getActiveSheet()
-		            ->setCellValue("A$count", $story->StoryDate)
-		            ->setCellValue("B$count", $story->Publication)
-		            ->setCellValue("C$count", $story->journalist)
-		            ->setCellValue("D$count", $story->Title)
-		            ->setCellValue("E$count", $story->FormatedTime)
-		            ->setCellValue("F$count", $story->FormatedDuration)
-		            ->setCellValue("G$count", Story::ClientIndustryCategory($story->Story_ID,$client))
-		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("I$count", number_format($story->AVE));
+		            ->setCellValue("A$count", $key["date"])
+		            ->setCellValue("B$count", $key["publication"])
+		            ->setCellValue("C$count", $key["journalist"])
+		            ->setCellValue("D$count", $key["title"])
+		            ->setCellValue("E$count", $key["time"])
+		            ->setCellValue("F$count", $key["duration"])
+		            ->setCellValue("G$count", $key["category"])
+		            ->setCellValue("H$count", $key["tonality"])
+		            ->setCellValue("I$count", $key["ave"]);
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
-					
-		            $avesum = $avesum + $story->AVE;
+		            $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+
+		            $key["ave"] = str_replace(",", "", $key["ave"]);
+		            $avesum = $avesum + $key["ave"];
 		            $count++;
 				}
+				$count=$count+1;
+		        $PHPExcel->getActiveSheet()->setCellValue("I$count", Common::ExcelNumberFormat($avesum));
+		        $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+		        $count=$count+1;
 			}
-			$count=$count+1;
-	        $PHPExcel->getActiveSheet()
-	        ->setCellValue("I$count", number_format($avesum));
+
+	        $radio_section = $electronic_split['radiodata'];
+	        if(count($radio_section)>0){
+				$PHPExcel->getActiveSheet()->setCellValue("A$count", "RADIO");
+				$count=$count+1;
+				$avesum = 0;
+				$prvsum = 0;
+
+				foreach ($radio_section as $key) {
+					$link = $key["link"];
+					$PHPExcel->getActiveSheet()
+		            ->setCellValue("A$count", $key["date"])
+		            ->setCellValue("B$count", $key["publication"])
+		            ->setCellValue("C$count", $key["journalist"])
+		            ->setCellValue("D$count", $key["title"])
+		            ->setCellValue("E$count", $key["time"])
+		            ->setCellValue("F$count", $key["duration"])
+		            ->setCellValue("G$count", $key["category"])
+		            ->setCellValue("H$count", $key["tonality"])
+		            ->setCellValue("I$count", $key["ave"]);
+		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
+		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
+		            $PHPExcel->getActiveSheet()->getStyle("D$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
+		            $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+					
+					$key["ave"] = str_replace(",", "", $key["ave"]);
+		            $avesum = $avesum + $key["ave"];
+		            $count++;
+				}
+				$count=$count+1;
+		        $PHPExcel->getActiveSheet()->setCellValue("I$count", Common::ExcelNumberFormat($avesum));
+		        $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+		        $count=$count+1;
+			}
+
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -850,7 +1027,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("F$count", $story->PublicationType)
 		            ->setCellValue("G$count", $story->Picture)
 		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("I$count", number_format($story->AVE));
+		            ->setCellValue("I$count", Common::ExcelNumberFormat($story->AVE));
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
@@ -861,7 +1038,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 			}
 			$count=$count+1;
 	        $PHPExcel->getActiveSheet()
-	        ->setCellValue("I$count", number_format($avesum));
+	        ->setCellValue("I$count", Common::ExcelNumberFormat($avesum));
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -937,7 +1114,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("F$count", $story->PublicationType)
 		            ->setCellValue("G$count", $story->Picture)
 		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("I$count", number_format($story->AVE));
+		            ->setCellValue("I$count", Common::ExcelNumberFormat($story->AVE));
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
@@ -948,7 +1125,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 			}
 			$count=$count+1;
 	        $PHPExcel->getActiveSheet()
-	        ->setCellValue("I$count", number_format($avesum));
+	        ->setCellValue("I$count", Common::ExcelNumberFormat($avesum));
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -1047,7 +1224,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("F$count", $story->PublicationType)
 		            ->setCellValue("G$count", $story->Picture)
 		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("I$count", number_format($story->AVE));
+		            ->setCellValue("I$count", Common::ExcelNumberFormat($story->AVE));
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
@@ -1058,7 +1235,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 			}
 			$count=$count+1;
 	        $PHPExcel->getActiveSheet()
-	        ->setCellValue("I$count", number_format($avesum));
+	        ->setCellValue("I$count", Common::ExcelNumberFormat($avesum));
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -1146,7 +1323,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		            ->setCellValue("F$count", $story->PublicationType)
 		            ->setCellValue("G$count", $story->Picture)
 		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("I$count", number_format($story->AVE));
+		            ->setCellValue("I$count", Common::ExcelNumberFormat($story->AVE));
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
@@ -1157,7 +1334,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 			}
 			$count=$count+1;
 	        $PHPExcel->getActiveSheet()
-	        ->setCellValue("I$count", number_format($avesum));
+	        ->setCellValue("I$count", Common::ExcelNumberFormat($avesum));
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -1213,7 +1390,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		$PHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
 
 		/* Add Values to the Spreadsheet */
-		$q3 = 'SELECT * from story,story_mention,mediahouse
+		$q3 = 'SELECT story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID from story,story_mention,mediahouse
 		where story_mention.client_id='.$client.' and story.Story_ID=story_mention.story_id
 		and story.Media_ID!="mp01" and story.step3=1
 		and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
@@ -1226,32 +1403,76 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  )
 		);
 		if($story = Story::model()->findAllBySql($q3)){
-			$avesum = 0;
-			$prvsum = 0;
-			foreach ($story as $key) {
-				if($story = ExcelStories::GetStories($key->Story_ID)){
-					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
+			$electronic_split = ExcelElectronic::ArrayGenerator($story,$client);
+
+			$tv_section = $electronic_split['tvdata'];
+			if(count($tv_section)>0){
+				$PHPExcel->getActiveSheet()->setCellValue("A$count", "TV");
+				$count=$count+1;
+				$avesum = 0;
+				$prvsum = 0;
+
+				foreach ($tv_section as $key) {
+					$link = $key["link"];
 					$PHPExcel->getActiveSheet()
-		            ->setCellValue("A$count", $story->StoryDate)
-		            ->setCellValue("B$count", $story->Publication)
-		            ->setCellValue("C$count", $story->journalist)
-		            ->setCellValue("D$count", $story->Title)
-		            ->setCellValue("E$count", $story->FormatedTime)
-		            ->setCellValue("F$count", $story->FormatedDuration)
-		            ->setCellValue("G$count", Story::ClientIndustryCategory($story->Story_ID,$client))
-		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("I$count", number_format($story->AVE));
+		            ->setCellValue("A$count", $key["date"])
+		            ->setCellValue("B$count", $key["publication"])
+		            ->setCellValue("C$count", $key["journalist"])
+		            ->setCellValue("D$count", $key["title"])
+		            ->setCellValue("E$count", $key["time"])
+		            ->setCellValue("F$count", $key["duration"])
+		            ->setCellValue("G$count", $key["category"])
+		            ->setCellValue("H$count", $key["tonality"])
+		            ->setCellValue("I$count", $key["ave"]);
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
-					
-		            $avesum = $avesum + $story->AVE;
+		            $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+
+		            $key["ave"] = str_replace(",", "", $key["ave"]);
+		            $avesum = $avesum + $key["ave"];
 		            $count++;
 				}
+				$count=$count+1;
+		        $PHPExcel->getActiveSheet()->setCellValue("I$count", Common::ExcelNumberFormat($avesum));
+		        $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+		        $count=$count+1;
 			}
-			$count=$count+1;
-	        $PHPExcel->getActiveSheet()
-	        ->setCellValue("I$count", number_format($avesum));
+
+	        $radio_section = $electronic_split['radiodata'];
+	        if(count($radio_section)>0){
+				$PHPExcel->getActiveSheet()->setCellValue("A$count", "RADIO");
+				$count=$count+1;
+				$avesum = 0;
+				$prvsum = 0;
+
+				foreach ($radio_section as $key) {
+					$link = $key["link"];
+					$PHPExcel->getActiveSheet()
+		            ->setCellValue("A$count", $key["date"])
+		            ->setCellValue("B$count", $key["publication"])
+		            ->setCellValue("C$count", $key["journalist"])
+		            ->setCellValue("D$count", $key["title"])
+		            ->setCellValue("E$count", $key["time"])
+		            ->setCellValue("F$count", $key["duration"])
+		            ->setCellValue("G$count", $key["category"])
+		            ->setCellValue("H$count", $key["tonality"])
+		            ->setCellValue("I$count", $key["ave"]);
+		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
+		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
+		            $PHPExcel->getActiveSheet()->getStyle("D$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
+		            $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+					
+					$key["ave"] = str_replace(",", "", $key["ave"]);
+		            $avesum = $avesum + $key["ave"];
+		            $count++;
+				}
+				$count=$count+1;
+		        $PHPExcel->getActiveSheet()->setCellValue("I$count", Common::ExcelNumberFormat($avesum));
+		        $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+		        $count=$count+1;
+			}
+
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -1315,32 +1536,76 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  )
 		);
 		if($story = Story::model()->findAllBySql($q5)){
-			$avesum = 0;
-			$prvsum = 0;
-			foreach ($story as $key) {
-				if($story = ExcelStories::GetStories($key->Story_ID)){
-					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
+			$electronic_split = ExcelElectronic::ArrayGenerator($story,$client);
+
+			$tv_section = $electronic_split['tvdata'];
+			if(count($tv_section)>0){
+				$PHPExcel->getActiveSheet()->setCellValue("A$count", "TV");
+				$count=$count+1;
+				$avesum = 0;
+				$prvsum = 0;
+
+				foreach ($tv_section as $key) {
+					$link = $key["link"];
 					$PHPExcel->getActiveSheet()
-		            ->setCellValue("A$count", $story->StoryDate)
-		            ->setCellValue("B$count", $story->Publication)
-		            ->setCellValue("C$count", $story->journalist)
-		            ->setCellValue("D$count", $story->Title)
-		            ->setCellValue("E$count", $story->FormatedTime)
-		            ->setCellValue("F$count", $story->FormatedDuration)
-		            ->setCellValue("G$count", Story::ClientIndustryCategory($story->Story_ID,$client))
-		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("I$count", number_format($story->AVE));
+		            ->setCellValue("A$count", $key["date"])
+		            ->setCellValue("B$count", $key["publication"])
+		            ->setCellValue("C$count", $key["journalist"])
+		            ->setCellValue("D$count", $key["title"])
+		            ->setCellValue("E$count", $key["time"])
+		            ->setCellValue("F$count", $key["duration"])
+		            ->setCellValue("G$count", $key["category"])
+		            ->setCellValue("H$count", $key["tonality"])
+		            ->setCellValue("I$count", $key["ave"]);
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
-					
-		            $avesum = $avesum + $story->AVE;
+		            $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+
+		            $key["ave"] = str_replace(",", "", $key["ave"]);
+		            $avesum = $avesum + $key["ave"];
 		            $count++;
 				}
+				$count=$count+1;
+		        $PHPExcel->getActiveSheet()->setCellValue("I$count", Common::ExcelNumberFormat($avesum));
+		        $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+		        $count=$count+1;
 			}
-			$count=$count+1;
-	        $PHPExcel->getActiveSheet()
-	        ->setCellValue("I$count", number_format($avesum));
+
+	        $radio_section = $electronic_split['radiodata'];
+	        if(count($radio_section)>0){
+				$PHPExcel->getActiveSheet()->setCellValue("A$count", "RADIO");
+				$count=$count+1;
+				$avesum = 0;
+				$prvsum = 0;
+
+				foreach ($radio_section as $key) {
+					$link = $key["link"];
+					$PHPExcel->getActiveSheet()
+		            ->setCellValue("A$count", $key["date"])
+		            ->setCellValue("B$count", $key["publication"])
+		            ->setCellValue("C$count", $key["journalist"])
+		            ->setCellValue("D$count", $key["title"])
+		            ->setCellValue("E$count", $key["time"])
+		            ->setCellValue("F$count", $key["duration"])
+		            ->setCellValue("G$count", $key["category"])
+		            ->setCellValue("H$count", $key["tonality"])
+		            ->setCellValue("I$count", $key["ave"]);
+		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
+		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
+		            $PHPExcel->getActiveSheet()->getStyle("D$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
+		            $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+					
+					$key["ave"] = str_replace(",", "", $key["ave"]);
+		            $avesum = $avesum + $key["ave"];
+		            $count++;
+				}
+				$count=$count+1;
+		        $PHPExcel->getActiveSheet()->setCellValue("I$count", Common::ExcelNumberFormat($avesum));
+		        $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+		        $count=$count+1;
+			}
+
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -1395,7 +1660,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		$PHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
 
 		/* Add Values to the Spreadsheet */
-		$q3 = 'SELECT * from story,story_mention,mediahouse
+		$q3 = 'SELECT story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID from story,story_mention,mediahouse
 		where story_mention.client_id='.$client.' and story.Story_ID=story_mention.story_id
 		and story.Media_ID!="mp01" and story.step3=1
 		and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
@@ -1408,32 +1673,76 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  )
 		);
 		if($story = Story::model()->findAllBySql($q3)){
-			$avesum = 0;
-			$prvsum = 0;
-			foreach ($story as $key) {
-				if($story = ExcelStories::GetStories($key->Story_ID)){
-					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
+			$electronic_split = ExcelElectronic::ArrayGenerator($story,$client);
+
+			$tv_section = $electronic_split['tvdata'];
+			if(count($tv_section)>0){
+				$PHPExcel->getActiveSheet()->setCellValue("A$count", "TV");
+				$count=$count+1;
+				$avesum = 0;
+				$prvsum = 0;
+
+				foreach ($tv_section as $key) {
+					$link = $key["link"];
 					$PHPExcel->getActiveSheet()
-		            ->setCellValue("A$count", $story->StoryDate)
-		            ->setCellValue("B$count", $story->Publication)
-		            ->setCellValue("C$count", $story->journalist)
-		            ->setCellValue("D$count", $story->Title)
-		            ->setCellValue("E$count", $story->FormatedTime)
-		            ->setCellValue("F$count", $story->FormatedDuration)
-		            ->setCellValue("G$count", Story::ClientIndustryCategory($story->Story_ID,$client))
-		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("I$count", number_format($story->AVE));
+		            ->setCellValue("A$count", $key["date"])
+		            ->setCellValue("B$count", $key["publication"])
+		            ->setCellValue("C$count", $key["journalist"])
+		            ->setCellValue("D$count", $key["title"])
+		            ->setCellValue("E$count", $key["time"])
+		            ->setCellValue("F$count", $key["duration"])
+		            ->setCellValue("G$count", $key["category"])
+		            ->setCellValue("H$count", $key["tonality"])
+		            ->setCellValue("I$count", $key["ave"]);
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
-					
-		            $avesum = $avesum + $story->AVE;
+		            $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+
+		            $key["ave"] = str_replace(",", "", $key["ave"]);
+		            $avesum = $avesum + $key["ave"];
 		            $count++;
 				}
+				$count=$count+1;
+		        $PHPExcel->getActiveSheet()->setCellValue("I$count", Common::ExcelNumberFormat($avesum));
+		        $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+		        $count=$count+1;
 			}
-			$count=$count+1;
-	        $PHPExcel->getActiveSheet()
-	        ->setCellValue("I$count", number_format($avesum));
+
+	        $radio_section = $electronic_split['radiodata'];
+	        if(count($radio_section)>0){
+				$PHPExcel->getActiveSheet()->setCellValue("A$count", "RADIO");
+				$count=$count+1;
+				$avesum = 0;
+				$prvsum = 0;
+
+				foreach ($radio_section as $key) {
+					$link = $key["link"];
+					$PHPExcel->getActiveSheet()
+		            ->setCellValue("A$count", $key["date"])
+		            ->setCellValue("B$count", $key["publication"])
+		            ->setCellValue("C$count", $key["journalist"])
+		            ->setCellValue("D$count", $key["title"])
+		            ->setCellValue("E$count", $key["time"])
+		            ->setCellValue("F$count", $key["duration"])
+		            ->setCellValue("G$count", $key["category"])
+		            ->setCellValue("H$count", $key["tonality"])
+		            ->setCellValue("I$count", $key["ave"]);
+		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
+		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
+		            $PHPExcel->getActiveSheet()->getStyle("D$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
+		            $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+					
+					$key["ave"] = str_replace(",", "", $key["ave"]);
+		            $avesum = $avesum + $key["ave"];
+		            $count++;
+				}
+				$count=$count+1;
+		        $PHPExcel->getActiveSheet()->setCellValue("I$count", Common::ExcelNumberFormat($avesum));
+		        $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+		        $count=$count+1;
+			}
+
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()
@@ -1489,7 +1798,7 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		$PHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
 
 		/* Add Values to the Spreadsheet */
-		$q5 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story
+		$q5 = 'SELECT distinct(story.story_id) as Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID
 		from story, story_industry, industry_subs, mediahouse
 		where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.')
 		and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.'
@@ -1509,32 +1818,76 @@ public static function GetMainOption($client,$startdate,$enddate,$search,$backda
 		  )
 		);
 		if($story = Story::model()->findAllBySql($q5)){
-			$avesum = 0;
-			$prvsum = 0;
-			foreach ($story as $key) {
-				if($story = ExcelStories::GetStories($key->Story_ID)){
-					$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
+			$electronic_split = ExcelElectronic::ArrayGenerator($story,$client);
+
+			$tv_section = $electronic_split['tvdata'];
+			if(count($tv_section)>0){
+				$PHPExcel->getActiveSheet()->setCellValue("A$count", "TV");
+				$count=$count+1;
+				$avesum = 0;
+				$prvsum = 0;
+
+				foreach ($tv_section as $key) {
+					$link = $key["link"];
 					$PHPExcel->getActiveSheet()
-		            ->setCellValue("A$count", $story->StoryDate)
-		            ->setCellValue("B$count", $story->Publication)
-		            ->setCellValue("C$count", $story->journalist)
-		            ->setCellValue("D$count", $story->Title)
-		            ->setCellValue("E$count", $story->FormatedTime)
-		            ->setCellValue("F$count", $story->FormatedDuration)
-		            ->setCellValue("G$count", Story::ClientIndustryCategory($story->Story_ID,$client))
-		            ->setCellValue("H$count", Story::ClientTonality($story->Story_ID,$client))
-		            ->setCellValue("I$count", number_format($story->AVE));
+		            ->setCellValue("A$count", $key["date"])
+		            ->setCellValue("B$count", $key["publication"])
+		            ->setCellValue("C$count", $key["journalist"])
+		            ->setCellValue("D$count", $key["title"])
+		            ->setCellValue("E$count", $key["time"])
+		            ->setCellValue("F$count", $key["duration"])
+		            ->setCellValue("G$count", $key["category"])
+		            ->setCellValue("H$count", $key["tonality"])
+		            ->setCellValue("I$count", $key["ave"]);
 		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
 		            $PHPExcel->getActiveSheet()->getStyle("D$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
-					
-		            $avesum = $avesum + $story->AVE;
+		            $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+
+		            $key["ave"] = str_replace(",", "", $key["ave"]);
+		            $avesum = $avesum + $key["ave"];
 		            $count++;
 				}
+				$count=$count+1;
+		        $PHPExcel->getActiveSheet()->setCellValue("I$count", Common::ExcelNumberFormat($avesum));
+		        $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+		        $count=$count+1;
 			}
-			$count=$count+1;
-	        $PHPExcel->getActiveSheet()
-	        ->setCellValue("I$count", number_format($avesum));
+
+	        $radio_section = $electronic_split['radiodata'];
+	        if(count($radio_section)>0){
+				$PHPExcel->getActiveSheet()->setCellValue("A$count", "RADIO");
+				$count=$count+1;
+				$avesum = 0;
+				$prvsum = 0;
+
+				foreach ($radio_section as $key) {
+					$link = $key["link"];
+					$PHPExcel->getActiveSheet()
+		            ->setCellValue("A$count", $key["date"])
+		            ->setCellValue("B$count", $key["publication"])
+		            ->setCellValue("C$count", $key["journalist"])
+		            ->setCellValue("D$count", $key["title"])
+		            ->setCellValue("E$count", $key["time"])
+		            ->setCellValue("F$count", $key["duration"])
+		            ->setCellValue("G$count", $key["category"])
+		            ->setCellValue("H$count", $key["tonality"])
+		            ->setCellValue("I$count", $key["ave"]);
+		            $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
+		            $PHPExcel->getActiveSheet()->getStyle("D$count")->applyFromArray($styleArray);
+		            $PHPExcel->getActiveSheet()->getStyle("D$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
+		            $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+					
+					$key["ave"] = str_replace(",", "", $key["ave"]);
+		            $avesum = $avesum + $key["ave"];
+		            $count++;
+				}
+				$count=$count+1;
+		        $PHPExcel->getActiveSheet()->setCellValue("I$count", Common::ExcelNumberFormat($avesum));
+		        $PHPExcel->getActiveSheet()->getStyle("I$count")->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
+		        $count=$count+1;
+			}
+
 			unset($styleArray);
 		}else{
 			$PHPExcel->getActiveSheet()

@@ -1,23 +1,47 @@
 <?php
 /**
-* This Class Is used to Populate the Home View of Every Client
+* This Class Is used to generate the PDF Reports
 */
-class RecentStories{
+class HtmlStories{
 
 /**
 * This function handles all the heavylifting for Print Stories, fetch story and print out
 * NB - Just for the Print Section
 */
+
+public static function HtmlHeader()
+{
+	$style = '';
+	$style = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">';
+	$style.= "<head>";
+	$style.= "<title>Reelforge HTML Compilation</title>";
+	$style.= '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">';
+	$style.= '<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">';
+	$style.= HtmlStories::Stylesheet();
+	$style.= "</head>";
+	$style.= "<body>";
+	$style.= "<div class='container-fluid'>";
+	return $style;
+}
+
+public static function FileBody($content){
+	$body  = '';
+	$body .= HtmlStories::HtmlHeader();
+	$body .= $content;
+	$body .= '</div></body></html>';
+	return $body;
+}
+
 public static function PrintStories($client)
 {
 	if($clientstories = StoryClient::model()->findAllBySql("SELECT story_id FROM story_client WHERE client_id = $client ORDER BY auto_id DESC LIMIT 20")){
-		echo RecentStories::PrintTableHead();
+		echo HtmlStories::PrintTableHead();
 		foreach ($clientstories as $key) {
-			if($story = RecentStories::GetStories($key->story_id)){
-				echo RecentStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,Story::ClientTonality($story->Story_ID,$client),$story->AVE);
+			if($story = HtmlStories::GetStories($key->story_id)){
+				echo HtmlStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE);
 			}
 		}
-		echo RecentStories::PrintTableEnd();
+		echo HtmlStories::PrintTableEnd();
 	}else{
 		return 'No Stories exist';
 	}
@@ -25,6 +49,7 @@ public static function PrintStories($client)
 
 public static function GetClientStory($client,$startdate,$enddate,$search,$backdate,$country_list,$industries)
 {
+	$data = '';
 	$month = date('m');
 	$year = date('Y');
 	$story_month = 'story_'.$year.'_'.$month;
@@ -48,25 +73,27 @@ public static function GetClientStory($client,$startdate,$enddate,$search,$backd
 	
 	if($story = Story::model()->findAllBySql($q2)){
 		if(Yii::app()->user->usertype=='agency'){
-			echo RecentStories::AgencyPrintTableHead();
+			$data .= HtmlStories::AgencyPrintTableHead();
 			foreach ($story as $key) {
-				echo RecentStories::AgencyPrintTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->StoryPage,$key->PublicationType,$key->Picture,Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues,$key->StoryColumn,$key->ContinuingAve);
+				$data .=  HtmlStories::AgencyPrintTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->StoryPage,$key->PublicationType,$key->Picture,Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues,$key->StoryColumn,$key->ContinuingAve);
 			}
-			echo RecentStories::PrintTableEnd();
+			$data .=  HtmlStories::PrintTableEnd();
 		}else{
-			echo RecentStories::PrintTableHead();
+			$data .=  HtmlStories::PrintTableHead();
 			foreach ($story as $key) {
-				echo RecentStories::PrintTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->StoryPage,$key->PublicationType,$key->Picture,Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues,$key->StoryColumn,$key->ContinuingAve);
+				$data .=  HtmlStories::PrintTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->StoryPage,$key->PublicationType,$key->Picture,Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues,$key->StoryColumn,$key->ContinuingAve);
 			}
-			echo RecentStories::PrintTableEnd();
+			$data .=  HtmlStories::PrintTableEnd();
 		}
 	}else{
-		echo 'No Records Found';
+		$data .=  'No Records Found';
 	}
+	return $data;
 }
 
 public static function GetElectronicStory($client,$startdate,$enddate,$search,$backdate,$country_list,$industries)
 {
+	$data = '';
 	$month = date('m');
 	$year = date('Y');
 	$story_month = 'story_'.$year.'_'.$month;
@@ -75,7 +102,7 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 	and story.Media_ID!="mp01" and story.step3=1
 	and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 	and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
-	order by StoryDate asc, Media_House_List asc, StoryTime desc';
+	order by StoryDate asc, Media_House_List asc';
 	if($story = Story::model()->findAllBySql($q2)){
 		if(Yii::app()->user->usertype=='agency'){
 			
@@ -84,20 +111,26 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 			
 			foreach ($story as $key) {
 				if($key->Media_ID=='mr01'){
-					$radio_section .= RecentStories::AgencyElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
+					$radio_section .= HtmlStories::AgencyElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
 				}else{
-					$tv_section .= RecentStories::AgencyElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
+					$tv_section .= HtmlStories::AgencyElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
 				}
 			}
 
-			echo '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>RADIO</strong></td></tr></table>';
-			echo RecentStories::AgencyElectronicTableHead();
-			echo $radio_section;
-			echo RecentStories::ElectronicTableEnd();
-			echo '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>TV</strong></td></tr></table>';
-			echo RecentStories::AgencyElectronicTableHead();
-			echo $tv_section;
-			echo RecentStories::ElectronicTableEnd();
+			if($radio_section!=""){
+				$data .=  '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>RADIO</strong></td></tr></table>';
+				$data .=  HtmlStories::AgencyElectronicTableHead();
+				$data .=  $radio_section;
+				$data .=  HtmlStories::ElectronicTableEnd();
+				$data .=  "<br>";
+			}
+			
+			if($tv_section!=""){
+				$data .=  '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>TV</strong></td></tr></table>';
+				$data .=  HtmlStories::AgencyElectronicTableHead();
+				$data .=  $tv_section;
+				$data .=  HtmlStories::ElectronicTableEnd();
+			}
 
 		}else{
 
@@ -105,28 +138,37 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 			$tv_section = "";
 			foreach ($story as $key) {
 				if($key->Media_ID=='mr01'){
-					$radio_section .= RecentStories::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
+					$radio_section .= HtmlStories::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
 				}else{
-					$tv_section .= RecentStories::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
+					$tv_section .= HtmlStories::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
 				}
 			}
 
-			echo '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>RADIO</strong></td></tr></table>';
-			echo RecentStories::ElectronicTableHead();
-			echo $radio_section;
-			echo RecentStories::ElectronicTableEnd();
-			echo '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>TV</strong></td></tr></table>';
-			echo RecentStories::ElectronicTableHead();
-			echo $tv_section;
-			echo RecentStories::ElectronicTableEnd();
+			if($radio_section!=""){
+				$data .=  '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>RADIO</strong></td></tr></table>';
+				$data .=  HtmlStories::ElectronicTableHead();
+				$data .=  $radio_section;
+				$data .=  HtmlStories::ElectronicTableEnd();
+				$data .=  "<br>";
+			}
+				
+			if($tv_section!=""){
+				$data .=  '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>TV</strong></td></tr></table>';
+				$data .=  HtmlStories::ElectronicTableHead();
+				$data .=  $tv_section;
+				$data .=  HtmlStories::ElectronicTableEnd();
+			}
+				
 		}
 	}else{
-		echo 'No Records Found';
+		$data .=  'No Records Found';
 	}
+	return $data;
 }
 
 public static function GetClientIndustryStory($client,$startdate,$enddate,$search,$backdate,$country_list,$industries)
 {
+	$data = '';
 	$month = date('m');
 	$year = date('Y');
 	$story_month = 'story_'.$year.'_'.$month;
@@ -145,25 +187,27 @@ public static function GetClientIndustryStory($client,$startdate,$enddate,$searc
 	order by StoryDate asc, Media_House_List asc';
 	if($story = Story::model()->findAllBySql($q2)){
 		if(Yii::app()->user->usertype=='agency'){
-			echo RecentStories::AgencyPrintTableHead();
+			$data .=  HtmlStories::AgencyPrintTableHead();
 			foreach ($story as $key) {
-				echo RecentStories::AgencyPrintTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->StoryPage,$key->PublicationType,$key->Picture,Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues,$key->StoryColumn,$key->ContinuingAve);
+				$data .=  HtmlStories::AgencyPrintTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->StoryPage,$key->PublicationType,$key->Picture,Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues,$key->StoryColumn,$key->ContinuingAve);
 			}
-			echo RecentStories::PrintTableEnd();
+			$data .=  HtmlStories::PrintTableEnd();
 		}else{
-			echo RecentStories::PrintTableHead();
+			$data .=  HtmlStories::PrintTableHead();
 			foreach ($story as $key) {
-				echo RecentStories::PrintTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->StoryPage,$key->PublicationType,$key->Picture,Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues,$key->StoryColumn,$key->ContinuingAve);
+				$data .=  HtmlStories::PrintTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->StoryPage,$key->PublicationType,$key->Picture,Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues,$key->StoryColumn,$key->ContinuingAve);
 			}
-			echo RecentStories::PrintTableEnd();
+			$data .=  HtmlStories::PrintTableEnd();
 		}
 	}else{
-		echo 'No Records Found';
+		$data .=  'No Records Found';
 	}
+	return $data;
 }
 
 public static function GetClientElectronicIndustryStory($client,$startdate,$enddate,$search,$backdate,$country_list,$industries)
 {
+	$data = '';
 	$month = date('m');
 	$year = date('Y');
 	$story_month = 'story_'.$year.'_'.$month;
@@ -188,20 +232,26 @@ public static function GetClientElectronicIndustryStory($client,$startdate,$endd
 			
 			foreach ($story as $key) {
 				if($key->Media_ID=='mr01'){
-					$radio_section .= RecentStories::AgencyElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
+					$radio_section .= HtmlStories::AgencyElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
 				}else{
-					$tv_section .= RecentStories::AgencyElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
+					$tv_section .= HtmlStories::AgencyElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
 				}
 			}
 
-			echo '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>RADIO</strong></td></tr></table>';
-			echo RecentStories::AgencyElectronicTableHead();
-			echo $radio_section;
-			echo RecentStories::ElectronicTableEnd();
-			echo '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>TV</strong></td></tr></table>';
-			echo RecentStories::AgencyElectronicTableHead();
-			echo $tv_section;
-			echo RecentStories::ElectronicTableEnd();
+			if($radio_section!=""){
+				$data .=  '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>RADIO</strong></td></tr></table>';
+				$data .=  HtmlStories::AgencyElectronicTableHead();
+				$data .=  $radio_section;
+				$data .=  HtmlStories::ElectronicTableEnd();
+				$data .=  "<br>";
+			}
+
+			if($tv_section!=""){
+				$data .=  '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>TV</strong></td></tr></table>';
+				$data .=  HtmlStories::AgencyElectronicTableHead();
+				$data .=  $tv_section;
+				$data .=  HtmlStories::ElectronicTableEnd();
+			}
 
 		}else{
 			
@@ -209,30 +259,41 @@ public static function GetClientElectronicIndustryStory($client,$startdate,$endd
 			$tv_section = "";
 			foreach ($story as $key) {
 				if($key->Media_ID=='mr01'){
-					$radio_section .= RecentStories::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
+					$radio_section .= HtmlStories::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
 				}else{
-					$tv_section .= RecentStories::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
+					$tv_section .= HtmlStories::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
 				}
 			}
 
-			echo '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>RADIO</strong></td></tr></table>';
-			echo RecentStories::ElectronicTableHead();
-			echo $radio_section;
-			echo RecentStories::ElectronicTableEnd();
-			echo '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>TV</strong></td></tr></table>';
-			echo RecentStories::ElectronicTableHead();
-			echo $tv_section;
-			echo RecentStories::ElectronicTableEnd();
+			if($radio_section!=""){
+				$data .=  '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>RADIO</strong></td></tr></table>';
+				$data .=  HtmlStories::ElectronicTableHead();
+				$data .=  $radio_section;
+				$data .=  HtmlStories::ElectronicTableEnd();
+				$data .=  "<br>";
+			}
+
+			if($tv_section!=""){
+				$data .=  '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>TV</strong></td></tr></table>';
+				$data .=  HtmlStories::ElectronicTableHead();
+				$data .=  $tv_section;
+				$data .=  HtmlStories::ElectronicTableEnd();
+			}
+
+			
+			
 			
 		}
 	}else{
-		echo 'No Records Found';
+		$data .=  'No Records Found';
 	}
+	return $data;
 }
 
 public static function getClientPrint($client_id)
 {
 	/* Using Sammy's Query - Simple and Clean, but adding Joins */
+	// $mainsql = "select * from story,story_mention, mediahouse where story_mention.client_id=".$client_id." and story.Story_ID=story_mention.story_id and story.Media_ID='mp01' and story.step3=1 and StoryDate ='2014-05-29' and story.Media_House_ID=mediahouse.Media_House_ID order by Media_House_List asc, StoryDate desc, page_no asc"
 	$mainsql = "select * from story inner join story_mention on story.Story_ID=story_mention.story_id inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID  where story_mention.client_id=".$client_id." and story.Media_ID='mp01' and story.step3=1 and StoryDate ='2014-05-29' order by Media_House_List asc, StoryDate desc, page_no asc";
 }
 
@@ -260,12 +321,9 @@ public static function PrintTableHead(){
 	}else{
 		$currency = 'KES';
 	}
-	return '<div class="widget-body">
-	<div>
-	<table id="dt_basic" class="table table-striped table-bordered table-hover">
-	<thead>
-	<th style="width:11%;">DATE</th><th>PUBLICATION</th><th>JOURNALIST</th><th>HEADLINE/SUBJECT</th><th>PAGE</th><th>PUBLICATION TYPE</th><th>PICTURE</th><th>EFFECT</th><th style="text-align:right;">AVE('.$currency.')</th>
-	</thead>';
+	return '<table class="table table-striped table-condensed table-hover table-bordered"><tr>
+	<td style="width:11%;">DATE</td><td>PUBLICATION</td><td>JOURNALIST</td><td>HEADLINE/SUBJECT</td><td>PAGE</td><td>PUBLICATION TYPE</td><td>PICTURE</td><td>EFFECT</td><td style="text-align:right;">AVE('.$currency.')</td>
+	</tr>';
 }
 
 public static function AgencyPrintTableHead(){
@@ -275,12 +333,9 @@ public static function AgencyPrintTableHead(){
 	}else{
 		$currency = 'KES';
 	}
-	return '<div class="widget-body">
-	<div>
-	<table id="dt_basic" class="table table-striped table-bordered table-hover">
-	<thead>
-	<th style="width:11%;">DATE</th><th>PUBLICATION</th><th>JOURNALIST</th><th>HEADLINE/SUBJECT</th><th>PAGE</th><th>PUBLICATION TYPE</th><th>PICTURE</th><th>EFFECT</th><th style="text-align:right;">AVE('.$currency.')</th><th style="text-align:right;">PRV('.$currency.')</th>
-	</thead>';
+	return '<table class="table table-striped table-condensed table-hover table-bordered"><tr>
+	<td style="width:11%;">DATE</td><td>PUBLICATION</td><td>JOURNALIST</td><td>HEADLINE/SUBJECT</td><td>PAGE</td><td>PUBLICATION TYPE</td><td>PICTURE</td><td>EFFECT</td><td style="text-align:right;">AVE('.$currency.')</td><td style="text-align:right;">PRV('.$currency.')</td>
+	</tr>';
 }
 
 /*
@@ -294,12 +349,9 @@ public static function ElectronicTableHead(){
 	}else{
 		$currency = 'KES';
 	}
-	return '<div class="widget-body">
-	<div>
-	<table id="dt_basic" class="table table-striped table-bordered table-hover">
-	<thead>
-	<th style="width:11%;">DATE</th><th>STATION</th><th>JOURNALIST</th><th>SUMMARY</th><th>TIME</th><th>DURATION</th><th>CATEGORY</th><th>EFFECT</th><th style="text-align:right;">AVE('.$currency.')</th>
-	</thead>';
+	return '<table class="table table-striped table-condensed table-hover table-bordered"><tr>
+	<td style="width:11%;">DATE</td><td>STATION</td><td>JOURNALIST</td><td>SUMMARY</td><td>TIME</td><td>DURATION</td><td>CATEGORY</td><td>EFFECT</td><td style="text-align:right;">AVE('.$currency.')</td>
+	</tr>';
 }
 
 public static function AgencyElectronicTableHead(){
@@ -309,23 +361,21 @@ public static function AgencyElectronicTableHead(){
 	}else{
 		$currency = 'KES';
 	}
-	return '<div class="widget-body">
-	<div>
-	<table id="dt_basic" class="table table-striped table-bordered table-hover">
-	<thead>
-	<th style="width:11%;">DATE</th><th>STATION</th><th>JOURNALIST</th><th>SUMMARY</th><th>TIME</th><th>DURATION</th><th>CATEGORY</th><th>EFFECT</th><th style="text-align:right;">AVE('.$currency.')</th><th style="text-align:right;">PRV('.$currency.')</th>
-	</thead>';
+	return '<table class="table table-striped table-condensed table-hover table-bordered"><tr>
+	<td style="width:11%;">DATE</td><td>STATION</td><td>JOURNALIST</td><td>SUMMARY</td><td>TIME</td><td>DURATION</td><td>CATEGORY</td><td>EFFECT</td><td style="text-align:right;">AVE('.$currency.')</td><td style="text-align:right;">PRV('.$currency.')</td>
+	</tr>';
 }
+
 /*
 * Print The Body of the Table This function may be called recursively
 * NB - Just for the Print Section
 */
 public static function PrintTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont,$StoryColum,$ContinuingAve){
 	return '<tr>
-	<td><a href="'.Yii::app()->createUrl("swf/view").'/'.$storyid.'" target="_blank">'.date('d-M-Y', strtotime($date)).'</a></td>
+	<td><a href="http://www.reelforge.com/reelmediad/swf/view/'.$storyid.'" target="_blank">'.date('d-M-Y', strtotime($date)).'</a></td>
 	<td>'.$pub.'</td>
 	<td>'.$journo.'</td>
-	<td><a href="'.Yii::app()->createUrl("swf/view").'/'.$storyid.'" target="_blank">'.$head.'</a><br><font size="1">'.$cont.'</font></td>
+	<td><a href="http://www.reelforge.com/reelmediad/swf/view/'.$storyid.'" target="_blank">'.$head.'</a><br><font size="1">'.$cont.'</font></td>
 	<td>'.$page.'</td>
 	<td>'.$pubtype.'</td>
 	<td>'.$pic.'</td>
@@ -344,10 +394,10 @@ public static function AgencyPrintTableBody($date,$storyid,$pub,$journo,$head,$p
 		$agency_pr_rate = 3;
 	}
 	return '<tr>
-	<td><a href="'.Yii::app()->createUrl("swf/view").'/'.$storyid.'" target="_blank">'.date('d-M-Y', strtotime($date)).'</a></td>
+	<td><a href="http://www.reelforge.com/reelmediad/swf/view/'.$storyid.'" target="_blank">'.date('d-M-Y', strtotime($date)).'</a></td>
 	<td>'.$pub.'</td>
 	<td>'.$journo.'</td>
-	<td><a href="'.Yii::app()->createUrl("swf/view").'/'.$storyid.'" target="_blank">'.$head.'</a><br><font size="1">'.$cont.'</font></td>
+	<td><a href="http://www.reelforge.com/reelmediad/swf/view/'.$storyid.'" target="_blank">'.$head.'</a><br><font size="1">'.$cont.'</font></td>
 	<td>'.$page.'</td>
 	<td>'.$pubtype.'</td>
 	<td>'.$pic.'</td>
@@ -397,13 +447,12 @@ public static function AgencyElectronicTableBody($date,$storyid,$pub,$journo,$he
 	<td style="text-align:right;">'.number_format($ave*$agency_pr_rate).'</td>
 	</tr>';
 }
-
 /*
 * Close the Table and Its Bottom section
 * NB - Just for the Print Section
 */
 public static function PrintTableEnd(){
-	return '</table></div></div>';
+	return '</table>';
 }
 
 /*
@@ -411,7 +460,16 @@ public static function PrintTableEnd(){
 * NB - Just for the Electronic Section
 */
 public static function ElectronicTableEnd(){
-	return '</table></div></div>';
+	return '</table>';
+}
+
+public static function Stylesheet()
+{
+	$style = '<style type="text/css">';
+	$style .= 'body{ font-family: "Open Sans",Arial,Helvetica,Sans-Serif;
+  font-size: 12px !important; }';
+	$style .= '</style>';
+	return $style;
 }
 
 }

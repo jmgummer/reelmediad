@@ -26,9 +26,9 @@ $backdate = $company_words->backdate;
   $company = Yii::app()->user->company_name;
   $narrative = 'Number of '.$company.' stories in ';
   if(isset($_POST['StorySearch'])){
-    $model->attributes=Yii::app()->input->stripClean($_POST['StorySearch']);
-    $model->startdate = date('Y-m-d',strtotime(str_replace('-', '/', $model->startdate)));
-    $model->enddate = date('Y-m-d',strtotime(str_replace('-', '/', $model->enddate)));
+    $model->attributes=$_POST['StorySearch'];
+    $model->startdate = date('Y-m-d',strtotime(str_replace('-', '/', $_POST['StorySearch']['startdate'])));
+    $model->enddate = date('Y-m-d',strtotime(str_replace('-', '/', $_POST['StorySearch']['enddate'])));
 
     $startdate = $model->startdate;
     $enddate = $model->enddate;

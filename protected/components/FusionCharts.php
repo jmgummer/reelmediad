@@ -106,19 +106,21 @@ public static function packageMentionsXML($client,$narrative, $array,$company_na
     * Sending Varials Are Being Troublesome so we 
     * Obtain the Post Variables 
     **/
-    if(isset($_POST['StorySearch'])){
-        $startdate = $_POST['StorySearch']['startdate'];
-        $enddate = $_POST['StorySearch']['enddate'];
-        $setindustry = implode(',', $_POST['StorySearch']['industry']);
-    }else{
-        $model = $model = new StorySearch('search');
-        $model->industry = IndustryCompany::model()->find('company_id=:a', array(':a'=>Yii::app()->user->company_id))->industry_id;
-        $model->startdate = $model->enddate = date('Y-m-d');
+    // if(isset($_POST['StorySearch'])){
+    //     $startdate = $_POST['StorySearch']['startdate'];
+    //     $enddate = $_POST['StorySearch']['enddate'];
+    //     $setindustry = implode(',', $_POST['StorySearch']['industry']);
+    // }else{
+    //     $model = $model = new StorySearch('search');
+    //     $model->industry = IndustryCompany::model()->find('company_id=:a', array(':a'=>Yii::app()->user->company_id))->industry_id;
+    //     $model->startdate = $model->enddate = date('Y-m-d');
 
-        $startdate = $model->startdate;
-        $enddate = $model->enddate;
-        $setindustry = $model->industry;
-    }
+    //     $startdate = $model->startdate;
+    //     $enddate = $model->enddate;
+    //     $setindustry = $model->industry;
+    // }
+    // $setindustry = implode(',', $industry);
+    $setindustry = $industry;
 
     $strXML = "<chart  exportEnabled='1' exportAtClient='0'  exportHandler='http://www.reelforge.com/FusionCharts/FusionCharts/ExportHandlers/PHP/FCExporter.php'  exportAction='download' bgAlpha='0,0' canvasBgAlpha='0' caption='".$narrative."' xAxisName='Month' yAxisName='Units'>";
     foreach ($array as $key) {

@@ -321,12 +321,12 @@ class CompileCD{
 		return $body;
 	}
 
-	public static function ElectronicBody($title,$publication,$date,$type,$journalist,$page,$ave,$summary,$swf_file){
+	public static function ElectronicBody($title,$publication,$date,$type,$journalist,$page,$ave,$summary,$swf_file,$filepath){
 		$body  = '';
 		$body .= CompileCD::Styles();
 		$body .= CompileCD::ContentHeaderElectronic($title,$publication,$date,$type,$journalist);
 		$body .= CompileCD::ContentBodyElectronic($page,$ave,$summary);
-		$body .= CompileCD::ElectronicPlayer($swf_file);
+		$body .= CompileCD::ElectronicPlayer($swf_file,$filepath);
 		$body .= '<div class="clearfix"></div></div></div></body></html>';
 		return $body;
 	}
@@ -424,49 +424,60 @@ class CompileCD{
 		$build_date = date('Y/m/d/' ,strtotime($date));
 		$pdf_destination = $_SERVER['DOCUMENT_ROOT']."reelmediad/cd/".$cd_name."/pdf_files/".str_replace($build_date, '', $file);
 		$swf_destination = $_SERVER['DOCUMENT_ROOT']."reelmediad/cd/".$cd_name."/swf_files/".str_replace($build_date, '', $swffile);
-		$pdf_cmd ="cp ".$pdf_file ."  ".$pdf_destination." &";
+		$pdf_cmd ="cp -v ".$pdf_file ."  ".$pdf_destination."  ";
 		exec($pdf_cmd);
-		$swf_cmd ="cp ".$swf_file ."  ".$swf_destination." &";
+		$swf_cmd ="cp -v ".$swf_file ."  ".$swf_destination."  ";
 		exec($swf_cmd);
 	}
 
-	public static function MoveElectronicFile($file,$date,$cd_name)
+	public static function MoveElectronicFile($file,$date,$cd_name,$filepath)
 	{
 		/* 
 		** Copy the Required Files, Individually
-		** get a copy of the electronic file, mp3 or mpg
+		** get a copy of the electronic file, mp3 or mpg/flv
+		** Check if Flash File Exists 
+		** Convert to lower caps then try and find
+		** flv or else copy mpg
 		*/
-
-		$build_date = date('Y/m/d/' ,strtotime($date));
-		$clip= "../" . $file;
-		$clip=str_replace("files/","",$clip);
-		$clip=str_replace("../","",$clip);
-		if(substr($clip,-3)=="mpg") {
-			$flash_file= str_replace(".mpg",".flv",$clip);
+		$clip=str_replace("files/","",$file);
+		$flash_clip=$filepath .$clip;
+		if(file_exists($flash_file = str_replace(".mpg",".flv", strtolower($flash_clip)))){
+			$destination_file= str_replace(".mpg",".flv",$clip);
+			$destination_file = str_replace(":", "_", $clip);
+			$destination_file = strtolower($destination_file);
+			$flash_destination = $_SERVER['DOCUMENT_ROOT']."reelmediad/cd/".$cd_name."/electronic_files/".$destination_file;
+			$flash_cmd ="cp -v ".$flash_file ."  ".$flash_destination." ";
+			exec($flash_cmd);
 		}else{
-			$flash_file= str_replace(".mp3",".flv",$clip);
+			$destination_file = str_replace(":", "_", $clip);
+			$destination_file = strtolower($destination_file);
+			$flash_destination = $_SERVER['DOCUMENT_ROOT']."reelmediad/cd/".$cd_name."/electronic_files/".$destination_file;
+			$flash_cmd ="cp -v ".$flash_clip ."  ".$flash_destination." ";
+			exec($flash_cmd);
 		}
-		$flash_file= strtolower($flash_file);
-		$destination_file = $flash_file;
-		$location = $_SERVER['DOCUMENT_ROOT']."reelmedia/files/clippings/".$build_date;
-		$flash_file = $location.$flash_file;
-		$flash_destination = $_SERVER['DOCUMENT_ROOT']."reelmediad/cd/".$cd_name."/electronic_files/".$destination_file;
-		$flash_cmd ="cp ".$flash_file ."  ".$flash_destination." &";
-		exec($flash_cmd);
 	}
 
-	public static function ElectronicPlayer($file)
+	public static function ElectronicPlayer($file,$filepath)
 	{
-		$clip= "../" . $file;
-		$clip=str_replace("files/","",$clip);
-		$clip=str_replace("../","",$clip);
-		if(substr($clip,-3)=="mpg") {
-			$flash_file= str_replace(".mpg",".flv",$clip);
+		/* 
+		** Copy the Required Files, Individually
+		** get a copy of the electronic file, mp3 or mpg/flv
+		** Check if Flash File Exists 
+		** Convert to lower caps then try and find
+		** flv or else copy mpg
+		*/
+		$clip=str_replace("files/","",$file);
+		$flash_clip=$filepath .$clip;
+		if(file_exists($flash_file = str_replace(".mpg",".flv", strtolower($flash_clip)))){
+			$destination_file= str_replace(".mpg",".flv",$clip);
+			$destination_file = str_replace(":", "_", $clip);
+			$destination_file = strtolower($destination_file);
+			$file = $destination_file;
 		}else{
-			$flash_file= str_replace(".mp3",".flv",$clip);
+			$destination_file = str_replace(":", "_", $clip);
+			$destination_file = strtolower($destination_file);
+			$file = $destination_file;
 		}
-		$flash_file= strtolower($flash_file);
-		$file = str_replace(":", "_", $flash_file);
 		$data = '';
 		$data.= '<div class="col-md-9">';
 		$data.="<script type='text/javascript' src='../essentials/flowplayer-3.1.1.min.js'></script>";

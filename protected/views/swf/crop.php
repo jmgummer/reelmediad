@@ -1,10 +1,11 @@
-<?php $this->breadcrumbs=array('Highlight Image Sections'); ?>
+<?php $this->breadcrumbs=array('Crop Image Sections'); ?>
 <?php $image = $png_file; ?>
+<?php if(isset($_GET['name'])){ $title = preg_replace('/[^A-Za-z0-9\-\_]/', '', $_GET['name']); } else{ $title = 'crop'; } ?>
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl . '/js/cropper.min.js'; ?>"></script>
 <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl . '/css/cropper.css'; ?>">
 <div class="row-fluid clearfix">
 	<div class="example">
-        <h2>Image Highlighting</h2>
+        <h2>Image Cropping</h2>
         <p><em>Click and drag anywhere on the image below to select the area to crop and click the button</em></p>
         <p><form class="form-horizontal">
             <div class="form-group dont-show">
@@ -85,6 +86,7 @@
         var height = document.getElementById("height-1").value;
         var image = '<?=$image;?>';
         var link = '<?=Yii::app()->createUrl("swf/cropper");?>';
+        var name = '<?=$title;?>';
 
         if (x1 == null || x1 == 0 || y1 == null || y1 ==0 || width == null || width == 0 || height == null || height ==0 ) {
             alert("Please Select Required Fields");
@@ -98,7 +100,8 @@
                 cache: false,
 
                 success: function(data) {
-                    window.location = "http://www.reelforge.com/reelmediad/tmp/"+data;
+                    // window.location = "http://www.reelforge.com/reelmediad/tmp/"+data;
+                    window.location = "http://www.reelforge.com/reelmediad/swf/downloadimage/?image="+data+"&name="+name;
                 },
                 //In Case Of Failure, Do This
                 error: function() {

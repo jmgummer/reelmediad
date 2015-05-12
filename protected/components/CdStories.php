@@ -8,20 +8,6 @@ class CdStories{
 * This function handles all the heavylifting for Print Stories, fetch story and print out
 * NB - Just for the Print Section
 */
-// public static function PrintStories($client)
-// {
-// 	if($clientstories = StoryClient::model()->findAllBySql("SELECT story_id FROM story_client WHERE client_id = $client ORDER BY auto_id DESC LIMIT 20")){
-// 		echo CdStories::PrintTableHead();
-// 		foreach ($clientstories as $key) {
-// 			if($story = CdStories::GetStories($key->story_id)){
-// 				echo CdStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->Picture,$story->Tonality,$story->AVE);
-// 			}
-// 		}
-// 		echo CdStories::PrintTableEnd();
-// 	}else{
-// 		return 'No Stories exist';
-// 	}
-// }
 
 public static function GetClientStory($client,$startdate,$enddate,$search,$backdate,$country_list,$industries,$cd_name)
 {
@@ -90,14 +76,14 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 			$client_data .= CdStories::AgencyElectronicTableHead();
 			foreach ($story as $key) {
 				if($story = CdStories::GetStories($key->Story_ID)){
-					$client_data .= CdStories::AgencyElectronicTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
+					$client_data .= CdStories::AgencyElectronicTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story,$story->file_path);
 				}
 			}
 		}else{
 			$client_data .= CdStories::ElectronicTableHead();
 			foreach ($story as $key) {
 				if($story = CdStories::GetStories($key->Story_ID)){
-					$client_data .= CdStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
+					$client_data .= CdStories::ElectronicTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story,$story->file_path);
 				}
 			}
 		}
@@ -174,14 +160,14 @@ public static function GetClientElectronicIndustryStory($client,$startdate,$endd
 			$client_data .= CdStories::AgencyElectronicTableHead();
 			foreach ($story as $key) {
 				if($story = CdStories::GetStories($key->Story_ID)){
-					$client_data .= CdStories::AgencyElectronicTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
+					$client_data .= CdStories::AgencyElectronicTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story,$story->file_path);
 				}
 			}
 		}else{
 			$client_data .= CdStories::ElectronicTableHead();
 			foreach ($story as $key) {
 				if($story = CdStories::GetStories($key->Story_ID)){
-					$client_data .= CdStories::PrintTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story);
+					$client_data .= CdStories::ElectronicTableBody($story->StoryDate,$story->Story_ID,$story->Publication,$story->journalist,$story->Title,$story->FormatedTime,$story->FormatedDuration,$story->StoryCategory,$story->Tonality,$story->AVE,$story->Link,$story->Continues,$story->file,$cd_name,$story->Story,$story->file_path);
 				}
 			}
 		}
@@ -275,11 +261,31 @@ public static function AgencyElectronicTableHead(){
 */
 public static function PrintTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont,$file,$cd_name,$summary)
 {
+	/* Create a Copy of Print Files */
+	$copy_files = CompileCD::MovePrintFile($file,$date,$cd_name);
+
+	/* Create the HTML Files, Individually */
+	$path=$_SERVER['DOCUMENT_ROOT'].'/reelmediad/cd/'.$cd_name.'/view/';
+	$filename_html=$path. $storyid . ".html";
+	$crunch = CompileCD::PrintBody($head,$pub,$date,$pubtype,$journo,$page,$ave,$summary,$link);
+	$filecontent = $crunch;
+	$file = $storyid.'.html';
+	if (!$handle = fopen($filename_html, 'w')) {
+		echo "Cannot open file ($filename_html')";
+	}else{
+		if (fwrite($handle, $filecontent) === FALSE) 
+		{
+			echo "Cannot write to file ($filename_html)";
+		}
+		fclose($handle);
+	}
+
+	/* Return The Table Row */
 	return '<tr>
-	<td><a href="'.Yii::app()->createUrl("swf/view").'/'.$storyid.'" target="_blank">'.$date.'</a></td>
+	<td><a href="view/'.$file.'" target="_blank" >'.$date.'</a></td>
 	<td>'.$pub.'</td>
 	<td>'.$journo.'</td>
-	<td><a href="'.Yii::app()->createUrl("swf/view").'/'.$storyid.'" target="_blank">'.$head.'</a></td>
+	<td><a href="view/'.$file.'" target="_blank" >'.$head.'</a></td>
 	<td>'.$page.'</td>
 	<td>'.$pubtype.'</td>
 	<td>'.$pic.'</td>
@@ -336,7 +342,45 @@ public static function AgencyPrintTableBody($date,$storyid,$pub,$journo,$head,$p
 
 }
 
-public static function AgencyElectronicTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont,$file,$cd_name,$summary)
+public static function ElectronicTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont,$file,$cd_name,$summary,$filepath)
+{
+	
+	// Create the HTML Files, Individually
+
+	$path=$_SERVER['DOCUMENT_ROOT'].'/reelmediad/cd/'.$cd_name.'/view/';
+	$filename_html=$path. $storyid . ".html";
+	$crunch = CompileCD::ElectronicBody($head,$pub,$date,$pubtype,$journo,$page,$ave,$summary,$link,$filepath);
+	$filecontent = $crunch;
+	$html_file = $storyid.'.html';
+	if (!$handle = fopen($filename_html, 'w')) {
+		echo "Cannot open file ($filename_html')";
+	}else{
+		if (fwrite($handle, $filecontent) === FALSE) 
+		{
+			echo "Cannot write to file ($filename_html)";
+		}
+		fclose($handle);
+	}
+
+	/* Create a Copy of Print Files */
+	$copy_files = CompileCD::MoveElectronicFile($file,$date,$cd_name,$filepath);
+
+	// Return The Table Row
+
+	return '<tr>
+	<td><a href="view/'.$html_file.'" target="_blank" >'.$date.'</a></td>
+	<td>'.$pub.'</td>
+	<td>'.$journo.'</td>
+	<td><a href="view/'.$html_file.'" target="_blank" >'.$head.'</a></td>
+	<td>'.$page.'</td>
+	<td>'.$pubtype.'</td>
+	<td>'.$pic.'</td>
+	<td>'.$effect.'</td>
+	<td style="text-align:right;">'.number_format($ave).'</td>
+	</tr>';
+}
+
+public static function AgencyElectronicTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont,$file,$cd_name,$summary,$filepath)
 {
 	
 	// Obtain the Agency ID from Session
@@ -352,9 +396,9 @@ public static function AgencyElectronicTableBody($date,$storyid,$pub,$journo,$he
 
 	$path=$_SERVER['DOCUMENT_ROOT'].'/reelmediad/cd/'.$cd_name.'/view/';
 	$filename_html=$path. $storyid . ".html";
-	$crunch = CompileCD::ElectronicBody($head,$pub,$date,$pubtype,$journo,$page,$ave,$summary,$link);
+	$crunch = CompileCD::ElectronicBody($head,$pub,$date,$pubtype,$journo,$page,$ave,$summary,$link,$filepath);
 	$filecontent = $crunch;
-	$file = $storyid.'.html';
+	$html_file = $storyid.'.html';
 	if (!$handle = fopen($filename_html, 'w')) {
 		echo "Cannot open file ($filename_html')";
 	}else{
@@ -366,15 +410,15 @@ public static function AgencyElectronicTableBody($date,$storyid,$pub,$journo,$he
 	}
 
 	/* Create a Copy of Print Files */
-	$copy_files = CompileCD::MoveElectronicFile($file,$date,$cd_name);
+	$copy_files = CompileCD::MoveElectronicFile($file,$date,$cd_name,$filepath);
 
 	// Return The Table Row
 
 	return '<tr>
-	<td><a href="view/'.$file.'" target="_blank" >'.$date.'</a></td>
+	<td><a href="view/'.$html_file.'" target="_blank" >'.$date.'</a></td>
 	<td>'.$pub.'</td>
 	<td>'.$journo.'</td>
-	<td><a href="view/'.$file.'" target="_blank" >'.$head.'</a></td>
+	<td><a href="view/'.$html_file.'" target="_blank" >'.$head.'</a></td>
 	<td>'.$page.'</td>
 	<td>'.$pubtype.'</td>
 	<td>'.$pic.'</td>

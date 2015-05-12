@@ -33,13 +33,30 @@ class SwfController extends Controller
 			$file = $_GET['file'];
 			$pdf_file =  substr($file, 11);
 			if(file_exists($pdf_path = '/home/srv/www/htdocs/reelmedia/files/pdf/'.$file)){
-				$png_file = substr($pdf_file, 0,-3).'png';
+				$png_file = substr($pdf_file, 0,-3).'jpg';
 				$png_path = '/home/srv/www/htdocs/reelmediad/conversions/'.$png_file;
 				$cmd_conv_pdf = "/usr/bin/convert  -flatten -density 150 " .$pdf_path. " " .$png_path;
-				$cmd_resize = "convert $png_path  -resize 80% $png_path";
+				$cmd_resize = "convert $png_path  -resize 60% $png_path";
 
 				system($cmd_conv_pdf);
-				$this->render('view', array('png_file'=>$png_file));
+
+				// $this->render('view', array('png_file'=>$png_file));
+
+				if(isset($_GET['name'])){
+					$image_name = $_GET['name'];
+				}else{
+					$image_name = 'download_';
+				}
+
+				$location = $_SERVER['DOCUMENT_ROOT']."/reelmediad/conversions/";
+				$file = $location.$png_file;
+				$type = 'image/jpeg';
+				if(file_exists($file)){
+					header('Content-Type:'.$type);
+					header('Content-Length: ' . filesize($file));
+					header('Content-Disposition: attachment; filename="'.$image_name.'.jpg"');
+					readfile($file);
+				}
 			}else{
 				echo 'pdf_file_missing';
 			}
@@ -112,6 +129,29 @@ class SwfController extends Controller
 		}
 	}
 
+	public function actionDownloadimage()
+	{
+		if(isset($_GET['image']) && !empty($_GET['image'])){
+			if(isset($_GET['name'])){
+				$image_name = $_GET['name'];
+			}else{
+				$image_name = $_GET['image'];
+			}
+			$location = $_SERVER['DOCUMENT_ROOT']."/reelmediad/tmp/";
+			$file = $location.$_GET['image'];
+			$type = 'image/jpeg';
+			if(file_exists($file)){
+				header('Content-Type:'.$type);
+				header('Content-Length: ' . filesize($file));
+				header('Content-Disposition: attachment; filename="'.$image_name.'.jpg"');
+				readfile($file);
+			}else{
+				echo 'not found';
+			}
+			
+		}
+	}
+
 	/* 
 	** This Function is used to Create a Cropped Image
 	** Create The File and await Cropping 
@@ -148,7 +188,7 @@ class SwfController extends Controller
 	public function actionCropper()
 	{
 		if(!isset($_POST['x1'])  || !isset($_POST['y1']) || !isset($_POST['width']) || !isset($_POST['height']) || !isset($_POST['image']) ){
-			echo 'kubaya';
+			echo 'Error';
 		}else{
 			$uniquefile=ImageClass::Generatestory_uniqueid();
 

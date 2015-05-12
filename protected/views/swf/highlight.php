@@ -1,5 +1,6 @@
 <?php $this->breadcrumbs=array('Highlight Image Sections'); ?>
 <?php $image = $png_file; ?>
+<?php if(isset($_GET['name'])){ $title = preg_replace('/[^A-Za-z0-9\-\_]/', '', $_GET['name']); } else{ $title = 'highlight'; } ?>
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl . '/js/cropper.min.js'; ?>"></script>
 <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl . '/css/cropper.css'; ?>">
 <div class="row-fluid clearfix">
@@ -50,7 +51,7 @@
                 </div>
             </div>
         </form></p>
-        <?php echo '<img src="http://http://www.reelforge.com/reelmediad/conversions/'.$png_file.'" style="width:1000px; height:1298px;" id="image-1" alt="" />'; ?>
+        <?php echo '<img src="http://www.reelforge.com/reelmediad/conversions/'.$png_file.'" style="width:1000px; height:1298px;" id="image-1" alt="" />'; ?>
     </div>
 </div>
 <style type="text/css">
@@ -85,6 +86,7 @@
         var height = document.getElementById("height-1").value;
         var image = '<?=$image;?>';
         var link = '<?=Yii::app()->createUrl("swf/manipulator");?>';
+        var name = '<?=$title;?>';
 
         if (x1 == null || x1 == 0 || y1 == null || y1 ==0 || width == null || width == 0 || height == null || height ==0 ) {
             alert("Please Select Required Fields");
@@ -98,7 +100,8 @@
                 cache: false,
 
                 success: function(data) {
-                    window.location = "http://http://www.reelforge.com/reelmediad/tmp/"+data;
+                    // window.location = "http://www.reelforge.com/reelmediad/tmp/"+data;
+                    window.location = "http://www.reelforge.com/reelmediad/swf/downloadimage/?image="+data+"&name="+name;
                 },
                 //In Case Of Failure, Do This
                 error: function() {
