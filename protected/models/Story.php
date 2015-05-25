@@ -290,7 +290,27 @@ class Story extends CActiveRecord
 	
 	public function getFormatedDuration()
 	{
-	  return gmdate("H:i:s", $this->StoryDuration);
+		/* gmdate proved buggy when someone adds wrong values
+		$duration = strtotime(str_replace('-','/', $this->StoryDuration));
+		return gmdate("H:i:s", $duration);
+
+		if($duration = strtotime(str_replace('-','/', $this->StoryDuration))){
+			return gmdate("H:i:s", $duration);
+		}else{
+			return $this->StoryDuration;
+		}
+		*/
+
+		$duration = $this->StoryDuration;
+		$seconds = $duration; //example
+		$hours = floor($seconds / 3600);
+		$mins = floor(($seconds - $hours*3600) / 60);
+		$s = $seconds - ($hours*3600 + $mins*60);
+		$mins = ($mins<10?"0".$mins:"".$mins);
+		$s = ($s<10?"0".$s:"".$s); 
+		$formatedtime = ($hours>0?$hours.":":"00:").$mins.":".$s."  ";
+		return $formatedtime;
+	  	
 	}
 	
 	public function getPicture()
