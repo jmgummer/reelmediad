@@ -4,6 +4,13 @@
  * ContactForm class.
  * ContactForm is the data structure for keeping
  * contact form data. It is used by the 'contact' action of 'SiteController'.
+ * @package     Reelmedia
+ * @subpackage  Models
+ * @category    Reelforge Client Systems
+ * @license     Licensed to Reelforge, Copying and Modification without prior permission is not allowed and can result in legal proceedings
+ * @author      Steve Ouma Oyugi - Reelforge Developers Team
+ * @version 	   v.1.0
+ * @since       July 2008
  */
 class ContactForm extends CFormModel
 {

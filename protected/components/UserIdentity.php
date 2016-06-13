@@ -1,10 +1,19 @@
 <?php
 
 /**
- * UserIdentity represents the data needed to identity a user.
- * It contains the authentication method that checks if the provided
- * data can identity the user.
- */
+* UserIdentity represents the data needed to identity a user.
+* It contains the authentication method that checks if the provided
+* data can identity the user.
+*
+* @package     Reelmedia
+* @subpackage  Components
+* @category    Reelforge Client Systems
+* @license     Licensed to Reelforge, Copying and Modification without prior permission is not allowed and can result in legal proceedings
+* @author      Steve Ouma Oyugi - Reelforge Developers Team
+* @version     v.1.0
+* @since       July 2008
+*/
+
 class UserIdentity extends CUserIdentity
 {
 	/**
@@ -18,10 +27,10 @@ class UserIdentity extends CUserIdentity
 	public function authenticate()
 	{
 		/* Regular Clients Login */
-		$client = ClientUsers::model()->find('username=:a AND password=:b', array(':a'=>$this->username,':b'=>md5($this->password)));
+		$client = ClientUsers::model()->find('username=:a AND password=:b AND user_status=1', array(':a'=>$this->username,':b'=>md5($this->password)));
 
 		/* Agency Clients Login */
-		$sql_activate = "select * from agency_users,agency where agency_users.username='$this->username' and agency_users.password=md5('$this->password') and agency_users.agency_id=agency.agency_id";
+		$sql_activate = "select * from agency_users,agency where agency_users.username='$this->username' and agency_users.password=md5('$this->password') and agency_users.agency_id=agency.agency_id  and agency_users.user_status=1";
 		$agency = AgencyUsers::model()->findBySql($sql_activate);
 
 		if($client==FALSE && $agency==FALSE){

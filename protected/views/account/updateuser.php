@@ -11,6 +11,9 @@ $this->breadcrumbs=array('User Accounts'=>array('account/users'), 'User Details'
 		<?php echo $form->errorSummary($model); ?>
 		<fieldset>
 			<label class="input">
+				<?php echo $form->textFieldRow($model,'username',array('required'=>'required', 'class'=>'input-xs','placeholder'=>'')); ?>
+			</label>
+			<label class="input">
 				<?php echo $form->textFieldRow($model,'firstname',array('required'=>'required', 'class'=>'input-xs','placeholder'=>'')); ?>
 			</label>
 			<label class="input">

@@ -1,8 +1,20 @@
 <?php
+
 /**
- * Controller is the customized base controller class.
- * All controller classes for this application should extend from this base class.
- */
+* Controller Component Class
+* Controller is the customized base controller class.
+* All controller classes for this application should extend from this base class.
+* DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+* 
+* @package     Reelmedia
+* @subpackage  Components
+* @category    Reelforge Client Systems
+* @license     Licensed to Reelforge, Copying and Modification without prior permission is not allowed and can result in legal proceedings
+* @author      Steve Ouma Oyugi - Reelforge Developers Team
+* @version 	   v.1.0
+* @since       July 2008
+*/
+
 class Controller extends CController
 {
 	/**

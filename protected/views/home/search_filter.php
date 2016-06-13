@@ -49,14 +49,14 @@ if(!isset($_POST['StorySearch']))
 				echo $form->dropDownList($model, 'country', Country::CountryListByID($model->country), array('class'=>'form-control')); 
 				?>
 			</div>
-			<label class="radio">
+			<div class="form-group">
 				<header>Type of Story</header>
-				<?php echo $form->radioButtonList($model,'storytype', StoryType::model()->getStoryTypes(), array('class'=>'radio-beat')); ?>
-		    </label>
-		    <label class="radio">
+				<?php echo $form->dropDownList($model,'storytype', StoryType::model()->getStoryTypes(), array('class'=>'form-control')); ?>
+		    </div>
+		    <div class="form-group">
 		    	<header>Category of Story</header>
-		    	<?php echo $form->radioButtonList($model,'storycategory', StoryCategory::model()->getStoryCategories()); ?>
-			</label>
+		    	<?php echo $form->dropDownList($model,'storycategory', StoryCategory::model()->getStoryCategories(), array('class'=>'form-control')); ?>
+			</div>
 		    <div class="form-group">
 		    	<header>News Section</header>
 				<?php echo $form->dropDownList($model, 'news_section', Category::model()->getCategories(), array('prompt'=>'All','class'=>'form-control')); ?>
@@ -121,5 +121,5 @@ fieldset .col-md-3{
 }
 </style>
 <script type="text/javascript">
-$('#beginning,#ending').datepick();
+$('#beginning,#ending').datepick({dateFormat: "yyyy-mm-dd"});
   </script>

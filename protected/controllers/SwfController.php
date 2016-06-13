@@ -18,6 +18,29 @@ class SwfController extends Controller
 		$this->render('index', array('model'=>$model));
 	}
 
+	public function actionDisplay($id)
+	{
+		$query = "select * from sph_links where link_id = $id LIMIT 1";
+			$model = Story::model()->findBySql($query);
+			if($model){
+				$this->render('display', array('model'=>$model));
+			}else{
+				// throw new CHttpException(404,'The requested page does not exist.');
+			}
+		// $sphquery = "select link_id, indexdate from sph_links where link_id = $id";
+		// if($sphmodel = SphLinks::model()->findBySql($sphquery)){
+		// 	echo $link_id = $sphmodel->link_id;
+		// 	echo $indexdate = $sphmodel->indexdate;
+		// 	$query = "select * from story where link_id = $link_id and storydate = '$indexdate' LIMIT 1";
+		// 	$model = Story::model()->findBySql($query);
+		// 	if($model){
+		// 		// $this->render('display', array('model'=>$model));
+		// 	}else{
+		// 		// throw new CHttpException(404,'The requested page does not exist.');
+		// 	}
+		// }
+	}
+
 	public function loadModel($id)
 	{
 		$model = Story::model()->find('Story_ID=:a', array(':a'=>$id));
@@ -35,7 +58,7 @@ class SwfController extends Controller
 			if(file_exists($pdf_path = '/home/srv/www/htdocs/reelmedia/files/pdf/'.$file)){
 				$png_file = substr($pdf_file, 0,-3).'jpg';
 				$png_path = '/home/srv/www/htdocs/reelmediad/conversions/'.$png_file;
-				$cmd_conv_pdf = "/usr/bin/convert  -flatten -density 150 " .$pdf_path. " " .$png_path;
+				$cmd_conv_pdf = "/usr/bin/convert  -flatten -density 300  " .$pdf_path. " " .$png_path;
 				$cmd_resize = "convert $png_path  -resize 60% $png_path";
 
 				system($cmd_conv_pdf);
@@ -78,8 +101,8 @@ class SwfController extends Controller
 			if(file_exists($pdf_path = '/home/srv/www/htdocs/reelmedia/files/pdf/'.$file)){
 				$png_file = substr($pdf_file, 0,-3).'jpg';
 				$png_path = '/home/srv/www/htdocs/reelmediad/conversions/'.$png_file;
-				$cmd_conv_pdf = "/usr/bin/convert  -flatten -density 150 " .$pdf_path. " " .$png_path;
-				$cmd_resize="/usr/bin/convert  -resize 1000x 1298\!    $png_path  $png_path";
+				$cmd_conv_pdf = "/usr/bin/convert  -flatten -density 300  " .$pdf_path. " " .$png_path;
+				$cmd_resize="/usr/bin/convert  -resize 1700x 2207\!    $png_path  $png_path";
 				// $cmd_resize = "convert $png_path  -resize 1000x 1298\! $png_path";
 				exec($cmd_conv_pdf);
 				exec($cmd_resize);
@@ -165,8 +188,8 @@ class SwfController extends Controller
 			if(file_exists($pdf_path = '/home/srv/www/htdocs/reelmedia/files/pdf/'.$file)){
 				$png_file = substr($pdf_file, 0,-3).'jpg';
 				$png_path = '/home/srv/www/htdocs/reelmediad/conversions/'.$png_file;
-				$cmd_conv_pdf = "/usr/bin/convert  -flatten -density 150 " .$pdf_path. " " .$png_path;
-				$cmd_resize="/usr/bin/convert  -resize 1000x 1298\!    $png_path  $png_path";
+				$cmd_conv_pdf = "/usr/bin/convert  -flatten -density 300  " .$pdf_path. " " .$png_path;
+				$cmd_resize="/usr/bin/convert  -resize 1700x 2207\!    $png_path  $png_path";
 				// $cmd_resize = "convert $png_path  -resize 1000x 1298\! $png_path";
 				exec($cmd_conv_pdf);
 				exec($cmd_resize);

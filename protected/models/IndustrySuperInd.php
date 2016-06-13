@@ -2,6 +2,13 @@
 
 /**
  * This is the model class for table "industry_super_ind".
+ * @package     Reelmedia
+ * @subpackage  Models
+ * @category    Reelforge Client Systems
+ * @license     Licensed to Reelforge, Copying and Modification without prior permission is not allowed and can result in legal proceedings
+ * @author      Steve Ouma Oyugi - Reelforge Developers Team
+ * @version 	   v.1.0
+ * @since       July 2008
  *
  * The followings are the available columns in table 'industry_super_ind':
  * @property integer $super_ind_id

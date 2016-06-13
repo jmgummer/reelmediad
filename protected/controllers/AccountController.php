@@ -1,5 +1,21 @@
 <?php
 
+/**
+* AccountController Controller Class
+* It is used to manage the account actions, such as user update, passwords
+* data can identity the user.
+* DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+*
+* @package     Reelmedia
+* @subpackage  Controllers
+* @category    Reelforge Client Systems
+* @license     Licensed to Reelforge, Copying and Modification without prior permission is not allowed and can result in legal proceedings
+* @author      Steve Ouma Oyugi - Reelforge Developers Team
+* @version     v.1.0
+* @since       July 2008
+*/
+
+
 class AccountController  extends Controller
 {
 	/**
@@ -103,16 +119,14 @@ class AccountController  extends Controller
 
 	public function loadModel($id)
 	{
-		// $sql_activate = "select * from agency_users,agency where agency_users.username='$this->username' and agency_users.password=md5('$this->password') and agency_users.agency_id=agency.agency_id";
-		
-		$agency = AgencyUsers::model()->find('agency_users_id=:a', array(':a'=>$id));
-		$model = ClientUsers::model()->find('client_users_id=:a', array(':a'=>$id));
-		if($model===null && $agency===null){
-			throw new CHttpException(404,'The requested page does not exist.');
+		if(Yii::app()->user->usertype=='agency'){
+			$model = AgencyUsers::model()->find('agency_users_id=:a', array(':a'=>$id));
+		}else{
+			$model = ClientUsers::model()->find('client_users_id=:a', array(':a'=>$id));
 		}
-			
-		if($model===null && $agency!=null){
-			$model=$agency;
+
+		if($model===null){
+			throw new CHttpException(404,'The requested page does not exist.');
 		}	
 		return $model;
 	}

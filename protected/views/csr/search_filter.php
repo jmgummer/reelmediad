@@ -85,5 +85,5 @@ fieldset .col-md-3{
 }
 </style>
 <script type="text/javascript">
-$('#StorySearch_startdate,#StorySearch_enddate').datepick();
+$('#StorySearch_startdate,#StorySearch_enddate').datepick({dateFormat: "yyyy-mm-dd"});
   </script>

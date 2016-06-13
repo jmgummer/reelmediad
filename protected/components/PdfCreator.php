@@ -1,5 +1,19 @@
 <?php
 
+/**
+* PdfCreator Component Class
+* This Class Is Used To Manage PDF Creation
+* DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+* 
+* @package     Reelmedia
+* @subpackage  Components
+* @category    Reelforge Client Systems
+* @license     Licensed to Reelforge, Copying and Modification without prior permission is not allowed and can result in legal proceedings
+* @author      Steve Ouma Oyugi - Reelforge Developers Team
+* @version     v.1.0
+* @since       July 2008
+*/
+
 class PdfCreator{
 	public static function CreatePdf($file){
 		if(file_exists($pdf_path = '/home/srv/www/htdocs/reelmedia/files/pdf/'.$file)){

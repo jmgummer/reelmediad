@@ -1,6 +1,32 @@
 <?php
 
+/**
+* ElectronicArchive Component Class
+* This Class Is Used To Return The Electronic Stories
+* DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+* 
+* @package     Reelmedia
+* @subpackage  Components
+* @category    Reelforge Client Systems
+* @license     Licensed to Reelforge, Copying and Modification without prior permission is not allowed and can result in legal proceedings
+* @author      Steve Ouma Oyugi - Reelforge Developers Team
+* @version 	   v.1.0
+* @since       July 2008
+*/
+
 class ElectronicArchive{
+
+	/**
+	*
+	* @return  Return Client Stories for Electronic Archive
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
+
 	public static function UserStories($clientid,$search,$beginning,$ending,$media_house_id,$start, $number_of_posts){
 	{
 		$todaysdate=date("Y-m-d");
@@ -16,13 +42,22 @@ class ElectronicArchive{
 		$display_search ='';
 		$narrative = '';
 
+		// if(!empty($search)){
+		//     $display_search=$search=trim($search);
+		//     $search_phrase=$search=str_replace("  "," ",$search);   $search=str_replace("  "," ",$search);
+		//     $strings=explode(" ",$search);
+		//     $search_strings= count($strings);
+		//     $search2=str_replace(" ","%",trim($search));
+		//     $search2=" or story.mentioned like '%". $search2 . "%'  or story.Title like '%". $search2 . "%'";
+		//     $search=" ( (story.mentioned  like '% ".$search . " %' or story.Title  like '% ".$search . " %' )   $search2)";
+		// }
 		if(!empty($search)){
 		    $display_search=$search=trim($search);
 		    $search_phrase=$search=str_replace("  "," ",$search);   $search=str_replace("  "," ",$search);
-		    $strings=explode(" ",$search);
-		    $search_strings= count($strings);
+		    // $strings=explode(" ",$search);
+		    // $search_strings= count($strings);
 		    $search2=str_replace(" ","%",trim($search));
-		    $search2=" or story.mentioned like '%". $search2 . "%'  or story.Title like '%". $search2 . "%'";
+		    $search2=" or story.mentioned like '% ". $search2 . "%'  or story.Title like '% ". $search2 . "%'";
 		    $search=" ( (story.mentioned  like '% ".$search . " %' or story.Title  like '% ".$search . " %' )   $search2)";
 		}
 

@@ -1,5 +1,19 @@
 <?php
 
+/**
+* SiteController Controller Class
+* This Class Is Used To Handle all Site actions
+* DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+* 
+* @package     Reelmedia
+* @subpackage  Controllers
+* @category    Reelforge Client Systems
+* @license     Licensed to Reelforge, Copying and Modification without prior permission is not allowed and can result in legal proceedings
+* @author      Steve Ouma Oyugi - Reelforge Developers Team
+* @version 	   v.1.0
+* @since       July 2008
+*/
+
 class SiteController extends Controller
 {
 	/**
@@ -100,11 +114,7 @@ class SiteController extends Controller
 				// validate user input and redirect to the previous page if valid
 				if($model->validate() && $model->login())
 				{
-					if($return == "/reelmediad/"){
-						$this->redirect(array('home/index'));
-					}else{
-						$this->redirect(Yii::app()->user->returnUrl);
-					}
+					$this->redirect(array('home/index'));
 				}
 			}
 
@@ -114,17 +124,11 @@ class SiteController extends Controller
 				// validate user input and redirect to the previous page if valid
 				if($model->validate() && $model->login())
 				{
-					if($return == "/reelmediad/"){
-						$this->redirect(array('home/index'));
-					}else{
-						$this->redirect(Yii::app()->user->returnUrl);
-					}
+					$this->redirect(array('home/index'));
 				}
 			}
-			// display the login form
-			$this->render('login',array('model'=>$model));
-			// $site_url = "www.reelforge.com";
-			// $this->redirect('http://'.$site_url.'/reelforge_back/site/sitelogin');
+			$site_url = "../../reelforge_back/";
+			$this->redirect($site_url);
 		}else{
 			$this->redirect(Yii::app()->user->returnUrl);
 		}
@@ -156,9 +160,8 @@ class SiteController extends Controller
 			session_start();
 			session_destroy();
 		}
-		// $site_url = "www.reelforge.com";
-		// $this->redirect('http://'.$site_url.'/reelforge_back');
-		$this->redirect(array('site/login'));
+		$site_url = "../../reelforge_back/";
+		$this->redirect($site_url);
 	}
 
 	/*

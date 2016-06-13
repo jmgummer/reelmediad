@@ -1,0 +1,8 @@
+# Source file or directory to parse
+source: 'C:/xampp/htdocs/reelmediad'
+# Directory where to save the generated documentation
+destination: 'D:/Documentation/Reelmediad_2'
+# List of allowed file extensions
+extensions: [php, inc]
+# Generate documentation for methods and properties with given access level
+accessLevels: [public, protected]

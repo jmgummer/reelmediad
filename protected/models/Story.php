@@ -2,6 +2,13 @@
 
 /**
  * This is the model class for table "story".
+ * @package     Reelmedia
+ * @subpackage  Models
+ * @category    Reelforge Client Systems
+ * @license     Licensed to Reelforge, Copying and Modification without prior permission is not allowed and can result in legal proceedings
+ * @author      Steve Ouma Oyugi - Reelforge Developers Team
+ * @version 	   v.1.0
+ * @since       July 2008
  *
  * The followings are the available columns in table 'story':
  * @property integer $Story_ID
@@ -95,7 +102,7 @@ class Story extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('link_id, Title, uniqueID, editor, editor1, editor2, input_time_1, entrytime1, entrytime2, entrytime3, journalist, photo_journalist, col, centimeter, pic1, file, page_no, file_path, mentioned, cont_on, cont_from', 'required'),
-			array('link_id, headline_flag, analysis_id, footage, subheadings, words, visible, election, program_id, entrytime1, entrytime2, entrytime3, ave, is_repeat, col, centimeter, step1, step2, step3, cont_on, cont_from', 'numerical', 'integerOnly'=>true),
+			array('link_id, headline_flag, analysis_id, footage, subheadings, words, visible, election, program_id, entrytime1, entrytime2, entrytime3, ave, is_repeat, col, centimeter, step1, step2, step3, cont_on, cont_from, print_rate', 'numerical', 'integerOnly'=>true),
 			array('Industry_ID, Client_ID, Category_ID, Media_House_ID, StoryDuration, Elec_Clip_ID, StoryPage', 'length', 'max'=>8),
 			array('Image_ID', 'length', 'max'=>6),
 			array('Sub_Categ_ID, Positioning', 'length', 'max'=>50),
@@ -106,7 +113,7 @@ class Story extends CActiveRecord
 			array('pic1, file', 'length', 'max'=>500),
 			array('page_no', 'length', 'max'=>5),
 			array('csr', 'length', 'max'=>1),
-			array('StoryDate, StoryTime, Story, storyEnteredTime', 'safe'),
+			array('StoryDate, StoryTime, Story, storyEnteredTime, print_rate', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('Story_ID, link_id, Industry_ID, Client_ID, Title, Image_ID, Category_ID, Sub_Categ_ID, Media_ID, Media_House_ID, StoryDate, StoryTime, StoryDuration, Story, Elec_Clip_ID, StoryPage, headline_flag, analysis_id, footage, picture, subheadings, uniqueID, words, visible, editor, editor1, editor2, election, program_id, input_time_1, entrytime1, entrytime2, entrytime3, Positioning, journalist, photo_journalist, ave, is_repeat, Is_Advert, col, centimeter, pic1, file, page_no, file_path, step1, step2, step3, mentioned, cont_on, cont_from, csr, storyEnteredTime', 'safe', 'on'=>'search'),
@@ -183,6 +190,7 @@ class Story extends CActiveRecord
 			'cont_from' => 'Cont From',
 			'csr' => 'Csr',
 			'storyEnteredTime' => 'Story Entered Time',
+			'print_rate'=>'Print Rate'
 		);
 	}
 
@@ -250,6 +258,7 @@ class Story extends CActiveRecord
 		$criteria->compare('cont_from',$this->cont_from);
 		$criteria->compare('csr',$this->csr,true);
 		$criteria->compare('storyEnteredTime',$this->storyEnteredTime,true);
+		$criteria->compare('print_rate',$this->print_rate,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -434,6 +443,22 @@ class Story extends CActiveRecord
 				$continues = '<a href="'.Yii::app()->createUrl("swf/view").'/'.$cont_from.'" style="color:#000;text-decoration:underline;">From Page '.$from->StoryPage.'</a>';
 			}
 		}
+
+		if($this->cont_from!=0 && $this->cont_on!=0){
+			$cont_from = $this->cont_from;
+			$sql_from="select story_id,uniqueID, StoryPage from story where Story_ID='$cont_from'";
+			if($from = Story::model()->findBySql($sql_from)){
+				$storyid = $from->Story_ID;
+				$continues = '<a href="'.Yii::app()->createUrl("swf/view").'/'.$cont_from.'" style="color:#000;text-decoration:underline;">From Page '.$from->StoryPage.'</a>';
+			}
+
+			$cont_on = $this->cont_on;
+			$sql_cont="select story_id,uniqueID, StoryPage from story where Story_ID='$cont_on'";
+			if($cont = Story::model()->findBySql($sql_cont)){
+				$storyid = $cont->Story_ID;
+				$continues .= '<br><a href="'.Yii::app()->createUrl("swf/view").'/'.$cont_on.'" style="color:#000;text-decoration:underline;">Continues on Page '.$cont->StoryPage.'</a>';
+			}
+		}
 		return $continues;
 	}
 
@@ -488,18 +513,19 @@ class Story extends CActiveRecord
 			$StoryTime=$this->StoryTime;
 			$this_rate=0;
 			if($this->Media_ID=='mp01'){
-				$picture = $this->picture;
-				if($picture=='color'){
-					$color_code = $weekday.'_c';
-				}else{
-					$color_code = $weekday.'_b';
-				}
-				if($rate = Ratecard::model()->find('Media_House_ID=:a AND color_code=:b ORDER BY auto_id DESC', array(':a'=>$Media_House_ID,':b'=>$color_code))){
-					$rate=$rate->rate;
-					$rate_cost = $rate*$col*$centimeter;
-				}else{
-					$rate_cost = 0;
-				}
+				$rate_cost = $this->print_rate;
+				// $picture = $this->picture;
+				// if($picture=='color'){
+				// 	$color_code = $weekday.'_c';
+				// }else{
+				// 	$color_code = $weekday.'_b';
+				// }
+				// if($rate = Ratecard::model()->find('Media_House_ID=:a AND color_code=:b ORDER BY auto_id DESC', array(':a'=>$Media_House_ID,':b'=>$color_code))){
+				// 	$rate=$rate->rate;
+				// 	$rate_cost = $rate*$col*$centimeter;
+				// }else{
+				// 	$rate_cost = 0;
+				// }
 			}else{
 			  $sql_electronic_rate='SELECT rate,duration 
 			  from forgedb.ratecard_base, reelmedia.anvil_match 
@@ -519,7 +545,6 @@ class Story extends CActiveRecord
 			  }else{
 			    $rate_cost = 0;
 			  }
-			  // $rate_cost = ($this_rate*$this_duration)/$incantation_length;
 			  
 			}
 		}else{
@@ -530,7 +555,6 @@ class Story extends CActiveRecord
 			$rate_cost = 0;
 		}else{
 			$rate_cost = intval(trim($rate_cost, "'"));
-			// $rate_cost =  Common::ExcelNumberFormat(($rate_cost +0),0);
 		}
 		
 		return $rate_cost;
@@ -657,32 +681,6 @@ class Story extends CActiveRecord
 
 	public function getContinuingAve()
 	{
-		// $colcm = 0;
-		// $weekday = strtolower(date('D', strtotime($this->StoryDate)));
-		// $Media_House_ID = $this->Media_House_ID;
-		// $picture = $this->picture;
-		// $col = $this->col;
-		// $centimeter = $this->centimeter;
-
-		// if($picture=='color'){
-		// 	$color_code = $weekday.'_c';
-		// }else{
-		// 	$color_code = $weekday.'_b';
-		// }
-
-		// if($rate = Ratecard::model()->find('Media_House_ID=:a AND color_code=:b', array(':a'=>$Media_House_ID,':b'=>$color_code))){
-		// 	$rate=$rate->rate;
-		// 	$rate_cost = $rate*$col*$centimeter;
-		// }else{
-		// 	$rate_cost = 0;
-		// }
-		// $this_rate=$rate_cost;
-		
-		// if($this->cont_on!=0) {
-		// 	$cont_rate=Story::RateContinuation($this->cont_on);
-		// 	$this_rate+=$cont_rate;
-		// }
-		// return $this_rate;
 		return $this->Ave;
 	}
 

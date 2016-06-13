@@ -22,9 +22,13 @@ $industries = '';
 $clientid = Yii::app()->user->company_id;
 $cat_identifier = 1;
 $type_identifier = 1;
-
-$company_words = Company::model()->find('company_id=:a order by keywords', array(':a'=>Yii::app()->user->company_id));
-$backdate = $company_words->backdate;
+$c_sql = "SELECT * FROM company WHERE company_id=$clientid";
+if($company_words = Company::model()->findBySql($c_sql)){
+	$backdate = $company_words->backdate;
+}else{
+	$backdate = date('Y-m-d');
+	echo "<p style='color:Red'>Back Date Not Set, Please get in Touch with your Client Service Representative</p>";
+}
 
 $html = '';
 if(isset($_POST['StorySearch'])){

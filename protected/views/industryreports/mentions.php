@@ -52,7 +52,11 @@ $backdate = $company_words->backdate;
     $industry = $model->industry;
     $startdate = $model->startdate;
     $enddate = $model->enddate;
-    $indas = Industry::model()->find('Industry_ID=:a',array(':a'=>$industry))->Industry_List;
+    if(!$indas = Industry::model()->find('Industry_ID=:a',array(':a'=>$industry))){
+        $indas = 'Not Set';
+    }else{
+        $indas = $indas->Industry_List;
+    }
     $narrative .= $indas.' Between ';
     $drange = date('d-M-Y',strtotime(str_replace('-', '/', $startdate))).' and '.date('d-M-Y',strtotime(str_replace('-', '/', $enddate)));
     $narrative .= $drange;

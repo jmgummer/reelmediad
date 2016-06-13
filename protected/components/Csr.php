@@ -1,5 +1,31 @@
 <?php
+
+/**
+* Csr Component Class
+* This Class Is Used To Return The Csr Stories
+* DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+* 
+* @package     Reelmedia
+* @subpackage  Components
+* @category    Reelforge Client Systems
+* @license     Licensed to Reelforge, Copying and Modification without prior permission is not allowed and can result in legal proceedings
+* @author      Steve Ouma Oyugi - Reelforge Developers Team
+* @version 	   v.1.0
+* @since       July 2008
+*/
+
 class Csr{
+
+	/**
+	*
+	* @return  Return Client Print Stories
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
 	
 	public static function GetClientStory($client,$startdate,$enddate,$search)
 	{
@@ -23,6 +49,17 @@ class Csr{
 			echo 'No Records Found';
 		}
 	}
+
+	/**
+	*
+	* @return  Return Client Electronic Stories
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
 
 	public static function GetElectronicStory($client,$startdate,$enddate,$search)
 	{
@@ -48,6 +85,17 @@ class Csr{
 		}
 	}
 
+	/**
+	*
+	* @return  Return Industry Stories
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
+
 	public static function GetClientIndustryStory($client,$startdate,$enddate,$search)
 	{
 		$month = date('m');
@@ -70,6 +118,17 @@ class Csr{
 			echo 'No Records Found';
 		}
 	}
+
+	/**
+	*
+	* @return  Return Industry Electronic Stories
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
 
 	public static function GetClientElectronicIndustryStory($client,$startdate,$enddate,$search)
 	{
@@ -94,19 +153,34 @@ class Csr{
 		}
 	}
 
-	/*
-	* This Function obtains a particular story only
+	/**
+	*
+	* @return  Return A Particular Story based on Story ID
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
 	*/
+
 	public static function GetStories($story_id){
 		if($story = Story::model()->find('Story_ID=:a', array(':a'=>$story_id))){
 			return $story;
 		}
 	}
 
-	/*
-	* Print The Top Section of Every Table
-	* NB - Just for the Electronic Section
+	/**
+	*
+	* @return  Return Table Head for Electronic Stories
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
 	*/
+
 	public static function ElectronicTableHead(){
 		$country = Yii::app()->user->country_id;
 		if($currency = Country::model()->find('country_id=:a', array(':a'=>$country))){
@@ -123,10 +197,17 @@ class Csr{
 	}
 
 
-	/*
-	* Print The Top Section of Every Table 
-	* NB - Just for the Print Section
+	/**
+	*
+	* @return  Return Table Head for Print Stories
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
 	*/
+
 	public static function PrintTableHead(){
 		$country = Yii::app()->user->country_id;
 		if($currency = Country::model()->find('country_id=:a', array(':a'=>$country))){
@@ -141,10 +222,18 @@ class Csr{
 		<th style="width:11%;">DATE</th><th>PUBLICATION</th><th>JOURNALIST</th><th>HEADLINE/SUBJECT</th><th>PAGE</th><th>PUBLICATION TYPE</th><th>PICTURE</th><th>EFFECT</th><th>AVE('.$currency.')</th>
 		</thead>';
 	}
-	/*
-	* Print The Body of the Table This function may be called recursively
-	* NB - Just for the Print Section
+	
+	/**
+	*
+	* @return  Return Table Body for Print
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
 	*/
+
 	public static function PrintTableBody($Story_ID,$date,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont){
 		return '<tr>
 		<td>'.$date.'</td>
@@ -159,10 +248,17 @@ class Csr{
 		</tr>';
 	}
 
-	/*
-	* Print The Body of the Table This function may be called recursively
-	* NB - Just for the Print Section
+	/**
+	*
+	* @return  Return the Table body for Electronic Stories
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
 	*/
+
 	public static function ElectronicTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont){
 		return '<tr>
 		<td><a href="'.Yii::app()->createUrl("video").'/'.$storyid.'" target="_blank">'.$date.'</a></td>
@@ -176,10 +272,18 @@ class Csr{
 		<td style="text-align:right;">'.number_format($ave).'</td>
 		</tr>';
 	}
-	/*
-	* Close the Table and Its Bottom section
-	* NB - Just for the Print Section
+	
+	/**
+	*
+	* @return  Return the Table End
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
 	*/
+
 	public static function PrintTableEnd(){
 		return '</table></div></div>';
 	}

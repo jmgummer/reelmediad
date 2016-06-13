@@ -120,5 +120,5 @@ fieldset .col-md-3{
 }
 </style>
 <script type="text/javascript">
-$('#beginning,#ending').datepick();
+$('#beginning,#ending').datepick({dateFormat: "yyyy-mm-dd"});
   </script>

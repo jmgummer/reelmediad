@@ -1,20 +1,49 @@
 <?php
 
+/**
+* ArchiveStories Component Class
+* This Class Is Used To Return The Users/Company Archive
+* DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+* 
+* @package     Reelmedia
+* @subpackage  Components
+* @category    Reelforge Client Systems
+* @license     Licensed to Reelforge, Copying and Modification without prior permission is not allowed and can result in legal proceedings
+* @author      Steve Ouma Oyugi - Reelforge Developers Team
+* @version 	   v.1.0
+* @since       July 2008
+*/
+
 class ArchiveStories{
+	/**
+	*
+	* @return  Return Client Stories
+	* @throws  InvalidArgumentException
+	* @todo    This Generates all the client Stories
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
+	
 	public static function UserStories($clientid,$search,$beginning,$ending,$media_house_id,$start, $number_of_posts){
 		// Initialize Empty Variables
 		$display_data = "";
 		$query = '';
 		$full_query = '';
 		$media_code = '';
+		$hlight = $search;
 
 		if(!empty($search)){
 			$display_search=$search=trim($search);
 			$search=str_replace("  "," ",$search);  
-			$strings=explode(" ",$search);
-			$search_strings= count($strings);
-			$search2=str_replace(" ","%",trim($search));
-			$search2=' or fulltxt like "%'. $search2 . '%"';
+			// $strings=explode(" ",$search);
+			// $search_strings= count($strings);
+			$searchterm=str_replace(" ","%",trim($search));
+			$search2=' or fulltxt like "% '. $searchterm . '%"';
+			// $search3=' or fulltxt like "% '. $searchterm . '%"';
+			// $search=' ( fulltxt like "% '.$search . ' %" '.$search2. $search3.')';
 			$search=' ( fulltxt like "% '.$search . ' %" '.$search2.')';
 		}
 
@@ -178,8 +207,13 @@ class ArchiveStories{
 				$media_house_id = $key['media_house_id'];
 				$limit = 300;
 			   	$content = $key['fulltxt'];
+			   	$check_content = $content;
 			   	if (strlen($content) > $limit){
 					$content = substr($content, 0, strrpos(substr($content, 0, $limit), ' '));
+				}
+				if(!empty($hlight)){
+					$content = str_ireplace($hlight, "<b style='background-color: yellow;'>$hlight</b>", $content);
+					// $content = preg_replace("/\p{L}*?".preg_quote($hlight)."\p{L}*/ui", "<b style='background-color: yellow;'>$0</b>", $content);
 				}
 				$page = ' Page : '.$key['page'];
 				$format_date = date('d, F, Y', strtotime($key['indexdate']));
@@ -188,6 +222,9 @@ class ArchiveStories{
 				$display_data .= '<p>'.$format_date.''.$page.'</p>';
 				$display_data .= '<p>'.$content.'</p>';
 				$display_data .= '<p><a href="http://www.reelforge.com/reelmedia/print_story_console/print_stream.php?itemid='.$key['link_id'].'" target="_blank">Read More</a> | <a href="'.$key['url'].'" target="_blank">Download PDF</a></p>';
+				if (!empty($hlight) && preg_match("/$hlight/i",$check_content) !== false) {
+				    $display_data .= '<p><i>Keyword '.$hlight.' Found</i></p>';
+				}
 				$display_data .= '</td></tr>';
 			}
 			$display_data .= '</table>';

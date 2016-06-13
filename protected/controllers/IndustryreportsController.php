@@ -1,5 +1,19 @@
 <?php
 
+/**
+* IndustryreportsController Controller Class
+* This Class Is Used To Handle all Industry Reports actions
+* DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+* 
+* @package     Reelmedia
+* @subpackage  Controllers
+* @category    Reelforge Client Systems
+* @license     Licensed to Reelforge, Copying and Modification without prior permission is not allowed and can result in legal proceedings
+* @author      Steve Ouma Oyugi - Reelforge Developers Team
+* @version 	   v.1.0
+* @since       July 2008
+*/
+
 class IndustryreportsController extends Controller
 {
 	/**
@@ -43,6 +57,7 @@ class IndustryreportsController extends Controller
 	
 	public function actionMentions()
 	{
+		ini_set('memory_limit', '1024M');
 		$model = new StorySearch('search');
 		if(isset($_POST['StorySearch']))
 		{
@@ -50,8 +65,10 @@ class IndustryreportsController extends Controller
 			$model->startdate = date('Y-m-d',strtotime(str_replace('-', '/', $model->startdate)));
 			$model->enddate = date('Y-m-d',strtotime(str_replace('-', '/', $model->enddate)));
 		}else{
-			// $industry = Industry::model()->find('company_id=:a', array(':a'=>Yii::app()->user->company_id));
-			$model->industry = IndustryCompany::model()->find('company_id=:a', array(':a'=>Yii::app()->user->company_id))->industry_id;
+			if(Yii::app()->user->usertype!='agency'){
+				// $industry = Industry::model()->find('company_id=:a', array(':a'=>Yii::app()->user->company_id));
+				$model->industry = IndustryCompany::model()->find('company_id=:a', array(':a'=>Yii::app()->user->company_id))->industry_id;
+			}
 			$model->startdate = $model->enddate = date('Y-m-d');
 		}
 		if(Yii::app()->user->usertype=='agency'){

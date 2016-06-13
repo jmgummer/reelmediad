@@ -1,7 +1,33 @@
 <?php
 
+/**
+* ExcelElectronic Component Class
+* This Class Is Used To Return The Electronic Excel File
+* DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+* 
+* @package     Reelmedia
+* @subpackage  Components
+* @category    Reelforge Client Systems
+* @license     Licensed to Reelforge, Copying and Modification without prior permission is not allowed and can result in legal proceedings
+* @author      Steve Ouma Oyugi - Reelforge Developers Team
+* @version 	   v.1.0
+* @since       July 2008
+*/
+
 class ExcelElectronic
 {
+
+	/**
+	*
+	* @return  Return an Array of Client Stories
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
+
 	public static function ArrayGenerator($array,$client){
 		$tv_array=array();
 		$radio_array = array();
@@ -66,6 +92,17 @@ class ExcelElectronic
 		$return_array['radiodata'] = $radio_array;
 		return $return_array;
 	}
+
+	/**
+	*
+	* @return  Return an Array of Client Stories, For Agencies
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
 
 	public static function AgencyArrayGenerator($array,$client,$agency_pr_rate){
 		$tv_array=array();

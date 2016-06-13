@@ -2,6 +2,13 @@
 
 /**
  * This is the model class for table "agency_users".
+ * @package     Reelmedia
+ * @subpackage  Models
+ * @category    Reelforge Client Systems
+ * @license     Licensed to Reelforge, Copying and Modification without prior permission is not allowed and can result in legal proceedings
+ * @author      Steve Ouma Oyugi - Reelforge Developers Team
+ * @version 	   v.1.0
+ * @since       July 2008
  *
  * The followings are the available columns in table 'agency_users':
  * @property integer $agency_users_id

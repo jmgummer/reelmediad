@@ -1,5 +1,19 @@
 <?php
 
+/**
+* GeneratePassword Component Class
+* This Class Is Used To Generate a new Password for Users
+* DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+* 
+* @package     Reelmedia
+* @subpackage  Components
+* @category    Reelforge Client Systems
+* @license     Licensed to Reelforge, Copying and Modification without prior permission is not allowed and can result in legal proceedings
+* @author      Steve Ouma Oyugi - Reelforge Developers Team
+* @version 	   v.1.0
+* @since       July 2008
+*/
+
 class GeneratePassword{
 	/* 
 	** Function used to generate a new Password 
@@ -47,6 +61,17 @@ class GeneratePassword{
 			return 'There seems to be a problem, check if the user exists and try again';
 		}
 	}
+
+	/**
+	*
+	* @return  Send an Email with your new Password
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
 
 	public static function SendResetMail($username,$name,$email,$password)
 	{

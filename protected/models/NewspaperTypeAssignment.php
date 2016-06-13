@@ -2,6 +2,13 @@
 
 /**
  * This is the model class for table "newspaper_type_assignment".
+ * @package     Reelmedia
+ * @subpackage  Models
+ * @category    Reelforge Client Systems
+ * @license     Licensed to Reelforge, Copying and Modification without prior permission is not allowed and can result in legal proceedings
+ * @author      Steve Ouma Oyugi - Reelforge Developers Team
+ * @version 	   v.1.0
+ * @since       July 2008
  *
  * The followings are the available columns in table 'newspaper_type_assignment':
  * @property integer $auto_id

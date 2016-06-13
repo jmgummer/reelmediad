@@ -92,7 +92,7 @@ fieldset .col-md-3{
 </style>
 
 <script>
-$('#beginning,#ending').datepick();
+$('#beginning,#ending').datepick({dateFormat: "yyyy-mm-dd"});
   $("#generate").click(
     function(event) {
     	event.preventDefault();

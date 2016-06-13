@@ -1,10 +1,33 @@
 <?php
 
+/**
+* CompileCD Component Class
+* This Class Is Used To Return The Users/Company Compiled CD
+* DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+* 
+* @package     Reelmedia
+* @subpackage  Components
+* @category    Reelforge Client Systems
+* @license     Licensed to Reelforge, Copying and Modification without prior permission is not allowed and can result in legal proceedings
+* @author      Steve Ouma Oyugi - Reelforge Developers Team
+* @version 	   v.1.0
+* @since       July 2008
+*/
+
 class CompileCD{
 
-	public static function Compiler($client,$startdate,$enddate,$search,$industries,$cat_identifier,$type_identifier)
-	{
+	/**
+	*
+	* @return  Return The Generated Zip File
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
 
+	public static function Compiler($client,$startdate,$enddate,$search,$industries,$cat_identifier,$type_identifier){
 		$country = Yii::app()->user->country_id;
 		$company_words = Company::model()->find('company_id=:a order by keywords', array(':a'=>$client));
 		$backdate = $company_words->backdate;
@@ -286,6 +309,17 @@ class CompileCD{
 		return $file;
 	}
 
+	/**
+	*
+	* @return  Return A Random ID
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
+
 	public static function GenerateRandomId ($length = 5)
 	{
 		$story_uniqueid = "";
@@ -303,6 +337,17 @@ class CompileCD{
 		return $story_uniqueid;
 	}
 
+	/**
+	*
+	* @return  Return A computed HTML Body
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
+
 	public static function FileBody($content){
 		$body  = '';
 		$body .= CompileCD::MainStyles();
@@ -310,6 +355,17 @@ class CompileCD{
 		$body .= '</div></div></body></html>';
 		return $body;
 	}
+
+	/**
+	*
+	* @return  Return A computed HTML Body for Print Content
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
 
 	public static function PrintBody($title,$publication,$date,$type,$journalist,$page,$ave,$summary,$swf_file){
 		$body  = '';
@@ -321,6 +377,17 @@ class CompileCD{
 		return $body;
 	}
 
+	/**
+	*
+	* @return  Return A computed HTML Body for Electronic Content
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
+
 	public static function ElectronicBody($title,$publication,$date,$type,$journalist,$page,$ave,$summary,$swf_file,$filepath){
 		$body  = '';
 		$body .= CompileCD::Styles();
@@ -330,6 +397,17 @@ class CompileCD{
 		$body .= '<div class="clearfix"></div></div></div></body></html>';
 		return $body;
 	}
+
+	/**
+	*
+	* @return  Return the Top Section of the HTML Content
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
 
 	public static function ContentHeader($title,$publication,$date,$type,$journalist){
 		$date = date('d-M-Y', strtotime($date));
@@ -343,6 +421,17 @@ class CompileCD{
 		return $header;
 	}
 
+	/**
+	*
+	* @return  Return the Top Section of HTML Content for Electronic
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
+
 	public static function ContentHeaderElectronic($title,$publication,$date,$type,$journalist){
 		$date = date('d-M-Y', strtotime($date));
 		$header = '';
@@ -354,6 +443,17 @@ class CompileCD{
 		return $header;
 	}
 
+	/**
+	*
+	* @return  Return the Body of HTML Content
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
+
 	public static function ContentBody($page,$ave,$summary){
 		$body = '';
 		$body.= '<p><strong>Page : </strong>'.$page.'</p>';
@@ -362,6 +462,18 @@ class CompileCD{
 		$body.= '</div>';
 		return $body;
 	}
+
+	/**
+	*
+	* @return  Return the Body of HTML Content for Electronic
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
+
 	public static function ContentBodyElectronic($page,$ave,$summary){
 		$body = '';
 		$body.= '<p><strong>Length : </strong>'.$page.'</p>';
@@ -370,6 +482,18 @@ class CompileCD{
 		$body.= '</div>';
 		return $body;
 	}
+
+	/**
+	*
+	* @return  Return the File Link
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
+
 	public static function ContentFile($swf_file){
 		$location = '/files/';
 		$content = '';
@@ -378,8 +502,19 @@ class CompileCD{
 		$content.= '</div>';
 		return $content;
 	}
-	public static function Styles()
-	{
+
+	/**
+	*
+	* @return  Return the Styles for HTML Content
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
+
+	public static function Styles(){
 		$style = '';
 		$style = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">';
 		$style.= "<head>";
@@ -393,6 +528,18 @@ class CompileCD{
 		$style.= "<div class='content-header'><img src='../images/reelforge_logo.png' /></div>";
 		return $style;
 	}
+
+	/**
+	*
+	* @return  Return the Styles for HTML Content
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
+
 	public static function MainStyles()
 	{
 		$style = '';
@@ -409,8 +556,18 @@ class CompileCD{
 		return $style;
 	}
 
-	public static function MovePrintFile($file,$date,$cd_name)
-	{
+	/**
+	*
+	* @return  Moves Print File
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
+
+	public static function MovePrintFile($file,$date,$cd_name){
 		/* 
 		** Copy the Required Files, Individually
 		** get a copy of the pdf file 
@@ -429,6 +586,17 @@ class CompileCD{
 		$swf_cmd ="cp -v ".$swf_file ."  ".$swf_destination."  ";
 		exec($swf_cmd);
 	}
+
+	/**
+	*
+	* @return  Moves the Electronic File
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
 
 	public static function MoveElectronicFile($file,$date,$cd_name,$filepath)
 	{
@@ -457,8 +625,18 @@ class CompileCD{
 		}
 	}
 
-	public static function ElectronicPlayer($file,$filepath)
-	{
+	/**
+	*
+	* @return  Embed the Electronic Player for HTML Content
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
+
+	public static function ElectronicPlayer($file,$filepath){
 		/* 
 		** Copy the Required Files, Individually
 		** get a copy of the electronic file, mp3 or mpg/flv
@@ -503,8 +681,18 @@ class CompileCD{
 		return $data;
 	}
 
-	public static function PrintPlayer($file,$date)
-	{
+	/**
+	*
+	* @return  Ember the Print Player for HTML Content
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
+
+	public static function PrintPlayer($file,$date){
 		$build_date = date('Y/m/d/' ,strtotime($date));
 		$file = str_replace($build_date, "", $file);
 		$data = '';
@@ -526,15 +714,15 @@ class CompileCD{
 		 '../essentials/swfobject/expressinstall.swf', flashvars, params, attributes);
 		 </script>";
 		 $data.="<div align=center> 
-	<div id='website'>
-		<p align='center' class='style1'>In order to view this page you need Flash Player 9+ support!</p>
-		<p align='center'>
-			<a href='http://www.adobe.com/go/getflashplayer'> 
-				<img src='http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif' alt='Get Adobe Flash player' /> 
-			</a> 
-		</p> 
-	</div>
-</div>";
+			<div id='website'>
+				<p align='center' class='style1'>In order to view this page you need Flash Player 9+ support!</p>
+				<p align='center'>
+					<a href='http://www.adobe.com/go/getflashplayer'> 
+						<img src='http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif' alt='Get Adobe Flash player' /> 
+					</a> 
+				</p> 
+			</div>
+		</div>";
 		$data.= '</div>';
 		return $data;
 	}

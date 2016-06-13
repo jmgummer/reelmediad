@@ -1,6 +1,31 @@
 <?php
 
+/**
+* IndustryQueries Component Class
+* This Class Is Used To Return handle Industry Queries
+* DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+* 
+* @package     Reelmedia
+* @subpackage  Components
+* @category    Reelforge Client Systems
+* @license     Licensed to Reelforge, Copying and Modification without prior permission is not allowed and can result in legal proceedings
+* @author      Steve Ouma Oyugi - Reelforge Developers Team
+* @version 	   v.1.0
+* @since       July 2008
+*/
+
 class IndustryQueries{
+
+	/**
+	*
+	* @return  Return all mentions
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
 
 	public static function GetAllCompanyMentions($startdate,$enddate,$industry,$backdate)
 	{
@@ -12,6 +37,17 @@ class IndustryQueries{
 		}
 	}
 
+	/**
+	*
+	* @return  Return a Single Company's mentions
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
+
 	public static function GetCompanyMentions($client,$startdate,$enddate,$industry,$backdate)
 	{
 		$q2 = 'SELECT story_mention.story_id as number_my_mentions from story_industry, story_mention, story where story_mention.client_id='.$client.' and story_industry.story_id= story_mention.story_id and story.StoryDate between "'.$startdate.'" and "'.$enddate.'" and story.StoryDate>"'.$backdate.'" and story.story_id= story_mention.story_id and story_industry.story_id=story.story_id and story_industry.industry_id IN ('.$industry.')';
@@ -21,6 +57,17 @@ class IndustryQueries{
 			return FALSE;
 		}
 	}
+
+	/**
+	*
+	* @return  Return the company's mentions
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
 
 	public static function GetCompanyAve($client,$startdate,$enddate,$industry,$backdate)
 	{
@@ -80,6 +127,17 @@ class IndustryQueries{
 		}
 	}
 
+	/**
+	*
+	* @return  Return all company ave
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
+
 	public static function GetAllCompanyAve($client,$startdate,$enddate,$industry,$backdate)
 	{
 		$q1 = 'SELECT * from story_industry, story_mention, story, mediahouse where story_industry.industry_id = "" and story_mention.client_id!='.$client.' and story_industry.story_id= story_mention.story_id and story.StoryDate between "'.$startdate.'" and "'.$enddate.'" and story.StoryDate>"'.$backdate.'" and story.story_id= story_mention.story_id and mediahouse.Media_House_ID=story.Media_House_ID order by StoryDate asc';
@@ -130,11 +188,33 @@ class IndustryQueries{
 		}
 	}
 
+	/**
+	*
+	* @return  Return a count of share of tv
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
+
 	public static function GetShareVoiceMediaTV($client,$startdate,$enddate,$industry,$backdate)
 	{
 		$q1 = 'SELECT story.story_id as mentions from story_industry, story , story_mention where story_mention.client_id='.$client.' and story_industry.story_id= story_mention.story_id and story_industry.story_id=story.story_id and story_industry.industry_id IN ('.$industry.') and story.StoryDate between "'.$startdate.'" and "'.$enddate.'" and story.StoryDate>"'.$backdate.'" and story.story_id= story_industry.story_id and story.Media_ID= "mt01"';
 		return $sq = count(Story::model()->findAllBySql($q1));
 	}
+
+	/**
+	*
+	* @return  Return a count of share of radio
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
 
 	public static function GetShareVoiceMediaRadio($client,$startdate,$enddate,$industry,$backdate)
 	{
@@ -142,11 +222,33 @@ class IndustryQueries{
 		return $sq = count(Story::model()->findAllBySql($q1));
 	}
 
+	/**
+	*
+	* @return  Return a count of share of print
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
+
 	public static function GetShareVoiceMediaPrint($client,$startdate,$enddate,$industry,$backdate)
 	{
 		$q1 = 'SELECT story.story_id as mentions from story_industry, story , story_mention where story_mention.client_id='.$client.' and story_industry.story_id= story_mention.story_id and story_industry.story_id=story.story_id and story_industry.industry_id IN ('.$industry.') and story.StoryDate between "'.$startdate.'" and "'.$enddate.'" and story.StoryDate>"'.$backdate.'" and story.story_id= story_industry.story_id and story.Media_ID= "mp01"';
 		return $sq = count(Story::model()->findAllBySql($q1));
 	}
+
+	/**
+	*
+	* @return  Return a count of industry share of voice
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
 
 	public static function GetShareVoiceIndustry($client,$startdate,$enddate,$industry,$backdate)
 	{
@@ -154,11 +256,33 @@ class IndustryQueries{
 		return $sq = StoryMention::model()->findAllBySql($q1);
 	}
 
+	/**
+	*
+	* @return  Return a count of overall share of voice
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
+
 	public static function GetShareVoiceCount($client,$startdate,$enddate,$industry,$backdate)
 	{
 		$q1 = 'SELECT story.story_id as mentions from story_industry, story , story_mention where story_mention.client_id='.$client.' and story_industry.story_id= story_mention.story_id and story.StoryDate between "'.$startdate.'" and "'.$enddate.'" and story.StoryDate>"'.$backdate.'" and story.story_id= story_industry.story_id and story_industry.story_id=story.story_id and story_industry.industry_id IN ('.$industry.') ';
 		return $sq = count(StoryMention::model()->findAllBySql($q1));
 	}
+
+	/**
+	*
+	* @return Return categories
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
 
 	public static function GetCategories()
 	{
@@ -166,18 +290,51 @@ class IndustryQueries{
 		return $categories;
 	}
 
+	/**
+	*
+	* @return  Return a count of categories
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
+
 	public static function GetCatCount($client,$startdate,$enddate,$industry,$cat,$backdate)
 	{
 		$q1 = 'SELECT story.story_id as number_mentions from story_industry, story , story_mention where story_mention.client_id='.$client.' and story_industry.story_id= story_mention.story_id and story.StoryDate between "'.$startdate.'" and "'.$enddate.'" and story.StoryDate>"'.$backdate.'" and story.story_id= story_industry.story_id and Category_ID="'.$cat.'" and story_industry.story_id=story.story_id and story_industry.industry_id IN ('.$industry.') ';
 		return $sq = count(StoryMention::model()->findAllBySql($q1));
 	}
 
+	/**
+	*
+	* @return  Return count of colored stories
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
+
 	public static function GetPictures()
 	{
-		$sql = 'SELECT distinct(picture) from story where picture!=""';
+		$sql = "SELECT distinct(picture) from story where picture!='' and concat('',picture * 1) != picture";
 		$pics = Story::model()->findAllBySql($sql);
 		return $pics;
 	}
+
+	/**
+	*
+	* @return  Return a count of colored stories
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
 
 	public static function GetPicCount($client,$startdate,$enddate,$industry,$pic,$backdate)
 	{
@@ -185,11 +342,33 @@ class IndustryQueries{
 		return $sq = count(Story::model()->findAllBySql($q1));
 	}
 
+	/**
+	*
+	* @return  Return a count of tonality
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
+
 	public static function GetTonality($client,$startdate,$enddate,$industry,$backdate)
 	{
 		$q1 = 'SELECT count(story.story_id) as number_tonality, mediamap_analysis.tonality from story_industry, story,mediamap_analysis, story_mention where story_mention.client_id='.$client.' and story_industry.story_id= story_mention.story_id and story_industry.story_id=story.story_id and story_industry.industry_id IN ('.$industry.') and story.StoryDate between "'.$startdate.'" and "'.$enddate.'" and story.StoryDate>"'.$backdate.'" and story.story_id= story_industry.story_id and mediamap_analysis.story_id=story_industry.story_id and mediamap_analysis.company_id='.$client.' group by mediamap_analysis.tonality';
 		return $sq = MediamapAnalysis::model()->findAllBySql($q1);
 	}
+
+	/**
+	*
+	* @return  Return a count of tonality
+	* @throws  InvalidArgumentException
+	*
+	* @since   2008
+	* @author  Steve Ouma Oyugi - Reelforge Development Team
+	* @edit    2014-07-08 
+	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
+	*/
 
 	public static function GetSpTonality($client,$startdate,$enddate,$industry,$tonality,$backdate)
 	{
