@@ -48,6 +48,8 @@ class ExcelElectronic
 				$tonality 		= Story::ClientTonality($key->Story_ID,$client);
 				$ave 			= Common::ExcelNumberFormat($key->AVE);
 
+				$radio_array[$radioarraycount]['Story_ID']=$key->Story_ID;
+			    $radio_array[$radioarraycount]['uniqueID']=$key->uniqueID;
 				$radio_array[$radioarraycount]['link']=$link;
 				$radio_array[$radioarraycount]['date']=$date;
 				$radio_array[$radioarraycount]['publication']=$publication;
@@ -74,6 +76,8 @@ class ExcelElectronic
 				$tonality 		= Story::ClientTonality($key->Story_ID,$client);
 				$ave 			= Common::ExcelNumberFormat($key->AVE);
 
+				$tv_array[$tvarraycount]['Story_ID']=$key->Story_ID;
+				$tv_array[$tvarraycount]['uniqueID']=$key->uniqueID;
 				$tv_array[$tvarraycount]['link']=$link;
 				$tv_array[$tvarraycount]['date']=$date;
 				$tv_array[$tvarraycount]['publication']=$publication;
@@ -127,6 +131,8 @@ class ExcelElectronic
 				$industry 		= Story::ClientIndustryCategory($key->Story_ID,$client);
 				$summary 		= $key->StorySummary;
 
+				$radio_array[$radioarraycount]['Story_ID']=$key->Story_ID;
+			    $radio_array[$radioarraycount]['uniqueID']=$key->uniqueID;
 				$radio_array[$radioarraycount]['link']=$link;
 				$radio_array[$radioarraycount]['date']=$date;
 				$radio_array[$radioarraycount]['publication']=$publication;
@@ -159,6 +165,8 @@ class ExcelElectronic
 				$industry 		= Story::ClientIndustryCategory($key->Story_ID,$client);
 				$summary 		= $key->StorySummary;
 
+				$tv_array[$tvarraycount]['Story_ID']=$key->Story_ID;
+				$tv_array[$tvarraycount]['uniqueID']=$key->uniqueID;
 				$tv_array[$tvarraycount]['link']=$link;
 				$tv_array[$tvarraycount]['date']=$date;
 				$tv_array[$tvarraycount]['publication']=$publication;

@@ -158,5 +158,10 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'steve.oyugi@reelforge.com',
+		'video_url'=>'http://www.reelforge.com/',
+		'print_url'=>'http://www.reelforge.com/',
+		'printplayer'=>'http://media.reelforge.com/player/index.php?',
+		'electronicplayer'=>'http://media.reelforge.com/player/video.php?',
+		'printarchiveplayer'=>'http://media.reelforge.com/player/archive.php?'
 	),
 );

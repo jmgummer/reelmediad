@@ -215,11 +215,13 @@ class ElectronicArchive{
 			$display_data .= $record_count.' Records Found';
 			$display_data .= '<table class="table table-condensed ">';
 			foreach ($stories as $key) {
+				$electronicplayer = Yii::app()->params['electronicplayer'];
+				$link = $electronicplayer.'storyid='.$key->Story_ID.'&encryptid='.$key->uniqueID;
 				$format_date = date('d, F, Y', strtotime($key->StoryDate));
 				$display_data .= '<tr><td>';
-				$display_data .= '<h3><a href="'.Yii::app()->createUrl("video").'/'.$key->Story_ID.'" target="_blank">'.$key->Title.'</a></h3>';
+				$display_data .= '<h3><a href="'.$link.'" target="_blank">'.$key->Title.'</a></h3>';
 				$display_data .= '<p>'.$key->Publication.' : '.$format_date.''.$key->Page.'</p>';
-				$display_data .= '<p><a href="'.Yii::app()->createUrl("video").'/'.$key->Story_ID.'" target="_blank">View/Listen</a> </p>';
+				$display_data .= '<p><a href="'.$link.'" target="_blank">View/Listen</a> </p>';
 				$display_data .= '</td></tr>';
 			}
 			$display_data .= '</table>';

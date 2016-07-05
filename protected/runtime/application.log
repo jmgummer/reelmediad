@@ -781,3 +781,18 @@ Stack trace:
 REQUEST_URI=/reelmediad/home/print
 HTTP_REFERER=http://192.168.0.234/reelmediad/home/print
 ---
+2016/07/05 09:59:32 [error] [php] Undefined index: Story_ID (C:\xampp\htdocs\reelmediad\protected\components\AgencyExcelStories.php:521)
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilterChain.php(133): HomeController->runAction()
+#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CInlineFilter.php(58): HomeController->filterAccessControl()
+#5 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#6 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#7 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): HomeController->runActionWithFilters()
+#8 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): HomeController->run()
+#9 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#10 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\reelmediad\index.php(18): CWebApplication->run()
+REQUEST_URI=/reelmediad/home/excel?clientid=1&startdate=2016-07-05&enddate=2016-07-05&search=&industries=&cat_identifier=1&type_identifier=1

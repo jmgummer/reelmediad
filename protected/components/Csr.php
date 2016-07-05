@@ -41,7 +41,7 @@ class Csr{
 			echo Csr::PrintTableHead();
 			foreach ($story as $key) {
 				if($story = Csr::GetStories($key->Story_ID)){
-					echo Csr::PrintTableBody($story->Story_ID,$story->StoryDate,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,Story::ClientTonality($story->Story_ID,$client),Story::ClientTonality($story->Story_ID,$client),$story->Link,$story->Continues);
+					echo Csr::PrintTableBody($story->Story_ID,$story->StoryDate,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,Story::ClientTonality($story->Story_ID,$client),Story::ClientTonality($story->Story_ID,$client),$story->Link,$story->Continues,$story->uniqueID);
 				}
 			}
 			echo Csr::PrintTableEnd();
@@ -75,7 +75,7 @@ class Csr{
 			echo Csr::ElectronicTableHead();
 			foreach ($story as $key) {
 				if($story = Csr::GetStories($key->Story_ID)){
-					echo Csr::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
+					echo Csr::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues,$key->uniqueID);
 					// echo Csr::PrintTableBody($story->Story_ID,$story->StoryDate,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,$story->Tonality,$story->Tonality,$story->Link,$story->Continues);
 				}
 			}
@@ -110,7 +110,7 @@ class Csr{
 			echo Csr::PrintTableHead();
 			foreach ($story as $key) {
 				if($story = Csr::GetStories($key->Story_ID)){
-					echo Csr::PrintTableBody($story->Story_ID,$story->StoryDate,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,Story::ClientTonality($story->Story_ID,$client),Story::ClientTonality($story->Story_ID,$client),$story->Link,$story->Continues);
+					echo Csr::PrintTableBody($story->Story_ID,$story->StoryDate,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,Story::ClientTonality($story->Story_ID,$client),Story::ClientTonality($story->Story_ID,$client),$story->Link,$story->Continues,$story->uniqueID);
 				}
 			}
 			echo Csr::PrintTableEnd();
@@ -143,7 +143,7 @@ class Csr{
 			echo Csr::ElectronicTableHead();
 			foreach ($story as $key) {
 				if($story = Csr::GetStories($key->Story_ID)){
-					echo Csr::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues);
+					echo Csr::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues,$key->uniqueID);
 					// echo Csr::PrintTableBody($story->Story_ID,$story->StoryDate,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,$story->Tonality,$story->Tonality,$story->Link,$story->Continues);
 				}
 			}
@@ -234,12 +234,14 @@ class Csr{
 	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
 	*/
 
-	public static function PrintTableBody($Story_ID,$date,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont){
+	public static function PrintTableBody($Story_ID,$date,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont,$uniqueID){
+		$printplayer = Yii::app()->params['printplayer'];
+		$link = $printplayer.'storyid='.$Story_ID.'&encryptid='.$uniqueID;
 		return '<tr>
-		<td>'.$date.'</td>
+		<td><a href="'.$link.'" target="_blank">'.date('d-M-Y', strtotime($date)).'</a></td>
 		<td>'.$pub.'</td>
 		<td>'.$journo.'</td>
-		<td><a href="'.Yii::app()->request->baseUrl.'/swf/view/'.$Story_ID.'" target="_blank">'.$head.'</a><br><font size="1">'.$cont.'</font></td>
+		<td><a href="'.$link.'" target="_blank">'.$head.'</a><br><font size="1">'.$cont.'</font></td>
 		<td>'.$page.'</td>
 		<td>'.$pubtype.'</td>
 		<td>'.$pic.'</td>
@@ -259,12 +261,14 @@ class Csr{
 	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
 	*/
 
-	public static function ElectronicTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont){
+	public static function ElectronicTableBody($date,$storyid,$pub,$journo,$head,$page,$pubtype,$pic,$effect,$ave,$link,$cont,$uniqueID){
+		$electronicplayer = Yii::app()->params['electronicplayer'];
+		$link = $electronicplayer.'storyid='.$storyid.'&encryptid='.$uniqueID;
 		return '<tr>
-		<td><a href="'.Yii::app()->createUrl("video").'/'.$storyid.'" target="_blank">'.$date.'</a></td>
+		<td><a href="'.$link.'" target="_blank">'.date('d-M-Y', strtotime($date)).'</a></td>
 		<td>'.$pub.'</td>
 		<td>'.$journo.'</td>
-		<td><a href="'.Yii::app()->createUrl("video").'/'.$storyid.'" target="_blank">'.$head.'</a><br><font size="1">'.$cont.'</font></td>
+		<td><a href="'.$link.'" target="_blank">'.$head.'</a><br><font size="1">'.$cont.'</font></td>
 		<td>'.$page.'</td>
 		<td>'.$pubtype.'</td>
 		<td>'.$pic.'</td>

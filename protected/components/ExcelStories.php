@@ -27,7 +27,10 @@ class ExcelStories{
 	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
 	*/
 
-	public static function GetMainOption($client,$startdate,$enddate,$search,$backdate,$country_list,$industries,$option){
+	public static function GetMainOption($client,$startdate,$enddate,$search,$backdate,$country_list,$industries,$option)
+	{
+		$printplayer = Yii::app()->params['printplayer'];
+		$electronicplayer = Yii::app()->params['electronicplayer'];
 		// Currency Value Based on Country
 
 		$country = Yii::app()->user->country_id;
@@ -106,7 +109,7 @@ class ExcelStories{
 				$prvsum = 0;
 				foreach ($story as $key) {
 					if($story = ExcelStories::GetStories($key->Story_ID)){
-						$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
+						$link = $printplayer.'storyid='.$story->Story_ID.'&encryptid='.$story->uniqueID;
 						$PHPExcel->getActiveSheet()
 			            ->setCellValue("A$count", $story->StoryDate)
 			            ->setCellValue("B$count", $story->Publication)
@@ -194,7 +197,7 @@ class ExcelStories{
 					$prvsum = 0;
 
 					foreach ($tv_section as $key) {
-						$link = $key["link"];
+						$link = $electronicplayer.'storyid='.$key['Story_ID'].'&encryptid='.$key['uniqueID'];
 						$PHPExcel->getActiveSheet()
 			            ->setCellValue("A$count", $key["date"])
 			            ->setCellValue("B$count", $key["publication"])
@@ -228,7 +231,7 @@ class ExcelStories{
 					$prvsum = 0;
 
 					foreach ($radio_section as $key) {
-						$link = $key["link"];
+						$link = $electronicplayer.'storyid='.$key['Story_ID'].'&encryptid='.$key['uniqueID'];
 						$PHPExcel->getActiveSheet()
 			            ->setCellValue("A$count", $key["date"])
 			            ->setCellValue("B$count", $key["publication"])
@@ -321,7 +324,7 @@ class ExcelStories{
 				$prvsum = 0;
 				foreach ($story as $key) {
 					if($story = ExcelStories::GetStories($key->Story_ID)){
-						$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
+						$link = $printplayer.'storyid='.$story->Story_ID.'&encryptid='.$story->uniqueID;
 						$PHPExcel->getActiveSheet()
 			            ->setCellValue("A$count", $story->StoryDate)
 			            ->setCellValue("B$count", $story->Publication)
@@ -416,7 +419,7 @@ class ExcelStories{
 					$prvsum = 0;
 
 					foreach ($tv_section as $key) {
-						$link = $key["link"];
+						$link = $electronicplayer.'storyid='.$key['Story_ID'].'&encryptid='.$key['uniqueID'];
 						$PHPExcel->getActiveSheet()
 			            ->setCellValue("A$count", $key["date"])
 			            ->setCellValue("B$count", $key["publication"])
@@ -450,7 +453,7 @@ class ExcelStories{
 					$prvsum = 0;
 
 					foreach ($radio_section as $key) {
-						$link = $key["link"];
+						$link = $electronicplayer.'storyid='.$key['Story_ID'].'&encryptid='.$key['uniqueID'];
 						$PHPExcel->getActiveSheet()
 			            ->setCellValue("A$count", $key["date"])
 			            ->setCellValue("B$count", $key["publication"])
@@ -564,7 +567,7 @@ class ExcelStories{
 				$prvsum = 0;
 				foreach ($story as $key) {
 					if($story = ExcelStories::GetStories($key->Story_ID)){
-						$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
+						$link = $printplayer.'storyid='.$story->Story_ID.'&encryptid='.$story->uniqueID;
 						$PHPExcel->getActiveSheet()
 			            ->setCellValue("A$count", $story->StoryDate)
 			            ->setCellValue("B$count", $story->Publication)
@@ -651,7 +654,7 @@ class ExcelStories{
 					$prvsum = 0;
 
 					foreach ($tv_section as $key) {
-						$link = $key["link"];
+						$link = $electronicplayer.'storyid='.$key['Story_ID'].'&encryptid='.$key['uniqueID'];
 						$PHPExcel->getActiveSheet()
 			            ->setCellValue("A$count", $key["date"])
 			            ->setCellValue("B$count", $key["publication"])
@@ -685,7 +688,7 @@ class ExcelStories{
 					$prvsum = 0;
 
 					foreach ($radio_section as $key) {
-						$link = $key["link"];
+						$link = $electronicplayer.'storyid='.$key['Story_ID'].'&encryptid='.$key['uniqueID'];
 						$PHPExcel->getActiveSheet()
 			            ->setCellValue("A$count", $key["date"])
 			            ->setCellValue("B$count", $key["publication"])
@@ -791,7 +794,7 @@ class ExcelStories{
 				$prvsum = 0;
 				foreach ($story as $key) {
 					if($story = ExcelStories::GetStories($key->Story_ID)){
-						$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
+						$link = $printplayer.'storyid='.$story->Story_ID.'&encryptid='.$story->uniqueID;
 						$PHPExcel->getActiveSheet()
 			            ->setCellValue("A$count", $story->StoryDate)
 			            ->setCellValue("B$count", $story->Publication)
@@ -886,7 +889,7 @@ class ExcelStories{
 					$prvsum = 0;
 
 					foreach ($tv_section as $key) {
-						$link = $key["link"];
+						$link = $electronicplayer.'storyid='.$key['Story_ID'].'&encryptid='.$key['uniqueID'];
 						$PHPExcel->getActiveSheet()
 			            ->setCellValue("A$count", $key["date"])
 			            ->setCellValue("B$count", $key["publication"])
@@ -920,7 +923,7 @@ class ExcelStories{
 					$prvsum = 0;
 
 					foreach ($radio_section as $key) {
-						$link = $key["link"];
+						$link = $electronicplayer.'storyid='.$key['Story_ID'].'&encryptid='.$key['uniqueID'];
 						$PHPExcel->getActiveSheet()
 			            ->setCellValue("A$count", $key["date"])
 			            ->setCellValue("B$count", $key["publication"])
@@ -1034,7 +1037,7 @@ class ExcelStories{
 				$prvsum = 0;
 				foreach ($story as $key) {
 					if($story = ExcelStories::GetStories($key->Story_ID)){
-						$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
+						$link = $printplayer.'storyid='.$story->Story_ID.'&encryptid='.$story->uniqueID;
 						$PHPExcel->getActiveSheet()
 			            ->setCellValue("A$count", $story->StoryDate)
 			            ->setCellValue("B$count", $story->Publication)
@@ -1121,7 +1124,7 @@ class ExcelStories{
 				$prvsum = 0;
 				foreach ($story as $key) {
 					if($story = ExcelStories::GetStories($key->Story_ID)){
-						$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
+						$link = $printplayer.'storyid='.$story->Story_ID.'&encryptid='.$story->uniqueID;
 						$PHPExcel->getActiveSheet()
 			            ->setCellValue("A$count", $story->StoryDate)
 			            ->setCellValue("B$count", $story->Publication)
@@ -1231,7 +1234,7 @@ class ExcelStories{
 				$prvsum = 0;
 				foreach ($story as $key) {
 					if($story = ExcelStories::GetStories($key->Story_ID)){
-						$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
+						$link = $printplayer.'storyid='.$story->Story_ID.'&encryptid='.$story->uniqueID;
 						$PHPExcel->getActiveSheet()
 			            ->setCellValue("A$count", $story->StoryDate)
 			            ->setCellValue("B$count", $story->Publication)
@@ -1330,7 +1333,7 @@ class ExcelStories{
 				$prvsum = 0;
 				foreach ($story as $key) {
 					if($story = ExcelStories::GetStories($key->Story_ID)){
-						$link = 'http://www.reelforge.com/reelmediad/swf/view/'.$story->Story_ID;
+						$link = $printplayer.'storyid='.$story->Story_ID.'&encryptid='.$story->uniqueID;
 						$PHPExcel->getActiveSheet()
 			            ->setCellValue("A$count", $story->StoryDate)
 			            ->setCellValue("B$count", $story->Publication)
@@ -1430,7 +1433,7 @@ class ExcelStories{
 					$prvsum = 0;
 
 					foreach ($tv_section as $key) {
-						$link = $key["link"];
+						$link = $electronicplayer.'storyid='.$key['Story_ID'].'&encryptid='.$key['uniqueID'];
 						$PHPExcel->getActiveSheet()
 			            ->setCellValue("A$count", $key["date"])
 			            ->setCellValue("B$count", $key["publication"])
@@ -1464,7 +1467,7 @@ class ExcelStories{
 					$prvsum = 0;
 
 					foreach ($radio_section as $key) {
-						$link = $key["link"];
+						$link = $electronicplayer.'storyid='.$key['Story_ID'].'&encryptid='.$key['uniqueID'];
 						$PHPExcel->getActiveSheet()
 			            ->setCellValue("A$count", $key["date"])
 			            ->setCellValue("B$count", $key["publication"])
@@ -1563,7 +1566,7 @@ class ExcelStories{
 					$prvsum = 0;
 
 					foreach ($tv_section as $key) {
-						$link = $key["link"];
+						$link = $electronicplayer.'storyid='.$key['Story_ID'].'&encryptid='.$key['uniqueID'];
 						$PHPExcel->getActiveSheet()
 			            ->setCellValue("A$count", $key["date"])
 			            ->setCellValue("B$count", $key["publication"])
@@ -1597,7 +1600,7 @@ class ExcelStories{
 					$prvsum = 0;
 
 					foreach ($radio_section as $key) {
-						$link = $key["link"];
+						$link = $electronicplayer.'storyid='.$key['Story_ID'].'&encryptid='.$key['uniqueID'];
 						$PHPExcel->getActiveSheet()
 			            ->setCellValue("A$count", $key["date"])
 			            ->setCellValue("B$count", $key["publication"])
@@ -1700,7 +1703,7 @@ class ExcelStories{
 					$prvsum = 0;
 
 					foreach ($tv_section as $key) {
-						$link = $key["link"];
+						$link = $electronicplayer.'storyid='.$key['Story_ID'].'&encryptid='.$key['uniqueID'];
 						$PHPExcel->getActiveSheet()
 			            ->setCellValue("A$count", $key["date"])
 			            ->setCellValue("B$count", $key["publication"])
@@ -1734,7 +1737,7 @@ class ExcelStories{
 					$prvsum = 0;
 
 					foreach ($radio_section as $key) {
-						$link = $key["link"];
+						$link = $electronicplayer.'storyid='.$key['Story_ID'].'&encryptid='.$key['uniqueID'];
 						$PHPExcel->getActiveSheet()
 			            ->setCellValue("A$count", $key["date"])
 			            ->setCellValue("B$count", $key["publication"])
@@ -1845,7 +1848,7 @@ class ExcelStories{
 					$prvsum = 0;
 
 					foreach ($tv_section as $key) {
-						$link = $key["link"];
+						$link = $electronicplayer.'storyid='.$key['Story_ID'].'&encryptid='.$key['uniqueID'];
 						$PHPExcel->getActiveSheet()
 			            ->setCellValue("A$count", $key["date"])
 			            ->setCellValue("B$count", $key["publication"])
@@ -1879,7 +1882,7 @@ class ExcelStories{
 					$prvsum = 0;
 
 					foreach ($radio_section as $key) {
-						$link = $key["link"];
+						$link = $electronicplayer.'storyid='.$key['Story_ID'].'&encryptid='.$key['uniqueID'];
 						$PHPExcel->getActiveSheet()
 			            ->setCellValue("A$count", $key["date"])
 			            ->setCellValue("B$count", $key["publication"])

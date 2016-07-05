@@ -430,8 +430,12 @@ class Story extends CActiveRecord
 			$cont_on = $this->cont_on;
 			$sql_cont="select story_id,uniqueID, StoryPage from story where Story_ID='$cont_on'";
 			if($cont = Story::model()->findBySql($sql_cont)){
+				$uniqueID = $cont->uniqueID;
 				$storyid = $cont->Story_ID;
-				$continues = '<a href="'.Yii::app()->createUrl("swf/view").'/'.$cont_on.'" style="color:#000;text-decoration:underline;">Continues on Page '.$cont->StoryPage.'</a>';
+				$printplayer = Yii::app()->params['printplayer'];
+				$link = $printplayer.'storyid='.$cont_on.'&encryptid='.$uniqueID;
+				
+				$continues = '<a href="'.$link.'" style="color:#000;text-decoration:underline;">Continues on Page '.$cont->StoryPage.'</a>';
 			}
 		}
 
@@ -439,24 +443,11 @@ class Story extends CActiveRecord
 			$cont_from = $this->cont_from;
 			$sql_from="select story_id,uniqueID, StoryPage from story where Story_ID='$cont_from'";
 			if($from = Story::model()->findBySql($sql_from)){
+				$uniqueID = $from->uniqueID;
 				$storyid = $from->Story_ID;
-				$continues = '<a href="'.Yii::app()->createUrl("swf/view").'/'.$cont_from.'" style="color:#000;text-decoration:underline;">From Page '.$from->StoryPage.'</a>';
-			}
-		}
-
-		if($this->cont_from!=0 && $this->cont_on!=0){
-			$cont_from = $this->cont_from;
-			$sql_from="select story_id,uniqueID, StoryPage from story where Story_ID='$cont_from'";
-			if($from = Story::model()->findBySql($sql_from)){
-				$storyid = $from->Story_ID;
-				$continues = '<a href="'.Yii::app()->createUrl("swf/view").'/'.$cont_from.'" style="color:#000;text-decoration:underline;">From Page '.$from->StoryPage.'</a>';
-			}
-
-			$cont_on = $this->cont_on;
-			$sql_cont="select story_id,uniqueID, StoryPage from story where Story_ID='$cont_on'";
-			if($cont = Story::model()->findBySql($sql_cont)){
-				$storyid = $cont->Story_ID;
-				$continues .= '<br><a href="'.Yii::app()->createUrl("swf/view").'/'.$cont_on.'" style="color:#000;text-decoration:underline;">Continues on Page '.$cont->StoryPage.'</a>';
+				$printplayer = Yii::app()->params['printplayer'];
+				$link = $printplayer.'storyid='.$cont_from.'&encryptid='.$uniqueID;
+				$continues = '<a href="'.$link.'" style="color:#000;text-decoration:underline;">From Page '.$from->StoryPage.'</a>';
 			}
 		}
 		return $continues;
