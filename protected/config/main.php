@@ -160,8 +160,8 @@ return array(
 		'adminEmail'=>'steve.oyugi@reelforge.com',
 		'video_url'=>'http://www.reelforge.com/',
 		'print_url'=>'http://www.reelforge.com/',
-		'printplayer'=>'http://media.reelforge.com/player/index.php?',
-		'electronicplayer'=>'http://media.reelforge.com/player/video.php?',
-		'printarchiveplayer'=>'http://media.reelforge.com/player/archive.php?'
+		'printplayer'=>'http://beta.reelforge.com/player/index.php?',
+		'electronicplayer'=>'http://beta.reelforge.com/player/video.php?',
+		'printarchiveplayer'=>'http://beta.reelforge.com/player/archive.php?'
 	),
 );

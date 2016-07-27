@@ -72,6 +72,11 @@ class Story extends CActiveRecord
 	 * @param string $className active record class name.
 	 * @return Story the static model class
 	 */
+	public function __construct(){
+        $this->file = str_replace('.jpg', '.pdf', $this->file);
+        // str_replace(search, replace, subject)
+    }
+
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -405,7 +410,7 @@ class Story extends CActiveRecord
 		if($this->link_id!=' '){
 			$linkid = $this->link_id;
 			if($link = SphLinks::model()->find('link_id=:a', array(':a'=>$linkid))){
-				return $this->GetSwf($this->file);
+				return $this->GetSwf($link->url);
 			}else{
 				$pdf_file = strtolower($this->file);
 				$swf_file = str_replace('pdf', 'swf', $pdf_file);
@@ -416,9 +421,30 @@ class Story extends CActiveRecord
 		}
 	}
 
+	public function getFile(){
+		$linkid = $this->link_id;
+		$link = SphLinks::model()->find('link_id=:a', array(':a'=>$linkid));
+		$pdflink = $this->GetPdfSwf($link->url);
+		$pdflink = str_replace(".jpg", ".pdf", $pdflink);
+		return $pdflink;
+	}
+
+	public static function GetPdfSwf($link)
+	{
+		// $filedate = date('Y/m/d');
+		$likelypath = "http://www.reelforge.com/reelmedia/files/pdf/";
+		$link  = str_replace($likelypath, '', $link);
+		return $link;
+	}
+	
+
 	public static function GetSwf($link)
 	{
-		$output  = str_replace('.pdf', '.swf', $link);
+		// $filedate = date('Y/m/d');
+		$likelypath = "http://www.reelforge.com/reelmedia/files/pdf/";
+		$link  = str_replace($likelypath, '', $link);
+		$output  = str_replace('.jpg', '.swf', $link);
+		$output  = str_replace('.pdf', '.swf', $output);
 		return strtolower($output);
 	}
 
@@ -434,7 +460,6 @@ class Story extends CActiveRecord
 				$storyid = $cont->Story_ID;
 				$printplayer = Yii::app()->params['printplayer'];
 				$link = $printplayer.'storyid='.$cont_on.'&encryptid='.$uniqueID;
-				
 				$continues = '<a href="'.$link.'" style="color:#000;text-decoration:underline;">Continues on Page '.$cont->StoryPage.'</a>';
 			}
 		}
@@ -505,18 +530,6 @@ class Story extends CActiveRecord
 			$this_rate=0;
 			if($this->Media_ID=='mp01'){
 				$rate_cost = $this->print_rate;
-				// $picture = $this->picture;
-				// if($picture=='color'){
-				// 	$color_code = $weekday.'_c';
-				// }else{
-				// 	$color_code = $weekday.'_b';
-				// }
-				// if($rate = Ratecard::model()->find('Media_House_ID=:a AND color_code=:b ORDER BY auto_id DESC', array(':a'=>$Media_House_ID,':b'=>$color_code))){
-				// 	$rate=$rate->rate;
-				// 	$rate_cost = $rate*$col*$centimeter;
-				// }else{
-				// 	$rate_cost = 0;
-				// }
 			}else{
 			  $sql_electronic_rate='SELECT rate,duration 
 			  from forgedb.ratecard_base, reelmedia.anvil_match 
