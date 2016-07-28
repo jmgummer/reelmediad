@@ -162,6 +162,7 @@ return array(
 		'print_url'=>'http://www.reelforge.com/',
 		'printplayer'=>'http://beta.reelforge.com/player/index.php?',
 		'electronicplayer'=>'http://beta.reelforge.com/player/video.php?',
-		'printarchiveplayer'=>'http://beta.reelforge.com/player/archive.php?'
+		'printarchiveplayer'=>'http://beta.reelforge.com/player/archive.php?',
+		'fileactions'=>'http://beta.reelforge.com/player/'
 	),
 );

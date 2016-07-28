@@ -213,21 +213,22 @@ class ArchiveStories{
 				}
 				if(!empty($hlight)){
 					$content = str_ireplace($hlight, "<b style='background-color: yellow;'>$hlight</b>", $content);
-					// $content = preg_replace("/\p{L}*?".preg_quote($hlight)."\p{L}*/ui", "<b style='background-color: yellow;'>$0</b>", $content);
 				}
 				$page = ' Page : '.$key['page'];
 				$format_date = date('d, F, Y', strtotime($key['indexdate']));
-
 				$pplink = SphLinks::ClientPublication($media_house_id);
-
 				$printarchiveplayer = Yii::app()->params['printarchiveplayer'];
 				$link = $printarchiveplayer.'itemid='.$key['link_id'];
-
+				$downloadlink = Yii::app()->params['fileactions'];
+				$likelypath = "http://www.reelforge.com/reelmedia/files/pdf/";
+				$dlink  = str_replace($likelypath, '', $key['url']);
+				$filename = "download_".str_replace(' ', '_', $pplink).date('d_F_Y', strtotime($key['indexdate'])).$key['page'];
+				$downloadlink = $downloadlink."download?file=".$dlink."&name=".$filename;
 				$display_data .= '<tr><td>';
 				$display_data .= '<h3><a href="'.$link.'" target="_blank">'.$pplink.'</a></h3>';
 				$display_data .= '<p>'.$format_date.''.$page.'</p>';
 				$display_data .= '<p>'.$content.'</p>';
-				$display_data .= '<p><a href="'.$link.'" target="_blank">Read More</a> | <a href="'.$key['url'].'" target="_blank">Download PDF</a></p>';
+				$display_data .= '<p><a href="'.$link.'" target="_blank">Read More</a> | <a href="'.$downloadlink.'" target="_blank">Download PDF</a></p>';
 				if (!empty($hlight) && preg_match("/$hlight/i",$check_content) !== false) {
 				    $display_data .= '<p><i>Keyword '.$hlight.' Found</i></p>';
 				}
