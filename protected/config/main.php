@@ -87,7 +87,7 @@ return array(
 
 		'db3'=>array(
 			'class'=>'CDbConnection',
-			'connectionString' => 'mysql:host=192.168.0.5;dbname=forgedb',
+			'connectionString' => 'mysql:host=192.168.0.4;dbname=forgedb',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => 'Pambazuka08',
