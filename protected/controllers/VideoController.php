@@ -24,7 +24,15 @@ class VideoController extends Controller
 	public function actionIndex($id)
 	{
 		if($model = Story::model()->find('Story_ID=:a', array(':a'=>$id))){
-			$this->render('index',array('model'=>$model));
+			// $model = $this->loadModel($id);
+			$storyid = $model->Story_ID;
+			$encryptid = $model->uniqueID;
+			$electronicplayer = Yii::app()->params['electronicplayer'];
+			$url = $electronicplayer."storyid=$storyid&encryptid=$encryptid";
+			header("Location: $url");
+			die();
+
+			// $this->render('index',array('model'=>$model));
 		}else{
 			throw new CHttpException(404,'The requested page does not exist.');
 		}
@@ -34,7 +42,13 @@ class VideoController extends Controller
 	public function actionView($id)
 	{
 		if($model = Story::model()->find('Story_ID=:a', array(':a'=>$id))){
-			$this->render('index',array('model'=>$model));
+			// $this->render('index',array('model'=>$model));
+			$storyid = $model->Story_ID;
+			$encryptid = $model->uniqueID;
+			$electronicplayer = Yii::app()->params['electronicplayer'];
+			$url = $electronicplayer."storyid=$storyid&encryptid=$encryptid";
+			header("Location: $url");
+			die();
 		}else{
 			throw new CHttpException(404,'The requested page does not exist.');
 		}

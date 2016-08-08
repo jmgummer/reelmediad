@@ -15,7 +15,12 @@ class SwfController extends Controller
 	public function actionView($id)
 	{
 		$model = $this->loadModel($id);
-		$this->render('index', array('model'=>$model));
+		$storyid = $model->Story_ID;
+		$encryptid = $model->uniqueID;
+		$printplayer = Yii::app()->params['printplayer'];
+		$url = $printplayer."storyid=$storyid&encryptid=$encryptid";
+		header("Location: $url");
+		die();
 	}
 
 	public function actionDisplay($id)
