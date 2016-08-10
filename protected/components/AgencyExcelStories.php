@@ -40,6 +40,12 @@ class AgencyExcelStories{
 			$currency = 'KES';
 		}
 
+		if(!empty($search)){
+			$searchqry = " AND ( (story.story like '%$search%') OR (story.title like '%$search%') OR (story.mentioned like '%$search%') ) ";
+		}else{
+			$searchqry = " ";
+		}
+
 		// Obtain the Agency ID from Session
 		$agency_id = Yii::app()->user->company_id;
 		$sql_agency_pr="select agency_pr_rate  from agency where agency_id=$agency_id";
@@ -106,7 +112,7 @@ class AgencyExcelStories{
 			    INNER JOIN industry_subs ON story_industry.industry_id = industry_subs.industry_id
 			    where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
 			    and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
-			    and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
+			    and StoryDate between "'.$startdate.'" and "'.$enddate.'" '.$searchqry.'
 			    and industry_subs.company_id ='.$client.' and industry_subs.industry_id IN('.$industries.')
 			    order by StoryDate asc, Media_House_List asc,  page_no asc';
 			}else{
@@ -116,7 +122,7 @@ class AgencyExcelStories{
 			  	inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
 			  	where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
 			  	and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
-			  	and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
+			  	and StoryDate between "'.$startdate.'" and "'.$enddate.'" '.$searchqry.'
 			  	order by StoryDate asc, Media_House_List asc,  page_no asc';
 			}
 
@@ -225,7 +231,7 @@ class AgencyExcelStories{
 			where story_mention.client_id='.$client.' and story.Story_ID=story_mention.story_id
 			and story.Media_ID!="mp01" and story.step3=1
 			and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
-			and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
+			and StoryDate between "'.$startdate.'" and "'.$enddate.'" '.$searchqry.' and story.Media_House_ID=mediahouse.Media_House_ID
 			order by StoryDate asc, Media_House_List asc';
 			$count = 2;
 			$styleArray = array(
@@ -387,7 +393,7 @@ class AgencyExcelStories{
 			$q4 .=' and story.Media_ID="mp01"
 			and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 			and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
-			and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
+			'.$searchqry.' and story.Media_House_ID=mediahouse.Media_House_ID
 			order by StoryDate asc, Media_House_List asc';
 			$count = 2;
 			$styleArray = array(
@@ -499,7 +505,7 @@ class AgencyExcelStories{
 			$q5 .='	and story.Media_ID!="mp01"
 			and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 			and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
-			and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
+			'.$searchqry.' and story.Media_House_ID=mediahouse.Media_House_ID
 			order by StoryDate asc, Media_House_List asc';
 			$count = 2;
 			$styleArray = array(
@@ -672,7 +678,7 @@ class AgencyExcelStories{
 			    INNER JOIN industry_subs ON story_industry.industry_id = industry_subs.industry_id
 			    where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
 			    and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
-			    and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
+			    and StoryDate between "'.$startdate.'" and "'.$enddate.'" '.$searchqry.'
 			    and industry_subs.company_id ='.$client.' and industry_subs.industry_id IN('.$industries.')
 			    order by StoryDate asc, Media_House_List asc,  page_no asc';
 			}else{
@@ -681,7 +687,7 @@ class AgencyExcelStories{
 			  	inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
 			  	where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
 			  	and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
-			  	and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
+			  	and StoryDate between "'.$startdate.'" and "'.$enddate.'" '.$searchqry.'
 			  	order by StoryDate asc, Media_House_List asc,  page_no asc';
 			}
 			$count = 2;
@@ -786,7 +792,7 @@ class AgencyExcelStories{
 			where story_mention.client_id='.$client.' and story.Story_ID=story_mention.story_id
 			and story.Media_ID!="mp01" and story.step3=1
 			and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
-			and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
+			and StoryDate between "'.$startdate.'" and "'.$enddate.'" '.$searchqry.' and story.Media_House_ID=mediahouse.Media_House_ID
 			order by StoryDate asc, Media_House_List asc';
 			$count = 2;
 			$styleArray = array(
@@ -961,7 +967,7 @@ class AgencyExcelStories{
 			$q4 .=' and story.Media_ID="mp01"
 			and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 			and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
-			and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
+			'.$searchqry.' and story.Media_House_ID=mediahouse.Media_House_ID
 			order by StoryDate asc, Media_House_List asc';
 			$count = 2;
 			$styleArray = array(
@@ -1073,7 +1079,7 @@ class AgencyExcelStories{
 			$q5 .='	and story.Media_ID!="mp01"
 			and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 			and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
-			and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
+			'.$searchqry.' and story.Media_House_ID=mediahouse.Media_House_ID
 			order by StoryDate asc, Media_House_List asc';
 			$count = 2;
 			$styleArray = array(
@@ -1246,7 +1252,7 @@ class AgencyExcelStories{
 			    INNER JOIN industry_subs ON story_industry.industry_id = industry_subs.industry_id
 			    where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
 			    and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
-			    and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
+			    and StoryDate between "'.$startdate.'" and "'.$enddate.'" '.$searchqry.'
 			    and industry_subs.company_id ='.$client.' and industry_subs.industry_id IN('.$industries.')
 			    order by StoryDate asc, Media_House_List asc,  page_no asc';
 			}else{
@@ -1255,7 +1261,7 @@ class AgencyExcelStories{
 			  	inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
 			  	where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
 			  	and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
-			  	and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
+			  	and StoryDate between "'.$startdate.'" and "'.$enddate.'" '.$searchqry.'
 			  	order by StoryDate asc, Media_House_List asc,  page_no asc';
 			}
 			$count = 2;
@@ -1366,7 +1372,7 @@ class AgencyExcelStories{
 			$q4 .=' and story.Media_ID="mp01"
 			and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 			and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
-			and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
+			'.$searchqry.' and story.Media_House_ID=mediahouse.Media_House_ID
 			order by StoryDate asc, Media_House_List asc';
 			$count = 2;
 			$styleArray = array(
@@ -1489,7 +1495,7 @@ class AgencyExcelStories{
 			    INNER JOIN industry_subs ON story_industry.industry_id = industry_subs.industry_id
 			    where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
 			    and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
-			    and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
+			    and StoryDate between "'.$startdate.'" and "'.$enddate.'" '.$searchqry.'
 			    and industry_subs.company_id ='.$client.' and industry_subs.industry_id IN('.$industries.')
 			    order by StoryDate asc, Media_House_List asc,  page_no asc';
 			}else{
@@ -1498,7 +1504,7 @@ class AgencyExcelStories{
 			  	inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
 			  	where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
 			  	and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
-			  	and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
+			  	and StoryDate between "'.$startdate.'" and "'.$enddate.'" '.$searchqry.'
 			  	order by StoryDate asc, Media_House_List asc,  page_no asc';
 			}
 			$count = 2;
@@ -1621,7 +1627,7 @@ class AgencyExcelStories{
 			$q4 .=' and story.Media_ID="mp01"
 			and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 			and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
-			and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
+			'.$searchqry.' and story.Media_House_ID=mediahouse.Media_House_ID
 			order by StoryDate asc, Media_House_List asc';
 			$count = 2;
 			$styleArray = array(
@@ -1738,7 +1744,7 @@ class AgencyExcelStories{
 			where story_mention.client_id='.$client.' and story.Story_ID=story_mention.story_id
 			and story.Media_ID!="mp01" and story.step3=1
 			and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
-			and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
+			and StoryDate between "'.$startdate.'" and "'.$enddate.'" '.$searchqry.' and story.Media_House_ID=mediahouse.Media_House_ID
 			order by StoryDate asc, Media_House_List asc';
 			$count = 2;
 			$styleArray = array(
@@ -1900,7 +1906,7 @@ class AgencyExcelStories{
 			$q5 .='	and story.Media_ID!="mp01"
 			and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 			and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
-			and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
+			'.$searchqry.' and story.Media_House_ID=mediahouse.Media_House_ID
 			order by StoryDate asc, Media_House_List asc';
 			$count = 2;
 			$styleArray = array(
@@ -2066,7 +2072,7 @@ class AgencyExcelStories{
 			where story_mention.client_id='.$client.' and story.Story_ID=story_mention.story_id
 			and story.Media_ID!="mp01" and story.step3=1
 			and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
-			and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
+			and StoryDate between "'.$startdate.'" and "'.$enddate.'" '.$searchqry.' and story.Media_House_ID=mediahouse.Media_House_ID
 			order by StoryDate asc, Media_House_List asc';
 			$count = 2;
 			$styleArray = array(
@@ -2240,7 +2246,7 @@ class AgencyExcelStories{
 			$q5 .='	and story.Media_ID!="mp01"
 			and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 			and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
-			and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
+			'.$searchqry.' and story.Media_House_ID=mediahouse.Media_House_ID
 			order by StoryDate asc, Media_House_List asc';
 			$count = 2;
 			$styleArray = array(

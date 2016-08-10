@@ -101,3 +101,83 @@ Stack trace:
 #21 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
 #22 C:\xampp\htdocs\reelmediad\index.php(18): CWebApplication->run()
 REQUEST_URI=/reelmediad/home/print
+2016/08/10 09:08:41 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ( (story like '%KBA%') OR (title like '%KBA%') OR (mentioned like '%KBA%') )' at line 11. The SQL statement executed was: SELECT distinct(story.story_id) as Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,
+	story.editor,story.Media_House_ID,
+	story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  
+	story.StoryTime,story.picture , story.Media_ID, story.print_rate, story.uniqueID
+	from story, story_industry, industry_subs, mediahouse
+	where story.story_id NOT IN (select story_id from story_mention where client_id=3441)
+	and story.story_id=story_industry.story_id and industry_subs.company_id=3441
+	and story_industry.industry_id=industry_subs.industry_id and industry_subs.industry_id IN(2, 99) and story.Media_ID="mp01"
+	and story.StoryDate>"2008-01-01" and mediahouse.country_id IN ("1")
+	and story.step3=1 and StoryDate between "2016-05-30" and "2016-06-30"
+	and  AND ( (story like '%KBA%') OR (title like '%KBA%') OR (mentioned like '%KBA%') )  and story.Media_House_ID=mediahouse.Media_House_ID
+	order by StoryDate asc, Media_House_List asc, page_no asc.
+2016/08/10 09:08:41 [error] [exception.CDbException] CDbException: CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ( (story like '%KBA%') OR (title like '%KBA%') OR (mentioned like '%KBA%') )' at line 11 in C:\xampp\htdocs\reelmediad\yii_back\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\db\ar\CActiveRecord.php(1581): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php(205): CActiveRecord->findAllBySql('SELECT distinct...')
+#3 C:\xampp\htdocs\reelmediad\protected\views\home\agency_stories.php(115): RecentStories::GetClientIndustryStory('3441', '2016-05-30', '2016-06-30', 'KBA', '2008-01-01', 1, '2, 99')
+#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#6 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#7 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(782): CController->renderPartial('agency_stories', Array, true)
+#8 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(72): CController->render('agency_stories', Array)
+#9 C:\xampp\htdocs\reelmediad\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionPrint()
+#10 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('print')
+#19 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/print')
+#20 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\reelmediad\index.php(18): CApplication->run()
+#22 {main}
+REQUEST_URI=/reelmediad/home/print
+HTTP_REFERER=http://192.168.0.234/reelmediad/home/print
+---
+2016/08/10 09:09:22 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ( (story.story like '%KBA%') OR (story.title like '%KBA%') OR (story.mention' at line 11. The SQL statement executed was: SELECT distinct(story.story_id) as Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,
+	story.editor,story.Media_House_ID,
+	story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  
+	story.StoryTime,story.picture , story.Media_ID, story.print_rate, story.uniqueID
+	from story, story_industry, industry_subs, mediahouse
+	where story.story_id NOT IN (select story_id from story_mention where client_id=3441)
+	and story.story_id=story_industry.story_id and industry_subs.company_id=3441
+	and story_industry.industry_id=industry_subs.industry_id and industry_subs.industry_id IN(2, 99) and story.Media_ID="mp01"
+	and story.StoryDate>"2008-01-01" and mediahouse.country_id IN ("1")
+	and story.step3=1 and StoryDate between "2016-05-30" and "2016-06-30"
+	and  AND ( (story.story like '%KBA%') OR (story.title like '%KBA%') OR (story.mentioned like '%KBA%') )  and story.Media_House_ID=mediahouse.Media_House_ID
+	order by StoryDate asc, Media_House_List asc, page_no asc.
+2016/08/10 09:09:22 [error] [exception.CDbException] CDbException: CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND ( (story.story like '%KBA%') OR (story.title like '%KBA%') OR (story.mention' at line 11 in C:\xampp\htdocs\reelmediad\yii_back\framework\db\CDbCommand.php:543
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\yii_back\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 C:\xampp\htdocs\reelmediad\yii_back\framework\db\ar\CActiveRecord.php(1581): CDbCommand->queryAll()
+#2 C:\xampp\htdocs\reelmediad\protected\components\RecentStories.php(205): CActiveRecord->findAllBySql('SELECT distinct...')
+#3 C:\xampp\htdocs\reelmediad\protected\views\home\agency_stories.php(115): RecentStories::GetClientIndustryStory('3441', '2016-05-30', '2016-06-30', 'KBA', '2008-01-01', 1, '2, 99')
+#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CBaseController.php(126): require('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#6 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#7 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(782): CController->renderPartial('agency_stories', Array, true)
+#8 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(72): CController->render('agency_stories', Array)
+#9 C:\xampp\htdocs\reelmediad\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionPrint()
+#10 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#17 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): CController->run('print')
+#19 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController('home/print')
+#20 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\reelmediad\index.php(18): CApplication->run()
+#22 {main}
+REQUEST_URI=/reelmediad/home/print
+HTTP_REFERER=http://192.168.0.234/reelmediad/home/print
+---

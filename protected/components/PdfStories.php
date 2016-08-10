@@ -43,6 +43,11 @@ public static function GetClientStory($client,$startdate,$enddate,$search,$backd
 	$month = date('m');
 	$year = date('Y');
 	$story_month = 'story_'.$year.'_'.$month;
+	if(!empty($search)){
+		$searchqry = " AND ( (story.story like '%$search%') OR (story.title like '%$search%') OR (story.mentioned like '%$search%') ) ";
+	}else{
+		$searchqry = " ";
+	}
 	if(!empty($industries)){
 		$q2 = 'SELECT distinct story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.cont_on,
 		story.cont_from,story.editor,story.Media_House_ID,
@@ -54,7 +59,7 @@ public static function GetClientStory($client,$startdate,$enddate,$search,$backd
 		INNER JOIN industry_subs ON story_industry.industry_id = industry_subs.industry_id
 		where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
 		and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
-		and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
+		and StoryDate between "'.$startdate.'" and "'.$enddate.'" '.$searchqry.'
 		and industry_subs.company_id ='.$client.' and industry_subs.industry_id IN('.$industries.')
 		order by StoryDate asc, Media_House_List asc, page_no asc';
 	}else{
@@ -66,7 +71,7 @@ public static function GetClientStory($client,$startdate,$enddate,$search,$backd
 		inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
 		where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
 		and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
-		and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%"
+		and StoryDate between "'.$startdate.'" and "'.$enddate.'" '.$searchqry.'
 		order by StoryDate asc, Media_House_List asc, page_no asc';
 	}
 	
@@ -94,6 +99,11 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 	$month = date('m');
 	$year = date('Y');
 	$story_month = 'story_'.$year.'_'.$month;
+	if(!empty($search)){
+		$searchqry = " AND ( (story.story like '%$search%') OR (story.title like '%$search%') OR (story.mentioned like '%$search%') ) ";
+	}else{
+		$searchqry = " ";
+	}
 	$q2 = 'SELECT story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,
 	story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  
 	story.StoryTime,story.picture , story.Media_ID, story.print_rate, story.uniqueID
@@ -101,7 +111,7 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 	where story_mention.client_id='.$client.' and story.Story_ID=story_mention.story_id
 	and story.Media_ID!="mp01" and story.step3=1
 	and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
-	and StoryDate between "'.$startdate.'" and "'.$enddate.'" and story like "%'.$search.'%" 
+	and StoryDate between "'.$startdate.'" and "'.$enddate.'" '.$searchqry.' 
 	and story.Media_House_ID=mediahouse.Media_House_ID
 	order by StoryDate asc, Media_House_List asc';
 	if($story = Story::model()->findAllBySql($q2)){
@@ -171,6 +181,11 @@ public static function GetClientIndustryStory($client,$startdate,$enddate,$searc
 	$month = date('m');
 	$year = date('Y');
 	$story_month = 'story_'.$year.'_'.$month;
+	if(!empty($search)){
+		$searchqry = " AND ( (story.story like '%$search%') OR (story.title like '%$search%') OR (story.mentioned like '%$search%') ) ";
+	}else{
+		$searchqry = " ";
+	}
 	$q2 = 'SELECT distinct(story.story_id) as Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,
 	story.editor,story.Media_House_ID,
 	story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  
@@ -185,7 +200,7 @@ public static function GetClientIndustryStory($client,$startdate,$enddate,$searc
 	$q2 .=' and story.Media_ID="mp01"
 	and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 	and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
-	and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
+	'.$searchqry.' and story.Media_House_ID=mediahouse.Media_House_ID
 	order by StoryDate asc, Media_House_List asc';
 	if($story = Story::model()->findAllBySql($q2)){
 		if(Yii::app()->user->usertype=='agency'){
@@ -211,6 +226,11 @@ public static function GetClientElectronicIndustryStory($client,$startdate,$endd
 	$month = date('m');
 	$year = date('Y');
 	$story_month = 'story_'.$year.'_'.$month;
+	if(!empty($search)){
+		$searchqry = " AND ( (story.story like '%$search%') OR (story.title like '%$search%') OR (story.mentioned like '%$search%') ) ";
+	}else{
+		$searchqry = " ";
+	}
 	$q2 = 'SELECT distinct(story.story_id) as Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,
 	story.editor,story.Media_House_ID,
 	story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  
@@ -225,7 +245,7 @@ public static function GetClientElectronicIndustryStory($client,$startdate,$endd
 	$q2 .='	and story.Media_ID!="mp01"
 	and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 	and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
-	and story.story like "%'.$search.'%" and story.Media_House_ID=mediahouse.Media_House_ID
+	'.$searchqry.' and story.Media_House_ID=mediahouse.Media_House_ID
 	order by StoryDate asc, Media_House_List asc';
 	if($story = Story::model()->findAllBySql($q2)){
 		if(Yii::app()->user->usertype=='agency'){
