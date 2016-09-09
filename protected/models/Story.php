@@ -329,11 +329,11 @@ class Story extends CActiveRecord
 	
 	public function getPicture()
 	{
-	  if($this->picture=='color'){
+	  if($this->picture=='color' OR $this->picture==1){
 	    return 'Color';
-	  }elseif($this->picture=='black_white'){
+	  }elseif($this->picture=='black_white' OR $this->picture==2){
 	    return 'B/W';
-	  }elseif($this->picture=='none'){
+	  }elseif($this->picture=='none'  OR $this->picture==0){
 	    return 'None';
 	  }else{
 	    return 'None';
