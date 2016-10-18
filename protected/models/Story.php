@@ -648,14 +648,27 @@ class Story extends CActiveRecord
 
 	public function getStoryColumn()
 	{
-		$colcm = 0;
-		$cont_on=$this->cont_on;
-		if($cont_on!=0) {
-			$cont_col=Story::ColumnContinuation($this->Story_ID);
-			$colcm+=$cont_col;
+		// This is a constant, should not change, ever
+		$totalcolumncentimeter = 198;
+		$Story_ID = $this->Story_ID;
+
+		$sql = "SELECT * FROM story_highlight_coods WHERE story_id = $Story_ID";
+
+		if($coordinates = StoryHighlightCoods::model()->findBySql($sql)){
+			$ratio = $coordinates->croppedratio;
+			$colcm = $ratio*$totalcolumncentimeter;
 		}else{
-			$colcm = $this->col*$this->centimeter;
+			$colcm = '-';
 		}
+
+		// $colcm = 0;
+		// $cont_on=$this->cont_on;
+		// if($cont_on!=0) {
+		// 	$cont_col=Story::ColumnContinuation($this->Story_ID);
+		// 	$colcm+=$cont_col;
+		// }else{
+		// 	$colcm = $this->col*$this->centimeter;
+		// }
 		return $colcm;
 	}
 
