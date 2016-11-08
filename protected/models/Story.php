@@ -454,7 +454,20 @@ class Story extends CActiveRecord
 		if($this->cont_on!=0 && $this->cont_from==0) 
 		{ 
 			$cont_on = $this->cont_on;
-			$sql_cont="select story_id,uniqueID, StoryPage from story where Story_ID='$cont_on'";
+			$sql_cont="SELECT story_id,uniqueID, StoryPage from story where Story_ID='$cont_on'";
+			if($cont = Story::model()->findBySql($sql_cont)){
+				$uniqueID = $cont->uniqueID;
+				$storyid = $cont->Story_ID;
+				$printplayer = Yii::app()->params['printplayer'];
+				$link = $printplayer.'storyid='.$cont_on.'&encryptid='.$uniqueID;
+				$continues = '<a href="'.$link.'" style="color:#000;text-decoration:underline;">Continues on Page '.$cont->StoryPage.'</a>';
+			}
+		}
+
+		if($this->cont_on!=0 && $this->cont_from!=0) 
+		{ 
+			$cont_on = $this->cont_on;
+			$sql_cont="SELECT story_id,uniqueID, StoryPage from story where Story_ID='$cont_on'";
 			if($cont = Story::model()->findBySql($sql_cont)){
 				$uniqueID = $cont->uniqueID;
 				$storyid = $cont->Story_ID;
@@ -466,7 +479,7 @@ class Story extends CActiveRecord
 
 		if($this->cont_from!=0 && $this->cont_on==0){ 
 			$cont_from = $this->cont_from;
-			$sql_from="select story_id,uniqueID, StoryPage from story where Story_ID='$cont_from'";
+			$sql_from="SELECT story_id,uniqueID, StoryPage from story where Story_ID='$cont_from'";
 			if($from = Story::model()->findBySql($sql_from)){
 				$uniqueID = $from->uniqueID;
 				$storyid = $from->Story_ID;
@@ -529,7 +542,15 @@ class Story extends CActiveRecord
 			$StoryTime=$this->StoryTime;
 			$this_rate=0;
 			if($this->Media_ID=='mp01'){
-				$rate_cost = $this->print_rate;
+				if($this->cont_on==0){
+					$rate_cost = $this->print_rate;
+				}else{
+					if($nextstory = Story::model()->findByPk($this->cont_on)){
+						$rate_cost = $this->print_rate+$nextstory->AVE;
+					}else{
+						$rate_cost = $this->print_rate;
+					}
+				}
 			}else{
 				$anvilstation_id = AnvilMatch::model()->findBySql("SELECT * FROM anvil_match WHERE Media_House_ID=$Media_House_ID");
 				if($anvilstation_id){

@@ -112,6 +112,7 @@ class AgencyExcelStories{
 			    INNER JOIN industry_subs ON story_industry.industry_id = industry_subs.industry_id
 			    where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
 			    and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
+			    AND story.cont_from = 0 
 			    and StoryDate between "'.$startdate.'" and "'.$enddate.'" '.$searchqry.'
 			    and industry_subs.company_id ='.$client.' and industry_subs.industry_id IN('.$industries.')
 			    order by StoryDate asc, Media_House_List asc,  page_no asc';
@@ -122,6 +123,7 @@ class AgencyExcelStories{
 			  	inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
 			  	where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
 			  	and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
+			  	AND story.cont_from = 0 
 			  	and StoryDate between "'.$startdate.'" and "'.$enddate.'" '.$searchqry.'
 			  	order by StoryDate asc, Media_House_List asc,  page_no asc';
 			}
@@ -392,6 +394,7 @@ class AgencyExcelStories{
 			}
 			$q4 .=' and story.Media_ID="mp01"
 			and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
+			AND story.cont_from = 0 
 			and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
 			'.$searchqry.' and story.Media_House_ID=mediahouse.Media_House_ID
 			order by StoryDate asc, Media_House_List asc';
@@ -678,6 +681,7 @@ class AgencyExcelStories{
 			    INNER JOIN industry_subs ON story_industry.industry_id = industry_subs.industry_id
 			    where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
 			    and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
+			    AND story.cont_from = 0 
 			    and StoryDate between "'.$startdate.'" and "'.$enddate.'" '.$searchqry.'
 			    and industry_subs.company_id ='.$client.' and industry_subs.industry_id IN('.$industries.')
 			    order by StoryDate asc, Media_House_List asc,  page_no asc';
@@ -687,6 +691,7 @@ class AgencyExcelStories{
 			  	inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
 			  	where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
 			  	and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
+			  	AND story.cont_from = 0 
 			  	and StoryDate between "'.$startdate.'" and "'.$enddate.'" '.$searchqry.'
 			  	order by StoryDate asc, Media_House_List asc,  page_no asc';
 			}
@@ -966,6 +971,7 @@ class AgencyExcelStories{
 			}
 			$q4 .=' and story.Media_ID="mp01"
 			and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
+			AND story.cont_from = 0 
 			and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
 			'.$searchqry.' and story.Media_House_ID=mediahouse.Media_House_ID
 			order by StoryDate asc, Media_House_List asc';
@@ -1252,6 +1258,7 @@ class AgencyExcelStories{
 			    INNER JOIN industry_subs ON story_industry.industry_id = industry_subs.industry_id
 			    where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
 			    and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
+			    AND story.cont_from = 0 
 			    and StoryDate between "'.$startdate.'" and "'.$enddate.'" '.$searchqry.'
 			    and industry_subs.company_id ='.$client.' and industry_subs.industry_id IN('.$industries.')
 			    order by StoryDate asc, Media_House_List asc,  page_no asc';
@@ -1261,6 +1268,7 @@ class AgencyExcelStories{
 			  	inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
 			  	where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
 			  	and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
+			  	AND story.cont_from = 0 
 			  	and StoryDate between "'.$startdate.'" and "'.$enddate.'" '.$searchqry.'
 			  	order by StoryDate asc, Media_House_List asc,  page_no asc';
 			}
@@ -1371,6 +1379,7 @@ class AgencyExcelStories{
 			}
 			$q4 .=' and story.Media_ID="mp01"
 			and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
+			AND story.cont_from = 0 
 			and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
 			'.$searchqry.' and story.Media_House_ID=mediahouse.Media_House_ID
 			order by StoryDate asc, Media_House_List asc';
@@ -1495,6 +1504,7 @@ class AgencyExcelStories{
 			    INNER JOIN industry_subs ON story_industry.industry_id = industry_subs.industry_id
 			    where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
 			    and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
+			    AND story.cont_from = 0 
 			    and StoryDate between "'.$startdate.'" and "'.$enddate.'" '.$searchqry.'
 			    and industry_subs.company_id ='.$client.' and industry_subs.industry_id IN('.$industries.')
 			    order by StoryDate asc, Media_House_List asc,  page_no asc';
@@ -1504,6 +1514,7 @@ class AgencyExcelStories{
 			  	inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
 			  	where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
 			  	and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
+			  	AND story.cont_from = 0 
 			  	and StoryDate between "'.$startdate.'" and "'.$enddate.'" '.$searchqry.'
 			  	order by StoryDate asc, Media_House_List asc,  page_no asc';
 			}
@@ -1626,6 +1637,7 @@ class AgencyExcelStories{
 			}
 			$q4 .=' and story.Media_ID="mp01"
 			and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
+			AND story.cont_from = 0 
 			and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
 			'.$searchqry.' and story.Media_House_ID=mediahouse.Media_House_ID
 			order by StoryDate asc, Media_House_List asc';

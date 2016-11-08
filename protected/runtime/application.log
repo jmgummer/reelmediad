@@ -1,0 +1,18 @@
+2016/11/08 07:32:23 [error] [php] Trying to get property of non-object (C:\xampp\htdocs\reelmediad\protected\models\Story.php:549)
+Stack trace:
+#0 C:\xampp\htdocs\reelmediad\protected\components\AgencyExcelStories.php(1400): Story->__get()
+#1 C:\xampp\htdocs\reelmediad\protected\controllers\HomeController.php(274): GetMainOption()
+#2 C:\xampp\htdocs\reelmediad\yii_back\framework\web\actions\CInlineAction.php(49): HomeController->actionExcel()
+#3 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(308): CInlineAction->runWithParams()
+#4 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilterChain.php(133): HomeController->runAction()
+#5 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#7 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CInlineFilter.php(58): HomeController->filterAccessControl()
+#8 C:\xampp\htdocs\reelmediad\yii_back\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#9 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CController.php(265): HomeController->runActionWithFilters()
+#11 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(282): HomeController->run()
+#12 C:\xampp\htdocs\reelmediad\yii_back\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#13 C:\xampp\htdocs\reelmediad\yii_back\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 C:\xampp\htdocs\reelmediad\index.php(18): CWebApplication->run()
+REQUEST_URI=/reelmediad/home/excel?clientid=127&startdate=2016-10-01&enddate=2016-10-31&search=&industries=&cat_identifier=1&type_identifier=2

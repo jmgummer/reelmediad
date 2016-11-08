@@ -59,6 +59,7 @@ public static function GetClientStory($client,$startdate,$enddate,$search,$backd
 		INNER JOIN industry_subs ON story_industry.industry_id = industry_subs.industry_id
 		where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
 		and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
+		AND story.cont_from = 0 
 		and StoryDate between "'.$startdate.'" and "'.$enddate.'"  '.$searchqry.'
 		and industry_subs.company_id ='.$client.' and industry_subs.industry_id IN('.$industries.')
 		order by StoryDate asc, Media_House_List asc, page_no asc';
@@ -68,9 +69,11 @@ public static function GetClientStory($client,$startdate,$enddate,$search,$backd
 		story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , 
 		story.StoryDuration,  story.StoryTime,story.picture ,
 		story.Media_ID, story.print_rate, story.uniqueID
-		FROM story inner join story_mention on story.Story_ID=story_mention.story_id inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
+		FROM story inner join story_mention on story.Story_ID=story_mention.story_id 
+		inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
 		where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
 		and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
+		AND story.cont_from = 0 
 		and StoryDate between "'.$startdate.'" and "'.$enddate.'"  '.$searchqry.'
 		order by StoryDate asc, Media_House_List asc, page_no asc';
 	}
@@ -106,7 +109,7 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 	}
 
 	if(!empty($industries)){
-		$q2 = 'SELECT story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID, story.uniqueID
+		$q2 = 'SELECT DISTINCT story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID, story.uniqueID
 		from story,story_mention,mediahouse,industry_subs,story_industry
 		where story_mention.client_id='.$client.' and story.Story_ID=story_mention.story_id
 		and story.Media_ID!="mp01" and story.step3=1
@@ -117,7 +120,7 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 		and story.Media_House_ID=mediahouse.Media_House_ID
 		order by StoryDate asc, Media_House_List asc, StoryTime desc';
 	}else{
-		$q2 = 'SELECT story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID, story.uniqueID
+		$q2 = 'SELECT DISTINCT story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID, story.uniqueID
 		from story,story_mention,mediahouse
 		where story_mention.client_id='.$client.' and story.Story_ID=story_mention.story_id
 		and story.Media_ID!="mp01" and story.step3=1
@@ -199,6 +202,7 @@ public static function GetClientIndustryStory($client,$startdate,$enddate,$searc
 	}
 	$q2 .=' and story.Media_ID="mp01"
 	and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
+	AND story.cont_from = 0 
 	and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
 	'.$searchqry.' and story.Media_House_ID=mediahouse.Media_House_ID
 	order by StoryDate asc, Media_House_List asc, page_no asc';
@@ -300,12 +304,12 @@ public static function GetClientElectronicIndustryStory($client,$startdate,$endd
 public static function getClientPrint($client_id)
 {
 	/* Using Sammy's Query - Simple and Clean, but adding Joins */
-	$mainsql = "select * from story inner join story_mention on story.Story_ID=story_mention.story_id inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID  where story_mention.client_id=".$client_id." and story.Media_ID='mp01' and story.step3=1 and StoryDate ='2014-05-29' order by Media_House_List asc, StoryDate desc, page_no asc";
+	$mainsql = "SELECT * from story inner join story_mention on story.Story_ID=story_mention.story_id inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID  where story_mention.client_id=".$client_id." and story.Media_ID='mp01' and story.step3=1 and StoryDate ='2014-05-29' order by Media_House_List asc, StoryDate desc, page_no asc";
 }
 
 public static function getClientIndustry()
 {
-	$inda = "select distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story from story, story_industry, industry_subs, mediahouse where story.story_id NOT IN (select story_id from story_mention where client_id='1') and story.story_id=story_industry.story_id and industry_subs.company_id='' and story_industry.industry_id=industry_subs.industry_id and story.Media_ID='mp01' and story.step3=1 and StoryDate ='2014-06-03' and story.Media_House_ID=mediahouse.Media_House_ID order by Media_House_List asc, StoryDate desc";
+	$inda = "SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story from story, story_industry, industry_subs, mediahouse where story.story_id NOT IN (SELECT story_id from story_mention where client_id='1') and story.story_id=story_industry.story_id and industry_subs.company_id='' and story_industry.industry_id=industry_subs.industry_id and story.Media_ID='mp01' and story.step3=1 and StoryDate ='2014-06-03' and story.Media_House_ID=mediahouse.Media_House_ID order by Media_House_List asc, StoryDate desc";
 }
 /*
 * This Function obtains a particular story only
@@ -408,7 +412,7 @@ public static function AgencyPrintTableBody($date,$storyid,$pub,$journo,$head,$p
 	$printplayer = Yii::app()->params['printplayer'];
 	$link = $printplayer.'storyid='.$storyid.'&encryptid='.$uniqueID;
 	$agency_id = Yii::app()->user->company_id;
-	$sql_agency_pr="select agency_pr_rate  from agency where agency_id=$agency_id";
+	$sql_agency_pr="SELECT agency_pr_rate  from agency where agency_id=$agency_id";
 	if($agency_pr_rate = Agency::model()->findBySql($sql_agency_pr)){
 		$agency_pr_rate = $agency_pr_rate->agency_pr_rate;
 	}else{
