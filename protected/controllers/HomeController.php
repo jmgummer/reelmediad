@@ -13,7 +13,7 @@
 * @version 	   v.1.0
 * @since       July 2008
 */
-
+ini_set('memory_limit', '256M');
 class HomeController extends Controller
 {
 	/**

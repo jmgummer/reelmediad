@@ -9,8 +9,8 @@ return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Reelmedia',
 	'aliases'=>array(
-		'homeimages'=>'http://localhost/reelmediad/images',
-		'homeUrl' => 'http://localhost/reelmediad',
+		'homeimages'=>'http://media.reelforge.com/reelmediad/images',
+		'homeUrl' => 'http://media.reelforge.com/reelmediad',
 		),
 
 	// preloading 'log' component
@@ -160,9 +160,9 @@ return array(
 		'adminEmail'=>'steve.oyugi@reelforge.com',
 		'video_url'=>'http://www.reelforge.com/',
 		'print_url'=>'http://www.reelforge.com/',
-		'printplayer'=>'http://beta.reelforge.com/player/index.php?',
-		'electronicplayer'=>'http://beta.reelforge.com/player/video.php?',
-		'printarchiveplayer'=>'http://beta.reelforge.com/player/archive.php?',
-		'fileactions'=>'http://beta.reelforge.com/player/'
+		'printplayer'=>'http://media.reelforge.com/player/index.php?',
+		'electronicplayer'=>'http://media.reelforge.com/player/video.php?',
+		'printarchiveplayer'=>'http://media.reelforge.com/player/archive.php?',
+		'fileactions'=>'http://media.reelforge.com/player/'
 	),
 );

@@ -196,7 +196,7 @@ class ArchiveStories{
 		    }
 		}
 		// $final_sql = $sql;
-		$archivesearch = "SELECT * FROM $temp_table ORDER BY  indexdate DESC, media_house_id ASC, page ASC";
+		$archivesearch = "SELECT * FROM $temp_table ORDER BY  indexdate DESC, media_house_id ASC, CAST(page AS UNSIGNED) ASC, page ASC";
 		
 		if($stories = Yii::app()->db2->createCommand($archivesearch)->queryAll()){
 			$record_count = count($stories);

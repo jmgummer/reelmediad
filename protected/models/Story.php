@@ -637,7 +637,7 @@ class Story extends CActiveRecord
 			if($pullout = MediahousePullouts::model()->findBySql($sql_po)){
 				$pullout = $pullout->pullout_name;
 			}else{
-				$pullout = 'Unknown Pullout';
+				$pullout = 'Unknown Pullout or Edition';
 			}
 			return $pullout;
 		}else{
