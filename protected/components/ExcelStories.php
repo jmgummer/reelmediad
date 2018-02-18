@@ -181,7 +181,7 @@ class ExcelStories{
 			$PHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
 
 			/* Add Values to the Spreadsheet */
-			$q3 = 'SELECT DISTINCT story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID from story,story_mention,mediahouse
+			$q3 = 'SELECT DISTINCT story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID, story.ave from story,story_mention,mediahouse
 			where story_mention.client_id='.$client.' and story.Story_ID=story_mention.story_id
 			and story.Media_ID!="mp01" and story.step3=1
 			and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
@@ -308,7 +308,7 @@ class ExcelStories{
 			$PHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
 
 			/* Add Values to the Spreadsheet */
-			$q4 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story
+			$q4 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story, story.ave
 			from story, story_industry, industry_subs, mediahouse
 			where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.')
 			and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.'
@@ -398,7 +398,7 @@ class ExcelStories{
 			$PHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
 
 			/* Add Values to the Spreadsheet */
-			$q5 = 'SELECT distinct(story.story_id) as Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID
+			$q5 = 'SELECT distinct(story.story_id) as Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID, story.ave
 			from story, story_industry, industry_subs, mediahouse
 			where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.')
 			and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.'
@@ -642,7 +642,7 @@ class ExcelStories{
 			$PHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
 
 			/* Add Values to the Spreadsheet */
-			$q3 = 'SELECT story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID from story,story_mention,mediahouse
+			$q3 = 'SELECT story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID, story.ave from story,story_mention,mediahouse
 			where story_mention.client_id='.$client.' and story.Story_ID=story_mention.story_id
 			and story.Media_ID!="mp01" and story.step3=1
 			and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
@@ -781,7 +781,7 @@ class ExcelStories{
 			$PHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
 
 			/* Add Values to the Spreadsheet */
-			$q4 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story
+			$q4 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story, story.ave
 			from story, story_industry, industry_subs, mediahouse
 			where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.')
 			and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.'
@@ -871,7 +871,7 @@ class ExcelStories{
 			$PHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
 
 			/* Add Values to the Spreadsheet */
-			$q5 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story
+			$q5 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story, story.ave
 			from story, story_industry, industry_subs, mediahouse
 			where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.')
 			and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.'
@@ -1114,7 +1114,7 @@ class ExcelStories{
 			$PHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
 
 			/* Add Values to the Spreadsheet */
-			$q4 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story
+			$q4 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story, story.ave
 			from story, story_industry, industry_subs, mediahouse
 			where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.')
 			and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.'
@@ -1326,7 +1326,7 @@ class ExcelStories{
 			$PHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
 
 			/* Add Values to the Spreadsheet */
-			$q4 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story
+			$q4 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story, story.ave
 			from story, story_industry, industry_subs, mediahouse
 			where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.')
 			and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.'
@@ -1428,7 +1428,7 @@ class ExcelStories{
 			$PHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
 
 			/* Add Values to the Spreadsheet */
-			$q3 = 'SELECT story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID from story,story_mention,mediahouse
+			$q3 = 'SELECT story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID, story.ave from story,story_mention,mediahouse
 			where story_mention.client_id='.$client.' and story.Story_ID=story_mention.story_id
 			and story.Media_ID!="mp01" and story.step3=1
 			and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
@@ -1554,7 +1554,7 @@ class ExcelStories{
 			$PHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
 
 			/* Add Values to the Spreadsheet */
-			$q5 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story
+			$q5 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story, story.ave
 			from story, story_industry, industry_subs, mediahouse
 			where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.')
 			and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.'
@@ -1698,7 +1698,7 @@ class ExcelStories{
 			$PHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
 
 			/* Add Values to the Spreadsheet */
-			$q3 = 'SELECT story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID from story,story_mention,mediahouse
+			$q3 = 'SELECT story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID, story.ave from story,story_mention,mediahouse
 			where story_mention.client_id='.$client.' and story.Story_ID=story_mention.story_id
 			and story.Media_ID!="mp01" and story.step3=1
 			and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
@@ -1836,7 +1836,7 @@ class ExcelStories{
 			$PHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
 
 			/* Add Values to the Spreadsheet */
-			$q5 = 'SELECT distinct(story.story_id) as Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID
+			$q5 = 'SELECT distinct(story.story_id) as Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID, story.ave
 			from story, story_industry, industry_subs, mediahouse
 			where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.')
 			and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.'

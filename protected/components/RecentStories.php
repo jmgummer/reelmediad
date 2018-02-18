@@ -107,9 +107,8 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 	}else{
 		$searchqry = " ";
 	}
-
 	if(!empty($industries)){
-		$q2 = 'SELECT DISTINCT story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID, story.uniqueID
+		$q2 = 'SELECT DISTINCT story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID, story.uniqueID, story.ave
 		from story,story_mention,mediahouse,industry_subs,story_industry
 		where story_mention.client_id='.$client.' and story.Story_ID=story_mention.story_id
 		and story.Media_ID!="mp01" and story.step3=1
@@ -120,7 +119,7 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 		and story.Media_House_ID=mediahouse.Media_House_ID
 		order by StoryDate asc, Media_House_List asc, StoryTime desc';
 	}else{
-		$q2 = 'SELECT DISTINCT story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID, story.uniqueID
+		$q2 = 'SELECT DISTINCT story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID, story.uniqueID, story.ave
 		from story,story_mention,mediahouse
 		where story_mention.client_id='.$client.' and story.Story_ID=story_mention.story_id
 		and story.Media_ID!="mp01" and story.step3=1
@@ -132,10 +131,8 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 
 	if($story = Story::model()->findAllBySql($q2)){
 		if(Yii::app()->user->usertype=='agency'){
-			
 			$radio_section = "";
 			$tv_section = "";
-			
 			foreach ($story as $key) {
 				if($key->Media_ID=='mr01'){
 					$radio_section .= RecentStories::AgencyElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues,$key->uniqueID);
@@ -143,7 +140,6 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 					$tv_section .= RecentStories::AgencyElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues,$key->uniqueID);
 				}
 			}
-
 			echo '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>RADIO</strong></td></tr></table>';
 			echo RecentStories::AgencyElectronicTableHead();
 			echo $radio_section;
@@ -164,7 +160,6 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 					$tv_section .= RecentStories::ElectronicTableBody($key->StoryDate,$key->Story_ID,$key->Publication,$key->journalist,$key->Title,$key->FormatedTime,$key->FormatedDuration,Story::ClientIndustryCategory($key->Story_ID,$client),Story::ClientTonality($key->Story_ID,$client),$key->AVE,$key->Link,$key->Continues,$key->uniqueID);
 				}
 			}
-
 			echo '<table id="dt_basic" class="table table-striped table-bordered"><tr><td><strong>RADIO</strong></td></tr></table>';
 			echo RecentStories::ElectronicTableHead();
 			echo $radio_section;
@@ -192,7 +187,7 @@ public static function GetClientIndustryStory($client,$startdate,$enddate,$searc
 	$q2 = 'SELECT distinct(story.story_id) as Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,
 	story.editor,story.Media_House_ID,
 	story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  
-	story.StoryTime,story.picture , story.Media_ID, story.print_rate, story.uniqueID
+	story.StoryTime,story.picture , story.Media_ID, story.print_rate, story.uniqueID, story.ave
 	from story, story_industry, industry_subs, mediahouse
 	where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.')
 	and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.'
@@ -238,7 +233,7 @@ public static function GetClientElectronicIndustryStory($client,$startdate,$endd
 	$q2 = 'SELECT distinct(story.story_id) as Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,
 	story.editor,story.Media_House_ID,
 	story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  
-	story.StoryTime,story.picture , story.Media_ID, story.uniqueID
+	story.StoryTime,story.picture , story.Media_ID, story.uniqueID, story.ave
 	from story, story_industry, industry_subs, mediahouse
 	where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.')
 	and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.'

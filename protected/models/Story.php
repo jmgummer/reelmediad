@@ -290,11 +290,11 @@ class Story extends CActiveRecord
 
 	public function getPublicationType()
 	{
-	  if($newspapertype=NewspaperTypeAssignment::model()->find('Media_House_ID=:a', array(':a'=>$this->Media_House_ID))){
-	    return NewspaperType::model()->find('auto_id=:a', array(':a'=>$newspapertype->newspaper_type_id))->newspaper_type;
-	  }else{
-	    return 'Unknown';
-	  }
+		if($newspapertype=NewspaperTypeAssignment::model()->find('Media_House_ID=:a', array(':a'=>$this->Media_House_ID))){
+			return NewspaperType::model()->find('auto_id=:a', array(':a'=>$newspapertype->newspaper_type_id))->newspaper_type;
+		}else{
+			return 'Unknown';
+		}
 	}
 	
 	public function getFormatedTime()
@@ -304,17 +304,6 @@ class Story extends CActiveRecord
 	
 	public function getFormatedDuration()
 	{
-		/* gmdate proved buggy when someone adds wrong values
-		$duration = strtotime(str_replace('-','/', $this->StoryDuration));
-		return gmdate("H:i:s", $duration);
-
-		if($duration = strtotime(str_replace('-','/', $this->StoryDuration))){
-			return gmdate("H:i:s", $duration);
-		}else{
-			return $this->StoryDuration;
-		}
-		*/
-
 		$duration = $this->StoryDuration;
 		$seconds = $duration; //example
 		$hours = floor($seconds / 3600);
@@ -324,33 +313,40 @@ class Story extends CActiveRecord
 		$s = ($s<10?"0".$s:"".$s); 
 		$formatedtime = ($hours>0?$hours.":":"00:").$mins.":".$s."  ";
 		return $formatedtime;
-	  	
 	}
 	
 	public function getPicture()
 	{
-	  if($this->picture=='color' OR $this->picture==1){
-	    return 'Color';
-	  }elseif($this->picture=='black_white' OR $this->picture==2){
-	    return 'B/W';
-	  }elseif($this->picture=='none'  OR $this->picture==0){
-	    return 'None';
-	  }else{
-	    return 'None';
-	  }
+		if($this->picture=='color' OR $this->picture==1){
+			return 'Color';
+		}elseif($this->picture=='black_white' OR $this->picture==2){
+			return 'B/W';
+		}elseif($this->picture=='none'  OR $this->picture==0){
+			return 'None';
+		}else{
+			return 'None';
+		}
 	}
 
 	public function getTonality()
 	{
-		if($tonality = MediamapAnalysis::model()->find('story_id=:a AND company_id=:b', array(':a'=>$this->Story_ID, ':b'=>Yii::app()->user->company_id))){
-			if($tonality->tonality=='positive'){
-			  return 'Positive';
-			}elseif($tonality->tonality=='negative'){
-			  return 'Negative';
-			}elseif($tonality->tonality=='neutral'){
-			  return 'Neutral';
+		$storyid = $this->Story_ID;
+		$client = Yii::app()->user->company_id;
+		$sql = "SELECT mediamap_analysis.analysis_id, mediamap_analysis.tonality, mediamap_analysis.story_id, mediamap_analysis.client_tonality FROM mediamap_analysis WHERE mediamap_analysis.story_id =$storyid AND mediamap_analysis.company_id = $client";
+		$tonality = Yii::app()->db2->createCommand($sql)->queryRow();
+		if($tonality){
+			$utonality = $tonality['tonality'];
+			if($tonality['client_tonality']!=''){
+				$utonality = $tonality['client_tonality'];
+			}
+			if($utonality=='positive'){
+				return 'Positive';
+			}elseif($utonality=='negative'){
+				return 'Negative';
+			}elseif($utonality=='neutral'){
+				return 'Neutral';
 			}else{
-			  return 'N/A';
+				return 'N/A';
 			}
 		}else{
 			return 'N/A';
@@ -359,15 +355,21 @@ class Story extends CActiveRecord
 
 	public static function ClientTonality($storyid,$company_id)
 	{
-		if($tonality = MediamapAnalysis::model()->find('story_id=:a AND company_id=:b', array(':a'=>$storyid, ':b'=>$company_id))){
-			if($tonality->tonality=='positive'){
-			  return 'Positive';
-			}elseif($tonality->tonality=='negative'){
-			  return 'Negative';
-			}elseif($tonality->tonality=='neutral'){
-			  return 'Neutral';
+		$sql = "SELECT mediamap_analysis.analysis_id, mediamap_analysis.tonality, mediamap_analysis.story_id, mediamap_analysis.client_tonality FROM mediamap_analysis WHERE mediamap_analysis.story_id =$storyid AND mediamap_analysis.company_id = $company_id";
+		$tonality = Yii::app()->db2->createCommand($sql)->queryRow();
+		if($tonality){
+			$utonality = $tonality['tonality'];
+			if($tonality['client_tonality']!=''){
+				$utonality = $tonality['client_tonality'];
+			}
+			if($utonality=='positive'){
+				return 'Positive';
+			}elseif($utonality=='negative'){
+				return 'Negative';
+			}elseif($utonality=='neutral'){
+				return 'Neutral';
 			}else{
-			  return 'N/A';
+				return 'N/A';
 			}
 		}else{
 			return 'N/A';
@@ -552,26 +554,27 @@ class Story extends CActiveRecord
 					}
 				}
 			}else{
-				$anvilstation_id = AnvilMatch::model()->findBySql("SELECT * FROM anvil_match WHERE Media_House_ID=$Media_House_ID");
-				if($anvilstation_id){
-					$station_id = $anvilstation_id->station_id;
-					$sql_electronic_rate = "SELECT rate,duration from forgedb.ratecard_base where ratecard_base.station_id=$station_id and forgedb.ratecard_base.weekday='$weekday' and forgedb.ratecard_base.time_start<='$StoryTime' order by forgedb.ratecard_base.duration,  ratecard_base.date_start desc,ratecard_base.time_start desc, forgedb.ratecard_base.time_end asc limit 1;";
-					$incantation_length=str_replace("sec","",$incantation_length);
-					$this_rate_det = RatecardBase::model()->findBySql($sql_electronic_rate);
-					if(isset($this_rate_det->rate) && isset($this_rate_det->duration)){
-						$this_rate = $this_rate_det->rate;
-						$this_duration = $this_rate_det->duration;
-						if($rate_cost = round(($incantation_length * $this_rate)/$this_duration,-1)==60){
-							$rate_cost = 0;
-						}else{
-							$rate_cost = round(($incantation_length * $this_rate)/$this_duration,-1);
-						}
-					}else{
-						$rate_cost = 0;
-					}
-				}else{
-					$rate_cost =0;
-				}
+				$rate_cost = $this->ave;
+				// $anvilstation_id = AnvilMatch::model()->findBySql("SELECT * FROM anvil_match WHERE Media_House_ID=$Media_House_ID");
+				// if($anvilstation_id){
+				// 	$station_id = $anvilstation_id->station_id;
+				// 	$sql_electronic_rate = "SELECT rate,duration from forgedb.ratecard_base where ratecard_base.station_id=$station_id and forgedb.ratecard_base.weekday='$weekday' and forgedb.ratecard_base.time_start<='$StoryTime' order by forgedb.ratecard_base.duration,  ratecard_base.date_start desc,ratecard_base.time_start desc, forgedb.ratecard_base.time_end asc limit 1;";
+				// 	$incantation_length=str_replace("sec","",$incantation_length);
+				// 	$this_rate_det = RatecardBase::model()->findBySql($sql_electronic_rate);
+				// 	if(isset($this_rate_det->rate) && isset($this_rate_det->duration)){
+				// 		$this_rate = $this_rate_det->rate;
+				// 		$this_duration = $this_rate_det->duration;
+				// 		if($rate_cost = round(($incantation_length * $this_rate)/$this_duration,-1)==60){
+				// 			$rate_cost = 0;
+				// 		}else{
+				// 			$rate_cost = round(($incantation_length * $this_rate)/$this_duration,-1);
+				// 		}
+				// 	}else{
+				// 		$rate_cost = 0;
+				// 	}
+				// }else{
+				// 	$rate_cost =0;
+				// }
 			}
 		}else{
 			$rate_cost = 0;
@@ -599,9 +602,28 @@ class Story extends CActiveRecord
 		}
 	}
 
-	public function getClassification()
+	public static function Classification($storyid,$clientid)
 	{
+		$sql = "SELECT classification_name FROM company_story_classification 
+		INNER JOIN story_classification ON company_story_classification.classification_id = story_classification.classification_id
+		WHERE story_classification.story_id=$storyid AND company_id = $clientid";
+		if($classification = CompanyStoryClassification::model()->findBySql($sql)){
+			return $classification->classification_name;
+		}else{
+			return '-';
+		}
+	}
 
+	public static function TechicalArea($storyid,$clientid)
+	{
+		$sql = "SELECT technical_area_name FROM company_technical_areas 
+		INNER JOIN story_technicalarea ON company_technical_areas.id = story_technicalarea.tech_id
+		WHERE story_technicalarea.story_id=$storyid AND company_id = $clientid";
+		if($technicalarea = CompanyTechnicalAreas::model()->findBySql($sql)){
+			return $technicalarea->technical_area_name;
+		}else{
+			return '-';
+		}
 	}
 
 	public static function AVEFormatted($ave)

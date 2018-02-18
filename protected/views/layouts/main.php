@@ -103,6 +103,14 @@
 					<li>
 						<a href="<?=Yii::app()->createUrl("home/print");?>" title="Stories"><i class="fa fa-lg fa-fw fa-pencil"></i> <span class="menu-item-parent">Stories</span></a>
 					</li>
+					<?php if(Yii::app()->user->usertype!='agency') : ?>
+						<li>
+							<a href="<?=Yii::app()->createUrl("stories/classified");?>" title="Stories"><i class="fa fa-lg fa-fw fa-bullhorn"></i> <span class="menu-item-parent">Classified Stories</span></a>
+						</li>
+						<li>
+							<a href="<?=Yii::app()->createUrl("stories/online");?>" title="Stories"><i class="fa fa-lg fa-fw fa-comments"></i> <span class="menu-item-parent">Online Stories</span></a>
+						</li>
+					<?php endif; ?>
 					<li>
 						<a href="<?=Yii::app()->createUrl("archive/index");?>" title="Print Archive"><i class="fa fa-lg fa-fw fa-file-archive-o"></i> <span class="menu-item-parent">Print Archive</span></a>
 					</li>

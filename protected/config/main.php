@@ -93,6 +93,15 @@ return array(
 			'password' => 'Pambazuka08',
 			'charset' => 'utf8',
 		),
+
+		'db4'=>array(
+			'class'=>'CDbConnection',
+			'connectionString' => 'mysql:host=192.168.0.5;dbname=onlinedb',
+			'emulatePrepare' => true,
+			'username' => 'root',
+			'password' => 'Pambazuka08',
+			'charset' => 'utf8',
+		),
 		
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors

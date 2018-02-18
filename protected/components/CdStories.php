@@ -143,7 +143,7 @@ class CdStories{
 		$month = date('m');
 		$year = date('Y');
 		$story_month = 'story_'.$year.'_'.$month;
-		$q2 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story
+		$q2 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story, story.ave
 		from story, story_industry, industry_subs, mediahouse
 		where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.')
 		and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.'
@@ -197,7 +197,7 @@ class CdStories{
 		$month = date('m');
 		$year = date('Y');
 		$story_month = 'story_'.$year.'_'.$month;
-		$q2 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story
+		$q2 = 'SELECT distinct(story.story_id) as Story_ID,uniqueID, Title,StoryDate,editor,StoryTime,StoryPage,journalist,story.Media_House_ID,picture,col,centimeter,StoryDuration, file, story.Media_ID, Story, story.ave
 		from story, story_industry, industry_subs, mediahouse
 		where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.')
 		and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.'

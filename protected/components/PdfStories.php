@@ -52,7 +52,7 @@ public static function GetClientStory($client,$startdate,$enddate,$search,$backd
 		$q2 = 'SELECT distinct story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.cont_on,
 		story.cont_from,story.editor,story.Media_House_ID,
 		story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  
-		story.StoryTime,story.picture , story.Media_ID, story.print_rate, story.uniqueID
+		story.StoryTime,story.picture , story.Media_ID, story.print_rate, story.uniqueID, story.ave
 		FROM story inner join story_mention on story.Story_ID=story_mention.story_id 
 		inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
 		INNER JOIN story_industry on story_industry.story_id=story.Story_ID 
@@ -67,7 +67,7 @@ public static function GetClientStory($client,$startdate,$enddate,$search,$backd
 		$q2 = 'SELECT distinct story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.cont_on,
 		story.cont_from,story.editor,story.Media_House_ID,
 		story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  
-		story.StoryTime,story.picture , story.Media_ID, story.print_rate, story.uniqueID
+		story.StoryTime,story.picture , story.Media_ID, story.print_rate, story.uniqueID, story.ave
 		FROM story inner join story_mention on story.Story_ID=story_mention.story_id 
 		inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
 		where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
@@ -108,7 +108,7 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 	}
 	$q2 = 'SELECT DISTINCT story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,
 	story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  
-	story.StoryTime,story.picture , story.Media_ID, story.print_rate, story.uniqueID
+	story.StoryTime,story.picture , story.Media_ID, story.print_rate, story.uniqueID, story.ave
 	from story,story_mention,mediahouse
 	where story_mention.client_id='.$client.' and story.Story_ID=story_mention.story_id
 	and story.Media_ID!="mp01" and story.step3=1
@@ -191,7 +191,7 @@ public static function GetClientIndustryStory($client,$startdate,$enddate,$searc
 	$q2 = 'SELECT distinct(story.story_id) as Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,
 	story.editor,story.Media_House_ID,
 	story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  
-	story.StoryTime,story.picture , story.Media_ID, story.print_rate, story.uniqueID
+	story.StoryTime,story.picture , story.Media_ID, story.print_rate, story.uniqueID, story.ave
 	from story, story_industry, industry_subs, mediahouse
 	where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.')
 	and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.'
@@ -237,7 +237,7 @@ public static function GetClientElectronicIndustryStory($client,$startdate,$endd
 	$q2 = 'SELECT distinct(story.story_id) as Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,
 	story.editor,story.Media_House_ID,
 	story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  
-	story.StoryTime,story.picture , story.Media_ID, story.print_rate, story.uniqueID
+	story.StoryTime,story.picture , story.Media_ID, story.print_rate, story.uniqueID, story.ave
 	from story, story_industry, industry_subs, mediahouse
 	where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.')
 	and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.'

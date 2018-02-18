@@ -106,7 +106,7 @@ class HtmlStories{
 			story.cont_on,story.cont_from,story.editor,
 			story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  
 			story.StoryTime,story.picture ,
-			story.Media_ID, story.print_rate, story.uniqueID
+			story.Media_ID, story.print_rate, story.uniqueID, story.ave
 			FROM story inner join story_mention on story.Story_ID=story_mention.story_id 
 			INNER JOIN mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
 			INNER JOIN story_industry on story_industry.story_id=story.Story_ID 
@@ -119,7 +119,7 @@ class HtmlStories{
 		}else{
 			$q2 = 'SELECT distinct story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.cont_on,story.cont_from,story.editor,
 			story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture ,
-			story.Media_ID , story.print_rate, story.uniqueID
+			story.Media_ID , story.print_rate, story.uniqueID, story.ave
 			FROM story inner join story_mention on story.Story_ID=story_mention.story_id inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
 			where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
 			and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
@@ -167,7 +167,7 @@ class HtmlStories{
 		story.Media_House_ID,
 		story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  
 		story.StoryTime,story.picture ,
-		story.Media_ID, story.print_rate, story.uniqueID
+		story.Media_ID, story.print_rate, story.uniqueID, story.ave
 		from story,story_mention,mediahouse
 		where story_mention.client_id='.$client.' and story.Story_ID=story_mention.story_id
 		and story.Media_ID!="mp01" and story.step3=1
@@ -256,7 +256,7 @@ class HtmlStories{
 		$story_month = 'story_'.$year.'_'.$month;
 		$q2 = 'SELECT distinct(story.story_id) as Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,
 		story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  
-		story.StoryTime,story.picture , story.Media_ID,	story.print_rate, story.uniqueID
+		story.StoryTime,story.picture , story.Media_ID,	story.print_rate, story.uniqueID, story.ave
 		from story, story_industry, industry_subs, mediahouse
 		where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.')
 		and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.'
@@ -307,7 +307,7 @@ class HtmlStories{
 		$story_month = 'story_'.$year.'_'.$month;
 		$q2 = 'SELECT distinct(story.story_id) as Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,
 		story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  
-		story.StoryTime,story.picture , story.Media_ID, story.print_rate, story.uniqueID
+		story.StoryTime,story.picture , story.Media_ID, story.print_rate, story.uniqueID, story.ave
 		from story, story_industry, industry_subs, mediahouse
 		where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.')
 		and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.'

@@ -275,8 +275,6 @@ class HomeController extends Controller
 		}else{
 			$stories = ExcelStories::GetMainOption($client,$startdate,$enddate,$search,$backdate,$country,$industries,$option);
 		}
-
-    	
 		Yii::app()->end();
 	}
 	
