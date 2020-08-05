@@ -32,13 +32,7 @@ class ExcelStories{
 		$printplayer = Yii::app()->params['printplayer'];
 		$electronicplayer = Yii::app()->params['electronicplayer'];
 		// Currency Value Based on Country
-
-		$country = Yii::app()->user->country_id;
-		if($currency = Country::model()->find('country_id=:a', array(':a'=>$country))){
-			$currency = $currency->currency;
-		}else{
-			$currency = 'KES';
-		}
+		$currency = Yii::app()->params['country_currency'];
 
 		if(!empty($search)){
 			$searchqry = " AND ( (story.story like '%$search%') OR (story.title like '%$search%') OR (story.mentioned like '%$search%') ) ";

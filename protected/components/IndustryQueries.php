@@ -359,7 +359,7 @@ class IndustryQueries{
 
 	public static function GetTonality($client,$startdate,$enddate,$industry,$backdate)
 	{
-		$q1 = 'SELECT count(DISTINCT story.story_id) as number_tonality, mediamap_analysis.tonality from story_industry, story,mediamap_analysis, story_mention where story_mention.client_id='.$client.' and story_industry.story_id= story_mention.story_id and story_industry.story_id=story.story_id and story_industry.industry_id IN ('.$industry.') and story.StoryDate between "'.$startdate.'" and "'.$enddate.'" and story.StoryDate>"'.$backdate.'" and story.story_id= story_industry.story_id and mediamap_analysis.story_id=story_industry.story_id and mediamap_analysis.company_id='.$client.' group by mediamap_analysis.tonality';
+		$q1 = 'SELECT  count(DISTINCT story.story_id) as number_tonality, mediamap_analysis.tonality from story_industry, story,mediamap_analysis, story_mention where story_mention.client_id='.$client.' and story_industry.story_id= story_mention.story_id and story_industry.story_id=story.story_id and story_industry.industry_id IN ('.$industry.') and story.StoryDate between "'.$startdate.'" and "'.$enddate.'" and story.StoryDate>"'.$backdate.'" and story.story_id= story_industry.story_id and mediamap_analysis.story_id=story_industry.story_id and mediamap_analysis.company_id='.$client.' group by mediamap_analysis.tonality';
 		$sq = Yii::app()->db2->createCommand($q1)->queryAll();
 		return $sq;
 	}

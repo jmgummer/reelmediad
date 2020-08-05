@@ -113,4 +113,9 @@ class CompanyStoryClassification extends CActiveRecord
 		$sql = "SELECT * FROM company_story_classification WHERE company_id = $clientid ORDER BY classification_order";
 		return CHtml::listData(CompanyStoryClassification::model()->findAllBySql($sql),'classification_id','classification_name');
 	}
+
+	public function getCompanyClassificationList($clientid){
+		$sql = "SELECT * FROM company_story_classification WHERE company_id = $clientid ORDER BY classification_order";
+		return CHtml::listData(CompanyStoryClassification::model()->findAllBySql($sql),'classification_id','classification_name');
+	}
 }

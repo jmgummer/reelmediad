@@ -30,7 +30,7 @@ class UserIdentity extends CUserIdentity
 		$client = ClientUsers::model()->find('username=:a AND password=:b AND user_status=1', array(':a'=>$this->username,':b'=>md5($this->password)));
 
 		/* Agency Clients Login */
-		$sql_activate = "select * from agency_users,agency where agency_users.username='$this->username' and agency_users.password=md5('$this->password') and agency_users.agency_id=agency.agency_id  and agency_users.user_status=1";
+		$sql_activate = "SELECT * from agency_users,agency where agency_users.username='$this->username' and agency_users.password=md5('$this->password') and agency_users.agency_id=agency.agency_id  and agency_users.user_status=1";
 		$agency = AgencyUsers::model()->findBySql($sql_activate);
 
 		if($client==FALSE && $agency==FALSE){
@@ -47,11 +47,18 @@ class UserIdentity extends CUserIdentity
 				}else{
 					$this->setState('company_name', $client->company);
 				}
-				$company_country = 'select * from company_country where company_id ='.$company_id;
+				$company_country = 'SELECT * from company_country where company_id ='.$company_id;
 				if($company_country = CompanyCountry::model()->findBySql($company_country)){
 					$country_id = $company_country->country_id;
 				}else{
 					$country_id = 1;
+				}
+				// Check if the client is set for education content
+				$checksql = "SELECT * FROM company WHERE education_plan=1 AND company_id=$company_id";
+				if($codata = Yii::app()->db2->createCommand($checksql)->queryRow()){
+					$this->setState('education_plan',1);
+				}else{
+					$this->setState('education_plan',0);
 				}
 				$this->setState('country_id',$country_id);
 				$this->setState('usertype','client');
@@ -70,6 +77,7 @@ class UserIdentity extends CUserIdentity
 
 				/* This is Subject to Change */
 				$country_id = 1;
+				$this->setState('education_plan',0);
 				$this->setState('country_id',$country_id);
 				$this->setState('usertype','agency');
 				$this->errorCode=self::ERROR_NONE;

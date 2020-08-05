@@ -45,12 +45,17 @@ if(isset($_POST['StorySearch'])){
     if(isset($model->storytype) && !empty($model->storytype)){
       $type_identifier= $model->storytype;
     }
+    if(isset($model->news_section) && !empty($model->news_section)){
+      $news_identifier= $model->news_section;
+    } else{
+    	$news_identifier= 0;
+    }
     // Adding backdate and Keywords
     $company_words = Company::model()->find('company_id=:a order by keywords', array(':a'=>$model->company));
 	$backdate = $company_words->backdate;
 	$company_name = $company_words->company_name;
 	
-	?>
+?>
 	<div id="wid-id-0" class="jarviswidget jarviswidget-sortable"style="" role="widget">
 		<header role="heading">
 			<h2>Export Reports ? 
@@ -104,19 +109,19 @@ if(isset($_POST['StorySearch'])){
 			echo '<div id="myTabContent1" class="tab-content padding-10">';
 
 			echo '<div class="tab-pane fade active in" id="s1">';
-			$stories = RecentStories::GetClientStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries);
+			$stories = RecentStories::GetClientStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
 			echo '</div>';
 
 			echo '<div class="tab-pane fade" id="s2">';
-			$stories = RecentStories::GetElectronicStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries);
+			$stories = RecentStories::GetElectronicStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
 			echo '</div>';
 
 			echo '<div class="tab-pane fade" id="s3">';
-			$stories = RecentStories::GetClientIndustryStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries);
+			$stories = RecentStories::GetClientIndustryStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
 			echo '</div>';
 
 			echo '<div class="tab-pane fade" id="s4">';
-			$stories = RecentStories::GetClientElectronicIndustryStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries);
+			$stories = RecentStories::GetClientElectronicIndustryStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
 			echo '</div>';
 
 			echo '</div>';
@@ -135,11 +140,11 @@ if(isset($_POST['StorySearch'])){
 			echo '<div id="myTabContent1" class="tab-content padding-10">';
 
 			echo '<div class="tab-pane fade active in" id="s1">';
-			$stories = RecentStories::GetClientStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries);
+			$stories = RecentStories::GetClientStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
 			echo '</div>';
 
 			echo '<div class="tab-pane fade" id="s2">';
-			$stories = RecentStories::GetElectronicStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries);
+			$stories = RecentStories::GetElectronicStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
 			echo '</div>';
 
 			echo '</div>';
@@ -158,11 +163,11 @@ if(isset($_POST['StorySearch'])){
 			echo '<div id="myTabContent1" class="tab-content padding-10">';
 
 			echo '<div class="tab-pane fade active in" id="s3">';
-			$stories = RecentStories::GetClientIndustryStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries);
+			$stories = RecentStories::GetClientIndustryStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
 			echo '</div>';
 
 			echo '<div class="tab-pane fade" id="s4">';
-			$stories = RecentStories::GetClientElectronicIndustryStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries);
+			$stories = RecentStories::GetClientElectronicIndustryStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
 			echo '</div>';
 
 			echo '</div>';
@@ -183,11 +188,11 @@ if(isset($_POST['StorySearch'])){
 			echo '<div id="myTabContent1" class="tab-content padding-10">';
 
 			echo '<div class="tab-pane fade active in" id="s1">';
-			$stories = RecentStories::GetClientStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries);
+			$stories = RecentStories::GetClientStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
 			echo '</div>';
 
 			echo '<div class="tab-pane fade" id="s3">';
-			$stories = RecentStories::GetClientIndustryStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries);
+			$stories = RecentStories::GetClientIndustryStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
 			echo '</div>';
 
 			echo '</div>';
@@ -205,7 +210,7 @@ if(isset($_POST['StorySearch'])){
 			echo '<div id="myTabContent1" class="tab-content padding-10">';
 
 			echo '<div class="tab-pane fade active in" id="s1">';
-			$stories = RecentStories::GetClientStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries);
+			$stories = RecentStories::GetClientStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
 			echo '</div>';
 
 			echo '</div>';
@@ -223,7 +228,7 @@ if(isset($_POST['StorySearch'])){
 			echo '<div id="myTabContent1" class="tab-content padding-10">';
 
 			echo '<div class="tab-pane fade active in" id="s3">';
-			$stories = RecentStories::GetClientIndustryStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries);
+			$stories = RecentStories::GetClientIndustryStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
 			echo '</div>';
 
 			echo '</div>';
@@ -244,11 +249,11 @@ if(isset($_POST['StorySearch'])){
 			echo '<div id="myTabContent1" class="tab-content padding-10">';
 
 			echo '<div class="tab-pane fade active in" id="s2">';
-			$stories = RecentStories::GetElectronicStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries);
+			$stories = RecentStories::GetElectronicStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
 			echo '</div>';
 
 			echo '<div class="tab-pane fade" id="s4">';
-			$stories = RecentStories::GetClientElectronicIndustryStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries);
+			$stories = RecentStories::GetClientElectronicIndustryStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
 			echo '</div>';
 
 			echo '</div>';
@@ -266,7 +271,7 @@ if(isset($_POST['StorySearch'])){
 			echo '<div id="myTabContent1" class="tab-content padding-10">';
 
 			echo '<div class="tab-pane fade active in" id="s2">';
-			$stories = RecentStories::GetElectronicStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries);
+			$stories = RecentStories::GetElectronicStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
 			echo '</div>';
 
 			echo '</div>';
@@ -284,7 +289,7 @@ if(isset($_POST['StorySearch'])){
 			echo '<div id="myTabContent1" class="tab-content padding-10">';
 
 			echo '<div class="tab-pane fade active in" id="s4">';
-			$stories = RecentStories::GetClientElectronicIndustryStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries);
+			$stories = RecentStories::GetClientElectronicIndustryStory($model->company,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
 			echo '</div>';
 
 			echo '</div>';

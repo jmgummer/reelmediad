@@ -38,7 +38,7 @@ public static function PrintStories($client)
 	}
 }
 
-public static function GetClientStory($client,$startdate,$enddate,$search,$backdate,$country_list,$industries)
+public static function GetClientStory($client,$startdate,$enddate,$search,$backdate,$country_list,$industries,$news_identifier)
 {
 	$month = date('m');
 	$year = date('Y');
@@ -48,6 +48,13 @@ public static function GetClientStory($client,$startdate,$enddate,$search,$backd
 	}else{
 		$searchqry = " ";
 	}
+
+	if($news_identifier != '0'){
+		$news_type_query = " AND story.Category_ID = '$news_identifier' ";
+	} else{
+		$news_type_query = "";
+	}
+
 	if(!empty($industries)){
 		$q2 = 'SELECT distinct story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,
 		story.cont_on,story.cont_from,story.editor,
@@ -57,11 +64,13 @@ public static function GetClientStory($client,$startdate,$enddate,$search,$backd
 		inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
 		INNER JOIN story_industry on story_industry.story_id=story.Story_ID 
 		INNER JOIN industry_subs ON story_industry.industry_id = industry_subs.industry_id
+		inner join category on category.Category_ID = story.Category_ID
 		where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
 		and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 		AND story.cont_from = 0 
 		and StoryDate between "'.$startdate.'" and "'.$enddate.'"  '.$searchqry.'
 		and industry_subs.company_id ='.$client.' and industry_subs.industry_id IN('.$industries.')
+		'.$news_type_query.'
 		order by StoryDate asc, Media_House_List asc, page_no asc';
 	}else{
 		$q2 = 'SELECT distinct story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,
@@ -71,10 +80,12 @@ public static function GetClientStory($client,$startdate,$enddate,$search,$backd
 		story.Media_ID, story.print_rate, story.uniqueID
 		FROM story inner join story_mention on story.Story_ID=story_mention.story_id 
 		inner join mediahouse on story.Media_House_ID=mediahouse.Media_House_ID
+		inner join category on category.Category_ID = story.Category_ID
 		where story_mention.client_id='.$client.' and story.Media_ID="mp01" and story.step3=1
 		and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 		AND story.cont_from = 0 
 		and StoryDate between "'.$startdate.'" and "'.$enddate.'"  '.$searchqry.'
+		'.$news_type_query.'
 		order by StoryDate asc, Media_House_List asc, page_no asc';
 	}
 	// echo $q2;
@@ -97,7 +108,7 @@ public static function GetClientStory($client,$startdate,$enddate,$search,$backd
 	}
 }
 
-public static function GetElectronicStory($client,$startdate,$enddate,$search,$backdate,$country_list,$industries)
+public static function GetElectronicStory($client,$startdate,$enddate,$search,$backdate,$country_list,$industries,$news_identifier)
 {
 	$month = date('m');
 	$year = date('Y');
@@ -107,27 +118,38 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 	}else{
 		$searchqry = " ";
 	}
+
+	if($news_identifier != '0'){
+		$news_type_query = " AND story.Category_ID = '$news_identifier' ";
+	} else{
+		$news_type_query = "";
+	}
+
 	if(!empty($industries)){
 		$q2 = 'SELECT DISTINCT story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID, story.uniqueID, story.ave
-		from story,story_mention,mediahouse,industry_subs,story_industry
+		from story,story_mention,mediahouse,industry_subs,story_industry,category
 		where story_mention.client_id='.$client.' and story.Story_ID=story_mention.story_id
 		and story.Media_ID!="mp01" and story.step3=1
+		AND category.Category_ID = story.Category_ID
 		and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 		and StoryDate between "'.$startdate.'" and "'.$enddate.'" '.$searchqry.'
 		and story_industry.story_id=story.Story_ID and story_industry.industry_id = industry_subs.industry_id
 		and industry_subs.company_id ='.$client.' and industry_subs.industry_id IN('.$industries.')
 		and story.Media_House_ID=mediahouse.Media_House_ID
+		'.$news_type_query.'
 		order by StoryDate asc, Media_House_List asc, StoryTime desc';
 	}else{
 		$q2 = 'SELECT DISTINCT story.Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,story.editor,story.Media_House_ID,story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  story.StoryTime,story.picture , story.Media_ID, story.uniqueID, story.ave
-		from story,story_mention,mediahouse
+		from story,story_mention,mediahouse,category
 		where story_mention.client_id='.$client.' and story.Story_ID=story_mention.story_id
 		and story.Media_ID!="mp01" and story.step3=1
+		AND category.Category_ID = story.Category_ID
 		and StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 		and StoryDate between "'.$startdate.'" and "'.$enddate.'" '.$searchqry.' and story.Media_House_ID=mediahouse.Media_House_ID
+		'.$news_type_query.'
 		order by StoryDate asc, Media_House_List asc, StoryTime desc';
 	}
-	// echo $q2;
+	 //echo $q2;exit();
 
 	if($story = Story::model()->findAllBySql($q2)){
 		if(Yii::app()->user->usertype=='agency'){
@@ -174,7 +196,7 @@ public static function GetElectronicStory($client,$startdate,$enddate,$search,$b
 	}
 }
 
-public static function GetClientIndustryStory($client,$startdate,$enddate,$search,$backdate,$country_list,$industries)
+public static function GetClientIndustryStory($client,$startdate,$enddate,$search,$backdate,$country_list,$industries,$news_identifier)
 {
 	$month = date('m');
 	$year = date('Y');
@@ -184,13 +206,21 @@ public static function GetClientIndustryStory($client,$startdate,$enddate,$searc
 	}else{
 		$searchqry = " ";
 	}
+
+	if($news_identifier != '0'){
+		$news_type_query = " AND story.Category_ID = '$news_identifier' ";
+	} else{
+		$news_type_query = "";
+	}
+	
 	$q2 = 'SELECT distinct(story.story_id) as Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,
 	story.editor,story.Media_House_ID,
 	story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  
 	story.StoryTime,story.picture , story.Media_ID, story.print_rate, story.uniqueID, story.ave
-	from story, story_industry, industry_subs, mediahouse
+	from story, story_industry, industry_subs, mediahouse,category
 	where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.')
 	and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.'
+		AND category.Category_ID = story.Category_ID
 	and story_industry.industry_id=industry_subs.industry_id';
 	if(!empty($industries)){
 	  $q2 .= ' and industry_subs.industry_id IN('.$industries.')';
@@ -200,6 +230,7 @@ public static function GetClientIndustryStory($client,$startdate,$enddate,$searc
 	AND story.cont_from = 0 
 	and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
 	'.$searchqry.' and story.Media_House_ID=mediahouse.Media_House_ID
+	'.$news_type_query.'
 	order by StoryDate asc, Media_House_List asc, page_no asc';
 	if($story = Story::model()->findAllBySql($q2)){
 		if(Yii::app()->user->usertype=='agency'){
@@ -220,7 +251,7 @@ public static function GetClientIndustryStory($client,$startdate,$enddate,$searc
 	}
 }
 
-public static function GetClientElectronicIndustryStory($client,$startdate,$enddate,$search,$backdate,$country_list,$industries)
+public static function GetClientElectronicIndustryStory($client,$startdate,$enddate,$search,$backdate,$country_list,$industries,$news_identifier)
 {
 	$month = date('m');
 	$year = date('Y');
@@ -230,13 +261,21 @@ public static function GetClientElectronicIndustryStory($client,$startdate,$endd
 	}else{
 		$searchqry = " ";
 	}
+
+	if($news_identifier != '0'){
+		$news_type_query = " AND story.Category_ID = '$news_identifier' ";
+	} else{
+		$news_type_query = "";
+	}
+	
 	$q2 = 'SELECT distinct(story.story_id) as Story_ID,story.StoryDate,story.Title,story.Story,story.StoryPage,
 	story.editor,story.Media_House_ID,
 	story.journalist,story.StoryDate ,story.col ,story.centimeter , story.StoryDuration,  
 	story.StoryTime,story.picture , story.Media_ID, story.uniqueID, story.ave
-	from story, story_industry, industry_subs, mediahouse
+	from story, story_industry, industry_subs, mediahouse,category
 	where story.story_id NOT IN (select story_id from story_mention where client_id='.$client.')
 	and story.story_id=story_industry.story_id and industry_subs.company_id='.$client.'
+		AND category.Category_ID = story.Category_ID
 	and story_industry.industry_id=industry_subs.industry_id ';
 	if(!empty($industries)){
 	  $q2 .= ' and industry_subs.industry_id IN('.$industries.')';
@@ -245,6 +284,7 @@ public static function GetClientElectronicIndustryStory($client,$startdate,$endd
 	and story.StoryDate>"'.$backdate.'" and mediahouse.country_id IN ("'.$country_list.'")
 	and story.step3=1 and StoryDate between "'.$startdate.'" and "'.$enddate.'"
 	'.$searchqry.' and story.Media_House_ID=mediahouse.Media_House_ID
+	'.$news_type_query.'
 	order by StoryDate asc, Media_House_List asc';
 	if($story = Story::model()->findAllBySql($q2)){
 		if(Yii::app()->user->usertype=='agency'){
@@ -320,12 +360,7 @@ public static function GetStories($story_id){
 * NB - Just for the Print Section
 */
 public static function PrintTableHead(){
-	$country = Yii::app()->user->country_id;
-	if($currency = Country::model()->find('country_id=:a', array(':a'=>$country))){
-		$currency = $currency->currency;
-	}else{
-		$currency = 'KES';
-	}
+	$currency = Yii::app()->params['country_currency'];
 	return '<div class="widget-body">
 	<div>
 	<table id="dt_basic" class="table table-striped table-bordered table-hover">
@@ -335,12 +370,7 @@ public static function PrintTableHead(){
 }
 
 public static function AgencyPrintTableHead(){
-	$country = Yii::app()->user->country_id;
-	if($currency = Country::model()->find('country_id=:a', array(':a'=>$country))){
-		$currency = $currency->currency;
-	}else{
-		$currency = 'KES';
-	}
+	$currency = Yii::app()->params['country_currency'];
 	return '<div class="widget-body">
 	<div>
 	<table id="dt_basic" class="table table-striped table-bordered table-hover">
@@ -354,12 +384,7 @@ public static function AgencyPrintTableHead(){
 * NB - Just for the Electronic Section
 */
 public static function ElectronicTableHead(){
-	$country = Yii::app()->user->country_id;
-	if($currency = Country::model()->find('country_id=:a', array(':a'=>$country))){
-		$currency = $currency->currency;
-	}else{
-		$currency = 'KES';
-	}
+	$currency = Yii::app()->params['country_currency'];
 	return '<div class="widget-body">
 	<div>
 	<table id="dt_basic" class="table table-striped table-bordered table-hover">
@@ -369,12 +394,7 @@ public static function ElectronicTableHead(){
 }
 
 public static function AgencyElectronicTableHead(){
-	$country = Yii::app()->user->country_id;
-	if($currency = Country::model()->find('country_id=:a', array(':a'=>$country))){
-		$currency = $currency->currency;
-	}else{
-		$currency = 'KES';
-	}
+	$currency = Yii::app()->params['country_currency'];
 	return '<div class="widget-body">
 	<div>
 	<table id="dt_basic" class="table table-striped table-bordered table-hover">

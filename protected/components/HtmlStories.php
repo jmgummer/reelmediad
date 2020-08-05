@@ -448,12 +448,7 @@ class HtmlStories{
 	*/ 
 
 	public static function PrintTableHead(){
-		$country = Yii::app()->user->country_id;
-		if($currency = Country::model()->find('country_id=:a', array(':a'=>$country))){
-			$currency = $currency->currency;
-		}else{
-			$currency = 'KES';
-		}
+		$currency = Yii::app()->params['country_currency'];
 		return '<table class="table table-striped table-condensed table-hover table-bordered"><tr>
 		<td style="width:11%;">DATE</td><td>PUBLICATION</td><td>JOURNALIST</td><td>HEADLINE/SUBJECT</td><td>PAGE</td><td>PUBLICATION TYPE</td><td>PICTURE</td><td>EFFECT</td><td style="text-align:right;">AVE('.$currency.')</td>
 		</tr>';
@@ -471,12 +466,7 @@ class HtmlStories{
 	*/
 
 	public static function AgencyPrintTableHead(){
-		$country = Yii::app()->user->country_id;
-		if($currency = Country::model()->find('country_id=:a', array(':a'=>$country))){
-			$currency = $currency->currency;
-		}else{
-			$currency = 'KES';
-		}
+		$currency = Yii::app()->params['country_currency'];
 		return '<table class="table table-striped table-condensed table-hover table-bordered"><tr>
 		<td style="width:11%;">DATE</td><td>PUBLICATION</td><td>JOURNALIST</td><td>HEADLINE/SUBJECT</td><td>PAGE</td><td>PUBLICATION TYPE</td><td>PICTURE</td><td>EFFECT</td><td style="text-align:right;">AVE('.$currency.')</td><td style="text-align:right;">PRV('.$currency.')</td>
 		</tr>';
@@ -494,12 +484,7 @@ class HtmlStories{
 	*/
 
 	public static function ElectronicTableHead(){
-		$country = Yii::app()->user->country_id;
-		if($currency = Country::model()->find('country_id=:a', array(':a'=>$country))){
-			$currency = $currency->currency;
-		}else{
-			$currency = 'KES';
-		}
+		$currency = Yii::app()->params['country_currency'];
 		return '<table class="table table-striped table-condensed table-hover table-bordered"><tr>
 		<td style="width:11%;">DATE</td><td>STATION</td><td>JOURNALIST</td><td>SUMMARY</td><td>TIME</td><td>DURATION</td><td>CATEGORY</td><td>EFFECT</td><td style="text-align:right;">AVE('.$currency.')</td>
 		</tr>';
@@ -516,12 +501,7 @@ class HtmlStories{
 	*	DO NOT ALTER UNLESS YOU UNDERSTAND WHAT YOU ARE DOING
 	*/
 	public static function AgencyElectronicTableHead(){
-		$country = Yii::app()->user->country_id;
-		if($currency = Country::model()->find('country_id=:a', array(':a'=>$country))){
-			$currency = $currency->currency;
-		}else{
-			$currency = 'KES';
-		}
+		$currency = Yii::app()->params['country_currency'];
 		return '<table class="table table-striped table-condensed table-hover table-bordered"><tr>
 		<td style="width:11%;">DATE</td><td>STATION</td><td>JOURNALIST</td><td>SUMMARY</td><td>TIME</td><td>DURATION</td><td>CATEGORY</td><td>EFFECT</td><td style="text-align:right;">AVE('.$currency.')</td><td style="text-align:right;">PRV('.$currency.')</td>
 		</tr>';

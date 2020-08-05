@@ -127,8 +127,9 @@ class SiteController extends Controller
 					$this->redirect(array('home/index'));
 				}
 			}
-			$site_url = "../../reelforge_back/";
-			$this->redirect($site_url);
+			// $site_url = "../../reelforge/";
+			// $this->redirect($site_url);
+			$this->render("login", array("model"=>$model));
 		}else{
 			$this->redirect(Yii::app()->user->returnUrl);
 		}
@@ -160,8 +161,9 @@ class SiteController extends Controller
 			session_start();
 			session_destroy();
 		}
-		$site_url = "../../reelforge_back/";
-		$this->redirect($site_url);
+		// $site_url = "../../reelforge/";
+		// $this->redirect($site_url);
+		$this->redirect(array("site/login"));
 	}
 
 	/*

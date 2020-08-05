@@ -62,18 +62,15 @@ class Users extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('first_name, last_name, email, pass, registration_date, last_login, auth_session, username, delete_status, temp_password, department', 'required'),
-			array('user_level, login_status, delete_status, department', 'numerical', 'integerOnly'=>true),
-			array('first_name', 'length', 'max'=>20),
-			array('last_name', 'length', 'max'=>40),
-			array('email, last_login, middle_name', 'length', 'max'=>80),
-			array('pass, username, temp_password, img, id_number, car_registration, phone, phone2', 'length', 'max'=>255),
-			array('active', 'length', 'max'=>32),
-			array('auth_session', 'length', 'max'=>250),
-			array('address', 'safe'),
+			array('firstname, surname, username, email, registration_date, last_login, phone_number, password, status,user_level', 'required'),
+			array('user_level, status', 'numerical', 'integerOnly'=>true),
+			array('firstname', 'length', 'max'=>20),
+			array('surname', 'length', 'max'=>40),
+			array('email', 'length', 'max'=>80),
+			array('password, username, phone_number', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('user_id, first_name, last_name, email, pass, user_level, active, registration_date, last_login, login_status, auth_session, username, delete_status, temp_password, img, middle_name, department, id_number, car_registration, phone, address, phone2', 'safe', 'on'=>'search'),
+			array('auto_id, firstname, surname, username, email, password, status, user_level', 'safe', 'on'=>'search'),
 		);
 	}
 

@@ -32,7 +32,7 @@ class IndustryreportsController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','mentions','getdata'),
+				'actions'=>array('index','mentions','getdata','tests'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -73,6 +73,30 @@ class IndustryreportsController extends Controller
 		}
 		if(Yii::app()->user->usertype=='agency'){
 			$this->render('agency_reports',array('model'=>$model));
+		}else{
+			$this->render('mentions', array('model'=>$model));
+		}
+		
+	}
+
+	public function actiontests()
+	{
+		ini_set('memory_limit', '1024M');
+		$model = new StorySearch('search');
+		if(isset($_POST['StorySearch']))
+		{
+			$model->attributes=$_POST['StorySearch'];
+			$model->startdate = date('Y-m-d',strtotime(str_replace('-', '/', $model->startdate)));
+			$model->enddate = date('Y-m-d',strtotime(str_replace('-', '/', $model->enddate)));
+		}else{
+			if(Yii::app()->user->usertype!='agency'){
+				// $industry = Industry::model()->find('company_id=:a', array(':a'=>Yii::app()->user->company_id));
+				$model->industry = IndustryCompany::model()->find('company_id=:a', array(':a'=>Yii::app()->user->company_id))->industry_id;
+			}
+			$model->startdate = $model->enddate = date('Y-m-d');
+		}
+		if(Yii::app()->user->usertype=='agency'){
+			$this->render('tests',array('model'=>$model));
 		}else{
 			$this->render('mentions', array('model'=>$model));
 		}

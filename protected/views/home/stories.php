@@ -49,8 +49,13 @@ if(isset($_POST['StorySearch'])){
     if(isset($model->storytype) && !empty($model->storytype)){
       $type_identifier= $model->storytype;
     }
+    if(isset($model->news_section) && !empty($model->news_section)){
+      $news_identifier= $model->news_section;
+    } else{
+    	$news_identifier= 0;
+    }
 	
-	?>
+?>
 	<div id="wid-id-0" class="jarviswidget jarviswidget-sortable"style="" role="widget">
 		<header role="heading">
 			<h2>Export Reports ? 
@@ -98,208 +103,209 @@ if(isset($_POST['StorySearch'])){
 	</div>
 	<?php
 }
+if(isset($_POST['StorySearch'])){
+	if($type_identifier==1){
+		if($cat_identifier==1){
+			echo '<div class="widget-body">
+			<ul id="myTab1" class="nav nav-tabs bordered">
+				<li class="active"><a href="#s1" data-toggle="tab">My Print Stories</a></li>
+				<li class=""><a href="#s2" data-toggle="tab">My Electronic Stories</a></li>
+				<li class=""><a href="#s3" data-toggle="tab">Industry Print Stories</a></li>
+				<li class=""><a href="#s4" data-toggle="tab">Industry Electronic Stories</a></li>
+				<li class="pull-right">
+					<a href="javascript:void(0);">
+					<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
+				</li>
+			</ul>';
+			echo '<div id="myTabContent1" class="tab-content padding-10">';
 
-if($type_identifier==1){
-	if($cat_identifier==1){
-		echo '<div class="widget-body">
-		<ul id="myTab1" class="nav nav-tabs bordered">
-			<li class="active"><a href="#s1" data-toggle="tab">My Print Stories</a></li>
-			<li class=""><a href="#s2" data-toggle="tab">My Electronic Stories</a></li>
-			<li class=""><a href="#s3" data-toggle="tab">Industry Print Stories</a></li>
-			<li class=""><a href="#s4" data-toggle="tab">Industry Electronic Stories</a></li>
-			<li class="pull-right">
-				<a href="javascript:void(0);">
-				<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
-			</li>
-		</ul>';
-		echo '<div id="myTabContent1" class="tab-content padding-10">';
+			echo '<div class="tab-pane fade active in" id="s1">';
+			$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
+			echo '</div>';
 
-		echo '<div class="tab-pane fade active in" id="s1">';
-		$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries);
-		echo '</div>';
+			echo '<div class="tab-pane fade" id="s2">';
+			$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
+			echo '</div>';
 
-		echo '<div class="tab-pane fade" id="s2">';
-		$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries);
-		echo '</div>';
+			echo '<div class="tab-pane fade" id="s3">';
+			$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
+			echo '</div>';
 
-		echo '<div class="tab-pane fade" id="s3">';
-		$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries);
-		echo '</div>';
+			echo '<div class="tab-pane fade" id="s4">';
+			$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
+			echo '</div>';
 
-		echo '<div class="tab-pane fade" id="s4">';
-		$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries);
-		echo '</div>';
+			echo '</div>';
+			echo '</div>';
+		}
+		if($cat_identifier==2){
+			echo '<div class="widget-body">
+			<ul id="myTab1" class="nav nav-tabs bordered">
+				<li class="active"><a href="#s1" data-toggle="tab">My Print Stories</a></li>
+				<li class=""><a href="#s2" data-toggle="tab">My Electronic Stories</a></li>
+				<li class="pull-right">
+					<a href="javascript:void(0);">
+					<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
+				</li>
+			</ul>';
+			echo '<div id="myTabContent1" class="tab-content padding-10">';
 
-		echo '</div>';
-		echo '</div>';
+			echo '<div class="tab-pane fade active in" id="s1">';
+			$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
+			echo '</div>';
+
+			echo '<div class="tab-pane fade" id="s2">';
+			$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
+			echo '</div>';
+
+			echo '</div>';
+			echo '</div>';
+		}
+		if($cat_identifier==3){
+			echo '<div class="widget-body">
+			<ul id="myTab1" class="nav nav-tabs bordered">
+				<li class="active"><a href="#s3" data-toggle="tab">Industry Print Stories</a></li>
+				<li class=""><a href="#s4" data-toggle="tab">Industry Electronic Stories</a></li>
+				<li class="pull-right">
+					<a href="javascript:void(0);">
+					<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
+				</li>
+			</ul>';
+			echo '<div id="myTabContent1" class="tab-content padding-10">';
+
+			echo '<div class="tab-pane fade active in" id="s3">';
+			$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
+			echo '</div>';
+
+			echo '<div class="tab-pane fade" id="s4">';
+			$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
+			echo '</div>';
+
+			echo '</div>';
+			echo '</div>';
+		}
 	}
-	if($cat_identifier==2){
-		echo '<div class="widget-body">
-		<ul id="myTab1" class="nav nav-tabs bordered">
-			<li class="active"><a href="#s1" data-toggle="tab">My Print Stories</a></li>
-			<li class=""><a href="#s2" data-toggle="tab">My Electronic Stories</a></li>
-			<li class="pull-right">
-				<a href="javascript:void(0);">
-				<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
-			</li>
-		</ul>';
-		echo '<div id="myTabContent1" class="tab-content padding-10">';
+	if($type_identifier==2){
+		if($cat_identifier==1){
+			echo '<div class="widget-body">
+			<ul id="myTab1" class="nav nav-tabs bordered">
+				<li class="active"><a href="#s1" data-toggle="tab">My Print Stories</a></li>
+				<li class=""><a href="#s3" data-toggle="tab">Industry Print Stories</a></li>
+				<li class="pull-right">
+					<a href="javascript:void(0);">
+					<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
+				</li>
+			</ul>';
+			echo '<div id="myTabContent1" class="tab-content padding-10">';
 
-		echo '<div class="tab-pane fade active in" id="s1">';
-		$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries);
-		echo '</div>';
+			echo '<div class="tab-pane fade active in" id="s1">';
+			$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
+			echo '</div>';
 
-		echo '<div class="tab-pane fade" id="s2">';
-		$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries);
-		echo '</div>';
+			echo '<div class="tab-pane fade" id="s3">';
+			$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
+			echo '</div>';
 
-		echo '</div>';
-		echo '</div>';
+			echo '</div>';
+			echo '</div>';
+		}
+		if($cat_identifier==2){
+			echo '<div class="widget-body">
+			<ul id="myTab1" class="nav nav-tabs bordered">
+				<li class="active"><a href="#s1" data-toggle="tab">My Print Stories</a></li>
+				<li class="pull-right">
+					<a href="javascript:void(0);">
+					<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
+				</li>
+			</ul>';
+			echo '<div id="myTabContent1" class="tab-content padding-10">';
+
+			echo '<div class="tab-pane fade active in" id="s1">';
+			$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
+			echo '</div>';
+
+			echo '</div>';
+			echo '</div>';
+		}
+		if($cat_identifier==3){
+			echo '<div class="widget-body">
+			<ul id="myTab1" class="nav nav-tabs bordered">
+				<li class="active"><a href="#s3" data-toggle="tab">Industry Print Stories</a></li>
+				<li class="pull-right">
+					<a href="javascript:void(0);">
+					<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
+				</li>
+			</ul>';
+			echo '<div id="myTabContent1" class="tab-content padding-10">';
+
+			echo '<div class="tab-pane fade active in" id="s3">';
+			$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
+			echo '</div>';
+
+			echo '</div>';
+			echo '</div>';
+		}
 	}
-	if($cat_identifier==3){
-		echo '<div class="widget-body">
-		<ul id="myTab1" class="nav nav-tabs bordered">
-			<li class="active"><a href="#s3" data-toggle="tab">Industry Print Stories</a></li>
-			<li class=""><a href="#s4" data-toggle="tab">Industry Electronic Stories</a></li>
-			<li class="pull-right">
-				<a href="javascript:void(0);">
-				<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
-			</li>
-		</ul>';
-		echo '<div id="myTabContent1" class="tab-content padding-10">';
+	if($type_identifier==3){
+		if($cat_identifier==1){
+			echo '<div class="widget-body">
+			<ul id="myTab1" class="nav nav-tabs bordered">
+				<li class="active"><a href="#s2" data-toggle="tab">My Electronic Stories</a></li>
+				<li class=""><a href="#s4" data-toggle="tab">Industry Electronic Stories</a></li>
+				<li class="pull-right">
+					<a href="javascript:void(0);">
+					<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
+				</li>
+			</ul>';
+			echo '<div id="myTabContent1" class="tab-content padding-10">';
 
-		echo '<div class="tab-pane fade active in" id="s3">';
-		$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries);
-		echo '</div>';
+			echo '<div class="tab-pane fade active in" id="s2">';
+			$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
+			echo '</div>';
 
-		echo '<div class="tab-pane fade" id="s4">';
-		$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries);
-		echo '</div>';
+			echo '<div class="tab-pane fade" id="s4">';
+			$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
+			echo '</div>';
 
-		echo '</div>';
-		echo '</div>';
-	}
-}
-if($type_identifier==2){
-	if($cat_identifier==1){
-		echo '<div class="widget-body">
-		<ul id="myTab1" class="nav nav-tabs bordered">
-			<li class="active"><a href="#s1" data-toggle="tab">My Print Stories</a></li>
-			<li class=""><a href="#s3" data-toggle="tab">Industry Print Stories</a></li>
-			<li class="pull-right">
-				<a href="javascript:void(0);">
-				<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
-			</li>
-		</ul>';
-		echo '<div id="myTabContent1" class="tab-content padding-10">';
+			echo '</div>';
+			echo '</div>';
+		}
+		if($cat_identifier==2){
+			echo '<div class="widget-body">
+			<ul id="myTab1" class="nav nav-tabs bordered">
+				<li class="active"><a href="#s2" data-toggle="tab">My Electronic Stories</a></li>
+				<li class="pull-right">
+					<a href="javascript:void(0);">
+					<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
+				</li>
+			</ul>';
+			echo '<div id="myTabContent1" class="tab-content padding-10">';
 
-		echo '<div class="tab-pane fade active in" id="s1">';
-		$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries);
-		echo '</div>';
+			echo '<div class="tab-pane fade active in" id="s2">';
+			$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
+			echo '</div>';
 
-		echo '<div class="tab-pane fade" id="s3">';
-		$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries);
-		echo '</div>';
+			echo '</div>';
+			echo '</div>';
+		}
+		if($cat_identifier==3){
+			echo '<div class="widget-body">
+			<ul id="myTab1" class="nav nav-tabs bordered">
+				<li class="active"><a href="#s4" data-toggle="tab">Industry Electronic Stories</a></li>
+				<li class="pull-right">
+					<a href="javascript:void(0);">
+					<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
+				</li>
+			</ul>';
+			echo '<div id="myTabContent1" class="tab-content padding-10">';
 
-		echo '</div>';
-		echo '</div>';
-	}
-	if($cat_identifier==2){
-		echo '<div class="widget-body">
-		<ul id="myTab1" class="nav nav-tabs bordered">
-			<li class="active"><a href="#s1" data-toggle="tab">My Print Stories</a></li>
-			<li class="pull-right">
-				<a href="javascript:void(0);">
-				<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
-			</li>
-		</ul>';
-		echo '<div id="myTabContent1" class="tab-content padding-10">';
+			echo '<div class="tab-pane fade active in" id="s4">';
+			$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries,$news_identifier);
+			echo '</div>';
 
-		echo '<div class="tab-pane fade active in" id="s1">';
-		$stories = RecentStories::GetClientStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries);
-		echo '</div>';
-
-		echo '</div>';
-		echo '</div>';
-	}
-	if($cat_identifier==3){
-		echo '<div class="widget-body">
-		<ul id="myTab1" class="nav nav-tabs bordered">
-			<li class="active"><a href="#s3" data-toggle="tab">Industry Print Stories</a></li>
-			<li class="pull-right">
-				<a href="javascript:void(0);">
-				<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
-			</li>
-		</ul>';
-		echo '<div id="myTabContent1" class="tab-content padding-10">';
-
-		echo '<div class="tab-pane fade active in" id="s3">';
-		$stories = RecentStories::GetClientIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries);
-		echo '</div>';
-
-		echo '</div>';
-		echo '</div>';
-	}
-}
-if($type_identifier==3){
-	if($cat_identifier==1){
-		echo '<div class="widget-body">
-		<ul id="myTab1" class="nav nav-tabs bordered">
-			<li class="active"><a href="#s2" data-toggle="tab">My Electronic Stories</a></li>
-			<li class=""><a href="#s4" data-toggle="tab">Industry Electronic Stories</a></li>
-			<li class="pull-right">
-				<a href="javascript:void(0);">
-				<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
-			</li>
-		</ul>';
-		echo '<div id="myTabContent1" class="tab-content padding-10">';
-
-		echo '<div class="tab-pane fade active in" id="s2">';
-		$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries);
-		echo '</div>';
-
-		echo '<div class="tab-pane fade" id="s4">';
-		$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries);
-		echo '</div>';
-
-		echo '</div>';
-		echo '</div>';
-	}
-	if($cat_identifier==2){
-		echo '<div class="widget-body">
-		<ul id="myTab1" class="nav nav-tabs bordered">
-			<li class="active"><a href="#s2" data-toggle="tab">My Electronic Stories</a></li>
-			<li class="pull-right">
-				<a href="javascript:void(0);">
-				<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
-			</li>
-		</ul>';
-		echo '<div id="myTabContent1" class="tab-content padding-10">';
-
-		echo '<div class="tab-pane fade active in" id="s2">';
-		$stories = RecentStories::GetElectronicStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries);
-		echo '</div>';
-
-		echo '</div>';
-		echo '</div>';
-	}
-	if($cat_identifier==3){
-		echo '<div class="widget-body">
-		<ul id="myTab1" class="nav nav-tabs bordered">
-			<li class="active"><a href="#s4" data-toggle="tab">Industry Electronic Stories</a></li>
-			<li class="pull-right">
-				<a href="javascript:void(0);">
-				<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
-			</li>
-		</ul>';
-		echo '<div id="myTabContent1" class="tab-content padding-10">';
-
-		echo '<div class="tab-pane fade active in" id="s4">';
-		$stories = RecentStories::GetClientElectronicIndustryStory(Yii::app()->user->company_id,$startdate,$enddate,$search,$backdate,$country,$industries);
-		echo '</div>';
-
-		echo '</div>';
-		echo '</div>';
+			echo '</div>';
+			echo '</div>';
+		}
 	}
 }
     

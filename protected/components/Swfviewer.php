@@ -30,7 +30,7 @@ class Swfviewer{
 
 		return '<p><strong>'.$array->Publication.'</strong><br>'.$array->FStoryDate.'<br>'.str_replace(':', '', $array->Page).'<br>'.$array->Continues.'</p>
     <p><span class="cmention"><strong>Actions</strong> 
-    <br><a href="http://www.reelforge.com/reelmedia/files/pdf/'.$array->File.'" target="_blank"><i class="fa fa-file-pdf-o"></i> Download PDF File</a> 
+    <br><a href="'.Yii::app()->params['pdf_link'].$array->File.'" target="_blank"><i class="fa fa-file-pdf-o"></i> Download PDF File</a> 
     <br><a href="'.Yii::app()->createUrl("swf/image", array("file"=>$array->File, "name"=>"download_".$filename)).'" target="_blank"><i class="fa fa-file-image-o"></i> Download JPG Image</a> 
     <br><a href="'.Yii::app()->createUrl("swf/crop", array("file"=>$array->File, "name"=>"crop_".$filename)).'" target="_blank"><i class="fa fa-crop"></i> Crop This Image</a> 
     <br><a href="'.Yii::app()->createUrl("swf/highlight", array("file"=>$array->File, "name"=>"highlight_".$filename)).'" target="_blank"><i class="fa fa-file-text"></i> Highlight Page Section</a></span></p>
@@ -44,7 +44,7 @@ class Swfviewer{
 
     return '<p><strong>'.$array->Publication.'</strong><br>'.$array->FStoryDate.'<br>'.str_replace(':', '', $array->Page).'<br>'.$array->Continues.'</p>
     <p><span class="cmention"><strong>Actions</strong> 
-    <br><a href="http://www.reelforge.com/reelmedia/files/pdf/'.$array->File.'" target="_blank"><i class="fa fa-file-pdf-o"></i> Download PDF File</a> 
+    <br><a href="'.Yii::app()->params['pdf_link'].$array->File.'" target="_blank"><i class="fa fa-file-pdf-o"></i> Download PDF File</a> 
     <br><a href="'.Yii::app()->createUrl("swf/image", array("file"=>$array->File, "name"=>"download_".$filename)).'" target="_blank"><i class="fa fa-file-image-o"></i> Download JPG Image</a> 
     <br><a href="'.Yii::app()->createUrl("swf/crop", array("file"=>$array->File, "name"=>"crop_".$filename)).'" target="_blank"><i class="fa fa-crop"></i> Crop This Image</a> 
     <br><a href="'.Yii::app()->createUrl("swf/highlight", array("file"=>$array->File, "name"=>"highlight_".$filename)).'" target="_blank"><i class="fa fa-file-text"></i> Highlight Page Section</a></span></p>

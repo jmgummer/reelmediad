@@ -41,7 +41,7 @@ class Csr{
 			echo Csr::PrintTableHead();
 			foreach ($story as $key) {
 				if($story = Csr::GetStories($key->Story_ID)){
-					echo Csr::PrintTableBody($story->Story_ID,$story->StoryDate,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,Story::ClientTonality($story->Story_ID,$client),Story::ClientTonality($story->Story_ID,$client),$story->Link,$story->Continues,$story->uniqueID);
+					echo Csr::PrintTableBody($story->Story_ID,$story->StoryDate,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,Story::ClientTonality($story->Story_ID,$client),$story->AVE,$story->Link,$story->Continues,$story->uniqueID);
 				}
 			}
 			echo Csr::PrintTableEnd();
@@ -110,7 +110,7 @@ class Csr{
 			echo Csr::PrintTableHead();
 			foreach ($story as $key) {
 				if($story = Csr::GetStories($key->Story_ID)){
-					echo Csr::PrintTableBody($story->Story_ID,$story->StoryDate,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,Story::ClientTonality($story->Story_ID,$client),Story::ClientTonality($story->Story_ID,$client),$story->Link,$story->Continues,$story->uniqueID);
+					echo Csr::PrintTableBody($story->Story_ID,$story->StoryDate,$story->Publication,$story->journalist,$story->Title,$story->StoryPage,$story->PublicationType,$story->picture,Story::ClientTonality($story->Story_ID,$client),$story->AVE,$story->Link,$story->Continues,$story->uniqueID);
 				}
 			}
 			echo Csr::PrintTableEnd();
@@ -182,12 +182,7 @@ class Csr{
 	*/
 
 	public static function ElectronicTableHead(){
-		$country = Yii::app()->user->country_id;
-		if($currency = Country::model()->find('country_id=:a', array(':a'=>$country))){
-			$currency = $currency->currency;
-		}else{
-			$currency = 'KES';
-		}
+		$currency = Yii::app()->params['country_currency'];
 		return '<div class="widget-body">
 		<div>
 		<table id="dt_basic" class="table table-striped table-bordered table-hover">
@@ -209,12 +204,7 @@ class Csr{
 	*/
 
 	public static function PrintTableHead(){
-		$country = Yii::app()->user->country_id;
-		if($currency = Country::model()->find('country_id=:a', array(':a'=>$country))){
-			$currency = $currency->currency;
-		}else{
-			$currency = 'KES';
-		}
+		$currency = Yii::app()->params['country_currency'];
 		return '<div class="widget-body">
 		<div>
 		<table id="dt_basic" class="table table-striped table-bordered table-hover">

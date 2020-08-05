@@ -29,6 +29,7 @@ class CompanyTechnicalAreas extends CActiveRecord
 			array('company_id, technical_area_name', 'required'),
 			array('company_id', 'numerical', 'integerOnly'=>true),
 			array('technical_area_name', 'length', 'max'=>100),
+			array('mail_schedule, backdate', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, company_id, technical_area_name', 'safe', 'on'=>'search'),

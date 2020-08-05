@@ -50,21 +50,57 @@ class AccountController  extends Controller
 			if(isset($_POST['AgencyUsers']))
 			{
 				$model->attributes=$_POST['AgencyUsers'];
-				if($model->save()){
+
+				$account_update['account'] = "agency_account";
+				$account_update['user_id'] = Yii::app()->user->user_id;
+				$account_update['username'] = $model->username;
+				$account_update['surname'] = $model->surname;
+				$account_update['firstname'] = $model->firstname;
+				$account_update['email'] = $model->email;
+
+				$url = Yii::app()->params->reelmedia_api . "accountupdate";
+				$data = urldecode(http_build_query($account_update));
+				$output = json_decode(Yii::app()->curl->post($url, $data));
+
+				if($output === "success"){
+					Yii::app()->user->setFlash('success', "<strong>Success ! </strong> Details Updated");
+				} else{
+					Yii::app()->user->setFlash('danger', "<strong>Error ! </strong>Your Details were not Updated, please try later");
+				}
+
+				/*if($model->save()){
 					Yii::app()->user->setFlash('success', "<strong>Success ! </strong> Details Updated");
 				}else{
 					Yii::app()->user->setFlash('danger', "<strong>Error ! </strong>Your Details were not Updated, please try later");
-				}
+				}*/
 			}
 		}else{
 			if(isset($_POST['ClientUsers']))
 			{
 				$model->attributes=$_POST['ClientUsers'];
-				if($model->save()){
+
+				$account_update['account'] = "client_account";
+				$account_update['user_id'] = Yii::app()->user->user_id;
+				$account_update['username'] = $model->username;
+				$account_update['surname'] = $model->surname;
+				$account_update['firstname'] = $model->firstname;
+				$account_update['email'] = $model->email;
+
+				$url = Yii::app()->params->reelmedia_api . "accountupdate";
+				$data = urldecode(http_build_query($account_update));
+				$output = json_decode(Yii::app()->curl->post($url, $data));
+
+				if($output === "success"){
+					Yii::app()->user->setFlash('success', "<strong>Success ! </strong> Details Updated");
+				} else{
+					Yii::app()->user->setFlash('danger', "<strong>Error ! </strong>Your Details were not Updated, please try later");
+				}
+
+				/*if($model->save()){
 					Yii::app()->user->setFlash('success', "<strong>Success ! </strong> Details Updated");
 				}else{
 					Yii::app()->user->setFlash('danger', "<strong>Error ! </strong>Your Details were not Updated, please try later");
-				}
+				}*/
 			}
 		}
 		
@@ -84,10 +120,23 @@ class AccountController  extends Controller
 					Yii::app()->user->setFlash('danger', "<strong>Error ! You need to add values in the Password Fields! </strong>");
 				}else{
 					if($old==$model->password && $new==$confirm){
-						$model->password=$confirm;
-						if($model->save()){
+
+						$post_update_password['account'] = "agency_account";
+						$post_update_password['user'] = Yii::app()->user->user_id;
+						$post_update_password['password'] = $confirm;
+
+						$url = Yii::app()->params->reelmedia_api . "pwordupdate";
+						$data = urldecode(http_build_query($post_update_password));
+						$output = json_decode(Yii::app()->curl->post($url, $data));
+
+						if($output === "success"){
 							Yii::app()->user->setFlash('success', "<strong>Success ! Your account password has been updated, login again to effect changes! </strong>");
 						}
+
+						/*$model->password=$confirm;
+						if($model->save()){
+							Yii::app()->user->setFlash('success', "<strong>Success ! Your account password has been updated, login again to effect changes! </strong>");
+						}*/
 					}else{
 						Yii::app()->user->setFlash('danger', "<strong>Error ! Your account could not be updated, check your passwords again! </strong>");
 					}
@@ -103,10 +152,23 @@ class AccountController  extends Controller
 					Yii::app()->user->setFlash('danger', "<strong>Error ! You need to add values in the Password Fields! </strong>");
 				}else{
 					if($old==$model->password && $new==$confirm){
-						$model->password=$confirm;
-						if($model->save()){
+
+						$post_update_password['account'] = "client_account";
+						$post_update_password['user'] = Yii::app()->user->user_id;
+						$post_update_password['password'] = $confirm;
+
+						$url = Yii::app()->params->reelmedia_api . "pwordupdate";
+						$data = urldecode(http_build_query($post_update_password));
+						$output = json_decode(Yii::app()->curl->post($url, $data));
+
+						if($output === "success"){
 							Yii::app()->user->setFlash('success', "<strong>Success ! Your account password has been updated, login again to effect changes! </strong>");
 						}
+
+						/*$model->password=$confirm;
+						if($model->save()){
+							Yii::app()->user->setFlash('success', "<strong>Success ! Your account password has been updated, login again to effect changes! </strong>");
+						}*/
 					}else{
 						Yii::app()->user->setFlash('danger', "<strong>Error ! Your account could not be updated, check your passwords again! </strong>");
 					}

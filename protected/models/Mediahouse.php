@@ -114,4 +114,17 @@ class Mediahouse extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	public function getMediahouseName(){
+        return CHtml::listData(Mediahouse::model()->findAll(array('order'=>'Media_ID')),'Media_House_ID','Media_House_List');
+    }
+    public function mediahouses1($med){
+    	$medd = implode(",", $med);
+        return CHtml::listData(Mediahouse::model()->findAll(array('condition' => "Media_ID = '$medd'",'order'=>'Media_House_List')
+    ),'Media_House_ID','Media_House_List');
+    }
+    //Getting Publications
+   public function getMediahouseName2($media){
+        return CHtml::listData(Mediahouse::model()->findAll(array('condition' => "Media_House_ID = '$media'",'order'=>'Media_ID')),'Media_House_ID','Media_House_List');
+    }
+
 }

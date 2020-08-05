@@ -4,6 +4,7 @@ $this->breadcrumbs=array('Index');
 ?>
 <br>
 <p><strong>Hello <?php echo Yii::app()->user->client_name; //echo Yii::app()->user->usertype; ?>,</strong></p>
+<?php if(isset(Yii::app()->user->education_plan) && Yii::app()->user->education_plan!=1): ?>
 <p>You are now logged into your Reelmedia account.</p>
 
 <p>By using your left hand menu, you can do the following: </p>
@@ -20,4 +21,7 @@ $this->breadcrumbs=array('Index');
 
 <p><strong>My Account</strong> – You may change your account details (email address, password) here. </p>
 
-<!-- <p><strong>My Reports</strong> – You may generate your own reports on demand. Reelmedia gives you the power to generate up to 7 useful reports over any date range as the need arises. You will be presented with useful charts and graphs to help you. </p> -->
+<?php endif; ?>
+<?php if(isset(Yii::app()->user->education_plan) && Yii::app()->user->education_plan==1): ?>
+	<?php $this->renderPartial('educator'); ?>
+<?php endif; ?>

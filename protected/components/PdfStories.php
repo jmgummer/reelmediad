@@ -339,24 +339,14 @@ public static function GetStories($story_id){
 * NB - Just for the Print Section
 */
 public static function PrintTableHead(){
-	$country = Yii::app()->user->country_id;
-	if($currency = Country::model()->find('country_id=:a', array(':a'=>$country))){
-		$currency = $currency->currency;
-	}else{
-		$currency = 'KES';
-	}
+	$currency = Yii::app()->params['country_currency'];
 	return '<table><tr>
 	<td style="width:11%;">DATE</td><td>PUBLICATION</td><td>JOURNALIST</td><td>HEADLINE/SUBJECT</td><td>PAGE</td><td>PUBLICATION TYPE</td><td>PICTURE</td><td>EFFECT</td><td style="text-align:right;">AVE('.$currency.')</td>
 	</tr>';
 }
 
 public static function AgencyPrintTableHead(){
-	$country = Yii::app()->user->country_id;
-	if($currency = Country::model()->find('country_id=:a', array(':a'=>$country))){
-		$currency = $currency->currency;
-	}else{
-		$currency = 'KES';
-	}
+	$currency = Yii::app()->params['country_currency'];
 	return '<table><tr>
 	<td style="width:11%;">DATE</td><td>PUBLICATION</td><td>JOURNALIST</td><td>HEADLINE/SUBJECT</td><td>PAGE</td><td>PUBLICATION TYPE</td><td>PICTURE</td><td>EFFECT</td><td style="text-align:right;">AVE('.$currency.')</td><td style="text-align:right;">PRV('.$currency.')</td>
 	</tr>';
@@ -367,24 +357,14 @@ public static function AgencyPrintTableHead(){
 * NB - Just for the Electronic Section
 */
 public static function ElectronicTableHead(){
-	$country = Yii::app()->user->country_id;
-	if($currency = Country::model()->find('country_id=:a', array(':a'=>$country))){
-		$currency = $currency->currency;
-	}else{
-		$currency = 'KES';
-	}
+	$currency = Yii::app()->params['country_currency'];
 	return '<table><tr>
 	<td style="width:11%;">DATE</td><td>STATION</td><td>JOURNALIST</td><td>SUMMARY</td><td>TIME</td><td>DURATION</td><td>CATEGORY</td><td>EFFECT</td><td style="text-align:right;">AVE('.$currency.')</td>
 	</tr>';
 }
 
 public static function AgencyElectronicTableHead(){
-	$country = Yii::app()->user->country_id;
-	if($currency = Country::model()->find('country_id=:a', array(':a'=>$country))){
-		$currency = $currency->currency;
-	}else{
-		$currency = 'KES';
-	}
+	$currency = Yii::app()->params['country_currency'];
 	return '<table><tr>
 	<td style="width:11%;">DATE</td><td>STATION</td><td>JOURNALIST</td><td>SUMMARY</td><td>TIME</td><td>DURATION</td><td>CATEGORY</td><td>EFFECT</td><td style="text-align:right;">AVE('.$currency.')</td><td style="text-align:right;">PRV('.$currency.')</td>
 	</tr>';

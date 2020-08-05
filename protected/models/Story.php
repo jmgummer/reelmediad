@@ -133,6 +133,7 @@ class Story extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			
 		);
 	}
 
@@ -555,37 +556,15 @@ class Story extends CActiveRecord
 				}
 			}else{
 				$rate_cost = $this->ave;
-				// $anvilstation_id = AnvilMatch::model()->findBySql("SELECT * FROM anvil_match WHERE Media_House_ID=$Media_House_ID");
-				// if($anvilstation_id){
-				// 	$station_id = $anvilstation_id->station_id;
-				// 	$sql_electronic_rate = "SELECT rate,duration from forgedb.ratecard_base where ratecard_base.station_id=$station_id and forgedb.ratecard_base.weekday='$weekday' and forgedb.ratecard_base.time_start<='$StoryTime' order by forgedb.ratecard_base.duration,  ratecard_base.date_start desc,ratecard_base.time_start desc, forgedb.ratecard_base.time_end asc limit 1;";
-				// 	$incantation_length=str_replace("sec","",$incantation_length);
-				// 	$this_rate_det = RatecardBase::model()->findBySql($sql_electronic_rate);
-				// 	if(isset($this_rate_det->rate) && isset($this_rate_det->duration)){
-				// 		$this_rate = $this_rate_det->rate;
-				// 		$this_duration = $this_rate_det->duration;
-				// 		if($rate_cost = round(($incantation_length * $this_rate)/$this_duration,-1)==60){
-				// 			$rate_cost = 0;
-				// 		}else{
-				// 			$rate_cost = round(($incantation_length * $this_rate)/$this_duration,-1);
-				// 		}
-				// 	}else{
-				// 		$rate_cost = 0;
-				// 	}
-				// }else{
-				// 	$rate_cost =0;
-				// }
 			}
 		}else{
 			$rate_cost = 0;
 		}
-
 		if($rate_cost==0){
 			$rate_cost = 0;
 		}else{
 			$rate_cost = intval(trim($rate_cost, "'"));
 		}
-		
 		return $rate_cost;
 	}
 
@@ -616,13 +595,16 @@ class Story extends CActiveRecord
 
 	public static function TechicalArea($storyid,$clientid)
 	{
-		$sql = "SELECT technical_area_name FROM company_technical_areas 
+		$sql = "SELECT company_technical_areas.technical_area_name,story_technicalarea.country,story_technicalarea.county FROM company_technical_areas 
 		INNER JOIN story_technicalarea ON company_technical_areas.id = story_technicalarea.tech_id
 		WHERE story_technicalarea.story_id=$storyid AND company_id = $clientid";
-		if($technicalarea = CompanyTechnicalAreas::model()->findBySql($sql)){
-			return $technicalarea->technical_area_name;
+		if($technicalarea = Yii::app()->db2->createCommand($sql)->queryRow()){
+			return $technicalarea;
 		}else{
-			return '-';
+			$technicalarea['technical_area_name'] = '-';
+			$technicalarea['country'] = '-';
+			$technicalarea['county'] = '-';
+			return $technicalarea;
 		}
 	}
 
@@ -782,6 +764,23 @@ class Story extends CActiveRecord
 			$this_rate+=$my_continuation;
 		}
 		return $this_rate;
+	}
+	public function getPublicationName($media)
+	{
+		$media = $this->media;
+		if($publication = Mediahouse::model()->find('Media_House_ID=:a', array(':a'=>$this->Media_House_ID))){
+			if(is_numeric($media)){
+				return $publication ->Media_House_List;
+			}else{
+				if($this->Media_ID!="mp01"){
+					return $publication ->Media_House_List;
+				}else{
+					return $publication ->Media_House_List.' - '.$this->StoryPullout;
+				}
+			}
+		}else{
+			return 'Unknown';
+		}
 	}
 
 	

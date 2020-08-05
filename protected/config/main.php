@@ -50,6 +50,10 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
+		'curl' => array(
+			'class' => 'ext.curl.Curl',
+			//'options' => array(/.. additional curl options ../)
+		),
 		// uncomment the following to enable URLs in path-format
 		
 		'urlManager'=>array(
@@ -69,7 +73,7 @@ return array(
 		
 		'db'=>array(
 			'class'=>'CDbConnection',
-			'connectionString' => 'mysql:host=192.168.0.5;dbname=app_settings',
+			'connectionString' => 'mysql:host=197.248.27.6:3307;dbname=app_settings',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => 'Pambazuka08',
@@ -78,7 +82,7 @@ return array(
 
 		'db2'=>array(
 			'class'=>'CDbConnection',
-			'connectionString' => 'mysql:host=192.168.0.5;dbname=reelmedia',
+			'connectionString' => 'mysql:host=197.248.27.6:3307;dbname=reelmedia',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => 'Pambazuka08',
@@ -87,21 +91,13 @@ return array(
 
 		'db3'=>array(
 			'class'=>'CDbConnection',
-			'connectionString' => 'mysql:host=192.168.0.4;dbname=forgedb',
+			'connectionString' => 'mysql:host=197.248.27.6dbname=forgedb',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => 'Pambazuka08',
 			'charset' => 'utf8',
 		),
 
-		'db4'=>array(
-			'class'=>'CDbConnection',
-			'connectionString' => 'mysql:host=192.168.0.5;dbname=onlinedb',
-			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => 'Pambazuka08',
-			'charset' => 'utf8',
-		),
 		
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
@@ -169,9 +165,19 @@ return array(
 		'adminEmail'=>'steve.oyugi@reelforge.com',
 		'video_url'=>'http://www.reelforge.com/',
 		'print_url'=>'http://www.reelforge.com/',
+
 		'printplayer'=>'http://media.reelforge.com/player/index.php?',
 		'electronicplayer'=>'http://media.reelforge.com/player/video.php?',
 		'printarchiveplayer'=>'http://media.reelforge.com/player/archive.php?',
-		'fileactions'=>'http://media.reelforge.com/player/'
+		'fileactions'=>'http://media.reelforge.com/player/',
+		'pff_link'=>'http://media.reelforge.com/reelmedia/files/pdf/',
+
+		'reelmedia_api' => 'http://197.248.156.26/api-reelmedia/public/api/external/',
+
+		'redirect_url'=>'http://www.reelforge.com/reelforge/site/login.php',
+
+		'country_code'=>'KE',
+		'country_currency'=>'KSH',
+
 	),
 );

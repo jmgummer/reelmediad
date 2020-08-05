@@ -1,5 +1,5 @@
 <?php
-
+use app\models\MediaJournalist;
 /**
 * HomeController Controller Class
 * This Class Is Used To Handle all Home actions
@@ -32,7 +32,7 @@ class HomeController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','print','view','video','tests','pdf','excel','cd','html','getdata'),
+				'actions'=>array('index','print','journalist','view','video','tests','pdf','excel','cd','media','html','getdata'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -74,7 +74,84 @@ class HomeController extends Controller
 			$this->render('stories',array('model'=>$model));
 		}
 	}
+
 	
+
+	public function actionJournalist(){
+		
+		
+		$model = new Mediajournalist2();
+		$mediahouse = new Mediahouse();
+		$story = new JournalistStory();
+		$model1=new StorySearch;
+		$industry = new Industry();
+		$results = array();
+		$pages = array();
+
+		if(isset($_POST['JournalistStory']) && !empty($_POST['JournalistStory'])) {  
+			$story->attributes=$_POST['JournalistStory'];
+			$story->firstname=$_POST['JournalistStory']['firstname'];
+			$story->Media_House_List=$_POST['JournalistStory']['Media_House_List'];
+			$story->industry_List=$_POST['JournalistStory']['industry_List'];
+
+			$name = $_POST['JournalistStory']['firstname'];
+			$mediah = $_POST['JournalistStory']['Media_House_List'];
+			$inda = $_POST['JournalistStory']['industry_List'];
+			$media_id = $_POST['JournalistStory']['Media_ID'];
+			$startdate = $_POST['JournalistStory']['startdate'];
+			$enddate = $_POST['JournalistStory']['enddate'];
+
+
+			$arr = array();
+				/*if (!empty($name)){
+				    $arr['name'] = " journalist_story.journalist_id IN('$name') ";
+				}*/
+				if (!empty($mediah)){
+				    $arr['mediah'] = " Media_House_ID='$mediah' ";
+				}
+				if (!empty($media_id)){
+				    $arr['media'] = " media_id='$media_id' ";
+				}if (!empty($inda)){
+					$indstr = implode(',', $inda);					    
+					$arr['inda'] = " story_industry.industry_id IN('$indstr')";
+				}if (!empty($startdate) && !empty($enddate)){
+				    
+					$arr['date'] = " StoryDate BETWEEN '$startdate' AND '$enddate' ";
+				}
+				
+				$where = ' WHERE ' . implode(' AND ', $arr);
+			
+				$month = date('Y_m',strtotime($startdate));
+				//table
+				$story_table = "story_".$month;
+
+			$sql = "SELECT * from $story_table
+					#INNER JOIN journalist_story on $story_table.Story_ID = journalist_story.story_id 
+					INNER JOIN story_industry  on $story_table.Story_ID = story_industry.Story_id " 
+						.$where ."ORDER BY Media_ID" ;
+			$results = Story::model()->findAllBySql($sql);
+			/*$pcount = count($results);
+			$pages=new CPagination($pcount);
+			$pages->pageSize=10;
+			$pages->applyLimit($results);*/
+
+		}
+		
+		$this->render('journalist',
+			array('model'=>$model,'mediahouse'=>$mediahouse,'story'=>$story,'results'=>$results,'industry'=>$industry,'model1' => $model1));
+	}
+	public function actionmedia(){
+		//Getting Mediahouses By Selected Media
+		$check = Mediahouse::model()->mediahouses1($_POST);
+		foreach ($check as  $key => $value) {
+				echo "<option value='$key'>$value</option>";
+		}
+	}
+
+	 public function actiontests(){
+	 	$this->render('tests');
+	 }
+
 	public function actionPdf()
 	{
 	  	$model = new StorySearch('search');
@@ -299,10 +376,7 @@ class HomeController extends Controller
 		}
 	}
 
-	public function actionTests()
-	{
-		$this->render('tests');
-	}
+
 
 	public function actionVideo()
 	{
@@ -331,7 +405,6 @@ class HomeController extends Controller
 				foreach ($industries as $value) {
 					$this_industry_id=$value["Industry_ID"];
 					$this_industry_name=trim($value["ConcatName"]);
-
 					echo '<option value="'.$this_industry_id.'">'.$this_industry_name.'</option>';
 				}
 			}else{

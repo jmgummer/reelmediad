@@ -1,7 +1,6 @@
 <?php
 
-class ExcelResults
-{
+class ExcelResults{
 	public static function OnlineExcel($mentionsarray,$company_name,$reportperiod){
 		ini_set('memory_limit', '1024M');
 		$PHPExcel = new PHPExcel();
@@ -157,8 +156,10 @@ class ExcelResults
             ->setCellValue('G5', 'PICTURE')
             ->setCellValue('H5', 'CLASSIFICATION')
             ->setCellValue('I5', 'TECHNICAL AREA')
-            ->setCellValue('J5', 'EFFECT')
-            ->setCellValue('K5', 'AVE');
+            ->setCellValue('J5', 'COUNTRY')
+            ->setCellValue('K5', 'COUNTY')
+            ->setCellValue('L5', 'EFFECT')
+            ->setCellValue('M5', 'AVE');
             
             $rowcount =1;
             foreach ($printmentions as $keyvalue) {
@@ -179,6 +180,8 @@ class ExcelResults
                 $uniqueID = $keyvalue['uniqueID'];
                 $storyclassification = $keyvalue['storyclassification'];
                 $technicalarea = $keyvalue['technicalarea'];
+                $country = $keyvalue['country'];
+                $county = $keyvalue['county'];
                 $printplayer = Yii::app()->params['printplayer'];
                 $link = $printplayer.'storyid='.$storyid.'&encryptid='.$uniqueID;
                 $PHPExcel->getActiveSheet()
@@ -191,8 +194,12 @@ class ExcelResults
                 ->setCellValueExplicit("G$count", $Picture)
                 ->setCellValueExplicit("H$count", $storyclassification)
                 ->setCellValueExplicit("I$count", $technicalarea)
-                ->setCellValueExplicit("J$count", $storytonality)
-                ->setCellValueExplicit("K$count", $AVE);
+
+                ->setCellValueExplicit("J$count", $country)
+                ->setCellValueExplicit("K$count", $county)
+
+                ->setCellValueExplicit("L$count", $storytonality)
+                ->setCellValueExplicit("M$count", $AVE);
                 $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
                 $PHPExcel->getActiveSheet()->getStyle("D$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
                 $count++;
@@ -213,8 +220,10 @@ class ExcelResults
             ->setCellValue("G$count", 'CATEGORY')
             ->setCellValue("H$count", 'CLASSIFICATION')
             ->setCellValue("I$count", 'TECHNICAL AREA')
-            ->setCellValue("J$count", 'EFFECT')
-            ->setCellValue("K$count", 'AVE');
+            ->setCellValue("J$count", 'COUNTRY')
+            ->setCellValue("K$count", 'COUNTY')
+            ->setCellValue("L$count", 'EFFECT')
+            ->setCellValue("M$count", 'AVE');
             $PHPExcel->getActiveSheet()->getStyle("A$count")->applyFromArray($styleArray);
             $PHPExcel->getActiveSheet()->getStyle("B$count")->applyFromArray($styleArray);
             $PHPExcel->getActiveSheet()->getStyle("C$count")->applyFromArray($styleArray);
@@ -240,6 +249,8 @@ class ExcelResults
                 $uniqueID = $keyvalue['uniqueID'];
                 $storyclassification = $keyvalue['storyclassification'];
                 $technicalarea = $keyvalue['technicalarea'];
+                $country = $keyvalue['country'];
+                $county = $keyvalue['county'];
                 $FormatedTime =  $keyvalue['FormatedTime'];
                 $FormatedDuration =  $keyvalue['FormatedDuration'];
                 $industrycategory =  $keyvalue['industrycategory'];
@@ -255,100 +266,16 @@ class ExcelResults
                 ->setCellValueExplicit("G$count", $industrycategory)
                 ->setCellValueExplicit("H$count", $storyclassification)
                 ->setCellValueExplicit("I$count", $technicalarea)
-                ->setCellValueExplicit("J$count", $storytonality)
-                ->setCellValueExplicit("K$count", $AVE);
+                ->setCellValueExplicit("J$count", $country)
+                ->setCellValueExplicit("K$count", $county)
+                ->setCellValueExplicit("L$count", $storytonality)
+                ->setCellValueExplicit("M$count", $AVE);
                 $PHPExcel->getActiveSheet()->getCell("D$count")->getHyperlink()->setUrl($link);
                 $PHPExcel->getActiveSheet()->getStyle("D$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
                 $count++;
                 $rowcount++;
             }
         }
-
-        // if(count($elecmentions)>0){
-        //     $PHPExcel->setActiveSheetIndex(0)
-        //     ->setCellValue('A5', 'DATE')
-        //     ->setCellValue('B5', 'STATION')
-        //     ->setCellValue('C5', 'JOURNALIST')
-        //     ->setCellValue('D5', 'SUMMARY')
-        //     ->setCellValue('E5', 'TIME')
-        //     ->setCellValue('F5', 'DURATION')
-        //     ->setCellValue('G5', 'CATEGORY')
-        //     ->setCellValue('H5', 'CLASSIFICATION')
-        //     ->setCellValue('I5', 'EFFECT')
-        //     ->setCellValue('J5', 'AVE');
-        //     $count = 6;
-        //     $rowcount =1;
-        //     foreach ($mentionsarray as $keyvalue) {
-
-        //         $StoryDate = $keyvalue['StoryDate'];
-        //         $storyid = $keyvalue['storyid'];
-        //         $Publication = $keyvalue['Publication'];
-        //         $journalist = $keyvalue['journalist'];
-        //         $Title = $keyvalue['Title'];
-        //         $StoryPage = $keyvalue['StoryPage'];
-        //         $PublicationType = $keyvalue['PublicationType'];
-        //         $Picture = $keyvalue['Picture'];
-        //         $storytonality = $keyvalue['storytonality'];
-        //         $AVE = $keyvalue['AVE'];
-        //         $Link = $keyvalue['Link'];
-        //         $Continues = $keyvalue['Continues'];
-        //         $StoryColumn = $keyvalue['StoryColumn'];
-        //         $ContinuingAve = $keyvalue['ContinuingAve'];
-        //         $uniqueID = $keyvalue['uniqueID'];
-        //         $storyclassification = $keyvalue['storyclassification'];
-
-        //         $printplayer = Yii::app()->params['printplayer'];
-        //         $link = $printplayer.'storyid='.$storyid.'&encryptid='.$uniqueID;
-
-        //         $tabledata = '<tr>
-        //         <td><a href="'.$link.'" target="_blank">'.date('d-M-Y', strtotime($date)).'</a></td>
-        //         <td>'.$pub.'</td>
-        //         <td>'.$journo.'</td>
-        //         <td><a href="'.$link.'" target="_blank">'.$head.'</a><br><font size="1">'.$cont.'</font></td>
-        //         <td>'.$page.'</td>
-        //         <td>'.$pubtype.'</td>
-        //         <td>'.$pic.'</td>
-        //         <td id="classification'.$storyid.'"><a onclick="UpdateClientClassification('.$storyid.');" style="cursor: pointer;">'.$storyclassification.' <sup><i class="fa fa-history" aria-hidden="true"></i></sup></a></td>';
-        //         if($effect=='N/A'){
-        //             $tabledata.= '<td>'.$effect.'</td>';
-        //         }else{
-        //             $tabledata.='<td id="tonality'.$storyid.'"><a onclick="AddClientTonality('.$storyid.');" style="cursor: pointer;">'.$effect.' <sup><i class="fa fa-history" aria-hidden="true"></i></sup></a></td>';
-        //         }
-        //         $tabledata .= '<td style="text-align:right;">'.number_format($ContinuingAve).'</td>
-        //         </tr>';
-
-
-
-        //         $id = $keyvalue->id;
-        //         $Date = $keyvalue->Date;
-        //         $Tonality = $keyvalue->Tonality;
-        //         $Title = $keyvalue->Title;
-        //         $Link = $keyvalue->permalink;
-        //         $Domain = $keyvalue->Domain;
-        //         $Authors = $keyvalue->Authors;
-        //         $Themes = $keyvalue->Themes;
-        //         $Keywords = $keyvalue->Keywords;
-        //         $AVE = $keyvalue->AVE;
-        //         $OTS = $keyvalue->OTS;
-
-        //         $PHPExcel->getActiveSheet()
-        //         ->setCellValue("A$count", $rowcount)
-        //         ->setCellValueExplicit("B$count", $Title)
-        //         ->setCellValueExplicit("C$count", $Date)
-        //         ->setCellValueExplicit("D$count", $Tonality)
-        //         ->setCellValueExplicit("E$count", $Domain)
-        //         ->setCellValueExplicit("F$count", $Link)
-        //         ->setCellValueExplicit("G$count", $Authors)
-        //         ->setCellValueExplicit("H$count", $OTS)
-        //         ->setCellValueExplicit("I$count", $Themes)
-        //         ->setCellValueExplicit("J$count", $Keywords)
-        //         ;
-        //         $PHPExcel->getActiveSheet()->getCell("B$count")->getHyperlink()->setUrl($Link);
-        //         $PHPExcel->getActiveSheet()->getStyle("B$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
-        //         $count++;
-        //         $rowcount++;
-        //     }
-        // }
         
         $count++;
         $PHPExcel->getActiveSheet()->setTitle('Classified Stories');
@@ -358,6 +285,112 @@ class ExcelResults
         $upload_path = $_SERVER['DOCUMENT_ROOT']."/reelmediad/docs/excel/";
         $filename = str_replace(" ","_",$company_name);
         $filename = $filename.'_classified_reports_'.date("Ymdhis").'.xlsx';
+        $objWriter->save($upload_path.$filename);
+        return $filename;
+    }
+
+    
+
+    public static function Genexcel($results){
+        
+        date_default_timezone_set('Africa/Nairobi');
+        $today = date("Y-m-d H:i:s");
+        $generated_date = '$today';
+        ini_set('memory_limit', '1024M');
+        $PHPExcel = new PHPExcel();
+        $title = "Reelforge Media Story Excel Report";
+        $PHPExcel->getProperties()->setCreator("Reelforge Media Intelligence")
+        ->setTitle("Reelforge Media Story Excel Report")
+        ->setSubject("Reelforge Media Story Excel Report")
+        ->setDescription("Reelforge Media Story Excel Report");
+        $PHPExcel->getDefaultStyle()->getFont()->setName('Arial')->setSize(8);
+        $styleArray = array('font'  => array('bold'  => true));
+        $styleArray2 = array('font'  => array('bold'  => true,'width'  => 100),'alignment' => array('wrap'=> false));
+        $PHPExcel->getActiveSheet()->getStyle("A1")->applyFromArray($styleArray2);
+        $PHPExcel->getActiveSheet()->getStyle("A2")->applyFromArray($styleArray2);
+        $PHPExcel->getActiveSheet()->getStyle("A3")->applyFromArray($styleArray2);
+        $PHPExcel->getActiveSheet()->mergeCells('A1:Z1');
+        $PHPExcel->getActiveSheet()->mergeCells('A2:Z2');
+        $PHPExcel->getActiveSheet()->mergeCells('A3:Z3');
+        $PHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(5);
+        $PHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(20);
+        $PHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(20);
+        $PHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(20);
+        $PHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(65);
+        $PHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(10);
+        $PHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(15);
+        
+        $PHPExcel->getActiveSheet()->getStyle("A5")->applyFromArray($styleArray);
+        $PHPExcel->getActiveSheet()->getStyle("B5")->applyFromArray($styleArray);
+        $PHPExcel->getActiveSheet()->getStyle("C5")->applyFromArray($styleArray);
+        $PHPExcel->getActiveSheet()->getStyle("D5")->applyFromArray($styleArray);
+        $PHPExcel->getActiveSheet()->getStyle("E5")->applyFromArray($styleArray);
+        $PHPExcel->getActiveSheet()->getStyle("F5")->applyFromArray($styleArray);
+        $PHPExcel->getActiveSheet()->getStyle("G5")->applyFromArray($styleArray);
+       
+        // Electonic Sheet
+        $PHPExcel->setActiveSheetIndex(0)
+        ->setCellValue('A1', 'Reelforge Media Story Report')
+        ->setCellValue('A2', 'Generated On : '.$generated_date)
+        //->setCellValue('A3', 'Period : '.$startdate ."-". $enddate)
+        ->setCellValue('A5', '#')
+        ->setCellValue('B5', 'Date')
+        ->setCellValue('C5', 'JOURNALIST')
+        ->setCellValue('D5', 'PUBLICATION')
+        ->setCellValue('E5', 'TITLE/HEADER')
+        ->setCellValue('F5', 'PAGE')
+        ->setCellValue('G5', 'AVE');
+
+        $count = 6;
+        $pcount=1;
+        foreach ($results as $value) {
+            $name = $value['journalist'];
+            $stdate = $value['StoryDate'];
+            $title = $value['Title'];
+            $media = $value['Media_House_ID'];
+            $page       = $value['StoryPage'];
+            $ave       = $value['ave'];
+            $stmedia = $value['Media_ID'];
+            $Story_ID = $value['Story_ID'];
+            $mediahouse =Mediahouse::model()->getMediahouseName2($media);
+            $me = implode("", $mediahouse);
+
+             if ($stmedia == 'mp01') {
+         $link = "https://media.reelforge.com/player/index.php?storyid=$Story_ID";
+         $page = $page;
+
+         $page_title = "<a href = '$link'>$title</a>";
+      } else {
+         $link = "https://media.reelforge.com/player/video.php?storyid=$Story_ID";
+         $page = '--';
+         $page_title = "<a href = '$link'>$title</a>";
+      }
+           
+
+            $PHPExcel->getActiveSheet()
+            ->setCellValue("A$count", $pcount)
+            ->setCellValueExplicit("B$count", $stdate)
+            ->setCellValueExplicit("C$count", $name)
+            ->setCellValueExplicit("D$count", $me)
+            ->setCellValueExplicit("E$count", $title)
+            ->setCellValueExplicit("F$count", $page)
+            ->setCellValueExplicit("G$count", $ave);
+            $PHPExcel->getActiveSheet()->getCell("E$count")->getHyperlink()->setUrl($link);
+            $PHPExcel->getActiveSheet()->getStyle("E$count")->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_BLUE);
+            
+            $count++;
+            $pcount++;
+
+        }
+         
+
+        $PHPExcel->getActiveSheet()->setTitle('Media Story');
+
+        $PHPExcel->setActiveSheetIndex(0);
+        $objWriter = PHPExcel_IOFactory::createWriter($PHPExcel, 'Excel2007');
+        $upload_path = $_SERVER['DOCUMENT_ROOT']."/reelmediad/docs/excel/";
+        $filename = str_replace(" ","_",'Media Story Report');
+        $filename = $filename.'_MediaReports_'.date("Ymdhis").'.xlsx';
         $objWriter->save($upload_path.$filename);
         return $filename;
     }

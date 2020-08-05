@@ -159,4 +159,9 @@ class Industry extends CActiveRecord
 		$sql = 'SELECT Industry_List, industry.Industry_ID, sup_ind_id, sect_id, sub_ind_id FROM industry,industry_company where industry_company.company_id='.$company_id.' and industry_company.industry_id=industry.Industry_ID order by sub_ind_id, Industry_List';
 		return CHtml::listData(Industry::model()->findAllBySql($sql),'Industry_ID','ConcatName');
 	}
+	public function IndaNames(){
+		$industries = Industry::model()->findAll(array());
+        $industry_names = CHtml::listData($industries,'Industry_ID','ConcatName');
+        return $industry_names;
+	}
 }

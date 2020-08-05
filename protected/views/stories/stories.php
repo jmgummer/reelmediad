@@ -6,10 +6,10 @@ $this->breadcrumbs=array('Classified Stories');
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl . '/js/datepick/jquery.plugin.js'; ?>"></script> 
 <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl . '/js/datepick/jquery.datepick.js'; ?>"></script>
 <div class="row-fluid clearfix">
-<div class="col-md-3">
+<div class="col-md-12">
 <?php $this->renderPartial('search_filter',array('model'=>$model)); ?>
 </div>
-<div class="col-md-9">
+<div class="col-md-12">
 
 <?php
 $todays = date('Y-m-d');
@@ -18,21 +18,37 @@ $search = ' ';
 // Adding Country Code
 $country = Yii::app()->user->country_id;
 $industries = '';
-// Adding backdate
-$clientid = Yii::app()->user->company_id;
-$cat_identifier = 1;
-$type_identifier = 1;
-$c_sql = "SELECT * FROM company WHERE company_id=$clientid";
-if($company_words = Company::model()->findBySql($c_sql)){
-	$backdate = $company_words->backdate;
-}else{
-	$backdate = date('Y-m-d');
-	echo "<p style='color:Red'>Back Date Not Set, Please get in Touch with your Client Service Representative</p>";
-}
-$classification = $model->industry;
+
+
+echo '<div class="widget-body">
+<ul id="myTab1" class="nav nav-tabs bordered">
+<li class="active"><a href="#s4" data-toggle="tab">Classified Stories</a></li>
+<li class="pull-right">
+<a href="javascript:void(0);">
+<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
+</li>
+</ul>';
+echo '<div id="myTabContent1" class="tab-content padding-10">';
 
 $html = '';
 if(isset($_POST['StorySearch'])){
+	// Adding backdate
+	if(Yii::app()->user->usertype=='agency'){
+		$clientid = $model->company;
+	}else{
+		$clientid = Yii::app()->user->company_id;
+	}
+	$cat_identifier = 1;
+	$type_identifier = 1;
+	$c_sql = "SELECT * FROM company WHERE company_id=$clientid";
+	if($company_words = Company::model()->findBySql($c_sql)){
+		$backdate = $company_words->backdate;
+	}else{
+		$backdate = date('Y-m-d');
+		echo "<p style='color:Red'>Company Start Date Not Set, Please get in Touch with your Client Service Representative</p>";
+	}
+	$classification = $model->industry;
+
 	$country = $model->country;
 	$startdate = $model->startdate;
 	$enddate = $model->enddate;
@@ -51,29 +67,23 @@ if(isset($_POST['StorySearch'])){
       $type_identifier= $model->storytype;
     }
 	
+	echo '<div class="tab-pane fade active in" id="s4">';
+	if(Yii::app()->user->usertype=='agency'){
+		$stories = ClassifiedStories::GetAgencyClientStories($clientid,$startdate,$enddate,$model->search_text,$backdate,$country,$model->storytype,$classification);
+	}else{
+		$stories = ClassifiedStories::GetClientStories($clientid,$startdate,$enddate,$model->search_text,$backdate,$country,$model->storytype,$classification);
+	}
+	echo '</div>';
 	?>
 	<?php
-}else{ ?>
-	<?php
+}else{
+	echo '<div class="tab-pane fade active in" id="s4">';
+	echo "<p>Select start and end date to search</p>";
+	echo '</div>';
 }
 
-echo '<div class="widget-body">
-		<ul id="myTab1" class="nav nav-tabs bordered">
-			<li class="active"><a href="#s4" data-toggle="tab">Classified Stories</a></li>
-			<li class="pull-right">
-				<a href="javascript:void(0);">
-				<div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px" data-sparkline-width="90px" data-sparkline-barwidth="7"><canvas width="52" height="18" style="display: inline-block; width: 52px; height: 18px; vertical-align: top;"></canvas></div> </a>
-			</li>
-		</ul>';
-		echo '<div id="myTabContent1" class="tab-content padding-10">';
-
-		echo '<div class="tab-pane fade active in" id="s4">';
-		$stories = ClassifiedStories::GetClientStories(Yii::app()->user->company_id,$startdate,$enddate,$model->search_text,$backdate,$country,$model->storytype,$classification);
-		echo '</div>';
-
-		echo '</div>';
-		echo '</div>';
-    
+echo '</div>';
+echo '</div>';  
 ?>
 </div>
 </div>
@@ -142,13 +152,14 @@ echo '<div class="widget-body">
 <script type="text/javascript">
 	function UpdateClientClassification(storyid){
 		var link = '../stories/editclassification';
+		var clientid = $('#StorySearch_company').val();
 		$('#clsmodal').modal('show');
 		document.getElementById('clsstoryid').value = storyid;
 	    var load = document.getElementById('editsector');
 	    load.innerHTML = "Loading data ...";
 	    jQuery.ajax({
 	        url:link,
-	        data:{'storyid':storyid,'clsmodal':true},
+	        data:{'storyid':storyid,'clsmodal':true,'clientid':clientid},
 	        type:'POST',
 	        cache:false,
 	        success:function(data){
@@ -164,10 +175,11 @@ echo '<div class="widget-body">
 		var storyid = $('#clsstoryid').val();
 		var clsclassific = $('#clsclassific').val();
 		var editid = $('#editid').val();
+		var clientid = $('#StorySearch_company').val();
 		var load = document.getElementById('editsector');
 		jQuery.ajax({
 	        url:link,
-	        data:{'storyid':storyid,'clsclassific':clsclassific,'editid':editid,'clsedmodal':true},
+	        data:{'storyid':storyid,'clsclassific':clsclassific,'editid':editid,'clsedmodal':true,'clientid':clientid},
 	        type:'POST',
 	        cache:false,
 	        success:function(data){
@@ -180,13 +192,14 @@ echo '<div class="widget-body">
 	}
 	function UpdateTechnicalArea(storyid){
 		var link = '../stories/edittechnicalarea';
+		var clientid = $('#StorySearch_company').val();
 		$('#techmodal').modal('show');
 		document.getElementById('tareastoryid').value = storyid;
 	    var load = document.getElementById('edit_technical_sector');
 	    load.innerHTML = "Loading data ...";
 	    jQuery.ajax({
 	        url:link,
-	        data:{'storyid':storyid,'techmodal':true},
+	        data:{'storyid':storyid,'techmodal':true,'clientid':clientid},
 	        type:'POST',
 	        cache:false,
 	        success:function(data){
@@ -201,10 +214,14 @@ echo '<div class="widget-body">
 		var link = '../stories/edittechnicalarea';
 		var tarea_id = $('#tarea_id').val();
 		var techstoryid = $('#techstoryid').val();
+		var t_country = $('#t_country').val();
+		var t_county = $('#t_county').val();
+		var clientid = $('#StorySearch_company').val();
 		var load = document.getElementById('edit_technical_sector');
+		load.innerHTML = "Saving ... ";
 		jQuery.ajax({
 	        url:link,
-	        data:{'tarea_id':tarea_id,'techstoryid':techstoryid,'tedmodal':true},
+	        data:{'tarea_id':tarea_id,'techstoryid':techstoryid,'t_country':t_country,'t_county':t_county,'tedmodal':true,'clientid':clientid},
 	        type:'POST',
 	        cache:false,
 	        success:function(data){
@@ -217,13 +234,14 @@ echo '<div class="widget-body">
 	}
 	function AddClientTonality(storyid){
 		var link = '../stories/edittonality';
+		var clientid = $('#StorySearch_company').val();
 		$('#tnltymodal').modal('show');
 		document.getElementById('tnlystoryid').value = storyid;
 	    var load = document.getElementById('edittonalysector');
 	    load.innerHTML = "Loading data ...";
 	    jQuery.ajax({
 	        url:link,
-	        data:{'storyid':storyid,'tnltymodal':true},
+	        data:{'storyid':storyid,'tnltymodal':true,'clientid':clientid},
 	        type:'POST',
 	        cache:false,
 	        success:function(data){
@@ -239,10 +257,11 @@ echo '<div class="widget-body">
 		var storyid = $('#tnlystoryid').val();
 		var tnlyclassific = $('#tnlyclassific').val();
 		var editid = $('#editid').val();
+		var clientid = $('#StorySearch_company').val();
 		var load = document.getElementById('edittonalysector');
 		jQuery.ajax({
 	        url:link,
-	        data:{'storyid':storyid,'tnlyclassific':tnlyclassific,'editid':editid,'clsedmodal':true},
+	        data:{'storyid':storyid,'tnlyclassific':tnlyclassific,'editid':editid,'clsedmodal':true,'clientid':clientid},
 	        type:'POST',
 	        cache:false,
 	        success:function(data){

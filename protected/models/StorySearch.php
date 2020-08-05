@@ -27,8 +27,10 @@ class StorySearch extends CFormModel
 	public $industryreports;
 	public $publications;
 	public $company;
+	public $county;
 
-
+// country
+// county
 	/**
 	 * Declares the validation rules.
 	 * The rules state that username and password are required,
@@ -39,7 +41,7 @@ class StorySearch extends CFormModel
 		return array(
 			array('enddate,startdate', 'required'),
 			array('country,create_sheet,create_pdf', 'numerical', 'integerOnly'=>true),
-			array('search_text,country,storytype,storycategory,news_section,enddate, startdate,industry,create_pdf,create_sheet,industryreports, publications, company', 'safe'),
+			array('search_text,country,storytype,storycategory,news_section,enddate, startdate,industry,create_pdf,create_sheet,industryreports, publications, company, county', 'safe'),
 		);
 	}
 
